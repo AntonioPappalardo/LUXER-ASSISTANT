@@ -1,0 +1,19 @@
+{
+  "name": "emad2021_shopper-assistant",
+  "version": "1.0.0",
+  "description": "Progetto per il Retail di Fashion Luxury per il corso Enterprise Mobile Application Development",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrancescoPa96/Emad2021_Shopper-Assistant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FrancescoPa96/Emad2021_Shopper-Assistant/issues"
+  },
+  "homepage": "https://github.com/FrancescoPa96/Emad2021_Shopper-Assistant#readme"
+}
