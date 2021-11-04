@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Alert,ImageBackground, TouchableHighlight, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, TouchableHighlight, TouchableOpacity} from 'react-native';
 
 const WelcomeScreen = (props) => {
     return (
@@ -9,7 +9,7 @@ const WelcomeScreen = (props) => {
           <Text style={styles.text}>Sell What You Don't Need!</Text>
           </ImageBackground>
 
-          <TouchableOpacity style={{width:'100%',height:55, backgroundColor:'#fc5c65'}} onPress={() => Alert.alert("Section 1 Clicked")}><Text style={styles.text_section}>Section 1</Text></TouchableOpacity>
+          <TouchableOpacity style={{width:'100%',height:55, backgroundColor:'#fc5c65'}} onPress={() => props.navigation.navigate('WelcomeScreen')}><Text style={styles.text_section}>Section 1</Text></TouchableOpacity>
           <TouchableOpacity style={{width:'100%',height:55, backgroundColor:'#4ECDC4'}} onPress={() => props.navigation.navigate('WelcomeScreen')}><Text style={styles.text_section}>Section 2</Text></TouchableOpacity>
 
     </View>
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width:"100%",
-    height: 700,
+    height: 690,
   },
   text:{
     textAlign:'center',
