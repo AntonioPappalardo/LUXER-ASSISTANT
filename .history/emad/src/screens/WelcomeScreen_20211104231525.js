@@ -9,7 +9,7 @@ const WelcomeScreen = (props) => {
           <Text style={styles.text}>Sell What You Don't Need!</Text>
           </ImageBackground>
 
-          <TouchableOpacity style={{width:'100%',height:55, backgroundColor:'#fc5c65'}} onPress={() => Alert.alert("Section 1 Clicked")}><Text style={styles.text_section}>Section 1</Text></TouchableOpacity>
+          <TouchableOpacity style={{width:'100%',height:55, backgroundColor:'#fc5c65'}} onPress={() => Alert.alert("Click")}><Text style={styles.text_section}>Section 1</Text></TouchableOpacity>
           <TouchableOpacity style={{width:'100%',height:55, backgroundColor:'#4ECDC4'}} onPress={() => props.navigation.navigate('WelcomeScreen')}><Text style={styles.text_section}>Section 2</Text></TouchableOpacity>
 
     </View>
