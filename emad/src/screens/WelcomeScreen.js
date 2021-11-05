@@ -1,18 +1,39 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, TouchableHighlight, TouchableOpacity} from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import Home from './prova';
+const Tab = createBottomTabNavigator();
 
 const WelcomeScreen = (props) => {
     return (
-    <View style={styles.container} >
-          <ImageBackground source={require('../../assets/background.jpg')} resizeMode="cover" style={styles.image}>
+      <Tab.Navigator screenOptions={{tabBarShowIcon: true,  tabBarStyle: {height:70, backgroundColor: "#1B1F34" }, tabBarShowLabel:false}}>
+      <Tab.Screen name="Home" component={Home} 
+        options={{
+          tabBarIcon:()=>(
+            <FeatherIcon name="home" size={30} color={"white"} />
+          ),
+          tabBarLabel:"Home",
           
-          <Text style={styles.text}>Sell What You Don't Need!</Text>
-          </ImageBackground>
-
-          <TouchableOpacity style={{width:'100%',height:55, backgroundColor:'#fc5c65'}} onPress={() => props.navigation.navigate('WelcomeScreen')}><Text style={styles.text_section}>Section 1</Text></TouchableOpacity>
-          <TouchableOpacity style={{width:'100%',height:55, backgroundColor:'#4ECDC4'}} onPress={() => props.navigation.navigate('WelcomeScreen')}><Text style={styles.text_section}>Section 2</Text></TouchableOpacity>
-
-    </View>
+        }}/>
+      <Tab.Screen name="Details" component={Home}
+      options={{
+        tabBarIcon:()=>(
+          <SimpleLineIcons name="calendar" size={30} color={"white"} />
+        ),
+        tabBarLabel:"Home"
+      }} />
+      <Tab.Screen name="Appointment" component={Home} 
+      options={{
+        tabBarIcon:()=>(
+          <Ionicons name="search-outline" size={30} color={"white"} />
+        ),
+        tabBarLabel:"Home"
+      }}
+       />
+    </Tab.Navigator>
 
   );
 }

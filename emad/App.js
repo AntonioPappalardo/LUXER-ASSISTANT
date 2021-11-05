@@ -1,17 +1,14 @@
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import WelcomeScreen from "./src/screens/WelcomeScreen";
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import WelcomeScreen from './src/screens/WelcomeScreen';
 
-const navigator = createStackNavigator({
-    Welcome: WelcomeScreen,
+function App(){
+  return (   
+    <NavigationContainer >
 
-}, {
-    initialRouteName: "Welcome",
-    defaultNavigationOptions: {
-        title: "App",
-        headerShown: false
-    },
-});
+      <WelcomeScreen />
 
-
-export default createAppContainer(navigator);
+    </NavigationContainer>
+  )
+}
+export default App;
