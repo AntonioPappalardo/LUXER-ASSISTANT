@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import WelcomeScreen from './src/screens/WelcomeScreen';
+import InitialScreen from './src/screens/InitialScreen';
 
 function App(){
   return (   
     <NavigationContainer >
 
-      <WelcomeScreen />
+      <InitialScreen />
 
     </NavigationContainer>
   )

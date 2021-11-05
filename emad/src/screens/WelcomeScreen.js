@@ -5,11 +5,12 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Home from './prova';
+import Login from './Login';
 const Tab = createBottomTabNavigator();
 
 const WelcomeScreen = (props) => {
     return (
-      <Tab.Navigator screenOptions={{tabBarShowIcon: true,  tabBarStyle: {height:70, backgroundColor: "#1B1F34" }, tabBarShowLabel:false}}>
+      <Tab.Navigator screenOptions={{tabBarShowIcon: true,  tabBarStyle: {height:70, backgroundColor: "#1B1F34" }, tabBarShowLabel:false, headerShown:false}}>
       <Tab.Screen name="Home" component={Home} 
         options={{
           tabBarIcon:()=>(
