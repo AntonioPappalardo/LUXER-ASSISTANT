@@ -1,25 +1,16 @@
-import React from "react";
-import { Text, StyleSheet, View, Button } from "react-native";
+import React, { Component } from 'react';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native'
+import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import { color } from 'react-native-elements/dist/helpers';
 
-const Home= ({navigation})=> {
-  return(
-  <View>
-    <Text style={styles.maintext}>HomeScreen</Text>
-    <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-  </View>
+const prova = ({ navigation }) => {
+  return (
+    null
   );
 };
 
 const styles = StyleSheet.create({
-  maintext: {
-    fontSize: 30
-  },
-  text:{
-    fontSize:20
-  }
+ 
 });
 
-export default Home;
+export default prova;

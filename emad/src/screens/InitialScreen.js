@@ -21,7 +21,7 @@ const InitialScreen = (props) => {
         <Stack.Navigator >
                 { userToken == null ?(
                 <Stack.Screen name="Login" component={Login}/>):(
-                <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}/>
+                    <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{headerShown: false}}/>
                 )}
         </Stack.Navigator>
         </AuthContext.Provider>

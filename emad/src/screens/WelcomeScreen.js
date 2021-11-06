@@ -4,7 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import Home from './prova';
+import Home from './UserHome';
+import Test from './prova';
 import Login from './Login';
 const Tab = createBottomTabNavigator();
 
@@ -19,14 +20,14 @@ const WelcomeScreen = (props) => {
           tabBarLabel:"Home",
           
         }}/>
-      <Tab.Screen name="Details" component={Home}
+      <Tab.Screen name="Details" component={Test}
       options={{
         tabBarIcon:()=>(
           <SimpleLineIcons name="calendar" size={30} color={"white"} />
         ),
         tabBarLabel:"Home"
       }} />
-      <Tab.Screen name="Appointment" component={Home} 
+      <Tab.Screen name="Appointment" component={Test} 
       options={{
         tabBarIcon:()=>(
           <Ionicons name="search-outline" size={30} color={"white"} />
