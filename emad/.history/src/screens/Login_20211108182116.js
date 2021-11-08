@@ -45,8 +45,9 @@ const styles = StyleSheet.create({
   text:{
     alignSelf:'center',
     top:10,
+    fontFamily:'sfpro',
     fontSize:25,
-    color:'#7379B7',
+    color:'white',
     fontWeight:'bold'
   },
   form:{

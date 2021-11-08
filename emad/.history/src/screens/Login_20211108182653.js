@@ -45,8 +45,9 @@ const styles = StyleSheet.create({
   text:{
     alignSelf:'center',
     top:10,
+    fontFamily:'Arial',
     fontSize:25,
-    color:'#7379B7',
+    color:'#4957A6',
     fontWeight:'bold'
   },
   form:{

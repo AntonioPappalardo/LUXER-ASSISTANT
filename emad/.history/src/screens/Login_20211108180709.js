@@ -34,20 +34,16 @@ const Login= ({})=> {
 
 const styles = StyleSheet.create({
   tinylogo:{
-    marginTop:75,
+    marginTop:100,
     alignSelf:'center',
-    width:140, 
-    height:110
+    width:120, 
+    height:90
   },
   maintext: {
     fontSize: 30
   },
   text:{
-    alignSelf:'center',
-    top:10,
-    fontSize:25,
-    color:'#7379B7',
-    fontWeight:'bold'
+    fontSize:20
   },
   form:{
     marginTop:100,

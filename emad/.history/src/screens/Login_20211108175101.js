@@ -13,7 +13,6 @@ const Login= ({})=> {
     return (
     <View style={styles.screen}>
         <Image style={styles.tinylogo} source={require('../../assets/logo.png')}/>
-        <Text style={styles.text}>Luxor Assistant</Text>
         <View style={styles.form}>
           <Ionicons style={styles.icon_user} name="person-outline" size={25} color="white"/>
           <TextInput style={styles.input} placeholder="Username" placeholderTextColor="white" value={username} onChangeText={setUsername} underlineColorAndroid="transparent" />
@@ -22,7 +21,7 @@ const Login= ({})=> {
           <TouchableOpacity style={styles.button} onPress={() => signIn({ username, password })}>
           <View style={{ flexDirection: "row", alignSelf:"auto"}}>
           <Text style={styles.button_text}>Accedi</Text>
-            <View style={[styles.dot_button, { backgroundColor: "#789AF3" }]}>
+            <View style={[styles.dot_button, { backgroundColor: "#BA58E6" }]}>
               <Ionicons name="arrow-forward-outline" size={25} color={"white"} style={{ transform: [{ rotateZ: '-45deg' }] }} />
             </View>
           </View>
@@ -34,20 +33,16 @@ const Login= ({})=> {
 
 const styles = StyleSheet.create({
   tinylogo:{
-    marginTop:75,
+    marginTop:100,
     alignSelf:'center',
-    width:140, 
-    height:110
+    width:120, 
+    height:90
   },
   maintext: {
     fontSize: 30
   },
   text:{
-    alignSelf:'center',
-    top:10,
-    fontSize:25,
-    color:'#7379B7',
-    fontWeight:'bold'
+    fontSize:20
   },
   form:{
     marginTop:100,
@@ -74,7 +69,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     height:55,
     width:'60%',
-    paddingVertical: 17,
+    paddingVertical: 20,
     paddingHorizontal: 30,
     marginTop:120,
     borderRadius: 25,
@@ -83,12 +78,9 @@ const styles = StyleSheet.create({
     
   },
   button_text:{
-    fontSize: 18,
-    fontWeight:'bold',
-    marginLeft:30,
-    marginTop:0,
+    fontSize: 20,
+    marginLeft:50,
     color:"white"
-
   },
   icon_user:{
     fontWeight:"bold",
@@ -129,7 +121,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       alignSelf: 'flex-end',
       top:10,
-      left: 15,
+      left: 5,
       marginTop: 5,
       height: 40,
       width: 40,
