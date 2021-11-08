@@ -11,7 +11,8 @@ const Tab = createBottomTabNavigator();
 
 const WelcomeScreen = (props) => {
     return (
-      <Tab.Navigator screenOptions={{tabBarShowIcon: true,  tabBarStyle: {height:70, backgroundColor: "#1B1F34" }, tabBarShowLabel:false, headerShown:false}}>
+      <Tab.Navigator screenOptions={{tabBarShowIcon: true,  tabBarStyle: {height:50, backgroundColor: "#1B1F34",borderTopWidth: 0}, tabBarShowLabel:false, headerShown:false}}>
+      
       <Tab.Screen name="Home" component={Home} 
         options={{
           tabBarIcon:()=>(
@@ -36,7 +37,6 @@ const WelcomeScreen = (props) => {
       }}
        />
     </Tab.Navigator>
-
   );
 }
 

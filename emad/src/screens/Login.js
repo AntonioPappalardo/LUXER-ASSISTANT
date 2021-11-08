@@ -22,8 +22,8 @@ const Login= ({})=> {
           <TouchableOpacity style={styles.button} onPress={() => signIn({ username, password })}>
           <View style={{ flexDirection: "row", alignSelf:"auto"}}>
           <Text style={styles.button_text}>Accedi</Text>
-            <View style={[styles.dot_button, { backgroundColor: "#789AF3" }]}>
-              <Ionicons name="arrow-forward-outline" size={25} color={"white"} style={{ transform: [{ rotateZ: '-45deg' }] }} />
+            <View style={[styles.dot_button, { backgroundColor: "#789AF3"}]}>
+              <Ionicons name="arrow-forward-outline" size={25} color={"white"} style={{ transform: [{ rotateZ: '-45deg' }], }} />
             </View>
           </View>
           </TouchableOpacity>
@@ -74,12 +74,12 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     height:55,
     width:'60%',
-    paddingVertical: 17,
+    paddingVertical: 15,
     paddingHorizontal: 30,
     marginTop:120,
     borderRadius: 25,
     elevation: 3,
-    backgroundColor: '#4957A6',
+    backgroundColor: '#2D62ED',
     
   },
   button_text:{
@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       alignSelf: 'flex-end',
+      marginLeft: 'auto',
       top:10,
       left: 15,
       marginTop: 5,
