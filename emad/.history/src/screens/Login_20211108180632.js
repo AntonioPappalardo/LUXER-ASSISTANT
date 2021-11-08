@@ -13,7 +13,7 @@ const Login= ({})=> {
     return (
     <View style={styles.screen}>
         <Image style={styles.tinylogo} source={require('../../assets/logo.png')}/>
-        <Text style={styles.text}>Luxor Assistant</Text>
+        <Text>Luxor Assistant</Text>
         <View style={styles.form}>
           <Ionicons style={styles.icon_user} name="person-outline" size={25} color="white"/>
           <TextInput style={styles.input} placeholder="Username" placeholderTextColor="white" value={username} onChangeText={setUsername} underlineColorAndroid="transparent" />
@@ -34,20 +34,16 @@ const Login= ({})=> {
 
 const styles = StyleSheet.create({
   tinylogo:{
-    marginTop:75,
+    marginTop:100,
     alignSelf:'center',
-    width:140, 
-    height:110
+    width:120, 
+    height:90
   },
   maintext: {
     fontSize: 30
   },
   text:{
-    alignSelf:'center',
-    top:10,
-    fontSize:25,
-    color:'#7379B7',
-    fontWeight:'bold'
+    fontSize:20
   },
   form:{
     marginTop:100,

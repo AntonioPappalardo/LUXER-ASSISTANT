@@ -13,19 +13,15 @@ const Login= ({})=> {
     return (
     <View style={styles.screen}>
         <Image style={styles.tinylogo} source={require('../../assets/logo.png')}/>
-        <Text style={styles.text}>Luxor Assistant</Text>
         <View style={styles.form}>
           <Ionicons style={styles.icon_user} name="person-outline" size={25} color="white"/>
           <TextInput style={styles.input} placeholder="Username" placeholderTextColor="white" value={username} onChangeText={setUsername} underlineColorAndroid="transparent" />
           <Ionicons style={styles.icon_password} name="key-outline" size={25} color="white"/>
           <TextInput style={styles.input} placeholder="Password" placeholderTextColor="white" value={password} onChangeText={setPassword} secureTextEntry underlineColorAndroid="transparent" />
           <TouchableOpacity style={styles.button} onPress={() => signIn({ username, password })}>
-          <View style={{ flexDirection: "row", alignSelf:"auto"}}>
           <Text style={styles.button_text}>Accedi</Text>
-            <View style={[styles.dot_button, { backgroundColor: "#789AF3" }]}>
-              <Ionicons name="arrow-forward-outline" size={25} color={"white"} style={{ transform: [{ rotateZ: '-45deg' }] }} />
-            </View>
-          </View>
+          <Ionicons style={styles.icon_arrow} name="arrow-forward-outline" size={25} color="white"/>
+          <View style={styles.icon_middle} />
           </TouchableOpacity>
         </View>
     </View>
@@ -34,23 +30,19 @@ const Login= ({})=> {
 
 const styles = StyleSheet.create({
   tinylogo:{
-    marginTop:75,
+    marginTop:100,
     alignSelf:'center',
-    width:140, 
-    height:110
+    width:120, 
+    height:90
   },
   maintext: {
     fontSize: 30
   },
   text:{
-    alignSelf:'center',
-    top:10,
-    fontSize:25,
-    color:'#7379B7',
-    fontWeight:'bold'
+    fontSize:20
   },
   form:{
-    marginTop:100,
+    marginTop:150,
     padding:20
   },
   input:{
@@ -70,25 +62,20 @@ const styles = StyleSheet.create({
     backgroundColor:"#2A2E43"
   },
   button: {
-    alignSelf:'center',
-    flexDirection:'row',
     height:55,
     width:'60%',
-    paddingVertical: 17,
+    paddingVertical: 20,
     paddingHorizontal: 30,
     marginTop:120,
+    marginLeft:80,
     borderRadius: 25,
     elevation: 3,
     backgroundColor: '#4957A6',
     
   },
   button_text:{
-    fontSize: 18,
-    fontWeight:'bold',
-    marginLeft:30,
-    marginTop:0,
+    marginLeft:50,
     color:"white"
-
   },
   icon_user:{
     fontWeight:"bold",
@@ -123,17 +110,6 @@ const styles = StyleSheet.create({
       paddingLeft:5,
       borderRadius:25,
       zIndex: 0
-    },
-    dot_button: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      alignSelf: 'flex-end',
-      top:10,
-      left: 15,
-      marginTop: 5,
-      height: 40,
-      width: 40,
-      borderRadius: 20
     }
 });
 
