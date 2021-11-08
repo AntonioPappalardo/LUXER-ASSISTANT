@@ -43,7 +43,7 @@ const UserHome = ({ navigation }) => {
         withCustomBarColorFromData={true}/>
         </ImageBackground>
           <View style={{ marginLeft: 70}}>
-            <View style={{ flexDirection: "row", paddingTop: 10 }}>
+            <View style={{ flexDirection: "row", paddingTop: 0 }}>
               <View style={styles.dot_turquoise} />
               <Text style={styles.statsTitle}>Statistica 1</Text>
             </View>
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     fontFamily: 'System',
   },
   subTitle: {
-    paddingBottom: 25,
+    paddingBottom: 30,
     textAlign: 'center',
     color: "white",
     opacity: 0.8,
