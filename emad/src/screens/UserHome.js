@@ -1,34 +1,61 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight } from 'react-native'
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, ImageBackground } from 'react-native'
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { color } from 'react-native-elements/dist/helpers';
+import { ProgressChart } from 'react-native-chart-kit';
 
 const UserHome = ({ navigation }) => {
+  const data = {
+    labels: [
+      "Statistica 1",
+      "Statistica 2"
+    ],
+    data: [0.6, 0.25],
+    colors: [
+          `rgba(102, 94, 255, 1)`,
+          `rgba(58, 204, 225, 1)`,
+    ]
+  };
+  const chartConfig = {
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientToOpacity: 0,
+    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+    barPercentage: 0.5,
+  }
+  const chartStyle = {
+    paddingRight: 35,  
+    margin: 0,
+    padding: 0,
+    borderRadius: 5,
+    borderColor: "#FFF",
+  }
   return (
     <ScrollView style={{ backgroundColor: "#2A2E43", flex: 1 }}>
       {/*Blocco Utente*/}
       <Card containerStyle={styles.mainCard}>
         <Text style={styles.title}>Bentornata Maria</Text>
         <Text style={styles.subTitle}>Ecco un resoconto della tua giornata</Text>
-        <View style={{ flexDirection: "row" }}>
-          <View style={{ marginLeft: 50, paddingTop: 20 }}>
-            <Image style={{ width: 88, height: 88 }} source={require('../../assets/img/profile.png')} />
-          </View>
-          <View style={{ marginLeft: 70 }}>
-            <View style={{ flexDirection: "row", paddingTop: 15 }}>
+        <View style={{ flexDirection: "row", justifyContent: 'center', alignItems: 'center'}}>
+        
+        <ImageBackground style ={{ width: 60, height: 60, resizeMode: 'cover', justifyContent: 'center', alignItems: 'center' }}source={require('../../assets/img/profile.png')} >
+          <ProgressChart data={data} width={130} height={130} strokeWidth={8} radius={40} chartConfig={chartConfig} style={chartStyle} hideLegend={true}
+        withCustomBarColorFromData={true}/>
+        </ImageBackground>
+          <View style={{ marginLeft: 70}}>
+            <View style={{ flexDirection: "row", paddingTop: 10 }}>
               <View style={styles.dot_turquoise} />
               <Text style={styles.statsTitle}>Statistica 1</Text>
             </View>
-            <View style={{ flexDirection: "row", paddingLeft: 15 }}>
+            <View style={{ flexDirection: "row", paddingLeft: 10 }}>
               <Text style={styles.leftStat}>25</Text>
               <Text style={styles.rightStat}>/100</Text>
             </View>
-            <View style={{ flexDirection: "row", paddingTop: 15 }}>
+            <View style={{ flexDirection: "row", paddingTop: 10 }}>
               <View style={styles.dot_purple} />
               <Text style={styles.statsTitle}>Statistica 2</Text>
             </View>
-            <View style={{ flexDirection: "row", paddingLeft: 15 }}>
+            <View style={{ flexDirection: "row", paddingLeft: 10 }}>
               <Text style={styles.leftStat}>60</Text>
               <Text style={styles.rightStat}>/100</Text>
             </View>
@@ -36,8 +63,8 @@ const UserHome = ({ navigation }) => {
         </View>
       </Card>
       {/*Utente*/}
-      <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity style={{ padding: 15 }}>
+      <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap'}}>
+        <TouchableOpacity style={{ padding: 15,flexBasis: '50%'}}>
           <View style={[styles.userCard, { padding: 15 }]}>
             <Ionicons name="person-outline" size={30} color={"white"} />
             <Text style={styles.cardTitle}>
@@ -48,7 +75,7 @@ const UserHome = ({ navigation }) => {
             </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={{ padding: 15 }}>
+        <TouchableOpacity style={{ padding: 15,flexBasis: '50%'}}>
           <View style={[styles.newUserCard, { padding: 15 }]}>
             <Ionicons name="add-outline" size={30} color={"white"} />
             <Text style={styles.cardTitle}>
@@ -61,7 +88,7 @@ const UserHome = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       {/*Catalogo Outside Touchable Opacity*/}
-      <TouchableOpacity style={{ padding: 15 }}>
+      <TouchableOpacity style={{ padding: 15, paddingTop: 0 }}>
         <View style={[styles.catalogCard, { padding: 15 }]}>
           <View style={{ flexDirection: "row" }}>
             <Ionicons name="pricetags-outline" size={30} color={"white"} />
@@ -88,16 +115,16 @@ const UserHome = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   mainCard: {
-    marginTop: 50,
+    marginTop: 40,
     backgroundColor: "#1B233F",
-    height: 260,
+    height: 220,
     borderRadius: 20,
     borderWidth: 0,
   },
   userCard: {
     marginRight: 'auto',
     backgroundColor: "#2D62ED",
-    width: 175,
+    width: '100%',
     height: 200,
     borderRadius: 20,
     borderWidth: 0,
@@ -105,15 +132,21 @@ const styles = StyleSheet.create({
   newUserCard: {
     marginLeft: 'auto',
     backgroundColor: "#7D00B5",
-    width: 175,
+    width: '100%',
     height: 200,
     borderRadius: 20,
     borderWidth: 0,
   },
   catalogCard: {
-    marginBottom: 30,
+    marginBottom: 0,
     backgroundColor: "#39D5CF",
-    height: 200,
+    height: 160,
+    borderRadius: 20,
+    borderWidth: 0,
+  },
+  customButton: {
+    marginBottom: 0,
+    backgroundColor: "#39D5CF",
     borderRadius: 20,
     borderWidth: 0,
   },
@@ -197,8 +230,8 @@ const styles = StyleSheet.create({
   catalogueLogo: {
     marginLeft: 'auto',
     alignSelf: 'flex-end',
-    width: 130,
-    height: 90,
+    width: 87,
+    height: 60,
   }
 });
 
