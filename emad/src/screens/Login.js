@@ -22,7 +22,7 @@ const Login = ({ }) => {
         <Ionicons style={styles.icon_password} name="key-outline" size={25} color="white" />
         <TextInput style={styles.input} placeholder="Password" placeholderTextColor="white" value={password} onChangeText={setPassword} secureTextEntry underlineColorAndroid="transparent" />
       
-        <InputButton params={{ marginTop: 120, width: "75%" }} name="Accedi" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
+        <InputButton params={{ marginTop: '15%', width: "75%" }} name="Accedi" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
       </View>
     </View>
   );
