@@ -15,11 +15,14 @@ const Login = ({ }) => {
       <Image style={styles.tinylogo} source={require('../../assets/logo.png')} />
       <Text style={styles.text}>Luxor Assistant</Text>
       <View style={styles.form}>
+       
         <Ionicons style={styles.icon_user} name="person-outline" size={25} color="white" />
         <TextInput style={styles.input} placeholder="Username" placeholderTextColor="white" value={username} onChangeText={setUsername} underlineColorAndroid="transparent" />
+        
         <Ionicons style={styles.icon_password} name="key-outline" size={25} color="white" />
         <TextInput style={styles.input} placeholder="Password" placeholderTextColor="white" value={password} onChangeText={setPassword} secureTextEntry underlineColorAndroid="transparent" />
-        <InputButton params={{marginTop: 120, width: "100%"}} name="Accedi" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })}/>
+      
+        <InputButton params={{ marginTop: 120, width: "75%" }} name="Accedi" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
       </View>
     </View>
   );

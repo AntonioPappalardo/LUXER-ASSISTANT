@@ -1,12 +1,11 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './Login';
 import AppNavigation from '../navigation/AppNavigation';
 import TabBarNavigation from '../navigation/TabBarNavigation';
 import { AuthContext } from './context';
 const Stack = createStackNavigator();
-
 
 const InitialScreen = (props) => {
     const [userToken,setUserToken] = React.useState(null);
