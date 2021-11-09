@@ -5,6 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { color } from 'react-native-elements/dist/helpers';
 import { ProgressChart } from 'react-native-chart-kit';
 
+
 const UserHome = ({ navigation }) => {
   const data = {
     labels: [
@@ -109,6 +110,7 @@ const UserHome = ({ navigation }) => {
           </View>
         </View>
       </TouchableOpacity >
+      
     </ScrollView>
   );
 };

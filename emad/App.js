@@ -1,14 +1,13 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import InitialScreen from './src/screens/InitialScreen';
+import React from 'react'
+import 'react-native-gesture-handler'
+import { NavigationContainer } from '@react-navigation/native'
+import InitialScreen from './src/screens/InitialScreen'
 
-function App(){
-  return (   
-    <NavigationContainer >
 
-      <InitialScreen />
-
-    </NavigationContainer>
-  )
+export default function App() {
+	return (
+		<NavigationContainer>
+			<InitialScreen />
+		</NavigationContainer>
+	)
 }
-export default App;
