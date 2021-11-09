@@ -19,13 +19,7 @@ const Login = ({ }) => {
         <TextInput style={styles.input} placeholder="Username" placeholderTextColor="white" value={username} onChangeText={setUsername} underlineColorAndroid="transparent" />
         <Ionicons style={styles.icon_password} name="key-outline" size={25} color="white" />
         <TextInput style={styles.input} placeholder="Password" placeholderTextColor="white" value={password} onChangeText={setPassword} secureTextEntry underlineColorAndroid="transparent" />
-
-        <TouchableOpacity style={{ marginTop: 120, justifyContent: 'center', alignItems: 'center' }} >
-          <View style={{ width: '70%' }}>
-            <InputButton name="Accedi" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })}/>
-          </View>
-        </TouchableOpacity>
-
+        <InputButton params={{marginTop: 120, width: "100%"}} name="Accedi" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })}/>
       </View>
     </View>
   );
