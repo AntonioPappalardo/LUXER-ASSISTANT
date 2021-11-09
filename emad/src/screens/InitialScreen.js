@@ -2,7 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './Login';
-import WelcomeScreen from './WelcomeScreen';
+import AppNavigation from '../navigation/AppNavigation';
+import TabBarNavigation from '../navigation/TabBarNavigation';
 import { AuthContext } from './context';
 const Stack = createStackNavigator();
 
@@ -21,7 +22,7 @@ const InitialScreen = (props) => {
         <Stack.Navigator screenOptions={{headerShown: false}}>
                 { userToken == null ?(
                 <Stack.Screen name="Login" component={Login}/>):(
-                    <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{headerShown: false}}/>
+                    <Stack.Screen name="WelcomeScreen" component={TabBarNavigation} options={{headerShown: false}}/>
                 )}
         </Stack.Navigator>
         </AuthContext.Provider>
