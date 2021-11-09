@@ -121,9 +121,12 @@ const styles = StyleSheet.create({
         bottom:75
     },
     power:{
+        marginBottom:5,
         alignItems:'center'
     },
     textpower:{
+        
+        marginBottom:8,
       color:'#7379B7',
 
     },
