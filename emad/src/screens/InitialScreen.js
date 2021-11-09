@@ -23,13 +23,13 @@ const InitialScreen = (props) => {
         setTimeout(()=>{
 
             setIsLoadin(false)
-        },3500)
+        },100)
     })
     useEffect(()=>{
         setTimeout(()=>{
 
             setIsLoading(false)
-        },7000)
+        },200)
     })
     
     if(isLoading)

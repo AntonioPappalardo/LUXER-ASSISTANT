@@ -110,7 +110,28 @@ const UserHome = ({ navigation }) => {
           </View>
         </View>
       </TouchableOpacity >
-      
+
+      <TouchableOpacity style={{ padding: 15, paddingTop: 0 }}>
+        <View style={[styles.catalogCard, { padding: 15 }]}>
+          <View style={{ flexDirection: "row" }}>
+            <Ionicons name="pricetags-outline" size={30} color={"white"} />
+            <Image style={styles.catalogueLogo} source={require('../../assets/img/undraw_screen_time_vkev.png')} />
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ paddingLeft: 25 }}>
+              <Text style={[styles.cardTitle, { paddingBottom: 0 }]}>
+                Catalogo
+              </Text>
+              <Text style={styles.cardSubTitle}>
+                2500+ prodotti
+              </Text>
+            </View>
+            <View style={[styles.dot_button, { backgroundColor: "#1BA7A1" }]}>
+              <Ionicons name="arrow-forward-outline" size={30} color={"white"} style={{ transform: [{ rotateZ: '-45deg' }] }} />
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity >
     </ScrollView>
   );
 };
