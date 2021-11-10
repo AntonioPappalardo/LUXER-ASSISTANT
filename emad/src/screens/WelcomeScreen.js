@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import Home from './UserHome';
+import Home from './Home';
 import Test from './prova';
 const Tab = createBottomTabNavigator();
 

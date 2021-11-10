@@ -14,7 +14,7 @@ const Login = ({ }) => {
   return (
     <View style={styles.screen}>
       <Image style={styles.tinylogo} source={require('../../assets/logo.png')} />
-      <Text style={styles.text}>Luxor Assistant</Text>
+      
       <View style={styles.form}>
         <InputText params={{ marginTop: 25, width: "100%" }} name="Username" icon="person-outline" rotation="0deg" value={username} onChangeText={setUsername} secure='false'/>
         <InputText params={{ marginTop: 10, width: "100%" }} name="Password" icon="key-outline" rotation="0deg" value={password} onChangeText={setPassword} secure='true'/>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     top: 10,
     fontSize: 25,
-    color: '#7379B7',
+    color: 'white',
     fontWeight: 'bold'
   },
   form: {

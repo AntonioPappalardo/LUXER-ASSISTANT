@@ -20,15 +20,13 @@ const InitialScreen = (props) => {
     }))
     useEffect(() => {
         setTimeout(() => {
-
             setIsLoadin(false)
-        }, 100)
+        }, 2000)
     })
     useEffect(() => {
         setTimeout(() => {
-
             setIsLoading(false)
-        }, 200)
+        }, 4000)
     })
 
     if (isLoading) {
@@ -37,13 +35,13 @@ const InitialScreen = (props) => {
                 <View style={styles.screen}>
                     <View style={styles.logo}>
                         <Image style={styles.tinylogo} source={require('../../assets/logo.png')} />
-                        <Text style={styles.text}>Luxor Assistant</Text>
+                        
                     </View>
                     <View style={styles.load}>
                         <ActivityIndicator size="large" color="#7379B7" />
                         <View style={styles.power}>
                             <Text style={styles.textpower}>Powered By</Text>
-                            <Image style={styles.accenture} source={require('../../assets/Accenture.png')} />
+                            <Image style={styles.accenture} source={require('../../assets/accenture-black.png')} />
                         </View>
                     </View>
                 </View>
@@ -54,13 +52,13 @@ const InitialScreen = (props) => {
                 <View style={styles.scree}>
                     <View style={styles.logo}>
                         <Image style={styles.tinylogo} source={require('../../assets/logo.png')} />
-                        <Text style={styles.text}>Luxor Assistant</Text>
+                        
                     </View>
                     <View style={styles.load}>
                         <ActivityIndicator size="large" color="#7379B7" />
                         <View style={styles.power}>
                             <Text style={styles.textpower}>Powered By</Text>
-                            <Image style={styles.accenture} source={require('../../assets/Accenture.png')} />
+                            <Image style={styles.accenture} source={require('../../assets/accenture-white.png')} />
                         </View>
                     </View>
                 </View>
@@ -92,7 +90,7 @@ const styles = StyleSheet.create({
     text: {
         alignSelf: 'center',
         fontSize: 25,
-        color: '#7379B7',
+        color: 'white',
         fontWeight: 'bold'
     },
     logo: {

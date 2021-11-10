@@ -9,7 +9,7 @@ const data = {
     "Statistica 1",
     "Statistica 2"
   ],
-  data: [0.6, 0.5],
+  data: [0.33, 0.6],
   colors: [
         `rgba(102, 94, 255, 1)`,
         `rgba(58, 204, 225, 1)`,
@@ -31,7 +31,7 @@ const chartStyle = {
 
 const UserHome = ({ navigation }) => {
   return (
-    <ScrollView style={{ backgroundColor: "#1b1c22", flex: 1 }}>
+    <ScrollView style={{ backgroundColor: "#1B1C22", flex: 1 }}>
       {/*Blocco Utente*/}
       <LinearGradient
               start={{x: 0.25, y: 1}} end={{x: 0.75, y: 0}}
@@ -49,26 +49,26 @@ const UserHome = ({ navigation }) => {
           <View style={{ marginLeft: 70}}>
             <View style={{ flexDirection: "row", paddingTop: 0 }}>
               <View style={styles.dot_turquoise} />
-              <Text style={styles.statsTitle}>Statistica 1</Text>
+              <Text style={styles.statsTitle}>Appuntamenti</Text>
             </View>
             <View style={{ flexDirection: "row", paddingLeft: 10 }}>
-              <Text style={styles.leftStat}>25</Text>
-              <Text style={styles.rightStat}>/100</Text>
+              <Text style={styles.leftStat}>3</Text>
+              <Text style={styles.rightStat}>/10</Text>
             </View>
             <View style={{ flexDirection: "row", paddingTop: 10 }}>
               <View style={styles.dot_purple} />
-              <Text style={styles.statsTitle}>Statistica 2</Text>
+              <Text style={styles.statsTitle}>Vendite</Text>
             </View>
             <View style={{ flexDirection: "row", paddingLeft: 10 }}>
-              <Text style={styles.leftStat}>60</Text>
-              <Text style={styles.rightStat}>/100</Text>
+              <Text style={styles.leftStat}>11</Text>
+              <Text style={styles.rightStat}>/30</Text>
             </View>
           </View>
         </View>
         </LinearGradient>
       {/*Utente*/}
       <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap'}}>
-        <TouchableOpacity activeOpacity={.6} style={{ padding: 15, flexBasis: '50%' }}>
+        <TouchableOpacity activeOpacity={.6} style={{ padding: 15, flexBasis: '50%' }} onPress={() => navigation.navigate('Client')}>
         <LinearGradient
               start={{x: 0.25, y: 1}} end={{x: 0.75, y: 0}}
               colors={['#723bf4', '#20b4f2']}
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    elevation: 5
+    elevation: 0
   },
   userCard: {
     marginRight: 'auto',
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    elevation: 5
+    elevation: 0
   },
   newUserCard: {
     marginLeft: 'auto',
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    elevation: 5
+    elevation: 0
   },
   catalogCard: {
     marginBottom: 0,
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    elevation: 5
+    elevation: 0
   },
   customButton: {
     marginBottom: 0,
