@@ -7,7 +7,11 @@ const InputButton = (props) => {
       <View style={{ marginTop: props.params.marginTop, justifyContent: 'center', alignItems: 'center' }} >
         <View style={{ width: props.params.width }}>
           <TouchableOpacity
-            style={{ width: '100%', height: 54, borderRadius: 27, justifyContent: 'center', alignItems: 'center', backgroundColor: '#2D62ED' }}
+            style={{ width: '100%', height: 54, borderRadius: 27, justifyContent: 'center', alignItems: 'center', backgroundColor: '#2D62ED',shadowColor: '#000',
+            shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.8,
+            shadowRadius: 2,
+            elevation: 5 }}
             onPress={props.onPress}>
             <Text style={styles.text}>
               {props.name}

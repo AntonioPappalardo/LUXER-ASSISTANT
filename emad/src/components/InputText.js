@@ -13,7 +13,6 @@ const InputText = (props) => {
     )
 }
 function displayTextInput(props) {
-    console.log(props);
     if (props.secure === 'true') {
         return (
             <TextInput style={styles.input}
@@ -22,6 +21,7 @@ function displayTextInput(props) {
                 value={props.value}
                 onChangeText={props.onChangeText}
                 underlineColorAndroid="transparent"
+                secureTextEntry
             />
         )
     } else {
