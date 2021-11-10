@@ -3,6 +3,7 @@ import { TextInput, StyleSheet, Image, View, Text, TouchableOpacity } from "reac
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import InputButton from "../components/InputButton";
+import InputText from "../components/InputText";
 import { AuthContext } from "./context";
 
 const Login = ({ }) => {
@@ -15,14 +16,10 @@ const Login = ({ }) => {
       <Image style={styles.tinylogo} source={require('../../assets/logo.png')} />
       <Text style={styles.text}>Luxor Assistant</Text>
       <View style={styles.form}>
-       
-        <Ionicons style={styles.icon_user} name="person-outline" size={25} color="white" />
-        <TextInput style={styles.input} placeholder="Username" placeholderTextColor="white" value={username} onChangeText={setUsername} underlineColorAndroid="transparent" />
-        
-        <Ionicons style={styles.icon_password} name="key-outline" size={25} color="white" />
-        <TextInput style={styles.input} placeholder="Password" placeholderTextColor="white" value={password} onChangeText={setPassword} secureTextEntry underlineColorAndroid="transparent" />
-      
-        <InputButton params={{ marginTop: '15%', width: "75%" }} name="Accedi" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
+        <InputText params={{ marginTop: 25, width: "100%" }} name="Username" icon="person-outline" rotation="0deg" value={username} onChangeText={setUsername} secure='false'/>
+        <InputText params={{ marginTop: 10, width: "100%" }} name="Password" icon="key-outline" rotation="0deg" value={password} onChangeText={setPassword} secure='true'/>
+
+        <InputButton params={{ marginTop: 100, width: "75%" }} name="Accedi" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
       </View>
     </View>
   );
@@ -46,7 +43,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   form: {
-    marginTop: 100,
     padding: 20
   },
   input: {

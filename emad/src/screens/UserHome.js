@@ -14,8 +14,8 @@ const UserHome = ({ navigation }) => {
     ],
     data: [0.6, 0.25],
     colors: [
-          `rgba(102, 94, 255, 1)`,
-          `rgba(58, 204, 225, 1)`,
+      `rgba(102, 94, 255, 1)`,
+      `rgba(58, 204, 225, 1)`,
     ]
   };
   const chartConfig = {
@@ -25,7 +25,7 @@ const UserHome = ({ navigation }) => {
     barPercentage: 0.5,
   }
   const chartStyle = {
-    paddingRight: 35,  
+    paddingRight: 35,
     margin: 0,
     padding: 0,
     borderRadius: 5,
@@ -37,13 +37,13 @@ const UserHome = ({ navigation }) => {
       <Card containerStyle={styles.mainCard}>
         <Text style={styles.title}>Bentornata Maria</Text>
         <Text style={styles.subTitle}>Ecco un resoconto della tua giornata</Text>
-        <View style={{ flexDirection: "row", justifyContent: 'center', alignItems: 'center'}}>
-        
-        <ImageBackground style ={{ width: 60, height: 60, resizeMode: 'cover', justifyContent: 'center', alignItems: 'center' }}source={require('../../assets/img/profile.png')} >
-          <ProgressChart data={data} width={130} height={130} strokeWidth={8} radius={40} chartConfig={chartConfig} style={chartStyle} hideLegend={true}
-        withCustomBarColorFromData={true}/>
-        </ImageBackground>
-          <View style={{ marginLeft: 70}}>
+        <View style={{ flexDirection: "row", justifyContent: 'center', alignItems: 'center' }}>
+
+          <ImageBackground style={{ width: 60, height: 60, resizeMode: 'cover', justifyContent: 'center', alignItems: 'center' }} source={require('../../assets/img/profile.png')} >
+            <ProgressChart data={data} width={130} height={130} strokeWidth={8} radius={40} chartConfig={chartConfig} style={chartStyle} hideLegend={true}
+              withCustomBarColorFromData={true} />
+          </ImageBackground>
+          <View style={{ marginLeft: 70 }}>
             <View style={{ flexDirection: "row", paddingTop: 0 }}>
               <View style={styles.dot_turquoise} />
               <Text style={styles.statsTitle}>Statistica 1</Text>
@@ -64,8 +64,8 @@ const UserHome = ({ navigation }) => {
         </View>
       </Card>
       {/*Utente*/}
-      <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap'}}>
-        <TouchableOpacity style={{ padding: 15,flexBasis: '50%'}}>
+      <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap' }}>
+        <TouchableOpacity style={{ padding: 15, flexBasis: '50%' }}>
           <View style={[styles.userCard, { padding: 15 }]}>
             <Ionicons name="person-outline" size={30} color={"white"} />
             <Text style={styles.cardTitle}>
@@ -76,7 +76,7 @@ const UserHome = ({ navigation }) => {
             </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={{ padding: 15,flexBasis: '50%'}}>
+        <TouchableOpacity style={{ padding: 15, flexBasis: '50%' }}>
           <View style={[styles.newUserCard, { padding: 15 }]}>
             <Ionicons name="add-outline" size={30} color={"white"} />
             <Text style={styles.cardTitle}>
@@ -110,7 +110,6 @@ const UserHome = ({ navigation }) => {
           </View>
         </View>
       </TouchableOpacity >
-      
     </ScrollView>
   );
 };
