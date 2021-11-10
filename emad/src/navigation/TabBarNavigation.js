@@ -3,7 +3,7 @@ import {TouchableOpacity, StyleSheet} from 'react-native'
 import {BottomTabBarHeightContext,useBottomTabBarHeight , createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BlurView } from 'expo-blur';
 import Icon from 'react-native-vector-icons/Feather'
-import Home from '../screens/UserHome';
+import Home from '../screens/Home';
 import Test from '../screens/prova';
 
 const Tab = createBottomTabNavigator()

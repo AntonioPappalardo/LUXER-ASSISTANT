@@ -64,8 +64,8 @@ const UserHome = ({ navigation }) => {
         </View>
       </Card>
       {/*Utente*/}
-      <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap' }}>
-        <TouchableOpacity style={{ padding: 15, flexBasis: '50%' }}>
+      <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap'}}>
+        <TouchableOpacity style={{ padding: 15,flexBasis: '50%'}} onPress={() => navigation.navigate('Client')}>
           <View style={[styles.userCard, { padding: 15 }]}>
             <Ionicons name="person-outline" size={30} color={"white"} />
             <Text style={styles.cardTitle}>
