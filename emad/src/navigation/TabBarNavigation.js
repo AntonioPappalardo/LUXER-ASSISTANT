@@ -23,10 +23,11 @@ export default () => (
 			<Tab.Navigator
 				initialRouteName="Home"
 				screenOptions={{
+					
 					tabBarActiveTintColor: 'rgba(255,255,255,1)',
 					tabBarInactiveTintColor: 'rgba(255,255,255,0.3)',
 					tabBarShowIcon: true,
-					tabBarStyle: {position: 'absolute',elevation: 0, borderTopWidth: 0 }, tabBarShowLabel: false, headerShown: false,
+					tabBarStyle: {position: 'absolute',elevation: 0, borderTopWidth: 0}, tabBarShowLabel: false, headerShown: false,
 					tabBarButton: props => <TouchableOpacity activeOpacity={.3} {...props} />,
 					tabBarBackground: () => (
 						<BlurView tint="dark" intensity={100} style={[StyleSheet.absoluteFill]} />

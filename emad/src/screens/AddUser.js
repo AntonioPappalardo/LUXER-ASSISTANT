@@ -1,7 +1,5 @@
 import React from "react";
-import { TextInput, StyleSheet, Image, View, Text,TouchableOpacity } from "react-native";
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 import InputButton from "../components/InputButton";
 import InputText from "../components/InputText";
 import { AuthContext } from "./context";
@@ -17,7 +15,7 @@ const addUser= ({})=> {
 
     //const { add } = React.useContext(AuthContext)
     return (
-    <View style={styles.screen}>
+    <ScrollView style={styles.screen}>
         <Text style={styles.text}>Nuovo Cliente</Text>
         <View style={styles.form}>
         <InputText params={{ marginTop: 10, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
@@ -41,9 +39,9 @@ const addUser= ({})=> {
         <InputText params={{ marginTop: 10, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
         name="Nazionalità" icon="" rotation="0deg" value={nazionalita} onChangeText={setNazionalita} secure='false'/>
 
-        <InputButton params={{ marginTop: 50, width: "75%" }} name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
+        <InputButton params={{ marginTop: 50, width: "75%", marginBottom: 40}} name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
         </View>
-    </View>
+    </ScrollView>
   );
 };
 
