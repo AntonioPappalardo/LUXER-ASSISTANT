@@ -5,7 +5,7 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 
 import { AuthContext } from "./context";
 
-const AddUser= ({})=> {
+const addUser= ({})=> {
     const [nome, setNome] = React.useState('');
     const [cognome, setCognome] = React.useState('');
     const [email, setEmail] = React.useState('');
@@ -98,25 +98,6 @@ const styles = StyleSheet.create({
     color:"white"
 
   },
-  
-  icon_arrow:{
-    fontWeight:"bold",
-    marginLeft:"75%",
-    position: 'absolute',
-    top:"100%",
-    left: 30,
-    zIndex: 1
-    },
-    icon_middle:{
-      alignSelf:'flex-end',
-      height:35,
-      width:35,
-      backgroundColor:"#789AF3",
-      padding:5,
-      paddingLeft:5,
-      borderRadius:25,
-      zIndex: 0
-    },
     dot_button: {
       justifyContent: 'center',
       alignItems: 'center',
@@ -130,4 +111,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AddUser;
+export default addUser;
