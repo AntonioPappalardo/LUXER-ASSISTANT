@@ -3,6 +3,7 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
 
 const InputText = (props) => {
+    console.log(props)
     return (
         <View style={{ marginTop: props.params.marginTop, height: 54, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
             <View style={{ position: "absolute", zIndex: 1, left: '10%', bottom: -10, }}>
