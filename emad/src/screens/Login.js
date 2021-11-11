@@ -16,8 +16,8 @@ const Login = ({ }) => {
       <Image style={styles.tinylogo} source={require('../../assets/logo.png')} />
       
       <View style={styles.form}>
-        <InputText params={{ marginTop: 25, width: "100%" }} name="Username" icon="person-outline" rotation="0deg" value={username} onChangeText={setUsername} secure='false'/>
-        <InputText params={{ marginTop: 10, width: "100%" }} name="Password" icon="key-outline" rotation="0deg" value={password} onChangeText={setPassword} secure='true'/>
+        <InputText params={{ marginTop: 25, width: "100%", textAlign: "center"}} name="Username" icon="person-outline" rotation="0deg" value={username} onChangeText={setUsername} secure='false'/>
+        <InputText params={{ marginTop: 10, width: "100%", textAlign: "center"}} name="Password" icon="key-outline" rotation="0deg" value={password} onChangeText={setPassword} secure='true'/>
 
         <InputButton params={{ marginTop: 100, width: "75%" }} name="Accedi" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
       </View>

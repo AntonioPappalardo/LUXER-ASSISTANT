@@ -6,7 +6,7 @@ const InputText = (props) => {
     console.log(props)
     return (
         <View style={{ marginTop: props.params.marginTop, height: 54, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
-            <View style={{ position: "absolute", zIndex: 1, left: '10%', bottom: -10, }}>
+            <View style={{ position: "absolute", zIndex: 1, left: '10%', bottom: -12, }}>
                 <Icon name={props.icon} size={25} color={"white"} style={{ transform: [{ rotateZ: props.rotation }], }} />
             </View>
             {displayTextInput(props)}
@@ -16,7 +16,7 @@ const InputText = (props) => {
 function displayTextInput(props) {
     if (props.secure === 'true') {
         return (
-            <TextInput style={styles.input}
+            <TextInput style={[styles.input, {fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft}]}
                 placeholder={props.name}
                 placeholderTextColor="white"
                 value={props.value}
@@ -27,7 +27,7 @@ function displayTextInput(props) {
         )
     } else {
         return (
-            <TextInput style={styles.input}
+            <TextInput style={[styles.input, {fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft}]}
                 placeholder={props.name}
                 placeholderTextColor="white"
                 value={props.value}

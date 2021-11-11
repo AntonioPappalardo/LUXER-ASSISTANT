@@ -83,7 +83,7 @@ const UserHome = ({ navigation }) => {
           </LinearGradient>
         </TouchableOpacity>
 
-        <TouchableOpacity activeOpacity={.6} style={{ padding: 15,flexBasis: '50%'}}>
+        <TouchableOpacity activeOpacity={.6} style={{ padding: 15,flexBasis: '50%'}} onPress={() => navigation.navigate('AddUser')}>
         <LinearGradient
               start={{x: 0.25, y: 1}} end={{x: 0.75, y: 0}}
               colors={['#f7bc6b', '#ef6d5e']}
