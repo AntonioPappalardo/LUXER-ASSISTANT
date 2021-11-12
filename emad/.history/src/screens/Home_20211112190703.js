@@ -12,7 +12,6 @@ const Home = ({ navigation }) => {
           <Stack.Screen name="UserHome" component={UserHome}/>
           <Stack.Screen name="AddUser" component={AddUser}/>
           <Stack.Screen name="Catalogo" component={Catalogo}/>
-          <Stack.Screen name="Test" component={prova}/>
       </Stack.Navigator>
   );
 };

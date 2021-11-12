@@ -99,7 +99,7 @@ const UserHome = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       {/*Catalogo Outside Touchable Opacity*/}
-      <TouchableOpacity activeOpacity={.6} style={{ padding: 15, paddingTop: 0, marginBottom: 40 }} onPress={() => navigation.navigate('Catalogo')}>
+      <TouchableOpacity activeOpacity={.6} style={{ padding: 15, paddingTop: 0, marginBottom: 40 }} onPress={() => navigation.navigate('Catalogo')>
       <LinearGradient
               start={{x: 0.25, y: 1}} end={{x: 0.75, y: 0}}
               colors={['#347bde', '#1ad3a5']}
