@@ -4,7 +4,10 @@ import InputButton from "../components/InputButton";
 import InputText from "../components/InputText";
 import { AuthContext } from "./context";
 
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+
 const addUser= ({})=> {
+    const tabBarHeight = useBottomTabBarHeight(); 
     const [nome, setNome] = React.useState('');
     const [cognome, setCognome] = React.useState('');
     const [email, setEmail] = React.useState('');
@@ -18,28 +21,28 @@ const addUser= ({})=> {
     <ScrollView style={styles.screen}>
         <Text style={styles.text}>Nuovo Cliente</Text>
         <View style={styles.form}>
-        <InputText params={{ marginTop: 10, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
+        <InputText params={{ marginTop: 13, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
         name="Nome" icon="" rotation="0deg" value={nome} onChangeText={setNome} secure='false'/>
 
-        <InputText params={{ marginTop: 10, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
+        <InputText params={{ marginTop: 13, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
         name="Cognome" icon="" rotation="0deg" value={cognome} onChangeText={setCognome} secure='false'/>
 
-        <InputText params={{ marginTop: 10, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
+        <InputText params={{ marginTop: 13, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
         name="Email" icon="" rotation="0deg" value={email} onChangeText={setEmail} secure='false'/>
 
-        <InputText params={{ marginTop: 10, width: "100%" , paddingLeft: 50, textAlign: "left"}} 
+        <InputText params={{ marginTop: 13, width: "100%" , paddingLeft: 60, textAlign: "left"}} 
         name="+39 111 222 33 44" icon="call-outline" rotation="0deg" value={tel} onChangeText={setTelefono} secure='false'/>
 
-        <InputText params={{ marginTop: 10, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
+        <InputText params={{ marginTop: 13, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
         name="Sesso" icon="" rotation="0deg" value={sesso} onChangeText={setSesso} secure='false'/>
 
-        <InputText params={{ marginTop: 10, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
+        <InputText params={{ marginTop: 13, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
         name="Età" icon="" rotation="0deg" value={eta} onChangeText={setEta} secure='false'/>
 
-        <InputText params={{ marginTop: 10, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
+        <InputText params={{ marginTop: 13, width: "100%" , paddingLeft: 25, textAlign: "left"}} 
         name="Nazionalità" icon="" rotation="0deg" value={nazionalita} onChangeText={setNazionalita} secure='false'/>
 
-        <InputButton params={{ marginTop: 50, width: "75%", marginBottom: 40}} name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
+        <InputButton params={{ marginTop: 50, width: "75%", marginBottom: tabBarHeight}} name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
         </View>
     </ScrollView>
   );

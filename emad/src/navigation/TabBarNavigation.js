@@ -1,6 +1,6 @@
 import React from 'react'
 import {TouchableOpacity, StyleSheet} from 'react-native'
-import {BottomTabBarHeightContext,useBottomTabBarHeight , createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import {BottomTabBarHeightContext, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BlurView } from 'expo-blur';
 import Icon from 'react-native-vector-icons/Feather'
 import Home from '../screens/Home';
