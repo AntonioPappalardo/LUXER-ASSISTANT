@@ -4,6 +4,7 @@ import {BottomTabBarHeightContext,useBottomTabBarHeight , createBottomTabNavigat
 import { BlurView } from 'expo-blur';
 import Icon from 'react-native-vector-icons/Feather'
 import Home from '../screens/Home';
+import Search from '../screens/Search';
 import Test from '../screens/prova';
 
 const Tab = createBottomTabNavigator()
@@ -63,7 +64,7 @@ export default () => (
 				/>
 				<Tab.Screen
 					name="Search"
-					component={Test}
+					component={Search}
 					options={{
 						tabBarIcon: ({ focused, color }) => (
 							<TabBarIcon

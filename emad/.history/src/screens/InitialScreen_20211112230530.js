@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         bottom: 75
     },
     power: {
-        marginBottom: 10,
+        marginBottom: 5,
         alignItems: 'center'
     },
     textpower: {
