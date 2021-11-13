@@ -1,36 +1,33 @@
 import React from "react";
 import { StyleSheet, Image, View, Text, TouchableOpacity, ScrollView } from "react-native";
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import { LinearGradient } from 'expo-linear-gradient';
 import Container from "../components/Container";
-
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 const Catalogo = ({}) => {
-    
-    return (
+  const tabBarHeight = useBottomTabBarHeight();
+  console.log(tabBarHeight)
+  return (
         <ScrollView style={styles.screen}>
-        <Text style={styles.text}>Catalogo</Text>
-        
-        <Container params={{marginTop: 100, backgroundColor: "white"}}/>
-        <Container params={{marginTop: 0,backgroundColor: "white"}}/>
-        <Container params={{marginTop: 0,backgroundColor: "white"}}/>
-        <Container params={{marginTop: 0,backgroundColor: "white"}}/>
-
-        </ScrollView> 
-    )
+          <Text style={styles.text}>Catalogo</Text>
+          <Container params={{}} image={require('../../assets/4.jpg')} title="Borse e Accessori" subTitle="221 prodotti" />
+          <Container params={{}} image={require('../../assets/3.jpg')} title="Scarpe Uomo" subTitle="221 prodotti" />
+          <Container params={{}} image={require('../../assets/2.jpg')} title="Scarpe Donna" subTitle="221 prodotti" />
+          <Container params={{marginBottom: tabBarHeight}} image={require('../../assets/1.jpg')} title="Intimo Donna" subTitle="221 prodotti" />
+        </ScrollView>
+  )
 };
 
 const styles = StyleSheet.create({
     text:{
       alignSelf:'center',
-      top:50,
+      marginTop: '10%',
       fontSize:25,
       color:'white',
       fontWeight:'bold'
     },
     screen:{
       height:"100%",
-      backgroundColor:"#2A2E43"
+      backgroundColor:"#1B1C22"
     }
   });
 

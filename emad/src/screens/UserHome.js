@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, ImageBackg
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { ProgressChart } from 'react-native-chart-kit';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 const data = {
   labels: [
@@ -30,8 +31,10 @@ const chartStyle = {
 }
 
 const UserHome = ({ navigation }) => {
+  
+  const tabBarHeight = useBottomTabBarHeight(); 
   return (
-    <ScrollView style={{ backgroundColor: "#1B1C22", flex: 1 }}>
+    <ScrollView style={{ backgroundColor: "#1B1C22", flex: 1 , paddingTop: '5%'}}>
       {/*Blocco Utente*/}
       <LinearGradient
               start={{x: 0.25, y: 1}} end={{x: 0.75, y: 0}}
@@ -68,7 +71,7 @@ const UserHome = ({ navigation }) => {
         </LinearGradient>
       {/*Utente*/}
       <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap'}}>
-        <TouchableOpacity activeOpacity={.6} style={{ padding: 15, flexBasis: '50%' }} onPress={() => navigation.navigate('Client')}>
+        <TouchableOpacity activeOpacity={.6} style={{ padding: 15, paddingTop: 5, flexBasis: '50%' }} onPress={() => navigation.navigate('Client')}>
         <LinearGradient
               start={{x: 0.25, y: 1}} end={{x: 0.75, y: 0}}
               colors={['#723bf4', '#20b4f2']}
@@ -83,7 +86,7 @@ const UserHome = ({ navigation }) => {
           </LinearGradient>
         </TouchableOpacity>
 
-        <TouchableOpacity activeOpacity={.6} style={{ padding: 15,flexBasis: '50%'}} onPress={() => navigation.navigate('AddUser')}>
+        <TouchableOpacity activeOpacity={.6} style={{ padding: 15, paddingTop:5, flexBasis: '50%'}} onPress={() => navigation.navigate('AddUser')}>
         <LinearGradient
               start={{x: 0.25, y: 1}} end={{x: 0.75, y: 0}}
               colors={['#f7bc6b', '#ef6d5e']}
@@ -99,7 +102,7 @@ const UserHome = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       {/*Catalogo Outside Touchable Opacity*/}
-      <TouchableOpacity activeOpacity={.6} style={{ padding: 15, paddingTop: 0, marginBottom: 40 }} onPress={() => navigation.navigate('Catalogo')}>
+      <TouchableOpacity activeOpacity={.6} style={{ padding: 15, paddingTop: 0, marginBottom: tabBarHeight }} onPress={() => navigation.navigate('Catalogo')}>
       <LinearGradient
               start={{x: 0.25, y: 1}} end={{x: 0.75, y: 0}}
               colors={['#347bde', '#1ad3a5']}
@@ -144,7 +147,7 @@ const styles = StyleSheet.create({
   userCard: {
     marginRight: 'auto',
     width: '100%',
-    height: 200,
+    height: 190,
     borderRadius: 20,
     borderWidth: 0,
     shadowColor: '#000',
@@ -156,7 +159,7 @@ const styles = StyleSheet.create({
   newUserCard: {
     marginLeft: 'auto',
     width: '100%',
-    height: 200,
+    height: 190,
     borderRadius: 20,
     borderWidth: 0,
     shadowColor: '#000',

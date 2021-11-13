@@ -1,9 +1,10 @@
 import React from 'react'
 import {TouchableOpacity, StyleSheet} from 'react-native'
-import {BottomTabBarHeightContext,useBottomTabBarHeight , createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import {BottomTabBarHeightContext, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BlurView } from 'expo-blur';
 import Icon from 'react-native-vector-icons/Feather'
 import Home from '../screens/Home';
+import Search from '../screens/Search';
 import Test from '../screens/prova';
 
 const Tab = createBottomTabNavigator()
@@ -63,7 +64,7 @@ export default () => (
 				/>
 				<Tab.Screen
 					name="Search"
-					component={Test}
+					component={Search}
 					options={{
 						tabBarIcon: ({ focused, color }) => (
 							<TabBarIcon
