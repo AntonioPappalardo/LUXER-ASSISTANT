@@ -8,9 +8,9 @@ const Container = (props) => {
     props.params.marginBottom = 0;
   }
   return (
-    <TouchableOpacity activeOpacity={.6} style={{ margin: 30, marginBottom: props.params.marginBottom}} onPress={() => navigation.navigate('Catalogo')}>
+    <TouchableOpacity activeOpacity={.6} style={{ margin: 20, marginBottom: props.params.marginBottom}} onPress={() => navigation.navigate('Catalogo')}>
       <View style={[styles.container, {marginTop: props.params.marginTop,}]}>
-        <ImageBackground source={props.image} style={{ width: '100%', height: '100%', justifyContent: 'flex-end', }} imageStyle={{ borderRadius: 20, opacity: 0.7 }} >
+        <ImageBackground source={props.image} style={{ width: '100%', height: '100%', justifyContent: 'flex-end', }} imageStyle={{ borderRadius: 10, opacity: 0.7 }} >
           <View style={{ flexDirection: "row", }}>
             <View style={{ paddingLeft: 10 }}>
               <Text style={[styles.cardTitle, { paddingBottom: 0, paddingTop: 0 }]}>
@@ -20,9 +20,7 @@ const Container = (props) => {
                 {props.subTitle}
               </Text>
             </View>
-            <View style={[styles.dot_button, { backgroundColor: "rgba(0,0,0, 0.5)" }]}>
-              <Ionicons name="arrow-forward-outline" size={30} color={"white"} style={{ transform: [{ rotateZ: '-45deg' }] }} />
-            </View>
+            
           </View>
         </ImageBackground>
       </View>
@@ -33,7 +31,7 @@ const Container = (props) => {
 const styles = StyleSheet.create({
   container: {
     height: 160,
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: 'rgba(0,0,0,1)',
     shadowColor: '#000000',
     shadowOffset: { width: 1, height: 2 },

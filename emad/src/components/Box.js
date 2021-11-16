@@ -5,7 +5,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const Box = (props) => {
     return(
-        <TouchableOpacity activeOpacity={.6} style={{ marginTop: props.params.marginTop, padding: 15, paddingTop: 5,flexBasis: '50%' }} onPress={() => navigation.navigate('Search')}>
+      
+        <TouchableOpacity
+        activeOpacity={.6} 
+        style={{ marginTop: props.params.marginTop, padding: 15, paddingTop: 5,flexBasis: '50%' }} 
+        onPress={() => navigation.navigate('Search')}>
         <LinearGradient
               start={{x: 0.25, y: 1}} end={{x: 0.75, y: 0}}
               colors={['#20b4f2','#245cde']}
@@ -22,7 +26,7 @@ const styles = StyleSheet.create({
     
     userCard: {
         marginRight: 'auto',
-        width: '50%',
+        width: '100%',
         height: 220,
         borderRadius: 20,
         borderWidth: 0,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { TextInput, StyleSheet, Image, View, Text, TouchableOpacity } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
