@@ -24,11 +24,10 @@ export default () => (
 			<Tab.Navigator
 				initialRouteName="Home"
 				screenOptions={{
-					
-					tabBarActiveTintColor: 'rgba(255,255,255,1)',
-					tabBarInactiveTintColor: 'rgba(255,255,255,0.3)',
+					tabBarActiveTintColor: 'rgba(52, 183, 241,1)',
+					tabBarInactiveTintColor: 'rgba(255,255,255,1)',
 					tabBarShowIcon: true,
-					tabBarStyle: {position: 'absolute',elevation: 0, borderTopWidth: 0}, tabBarShowLabel: false, headerShown: false,
+					tabBarStyle: {position: 'absolute',elevation: 0, borderTopWidth: 0}, tabBarShowLabel: true, headerShown: false,
 					tabBarButton: props => <TouchableOpacity activeOpacity={.3} {...props} />,
 					tabBarBackground: () => (
 						<BlurView tint="dark" intensity={100} style={[StyleSheet.absoluteFill]} />
@@ -42,7 +41,7 @@ export default () => (
 						tabBarIcon: ({ focused, color }) => (
 							<TabBarIcon
 								focused={focused}
-								tintColor={(focused) ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.3)"}
+								tintColor={(focused) ? "rgba(52, 183, 241,1)" : "rgba(255,255,255,1)"}
 								name="home"
 							/>
 						),
@@ -51,12 +50,12 @@ export default () => (
 				/>
 				<Tab.Screen
 					name="Calendar"
-					component={Test}
+					component={Home}
 					options={{
 						tabBarIcon: ({ focused, color, size }) => (
 							<TabBarIcon
 								focused={focused}
-								tintColor={(focused) ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.3)"}
+								tintColor={(focused) ? "rgba(52, 183, 241,1)" : "rgba(255,255,255,1)"}
 								name="calendar"
 							/>
 						),
@@ -64,12 +63,12 @@ export default () => (
 				/>
 				<Tab.Screen
 					name="Search"
-					component={Search}
+					component={Home}
 					options={{
 						tabBarIcon: ({ focused, color }) => (
 							<TabBarIcon
 								focused={focused}
-								tintColor={(focused) ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.3)"}
+								tintColor={(focused) ? "rgba(52, 183, 241,1)" : "rgba(255,255,255,1)"}
 								name="search"
 							/>
 						),

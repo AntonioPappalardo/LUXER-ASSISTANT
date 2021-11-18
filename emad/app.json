@@ -30,6 +30,7 @@
     },
     "androidNavigationBar": {
       "visible": "sticky-immersive"
-    }
+    },
+    "userInterfaceStyle": "automatic"
   }
 }

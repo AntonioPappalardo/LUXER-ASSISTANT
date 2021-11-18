@@ -4,6 +4,8 @@ import UserHome from './UserHome';
 import AddUser from './AddUser'
 import Catalogo from './Catalogo'
 import prova from './prova';
+import Login from './Login';
+
 const Stack = createStackNavigator();
 
 const Home = ({ navigation }) => {
@@ -12,7 +14,7 @@ const Home = ({ navigation }) => {
           <Stack.Screen name="UserHome" component={UserHome}/>
           <Stack.Screen name="AddUser" component={AddUser}/>
           <Stack.Screen name="Catalogo" component={Catalogo}/>
-          <Stack.Screen name="Test" component={prova}/>
+          <Stack.Screen name="Login" component={Login}/>
       </Stack.Navigator>
   );
 };

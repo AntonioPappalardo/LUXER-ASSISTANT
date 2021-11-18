@@ -12,7 +12,7 @@ const tabs = [
 	  inactiveIcon: <Icon name="home" color="rgba(255,255,255,0.3)" size={25} />,
 	  component: Home
 	},
-	{
+	{ 
 	  name: 'list',
 	  activeIcon: <Icon name="calendar" color="#fff" size={25} />,
 	  inactiveIcon: <Icon name="calendar" color="rgba(255,255,255,0.3)" size={25} />,

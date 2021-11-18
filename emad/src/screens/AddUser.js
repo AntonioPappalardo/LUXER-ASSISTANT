@@ -6,7 +6,7 @@ import { AuthContext } from "./context";
 
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
-const addUser= ({})=> {
+const AddUser= ({})=> {
     const tabBarHeight = useBottomTabBarHeight(); 
     const [nome, setNome] = React.useState('');
     const [cognome, setCognome] = React.useState('');
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default addUser;
+export default AddUser;
