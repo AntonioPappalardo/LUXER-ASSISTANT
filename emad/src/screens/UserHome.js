@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { ProgressChart } from 'react-native-chart-kit';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-
+import BackButton from '../components/BackButton';
 const data = {
   labels: [
     "Statistica 1",
@@ -35,6 +35,7 @@ const UserHome = ({ navigation }) => {
   const tabBarHeight = useBottomTabBarHeight(); 
   return (
     <ScrollView style={{ backgroundColor: "#1B1C22", flex: 1 , paddingTop: '5%'}}>
+      <BackButton onPress={() => { navigation.goBack()}} />
       {/*Blocco Utente*/}
       <LinearGradient
               start={{x: 0.25, y: 1}} end={{x: 0.75, y: 0}}

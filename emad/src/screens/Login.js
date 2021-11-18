@@ -35,7 +35,7 @@ const Login = ({ navigation }) => {
     return (
       <View style={styles.screen}>
         <View style={styles.form}>
-          <BackButton onPress={() => navigation.navigate('SplashScreen')} />
+          <BackButton onPress={() => { navigation.goBack()}} />
           <Text style={{ fontSize: 30, fontFamily: 'SFProDisplayBold', width: "100%", color: 'white', alignSelf: "center", marginLeft: "10%" }}>
             Accedi{"\n"}al tuo account
           </Text>
