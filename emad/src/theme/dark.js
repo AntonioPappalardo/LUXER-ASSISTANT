@@ -1,10 +1,10 @@
 const dark = {
   theme: {
-    background: '#242529',
-    border: '#575c66',
-    backgroundAlt: '#575c66',
-    borderAlt: '#2E3440',
-    text: '#ECEFF4'
+    background: "#242529",
+    title: "#FFFFFF",
+    subtitle: "#D1D1D1",
+    primary: "#D1D1D1",
+    secondary: "#484646",
   },
   button: {
     background: '#2F3541',
@@ -14,12 +14,16 @@ const dark = {
     background: '#484646'
   },
   backbutton: {
-    color: '#17181A'
+    color: '#FFFFFF'
   },
   floatingInput: {
     placeholder: '#A2A2A2',
     label: '#FFFFFF',
     border: '#484646',
+  },
+  tabbar: {
+    active: "#34b7f1",
+    inactive: "#AEAEAE",
   }
 }
 export default dark

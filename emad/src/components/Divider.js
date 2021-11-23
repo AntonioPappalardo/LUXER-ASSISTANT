@@ -13,18 +13,16 @@ const Divider = (props) => {
   } else {
     var colorTheme = light;
   }
-  if (props.type === 'fixed') {
-    colorTheme.divider.background = 'white';
-  }
+
   return (
     <View
-
       opacity={props.opacity}
       style={{
-        width: '75%',
+        width: props.width,
         alignSelf: 'center',
         borderBottomColor: colorTheme.divider.background,
-        borderBottomWidth: 0.5
+        borderBottomWidth: 0.5,
+        marginBottom: props.marginBottom
       }}
     />
   )

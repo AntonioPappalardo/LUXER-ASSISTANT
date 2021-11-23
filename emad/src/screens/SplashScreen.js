@@ -17,10 +17,10 @@ const SplashScreen = ({ navigation }) => {
     } else {
         return (
             <View style={styles.screen}>
-                <ImageBackground source={require('../../assets/background/splash.png')} resizeMode="cover" style={styles.image}>
+                <ImageBackground source={require('../../assets/background/splash.png')} resizeMode="cover" style={styles.image} blurRadius={0}>
                     <Image source={require("../../assets/logo/chanel.png")} style={{ position: "absolute", top: 50, alignSelf: "center", width: 142, height: 80, marginBottom: "5%" }} />
                     <Text style={{ fontSize: 30, fontFamily: 'SFProDisplayBold', width: "75%", color: 'white', alignSelf: "center", marginBottom: "5%" }}>
-                        Nome{"\n"}Applicazione
+                        Luxer{"\n"}Assistant
                     </Text>
                     <Divider type="fixed" opacity={0.3} />
                     <InputButton

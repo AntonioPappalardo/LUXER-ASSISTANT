@@ -1,34 +1,49 @@
 import React from "react";
-import { StyleSheet, Image, View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { StyleSheet, Image, View, Text, TouchableOpacity, ScrollView, Appearance} from "react-native";
 import Container from "../components/Container";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import dark from '../../src/theme/dark';
+import light from '../../src/theme/light';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
+import BackButton from "../components/BackButton";
 
-const Catalogo = ({ }) => {
-  const tabBarHeight = useBottomTabBarHeight();
-  console.log(tabBarHeight)
-  return (
-    <ScrollView style={styles.screen}>
-      <Text style={styles.text}>Catalogo</Text>
-      <Container params={{}} image={require('../../assets/4.jpg')} title="Borse e Accessori" subTitle="221 prodotti" />
-      <Container params={{}} image={require('../../assets/3.jpg')} title="Scarpe Uomo" subTitle="221 prodotti" />
-      <Container params={{}} image={require('../../assets/2.jpg')} title="Scarpe Donna" subTitle="221 prodotti" />
-      <Container params={{ marginBottom: tabBarHeight }} image={require('../../assets/1.jpg')} title="Intimo Donna" subTitle="221 prodotti" />
-    </ScrollView>
-  )
+const colorScheme = Appearance.getColorScheme();
+
+const Catalogo = ({navigation}) => {
+  const tabBarHeight = useBottomTabBarHeight()+40;
+  if (colorScheme === 'dark') {
+    var colorTheme = dark;
+  } else {
+    var colorTheme = light;
+  }
+  let [fontsLoaded] = useFonts({
+    'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
+    'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
+    'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <View style={{backgroundColor: colorTheme.theme.background }}>
+        <BackButton onPress={() => { navigation.goBack() }}/>
+        <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 32, color: colorTheme.theme.title, alignSelf: 'center', }}> Catalogo</Text>
+        <ScrollView style={{height: "100%"}}>
+        <Container params={{}} image={require('../../assets/4.jpg')} title="Borse e Accessori" subTitle="221 prodotti" />
+        <Container params={{}} image={require('../../assets/3.jpg')} title="Scarpe Uomo" subTitle="221 prodotti" />
+        <Container params={{}} image={require('../../assets/2.jpg')} title="Scarpe Donna" subTitle="221 prodotti" />
+        <Container params={{}} image={require('../../assets/1.jpg')} title="Intimo Donna" subTitle="221 prodotti" />
+        <Container params={{}} image={require('../../assets/1.jpg')} title="Intimo Donna" subTitle="221 prodotti" />
+        <View style={{marginBottom: 2*tabBarHeight}}/>
+      </ScrollView>
+      </View>
+    )
+  }
 };
 
 const styles = StyleSheet.create({
-  text: {
-    alignSelf: 'center',
-    marginTop: '10%',
-    fontSize: 25,
-    color: 'white',
-    fontWeight: 'bold'
-  },
-  screen: {
-    height: "100%",
-    backgroundColor: "#1B1C22"
-  }
 });
 
 export default Catalogo;

@@ -44,8 +44,35 @@ function displayTextInput(props, colorTheme) {
                     isPassword
                     value={props.value}
                     onChangeText={props.onChangeText}
-                    customShowPasswordComponent={<Icon name="eye-outline" size={20} color={colorTheme.floatingInput.label} />}
-                    customHidePasswordComponent={<Icon name="eye-off-outline" size={20} color={colorTheme.floatingInput.label} />}
+                    customShowPasswordComponent={<Icon name={Platform.OS === "ios" ? "ios-eye-outline" : "md-eye-outline"} size={20} color={colorTheme.floatingInput.placeholder} />}
+                    customHidePasswordComponent={<Icon name={Platform.OS === "ios" ? "ios-eye-off-outline" : "md-eye-off-outline"} size={20} color={colorTheme.floatingInput.placeholder} />}
+                    containerStyles={{
+                        height: 58,
+                        borderBottomWidth: 1,
+                        borderColor: colorTheme.floatingInput.border,
+                    }}
+                    customLabelStyles={{
+                        fontFamily: 'SFProDisplayMedium',
+                        colorBlurred: colorTheme.floatingInput.placeholder,
+                        colorFocused: colorTheme.floatingInput.placeholder,
+                        fontSizeFocused: 12,
+                    }}
+                    inputStyles={{
+                        fontSize: 18,
+                        fontFamily: 'SFProDisplayMedium',
+                        paddingTop: 15,
+                        paddingLeft: 5,
+                        color: colorTheme.floatingInput.label,
+                    }} />
+            )
+        } else if(props.icon) {
+            return (
+                <FloatingLabelInput style={{ fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft }}
+                    label={props.name}
+                    placeholderTextColor={colorTheme.floatingInput.placeholder}
+                    value={props.value}
+                    onChangeText={props.onChangeText}
+                    rightComponent={<Icon name={Platform.OS === "ios" ? "ios-"+props.icon : "md-"+props.icon } size={20} style={{ marginTop: 10 }} color={colorTheme.floatingInput.placeholder} />}
                     containerStyles={{
                         height: 58,
                         borderBottomWidth: 1,
@@ -72,7 +99,6 @@ function displayTextInput(props, colorTheme) {
                     placeholderTextColor={colorTheme.floatingInput.placeholder}
                     value={props.value}
                     onChangeText={props.onChangeText}
-                    rightComponent={<Icon name={props.icon} size={20} style={{ marginTop: 10 }} color={colorTheme.floatingInput.label} />}
                     containerStyles={{
                         height: 58,
                         borderBottomWidth: 1,
@@ -90,7 +116,8 @@ function displayTextInput(props, colorTheme) {
                         paddingTop: 15,
                         paddingLeft: 5,
                         color: colorTheme.floatingInput.label,
-                    }} />
+                    }} 
+                    />
             )
         }
     }

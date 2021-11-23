@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import {Platform } from 'react-native'
+import {CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import UserHome from './UserHome';
 import AddUser from './AddUser'
 import Catalogo from './Catalogo'
 import prova from './prova';
 import Login from './Login';
+import Icon from 'react-native-vector-icons/Ionicons'
 
 const Stack = createStackNavigator();
 
+
 const Home = ({ navigation }) => {
+  if (Platform.OS === "ios") {
+    var CardStyleEffect = CardStyleInterpolators.forVerticalIOS;
+  } else {
+    var CardStyleEffect = CardStyleInterpolators.forRevealFromBottomAndroid;
+  }
+
   return (
-    <Stack.Navigator initialRouteName="UserHome" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="UserHome" component={UserHome} />
-      <Stack.Screen name="AddUser" component={AddUser} />
-      <Stack.Screen name="Catalogo" component={Catalogo} />
-      <Stack.Screen name="Login" component={Login} />
+    <Stack.Navigator initialRouteName="UserHome" screenOptions={{ headerShown: false }} >
+      <Stack.Screen name="UserHome"component={UserHome} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="AddUser" component={AddUser} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="Catalogo" component={Catalogo} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="Login" component={Login} options={{cardStyleInterpolator: CardStyleEffect}}/>
     </Stack.Navigator>
   );
 };
