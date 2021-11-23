@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, Appearance} from 'react-native'
+import { View, Text, Image, StyleSheet, ScrollView, Appearance, Dimensions} from 'react-native'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import BackButton from '../components/BackButton';
 import MenuItem from '../components/MenuItem';
@@ -13,7 +13,8 @@ const colorScheme = Appearance.getColorScheme();
 
 
 const UserHome = ({ navigation }) => {
-  const tabBarHeight = useBottomTabBarHeight()+40;
+  const windowWidth = Dimensions.get('window').width;
+  const tabBarHeight = useBottomTabBarHeight();
   if (colorScheme === 'dark') {
     var colorTheme = dark;
   } else {
@@ -29,12 +30,12 @@ const UserHome = ({ navigation }) => {
     return <AppLoading />;
   } else {
     return (
-      <View style={{ backgroundColor: colorTheme.theme.background }}>
+      <View style={{ backgroundColor: colorTheme.theme.background, flex: 1 }}>
         <BackButton onPress={() => { navigation.goBack() }}/>
-        <Image source={require("../../assets/img/dashboard_profile.jpg")} style={{ width: 200, height: 200, alignSelf: 'center', borderRadius: 100, marginTop: "5%" }} />
+        <Image source={require("../../assets/img/dashboard_profile.jpg")} style={{ width: windowWidth/2, height: windowWidth/2, alignSelf: 'center', borderRadius: windowWidth/4, marginTop: "5%" }} />
           <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 36, color: colorTheme.theme.title, alignSelf: 'center', marginTop: "5%" }}>ehilà!</Text>
           <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 18, color: colorTheme.theme.subtitle, alignSelf: 'center', marginBottom: "5%" }}>Bentornato nella tua Dashboard</Text>
-        <ScrollView style={{height: "100%"}}>
+          <ScrollView style={{marginBottom: tabBarHeight}}>
           <Divider width={"100%"} opacity={1} marginBottom={12} />
           <MenuItem title={'Nuovo Cliente'} onPress={() => navigation.navigate('AddUser')} />
           <MenuItem title={'Scheda Cliente'} />
@@ -42,7 +43,6 @@ const UserHome = ({ navigation }) => {
           <MenuItem title={'Scannerizza QR Code'} />
           <MenuItem title={'Impostazioni'} />
           <MenuItem title={'Logout'} />
-          
         </ScrollView>
       </View>
     )

@@ -11,7 +11,7 @@ import BackButton from "../components/BackButton";
 const colorScheme = Appearance.getColorScheme();
 
 const Catalogo = ({navigation}) => {
-  const tabBarHeight = useBottomTabBarHeight()+40;
+  const tabBarHeight = useBottomTabBarHeight();
   if (colorScheme === 'dark') {
     var colorTheme = dark;
   } else {
@@ -27,16 +27,16 @@ const Catalogo = ({navigation}) => {
     return <AppLoading />;
   } else {
     return (
-      <View style={{backgroundColor: colorTheme.theme.background }}>
+      <View style={{backgroundColor: colorTheme.theme.background, flex: 1}}>
         <BackButton onPress={() => { navigation.goBack() }}/>
         <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 32, color: colorTheme.theme.title, alignSelf: 'center', }}> Catalogo</Text>
-        <ScrollView style={{height: "100%"}}>
+        <ScrollView>
         <Container params={{}} image={require('../../assets/4.jpg')} title="Borse e Accessori" subTitle="221 prodotti" />
         <Container params={{}} image={require('../../assets/3.jpg')} title="Scarpe Uomo" subTitle="221 prodotti" />
         <Container params={{}} image={require('../../assets/2.jpg')} title="Scarpe Donna" subTitle="221 prodotti" />
         <Container params={{}} image={require('../../assets/1.jpg')} title="Intimo Donna" subTitle="221 prodotti" />
         <Container params={{}} image={require('../../assets/1.jpg')} title="Intimo Donna" subTitle="221 prodotti" />
-        <View style={{marginBottom: 2*tabBarHeight}}/>
+        <View style={{marginBottom: tabBarHeight+ 10}}></View>
       </ScrollView>
       </View>
     )

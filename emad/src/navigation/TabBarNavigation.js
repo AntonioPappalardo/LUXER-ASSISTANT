@@ -19,6 +19,7 @@ const TabBarIcon = props => {
 		/>
 	)
 }
+var BlurTabBar = null;
 const colorScheme = Appearance.getColorScheme();
 if (colorScheme === 'dark') {
 	var colorTheme = dark;
@@ -27,7 +28,7 @@ if (colorScheme === 'dark') {
 	var colorTheme = light;
 	var tabColor = 'light';
 }
-
+Platform.OS === "ios" ? BlurTabBar = <BlurView tint={tabColor} intensity={100} style={[StyleSheet.absoluteFill]} /> : BlurTabBar = <BlurView tint={tabColor} intensity={150} style={[StyleSheet.absoluteFill]} /> 
 export default () => (
 	<BottomTabBarHeightContext.Consumer>
 		{tabBarHeight => (
@@ -43,7 +44,7 @@ export default () => (
 					headerShown: false,
 					tabBarButton: props => <TouchableOpacity activeOpacity={.3} {...props} />,
 					tabBarBackground: () => (
-						<BlurView tint={tabColor} intensity={100} style={[StyleSheet.absoluteFill]} />
+						BlurTabBar
 					),
 				}}
 			>
