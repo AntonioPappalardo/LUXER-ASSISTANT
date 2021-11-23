@@ -15,7 +15,7 @@ const InputButton = (props) => {
   } else {
     var colorTheme = light;
   }
-  
+
   let [fontsLoaded] = useFonts({
     'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
     'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
@@ -65,32 +65,32 @@ const InputButton = (props) => {
   }
 }
 
-  function displayicon(props) {
-    if (props.secure !== 'undefined') {
-    } else {
-      <View style={[styles.circleIcon, { backgroundColor: "#789AF3" }]}>
-        <Icon name={props.icon} size={25} color={"white"} style={{ transform: [{ rotateZ: props.rotation }], }} />
-      </View>
-    }
+function displayicon(props) {
+  if (props.secure !== 'undefined') {
+  } else {
+    <View style={[styles.circleIcon, { backgroundColor: "#789AF3" }]}>
+      <Icon name={props.icon} size={25} color={"white"} style={{ transform: [{ rotateZ: props.rotation }], }} />
+    </View>
   }
+}
 
-  const styles = StyleSheet.create({
-    circleIcon: {
-      position: 'absolute',
-      right: 15,
-      top: 7,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginLeft: 'auto',
-      height: 40,
-      width: 40,
-      borderRadius: 20
-    },
-    text: {
-      fontSize: 14,
-    },
-    button: {
-      backgroundColor: 'black'
-    }
-  });
-  export default InputButton;
+const styles = StyleSheet.create({
+  circleIcon: {
+    position: 'absolute',
+    right: 15,
+    top: 7,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 'auto',
+    height: 40,
+    width: 40,
+    borderRadius: 20
+  },
+  text: {
+    fontSize: 14,
+  },
+  button: {
+    backgroundColor: 'black'
+  }
+});
+export default InputButton;

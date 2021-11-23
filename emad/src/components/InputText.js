@@ -20,7 +20,7 @@ const InputText = (props) => {
     }
 
     return (
-        <View style={{width: props.params.width, marginTop: props.params.marginTop, height: 54, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
+        <View style={{ width: props.params.width, marginTop: props.params.marginTop, height: 54, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
             {displayTextInput(props, colorTheme)}
         </View>
     )

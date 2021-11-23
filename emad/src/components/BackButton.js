@@ -1,5 +1,5 @@
 import React from "react";
-import {TouchableOpacity, View } from "react-native";
+import {TouchableOpacity, Text } from "react-native";
 import { Appearance } from 'react-native';
 import dark from '../../src/theme/dark';
 import light from '../../src/theme/light';
@@ -18,8 +18,8 @@ const BackButton = (props) => {
         colorTheme.backbutton.color = 'white';
       } 
     return (
-        <TouchableOpacity activeOpacity={.75} onPress={props.onPress}>
-            <Icon name="chevron-back-outline" size={20} color={"white"} style={{marginTop: "10%"}} />
+        <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{alignItems: 'flex-start'}}>
+          <Icon name="chevron-back-outline" size={20} color={"white"} style={{marginTop: props.marginTop, marginBottom: props.marginBottom}}/>
         </TouchableOpacity>
     )
 };

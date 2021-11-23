@@ -10,7 +10,7 @@ const prova = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
- 
+
 });
 
 export default prova;

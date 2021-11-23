@@ -4,7 +4,7 @@ import SplashScreen from './SplashScreen';
 import Login from './Login';
 import TabBarNavigation from '../navigation/TabBarNavigation';
 import { AuthContext } from './context';
-import {StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 const Stack = createStackNavigator();
 
 
@@ -15,7 +15,7 @@ const InitialScreen = (props) => {
         }
     }))
     const [userToken, setUserToken] = React.useState(null);
-   return (
+    return (
         <AuthContext.Provider value={authContext}>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -25,8 +25,8 @@ const InitialScreen = (props) => {
                     <Stack.Screen name="TabBar" component={TabBarNavigation} options={{ headerShown: false }} />
                 )}
                 */}
-                <Stack.Screen name="TabBar" component={TabBarNavigation}/>
-                <Stack.Screen name="Login" component={Login}/>
+                <Stack.Screen name="TabBar" component={TabBarNavigation} />
+                <Stack.Screen name="Login" component={Login} />
             </Stack.Navigator>
         </AuthContext.Provider>
     );

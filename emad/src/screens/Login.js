@@ -34,8 +34,8 @@ const Login = ({ navigation }) => {
   } else {
     return (
       <View style={styles.screen}>
-        <View style={styles.form}>
-          <BackButton onPress={() => { navigation.goBack()}} />
+        <View style={styles.headerTop}>
+          <BackButton marginTop={0} marginBottom={0} onPress={() => { navigation.goBack() }} />
           <Text style={{ fontSize: 30, fontFamily: 'SFProDisplayBold', width: "100%", color: 'white', alignSelf: "center", marginLeft: "10%" }}>
             Accedi{"\n"}al tuo account
           </Text>
@@ -53,7 +53,7 @@ const Login = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  form: {
+  headerTop: {
     padding: 20,
     backgroundColor: "#282B32"
   },
