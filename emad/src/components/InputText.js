@@ -44,8 +44,8 @@ function displayTextInput(props, colorTheme) {
                     isPassword
                     value={props.value}
                     onChangeText={props.onChangeText}
-                    customShowPasswordComponent={<Icon name={Platform.OS === "ios" ? "ios-eye-outline" : "md-eye-outline"} size={20} color={colorTheme.floatingInput.placeholder} />}
-                    customHidePasswordComponent={<Icon name={Platform.OS === "ios" ? "ios-eye-off-outline" : "md-eye-off-outline"} size={20} color={colorTheme.floatingInput.placeholder} />}
+                    customShowPasswordComponent={<Icon name={Platform.OS === "ios" ? "ios-eye-outline" : "md-eye-outline"} size={20} color={colorTheme.floatingInput.icon} />}
+                    customHidePasswordComponent={<Icon name={Platform.OS === "ios" ? "ios-eye-off-outline" : "md-eye-off-outline"} size={20} color={colorTheme.floatingInput.icon} />}
                     containerStyles={{
                         height: 58,
                         borderBottomWidth: 1,
@@ -72,7 +72,7 @@ function displayTextInput(props, colorTheme) {
                     placeholderTextColor={colorTheme.floatingInput.placeholder}
                     value={props.value}
                     onChangeText={props.onChangeText}
-                    rightComponent={<Icon name={Platform.OS === "ios" ? "ios-"+props.icon : "md-"+props.icon } size={20} style={{ marginTop: 10 }} color={colorTheme.floatingInput.placeholder} />}
+                    rightComponent={<Icon name={Platform.OS === "ios" ? "ios-"+props.icon : "md-"+props.icon } size={20} style={{ marginTop: 10 }} color={colorTheme.floatingInput.icon} />}
                     containerStyles={{
                         height: 58,
                         borderBottomWidth: 1,

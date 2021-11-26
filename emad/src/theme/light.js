@@ -20,10 +20,16 @@ const light = {
     placeholder: '#A2A2A2',
     label: '#17181A',
     border: '#17181A',
+    icon: '#17181A',
   },
   tabbar: {
     active: "#34b7f1",
     inactive: "#AEAEAE",
+  },
+  productBox: {
+    name: "#17181A",
+    reference: "rgba(23,24,26,0.3)",
+    price: "#17181A",
   }
 }
 export default light

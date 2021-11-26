@@ -1,54 +1,74 @@
 import React from 'react';
-import { StyleSheet, Image, View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView, Appearance, TouchableOpacity } from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
-import { SearchBar } from 'react-native-elements';
-import InputText from "../components/InputText";
-import Box from "../components/Box";
+import Icon from 'react-native-vector-icons/Ionicons'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
+import InputText from "../components/InputText";
+import BackButton from '../components/BackButton';
+import ProductBox from "../components/ProductBox";
+import Divider from '../components/Divider';
+import dark from '../../src/theme/dark';
+import light from '../../src/theme/light';
 
+const colorScheme = Appearance.getColorScheme();
 const Stack = createStackNavigator();
 
 const Search = ({ navigation }) => {
-  const tabBarHeight = useBottomTabBarHeight();
+  const tabBarHeight = useBottomTabBarHeight()+10;
   const [prodotto, setProdotto] = React.useState('');
-  return (
-    <ScrollView style={styles.screen}>
-      <Text style={styles.text}>Ricerca Prodotto</Text>
 
-      <InputText params={{ marginTop: 70, width: "100%", paddingLeft: 75, textAlign: "left" }}
-        name="Cerca Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' />
+  if (colorScheme === 'dark') {
+    var colorTheme = dark;
+  } else {
+    var colorTheme = light;
+  }
+  let [fontsLoaded] = useFonts({
+    'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
+    'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
+    'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+  });
 
-      <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap', marginTop: 50, marginBottom: tabBarHeight }}>
-        <Box params={{ marginTop: 0 }} />
-        <Box params={{ marginTop: 0 }} />
-        <Box params={{ marginTop: 0 }} />
-        <Box params={{ marginTop: 0 }} />
-        <Box params={{ marginTop: 0 }} />
-        <Box params={{ marginTop: 0 }} />
-        <Box params={{ marginTop: 0 }} />
-        <Box params={{ marginTop: 0 }} />
-        <Box params={{ marginTop: 0 }} />
-        <Box params={{ marginTop: 0 }} />
-        <Box params={{ marginTop: 0 }} />
-        <Box params={{ marginTop: 0 }} />
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <View style={{ backgroundColor: colorTheme.theme.background, flex: 1 }}>
+        <BackButton onPress={() => { navigation.goBack() }} />
+
+        <View style={{ backgroundColor: colorTheme.theme.background, alignItems: "center", marginBottom: 15 }}>
+         
+            <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
+              name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' />
+            <TouchableOpacity activeOpacity={.75} style={{position: 'absolute', right: 15,top:15,justifyContent:"center", paddingLeft: 15}}>
+              <Icon name={Platform.OS === "ios" ? "ios-qr-code-outline" : "md-qr-code-outline"} size={20} 
+              style={{}} 
+              color={colorTheme.floatingInput.icon} />
+            </TouchableOpacity>
+        </View>
+        <Divider width="100%" />
+        <ScrollView>
+          <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap', alignItems: "center" }}>
+            <ProductBox name={"Borsa Chanel 19"} price={"8500"} reference={"1273100"}
+              image={{ uri: 'https://tinyurl.com/29dbrt9m' }} />
+            <ProductBox name={"Eau de Parfum\nChanel n°5"} price={"145"} reference={"1231283"}
+              image={{ uri: 'https://tinyurl.com/nss9ywwk' }} />
+            <ProductBox name={"Chanel Pink Sandals"} price={"8645"} reference={"1231283"}
+              image={{ uri: 'https://tinyurl.com/e8dfvbzs' }} />
+               <ProductBox name={"Borsa Chanel 19"} price={"8500"} reference={"1273100"}
+              image={{ uri: 'https://tinyurl.com/29dbrt9m' }} />
+            <ProductBox name={"Eau de Parfum Chanel n°5"} price={"145"} reference={"1231283"}
+              image={{ uri: 'https://tinyurl.com/nss9ywwk' }} />
+            <ProductBox name={"Chanel Pink Sandals"} price={"8645"} reference={"1231283"}
+              image={{ uri: 'https://tinyurl.com/e8dfvbzs' }} />
+          </View>
+          <View style={{marginBottom: tabBarHeight+ 10}}></View>
+        </ScrollView>
       </View>
-    </ScrollView>
-  );
+    )
+  }
 };
 
-
-const styles = StyleSheet.create({
-  text: {
-    alignSelf: 'center',
-    top: 50,
-    fontSize: 25,
-    color: 'white',
-    fontWeight: 'bold'
-  },
-  screen: {
-    height: "100%",
-    backgroundColor: "#1B1C22"
-  }
-});
 
 export default Search;

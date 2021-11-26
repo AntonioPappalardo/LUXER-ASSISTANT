@@ -1,5 +1,5 @@
 import React from "react";
-import {TouchableOpacity, Text, Platform } from "react-native";
+import {TouchableOpacity, View, Platform } from "react-native";
 import { Appearance } from 'react-native';
 import dark from '../../src/theme/dark';
 import light from '../../src/theme/light';
@@ -16,13 +16,15 @@ const BackButton = (props) => {
       }
     if (typeof(props.type) === 'string') {
       return (
-        <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{paddingLeft: "5%", paddingTop: "10%"}}>
-          <Icon name={Platform.OS === "ios" ? "ios-chevron-back-outline" : "md-chevron-back-outline"} size={24} color={'#FFF'} style={{marginTop: props.marginTop, marginBottom: props.marginBottom}}/>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{paddingLeft: "5%", paddingTop: "10%",width: 50}}>
+            <Icon name={Platform.OS === "ios" ? "ios-chevron-back-outline" : "md-chevron-back-outline"} size={24} color={'#FFF'} style={{marginTop: props.marginTop, marginBottom: props.marginBottom}}/>
+          </TouchableOpacity>
+        </View>
     )
     } else {
       return (
-        <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{paddingLeft: "5%", paddingTop: "10%"}}>
+        <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{paddingLeft: "5%", paddingTop: "10%",width: 50}}>
           <Icon name={Platform.OS === "ios" ? "ios-chevron-back-outline" : "md-chevron-back-outline"} size={24} color={colorTheme.backbutton.color} style={{marginTop: props.marginTop, marginBottom: props.marginBottom}}/>
         </TouchableOpacity>
     )

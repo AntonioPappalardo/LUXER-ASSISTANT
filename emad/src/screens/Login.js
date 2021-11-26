@@ -36,11 +36,11 @@ const Login = ({ navigation }) => {
       <View style={styles.screen}>
         <View style={styles.headerTop}>
           <BackButton onPress={() => { navigation.goBack() }} type="fixed"/>
-          <Text style={{ fontSize: 30, fontFamily: 'SFProDisplayBold', width: "100%", color: 'white', alignSelf: "center", marginLeft: "20%" , marginTop: "5%"}}>
+          <Text style={{ fontSize: 30, fontFamily: 'SFProDisplayBold', width: "100%", color: 'white', alignSelf: "center", marginLeft: "20%" , marginBottom: "5%"}}>
             Accedi{"\n"}al tuo account
           </Text>
         </View>
-        <View style={{ backgroundColor: colorTheme.theme.background, height: "100%", alignItems: "center", paddingTop: "5%" }}>
+        <View style={{ backgroundColor: colorTheme.theme.background, height: "100%", alignItems: "center", paddingTop: 15 }}>
           <InputText params={{ marginTop: 25, width: "75%" }} name="Email" icon="mail-outline" rotation="0deg" value={username} onChangeText={setUsername} secure='false' />
           <InputText params={{ marginTop: 10, width: "75%" }} name="Password" icon="key-outline" rotation="0deg" value={password} onChangeText={setPassword} secure='true' />
 

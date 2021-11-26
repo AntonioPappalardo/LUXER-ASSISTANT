@@ -28,7 +28,7 @@ if (colorScheme === 'dark') {
 	var colorTheme = light;
 	var tabColor = 'light';
 }
-Platform.OS === "ios" ? BlurTabBar = <BlurView tint={tabColor} intensity={100} style={[StyleSheet.absoluteFill]} /> : BlurTabBar = <BlurView tint={tabColor} intensity={150} style={[StyleSheet.absoluteFill]} /> 
+Platform.OS === "ios" ? BlurTabBar = <BlurView tint={tabColor} intensity={150} style={[StyleSheet.absoluteFill]} /> : BlurTabBar = <BlurView tint={tabColor} intensity={200} style={[StyleSheet.absoluteFill]} /> 
 export default () => (
 	<BottomTabBarHeightContext.Consumer>
 		{tabBarHeight => (

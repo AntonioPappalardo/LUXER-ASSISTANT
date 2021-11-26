@@ -20,10 +20,16 @@ const dark = {
     placeholder: '#A2A2A2',
     label: '#FFFFFF',
     border: '#484646',
+    icon: '#FFFFFF',
   },
   tabbar: {
     active: "#34b7f1",
     inactive: "#AEAEAE",
+  },
+  productBox: {
+    name: "#FFFFFF",
+    reference: "rgba(255,255,255,0.3)",
+    price: "#FFFFFF",
   }
 }
 export default dark
