@@ -23,7 +23,7 @@ const light = {
     icon: '#17181A',
   },
   tabbar: {
-    active: "#34b7f1",
+    active: "#17181A",
     inactive: "#AEAEAE",
   },
   productBox: {

@@ -23,8 +23,8 @@ const dark = {
     icon: '#FFFFFF',
   },
   tabbar: {
-    active: "#34b7f1",
-    inactive: "#AEAEAE",
+    active: "white",
+    inactive: "#757575",
   },
   productBox: {
     name: "#FFFFFF",

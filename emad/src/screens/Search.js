@@ -36,8 +36,7 @@ const Search = ({ navigation }) => {
     return (
       <View style={{ backgroundColor: colorTheme.theme.background, flex: 1 }}>
         <BackButton onPress={() => { navigation.goBack() }} />
-
-        <View style={{ backgroundColor: colorTheme.theme.background, alignItems: "center", marginBottom: 15 }}>
+        <View style={{ alignItems: "center", marginBottom: 15 }}>
          
             <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
               name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' />

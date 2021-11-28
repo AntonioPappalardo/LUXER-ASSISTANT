@@ -7,6 +7,7 @@ import light from '../../src/theme/light';
 import Icon from 'react-native-vector-icons/Ionicons'
 import Home from '../screens/Home';
 import Search from '../screens/Search';
+import searchUser from '../screens/searchUser';
 import Test from '../screens/prova';
 
 const Tab = createBottomTabNavigator()
@@ -64,7 +65,7 @@ export default () => (
 				/>
 				<Tab.Screen
 					name="Clienti"
-					component={Home}
+					component={searchUser}
 					options={{
 						tabBarIcon: ({ focused, color }) => (
 							<TabBarIcon
