@@ -28,7 +28,7 @@ const Container = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 140,
+    height: 150,
     borderRadius: 10,
     backgroundColor: 'rgba(0,0,0,1)',
     shadowColor: '#000000',

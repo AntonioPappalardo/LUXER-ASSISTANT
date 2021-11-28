@@ -32,8 +32,8 @@ const UserHome = ({ navigation }) => {
       <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
         <BackButton onPress={() => { navigation.goBack() }}/>
         <Image source={require("../../assets/img/dashboard_profile.jpg")} style={{ width: windowWidth/2, height: windowWidth/2, alignSelf: 'center', borderRadius: windowWidth/4, marginTop: "5%" }} />
-          <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 36, color: colors.theme.title, alignSelf: 'center', marginTop: "5%" }}>ehilà!</Text>
-          <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 18, color: colors.theme.subtitle, alignSelf: 'center', marginBottom: "5%" }}>Bentornato nella tua Dashboard</Text>
+          <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 36, color: colors.theme.title, alignSelf: 'center', marginTop: "5%" }}>Bentornato!</Text>
+          <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 18, color: colors.theme.subtitle, alignSelf: 'center', marginBottom: "4%" }}>La tua Dashboard</Text>
           <ScrollView style={{marginBottom: tabBarHeight}}>
           <Divider width={"100%"} opacity={1} marginBottom={12} />
           <MenuItem title={'Nuovo Cliente'} onPress={() => navigation.navigate('AddUser')} />

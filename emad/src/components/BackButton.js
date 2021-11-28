@@ -10,14 +10,14 @@ const BackButton = (props) => {
     if (typeof(props.type) === 'string') {
       return (
         <View>
-          <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{paddingLeft: "5%", paddingTop: "10%",width: 50}}>
+          <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{paddingLeft: "5%", paddingTop: "15%",width: '15%'}}>
             <Icon name={Platform.OS === "ios" ? "ios-chevron-back-outline" : "md-chevron-back-outline"} size={24} color={'#FFF'} style={{marginTop: props.marginTop, marginBottom: props.marginBottom}}/>
           </TouchableOpacity>
         </View>
     )
     } else {
       return (
-        <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{paddingLeft: "5%", paddingTop: "10%",width: 50}}>
+        <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{paddingLeft: "5%", paddingTop: "15%",width: '15%'}}>
           <Icon name={Platform.OS === "ios" ? "ios-chevron-back-outline" : "md-chevron-back-outline"} size={24} color={colors.backbutton.color} style={{marginTop: props.marginTop, marginBottom: props.marginBottom}}/>
         </TouchableOpacity>
     )
