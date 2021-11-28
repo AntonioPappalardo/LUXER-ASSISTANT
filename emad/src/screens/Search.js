@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, Appearance, TouchableOpacity } from "react-native";
-import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
@@ -13,7 +12,6 @@ import dark from '../../src/theme/dark';
 import light from '../../src/theme/light';
 
 const colorScheme = Appearance.getColorScheme();
-const Stack = createStackNavigator();
 
 const Search = ({ navigation }) => {
   const tabBarHeight = useBottomTabBarHeight()+10;

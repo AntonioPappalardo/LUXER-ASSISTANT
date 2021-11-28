@@ -13,7 +13,6 @@ import { useFonts } from 'expo-font';
 
 const colorScheme = Appearance.getColorScheme();
 
-
 if (colorScheme === 'dark') {
     var colorTheme = dark;
 } else {
@@ -27,6 +26,7 @@ const users = [
     { "name": "Maria Bianchi", "id": "004", "next_appointment": "", "reserved": "true" },
     { "name": "Michela Gargiulo", "id": "005", "next_appointment": "29 Novembre 2021 15:00-16:00", "reserved": "true" },
 ]
+
 const searchUser = ({ navigation }) => {
     const tabBarHeight = useBottomTabBarHeight();
     const [search, onChangeText] = React.useState('');
@@ -46,6 +46,7 @@ const searchUser = ({ navigation }) => {
         return <AppLoading />;
     } else {
         return (
+            
             <View style={{ backgroundColor: colorTheme.theme.background, flex: 1 }}>
                 <BackButton onPress={() => { navigation.goBack() }} />
                 <View style={{ alignItems: "center", marginBottom: 15 }}>
@@ -61,8 +62,7 @@ const searchUser = ({ navigation }) => {
                                     <Image source={require('../../assets/img/img.jpg')} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
                                 </View>
                                 </View>
-                                <TouchableOpacity style={{flexDirection: 'row', width: '75%'}} 
-              activeOpacity={.75}>
+                                <TouchableOpacity style={{flexDirection: 'row', width: '75%'}} activeOpacity={.75}>
                                     <View style={{ flexDirection: "column", justifyContent: "center" }}>
                                         <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colorTheme.theme.title }}>{item.name}</Text>
                                         <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colorTheme.theme.subtitle }}>Codice cliente: {item.id}</Text>

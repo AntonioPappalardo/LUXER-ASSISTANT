@@ -8,7 +8,7 @@ const Container = (props) => {
     props.params.marginBottom = 0;
   }
   return (
-    <TouchableOpacity activeOpacity={.6} style={{ margin: 20, marginBottom: props.params.marginBottom}} onPress={() => navigation.navigate('Catalogo')}>
+    <TouchableOpacity activeOpacity={.6} style={{ margin: 20, marginBottom: props.params.marginBottom}} onPress={props.onPress}>
       <View style={[styles.container, {marginTop: props.params.marginTop,}]}>
         <ImageBackground source={props.image} style={{ width: '100%', height: '100%', justifyContent: 'flex-end', }} imageStyle={{ borderRadius: 10, opacity: 0.7 }} >
           <View style={{ flexDirection: "row", }}>

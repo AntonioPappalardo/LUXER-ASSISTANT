@@ -31,7 +31,7 @@ const Catalogo = ({navigation}) => {
         <BackButton onPress={() => { navigation.goBack() }}/>
         <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 32, color: colorTheme.theme.title, alignSelf: 'center', }}> Catalogo</Text>
         <ScrollView>
-        <Container params={{}} image={require('../../assets/4.jpg')} title="Borse e Accessori" subTitle="221 prodotti" />
+        <Container params={{}} image={require('../../assets/4.jpg')} title="Borse e Accessori" subTitle="221 prodotti" onPress={() => navigation.navigate('Category')}/>
         <Container params={{}} image={require('../../assets/3.jpg')} title="Scarpe Uomo" subTitle="221 prodotti" />
         <Container params={{}} image={require('../../assets/2.jpg')} title="Scarpe Donna" subTitle="221 prodotti" />
         <Container params={{}} image={require('../../assets/1.jpg')} title="Intimo Donna" subTitle="221 prodotti" />

@@ -30,6 +30,11 @@ const dark = {
     name: "#FFFFFF",
     reference: "rgba(255,255,255,0.3)",
     price: "#FFFFFF",
+  },
+  sizeFilter: {
+    background: '#484646',
+    primary: '#FFFFFF',
+    secondary: '#D1D1D1',
   }
 }
 export default dark
