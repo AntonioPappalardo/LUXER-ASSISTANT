@@ -1,20 +1,16 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Appearance } from "react-native";
-import dark from '../../src/theme/dark';
-import light from '../../src/theme/light';
+import { View, Text, TouchableOpacity} from "react-native";
+import { useTheme } from "../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-const colorScheme = Appearance.getColorScheme();
 
 const SizeFilter = (props) => {
+
+    const {colors, isDark} = useTheme();
+
     const [show, setSelected] = React.useState(false)
     const toggleColor = () => setSelected(show => !show)
     
-    if (colorScheme === 'dark') {
-        var colorTheme = dark;
-    } else {
-        var colorTheme = light;
-    }
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
@@ -32,7 +28,7 @@ const SizeFilter = (props) => {
                         width: 20,
                         height: 20,
                         borderRadius: 5,
-                        backgroundColor: colorTheme.sizeFilter.background,
+                        backgroundColor: colors.sizeFilter.background,
                         shadowColor: '#000000',
                         shadowOffset: { width: 1, height: 2 },
                         shadowOpacity: 0.25,
@@ -41,7 +37,7 @@ const SizeFilter = (props) => {
                         alignItems: 'center'
                     }}
                     >
-                       <Text style={{fontFamily:'SFProDisplayBold', fontSize: 12, color:colorTheme.sizeFilter.primary}}>
+                       <Text style={{fontFamily:'SFProDisplayBold', fontSize: 12, color:colors.sizeFilter.primary}}>
                             {props.size}
                         </Text>
                     </View>
@@ -55,7 +51,7 @@ const SizeFilter = (props) => {
                         alignItems: 'center'
                     }}
                     >
-                        <Text style={{fontFamily:'SFProDisplayBold', fontSize: 12,color:colorTheme.sizeFilter.secondary}}>
+                        <Text style={{fontFamily:'SFProDisplayBold', fontSize: 12,color:colors.sizeFilter.secondary}}>
                             {props.size}
                         </Text>
                     </View>

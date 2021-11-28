@@ -25,6 +25,7 @@ const dark = {
   tabbar: {
     active: "white",
     inactive: "#757575",
+    mode: 'dark'
   },
   productBox: {
     name: "#FFFFFF",

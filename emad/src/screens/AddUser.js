@@ -1,18 +1,18 @@
 import React from "react";
-import { StyleSheet, View, Text, ScrollView, Appearance } from "react-native";
-import InputButton from "../components/InputButton";
-import InputText from "../components/InputText";
+import { StyleSheet, View, Text, ScrollView} from "react-native";
 import { AuthContext } from "./context";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import dark from '../../src/theme/dark';
-import light from '../../src/theme/light';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
+import { useTheme } from "../theme/ThemeProvider";
+import InputButton from "../components/InputButton";
+import InputText from "../components/InputText";
 import BackButton from "../components/BackButton";
 
-const colorScheme = Appearance.getColorScheme();
-
 const AddUser = ({navigation}) => {
+
+  const {colors, isDark} = useTheme();
+
   const tabBarHeight = useBottomTabBarHeight()+20;
 
   const [nome, setNome] = React.useState('');
@@ -24,11 +24,7 @@ const AddUser = ({navigation}) => {
   const [nazionalita, setNazionalita] = React.useState('');
 
   const { add } = React.useContext(AuthContext)
-  if (colorScheme === 'dark') {
-    var colorTheme = dark;
-  } else {
-    var colorTheme = light;
-  }
+  
   let [fontsLoaded] = useFonts({
     'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
     'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
@@ -39,7 +35,7 @@ const AddUser = ({navigation}) => {
     return <AppLoading />;
   } else {
     return (
-      <View style={{backgroundColor: colorTheme.theme.background }}>
+      <View style={{backgroundColor: colors.theme.background }}>
       <BackButton onPress={() => { navigation.goBack() }}/>
       <ScrollView style={{height: "100%"}}>
         <View style={styles.form}>

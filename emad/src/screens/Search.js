@@ -1,27 +1,23 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, Appearance, TouchableOpacity } from "react-native";
+import {View, ScrollView, Appearance, TouchableOpacity } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
+import { useTheme } from "../theme/ThemeProvider";
 import InputText from "../components/InputText";
 import BackButton from '../components/BackButton';
 import ProductBox from "../components/ProductBox";
 import Divider from '../components/Divider';
-import dark from '../../src/theme/dark';
-import light from '../../src/theme/light';
-
-const colorScheme = Appearance.getColorScheme();
 
 const Search = ({ navigation }) => {
+
+  const {colors, isDark} = useTheme();
+
   const tabBarHeight = useBottomTabBarHeight()+10;
+
   const [prodotto, setProdotto] = React.useState('');
 
-  if (colorScheme === 'dark') {
-    var colorTheme = dark;
-  } else {
-    var colorTheme = light;
-  }
   let [fontsLoaded] = useFonts({
     'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
     'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
@@ -32,7 +28,7 @@ const Search = ({ navigation }) => {
     return <AppLoading />;
   } else {
     return (
-      <View style={{ backgroundColor: colorTheme.theme.background, flex: 1 }}>
+      <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
         <BackButton onPress={() => { navigation.goBack() }} />
         <View style={{ alignItems: "center", marginBottom: 15 }}>
          
@@ -41,7 +37,7 @@ const Search = ({ navigation }) => {
             <TouchableOpacity activeOpacity={.75} style={{position: 'absolute', right: 15,top:15,justifyContent:"center", paddingLeft: 15}}>
               <Icon name={Platform.OS === "ios" ? "ios-qr-code-outline" : "md-qr-code-outline"} size={20} 
               style={{}} 
-              color={colorTheme.floatingInput.icon} />
+              color={colors.floatingInput.icon} />
             </TouchableOpacity>
         </View>
         <Divider width="100%" />

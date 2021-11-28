@@ -3,25 +3,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import TextInput from 'react-native-paper';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Appearance } from 'react-native';
-import dark from '../../src/theme/dark';
-import light from '../../src/theme/light';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-
-const colorScheme = Appearance.getColorScheme();
-
+import { useTheme } from "../theme/ThemeProvider";
 
 const InputText = (props) => {
-    if (colorScheme === 'dark') {
-        var colorTheme = dark;
-    } else {
-        var colorTheme = light;
-    }
+    const {colors, isDark} = useTheme();
 
     return (
         <View style={{ width: props.params.width, marginTop: props.params.marginTop, height: 54, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
-            {displayTextInput(props, colorTheme)}
+            {displayTextInput(props, colors)}
         </View>
     )
 }

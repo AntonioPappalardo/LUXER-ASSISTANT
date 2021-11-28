@@ -25,6 +25,7 @@ const light = {
   tabbar: {
     active: "#17181A",
     inactive: "#AEAEAE",
+    mode: 'light'
   },
   productBox: {
     name: "#17181A",
