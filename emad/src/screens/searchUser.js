@@ -50,7 +50,7 @@ const searchUser = ({ navigation }) => {
                     {user.map((item) => (
                         <View key={item.id} style={{height: 75, width: "90%",flexDirection: "row", alignSelf: "center",marginTop: 5, marginBottom: 5, }}>
                                 <View style={{width: '25%'}}>
-                                <View style={{ justifyContent: "center", marginLeft: 5, height: 70, width: 70, shadowColor: '#000', shadowOpacity: 1, elevation: 10, marginRight: 10, borderRadius: 5 }}>
+                                <View style={{ justifyContent: "center", marginLeft: 5, height: 70, width: 70, shadowOffset: { width: 1, height: 2 },shadowOpacity: 0.25,shadowRadius: 5, marginRight: 10, borderRadius: 5 }}>
                                     <Image source={require('../../assets/img/img.jpg')} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
                                 </View>
                                 </View>
