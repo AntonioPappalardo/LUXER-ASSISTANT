@@ -25,7 +25,6 @@ const searchUser = ({ navigation }) => {
     const [search, onChangeText] = React.useState('');
     const [user, onSearch] = React.useState([]);
     const ook = (cerca) => {
-        console.log(users)
         onChangeText(cerca);
         onSearch(users.filter(user => (user.name.toLowerCase().includes(cerca.toLowerCase()) || user.id.includes(cerca))))
 
