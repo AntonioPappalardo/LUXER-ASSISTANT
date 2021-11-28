@@ -30,7 +30,7 @@ const TabBarNavigation = (props) => {
 
 	
 	Platform.OS === "ios" ? 
-	BlurTabBar = <BlurView tint={colors.tabbar.mode} intensity={150} style={[StyleSheet.absoluteFill]} /> : 
+	BlurTabBar = <BlurView tint={colors.tabbar.mode} intensity={100} style={[StyleSheet.absoluteFill]} /> : 
 	BlurTabBar = <BlurView tint={colors.tabbar.mode} intensity={200} style={[StyleSheet.absoluteFill]} /> 
 	return(
 	<BottomTabBarHeightContext.Consumer>
@@ -41,10 +41,11 @@ const TabBarNavigation = (props) => {
 					tabBarActiveTintColor: colors.tabbar.active,
 					tabBarInactiveTintColor: colors.tabbar.inactive,
 					tabBarShowIcon: true,
-					tabBarStyle: { position: 'absolute', elevation: 0, borderTopWidth: 0, paddingTop: 5, paddingBottom: 5 },
+					tabBarStyle: { position: 'absolute', elevation: 0, borderTopWidth: 0 },
 					tabBarHideOnKeyboard: true,
 					tabBarShowLabel: true,
 					headerShown: false,
+					tabBarItemStyle: {paddingTop: 5},
 					tabBarButton: props => <TouchableOpacity activeOpacity={.3} {...props} />,
 					tabBarBackground: () => (
 						BlurTabBar

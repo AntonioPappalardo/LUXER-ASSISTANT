@@ -24,10 +24,10 @@ const MenuItem = (props) => {
         return <AppLoading />;
     } else {
         return (
-            <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{ width: "75%", height: 48, alignSelf: "center" }}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 12 }}>{props.title}</Text>
-                    <Icon name="chevron-forward-outline" size={20} color={colors.theme.primary} style={{ alignSelf: 'flex-end', paddingBottom: 12}} />
+            <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{ width: "75%",height: 48, alignSelf: "center",justifyContent:'center' }}>
+                <View style={{ flexDirection: 'row',height:'100%',justifyContent: 'space-between',alignItems:'center' }}>
+                    <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium" }}>{props.title}</Text>
+                    <Icon name="chevron-forward-outline" size={20} color={colors.theme.primary} style={{ alignSelf: 'flex-end', marginBottom: 12}} />
                 </View>
                 <Divider width={"100%"} />
             </TouchableOpacity>
