@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Switch, Image, StyleSheet, ScrollView, Dimensions} from 'react-native'
+import { View, Text, Switch, Image, StyleSheet, ScrollView, Dimensions } from 'react-native'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import BackButton from '../components/BackButton';
 import MenuItem from '../components/MenuItem';
@@ -10,7 +10,7 @@ import SwitchItem from "../components/SwitchItem";
 
 
 const Impostazioni = ({ navigation }) => {
-    const {colors, setScheme, isDark} = useTheme();
+    const { colors, setScheme, isDark } = useTheme();
 
     const toggleScheme = () => {
         isDark ? setScheme('light') : setScheme('dark');
@@ -20,7 +20,7 @@ const Impostazioni = ({ navigation }) => {
 
     const windowWidth = Dimensions.get('window').width;
     const tabBarHeight = useBottomTabBarHeight();
-    
+
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
@@ -28,19 +28,36 @@ const Impostazioni = ({ navigation }) => {
     });
 
     if (!fontsLoaded) {
-        return <AppLoading />;
+        return <AppLoading / > ;
     } else {
-        return (
-        <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
-            <BackButton onPress={() => { navigation.goBack() }}/>
-            <ScrollView style={{marginBottom: tabBarHeight, marginTop: "5%"}}>
-            <SwitchItem value={isDark} onValueChange={toggleScheme} title={'Tema Scuro'}/>
-            <SwitchItem title={'Altro Switch'}/>
-            <MenuItem title={'Info su Luxer Assistant'} onPress={() => navigation.navigate('AddUser')} />
-            <MenuItem title={'Note sulla versione'} onPress={() => navigation.navigate('Catalogo')} />
+        return ( <
+            View style = {
+                { backgroundColor: colors.theme.background, flex: 1 } } >
+            <
+            BackButton onPress = {
+                () => { navigation.goBack() } }
+            /> <
+            ScrollView style = {
+                { marginBottom: tabBarHeight, marginTop: "5%" } } >
+            <
+            SwitchItem value = { isDark }
+            onValueChange = { toggleScheme }
+            title = { 'Tema Scuro' }
+            /> <
+            SwitchItem title = { 'Altro Switch' }
+            /> <
+            MenuItem title = { 'Info su Luxer Assistant' }
+            onPress = {
+                () => navigation.navigate('AddUser') }
+            /> <
+            MenuItem title = { 'Note sulla versione' }
+            onPress = {
+                () => navigation.navigate('Catalogo') }
+            />
 
-            </ScrollView>
-        </View>
+            <
+            /ScrollView> <
+            /View>
         )
     }
 };
