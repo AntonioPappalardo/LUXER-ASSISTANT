@@ -1,23 +1,13 @@
 import React from "react";
-import { StyleSheet, Image, View, Text, TouchableOpacity, ScrollView, TouchableHighlight } from "react-native";
+import {Image, View, Text, TouchableOpacity, ScrollView, TouchableHighlight } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import BackButton from "../components/BackButton";
 import Divider from "../components/Divider";
 import InputText from "../components/InputText";
-import { Appearance } from 'react-native';
-import dark from '../../src/theme/dark';
-import light from '../../src/theme/light';
+import { useTheme } from "../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-
-const colorScheme = Appearance.getColorScheme();
-
-if (colorScheme === 'dark') {
-    var colorTheme = dark;
-} else {
-    var colorTheme = light;
-}
 
 const users = [
     { "name": "Maria Rossi", "id": "001", "next_appointment": "", "reserved": "true" },
@@ -28,11 +18,13 @@ const users = [
 ]
 
 const searchUser = ({ navigation }) => {
+    
+    const {colors, isDark} = useTheme();
+
     const tabBarHeight = useBottomTabBarHeight();
     const [search, onChangeText] = React.useState('');
     const [user, onSearch] = React.useState([]);
     const ook = (cerca) => {
-        console.log(users)
         onChangeText(cerca);
         onSearch(users.filter(user => (user.name.toLowerCase().includes(cerca.toLowerCase()) || user.id.includes(cerca))))
 
@@ -47,7 +39,7 @@ const searchUser = ({ navigation }) => {
     } else {
         return (
             
-            <View style={{ backgroundColor: colorTheme.theme.background, flex: 1 }}>
+            <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
                 <BackButton onPress={() => { navigation.goBack() }} />
                 <View style={{ alignItems: "center", marginBottom: 15 }}>
                     <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
@@ -58,18 +50,18 @@ const searchUser = ({ navigation }) => {
                     {user.map((item) => (
                         <View key={item.id} style={{height: 75, width: "90%",flexDirection: "row", alignSelf: "center",marginTop: 5, marginBottom: 5, }}  >
                                 <View style={{width: '25%'}}>
-                                <View style={{ justifyContent: "center", marginLeft: 5, height: 70, width: 70, shadowColor: '#000', shadowOpacity: 1, elevation: 10, marginRight: 10, borderRadius: 5 }}>
+                                <View style={{ justifyContent: "center", marginLeft: 5, height: 70, width: 70, shadowOffset: { width: 1, height: 2 },shadowOpacity: 0.25,shadowRadius: 5, marginRight: 10, borderRadius: 5 }}>
                                     <Image source={require('../../assets/img/img.jpg')} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
                                 </View>
                                 </View>
                                 <TouchableOpacity style={{flexDirection: 'row', width: '75%'}} activeOpacity={.75} onPress={() => { navigation.navigate('UserPage',{user:item.id}) }}>
                                     <View style={{ flexDirection: "column", justifyContent: "center" }}>
-                                        <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colorTheme.theme.title }}>{item.name}</Text>
-                                        <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colorTheme.theme.subtitle }}>Codice cliente: {item.id}</Text>
-                                        <Text style={{ fontSize: 12, fontFamily: 'SFProDisplayRegular', color: colorTheme.theme.title }}>{item.next_appointment}</Text>
+                                        <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{item.name}</Text>
+                                        <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>Codice cliente: {item.id}</Text>
+                                        <Text style={{ fontSize: 12, fontFamily: 'SFProDisplayRegular', color: colors.theme.title }}>{item.next_appointment}</Text>
                                     </View>
                                     <View style={{ justifyContent: 'center', alignContent: "center", alignItems: 'center', marginLeft: 'auto', top: 15, marginRight: 5, height: 40, width: 40}}>
-                                        <Ionicons name="chevron-forward" size={25} color={colorTheme.theme.title} />
+                                        <Ionicons name="chevron-forward" size={25} color={colors.theme.title} />
                                     </View>
                                 </TouchableOpacity>
                         </View>
@@ -81,19 +73,5 @@ const searchUser = ({ navigation }) => {
         )
     }
 };
-
-const styles = StyleSheet.create({
-    text: {
-        alignSelf: 'center',
-        top: 50,
-        fontSize: 25,
-        color: colorTheme.theme.title,
-        fontWeight: 'bold'
-    },
-    screen: {
-        height: "100%",
-        backgroundColor: "#2A2E43"
-    }
-});
 
 export default searchUser;

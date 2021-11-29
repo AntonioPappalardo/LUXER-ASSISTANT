@@ -1,24 +1,17 @@
 import React from "react";
 import { TouchableOpacity, Text, View } from "react-native";
-import { Appearance } from 'react-native';
-import dark from '../../src/theme/dark';
-import light from '../../src/theme/light';
+import { useTheme } from "../theme/ThemeProvider";
 import Icon from 'react-native-vector-icons/Ionicons'
 import Divider from "./Divider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 
-const colorScheme = Appearance.getColorScheme();
-
 const MenuItem = (props) => {
 
-    if (colorScheme === 'dark') {
-        var colorTheme = dark;
-    } else {
-        var colorTheme = light;
-    }
+    const {colors, isDark} = useTheme();
+
     if (props.type === 'fixed') {
-        colorTheme.backbutton.color = 'white';
+        colors.backbutton.color = 'white';
     }
 
     let [fontsLoaded] = useFonts({
@@ -31,10 +24,10 @@ const MenuItem = (props) => {
         return <AppLoading />;
     } else {
         return (
-            <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{ width: "75%", height: 48, alignSelf: "center" }}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={{ color: colorTheme.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 12 }}>{props.title}</Text>
-                    <Icon name="chevron-forward-outline" size={20} color={colorTheme.theme.primary} style={{ alignSelf: 'flex-end', paddingBottom: 12}} />
+            <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{ width: "75%",height: 48, alignSelf: "center",justifyContent:'center' }}>
+                <View style={{ flexDirection: 'row',height:'100%',justifyContent: 'space-between',alignItems:'center' }}>
+                    <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium" }}>{props.title}</Text>
+                    <Icon name="chevron-forward-outline" size={20} color={colors.theme.primary} style={{ alignSelf: 'flex-end', marginBottom: 12}} />
                 </View>
                 <Divider width={"100%"} />
             </TouchableOpacity>

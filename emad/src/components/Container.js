@@ -1,7 +1,5 @@
 import React from "react";
-import { StyleSheet, Image, ImageBackground, View, Text, TouchableOpacity, ScrollView } from "react-native";
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet, ImageBackground, View, Text, TouchableOpacity } from "react-native";
 
 const Container = (props) => {
   if (props.params.marginBottom === undefined) {
@@ -30,7 +28,7 @@ const Container = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 140,
+    height: 150,
     borderRadius: 10,
     backgroundColor: 'rgba(0,0,0,1)',
     shadowColor: '#000000',
