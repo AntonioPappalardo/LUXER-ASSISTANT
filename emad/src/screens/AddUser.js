@@ -61,7 +61,7 @@ const AddUser = ({navigation}) => {
             name="Nazionalità" icon="" rotation="0deg" value={nazionalita} onChangeText={setNazionalita} />
 
         </View>         
-         <InputButton params={{ marginTop: 13, width: "75%", marginBottom: tabBarHeight }} name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
+         <InputButton params={{ marginTop: 26, width: "75%", marginBottom: tabBarHeight }} name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
       </ScrollView>
       </View>
     )

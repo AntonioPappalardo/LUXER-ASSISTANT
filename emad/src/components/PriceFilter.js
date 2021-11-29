@@ -20,13 +20,14 @@ const PriceFilter = (props) => {
     } else {
         return (
                 <View style={{ width: props.params.width, marginTop: props.params.marginTop, height: 30, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
-                <FloatingLabelInput style={{ fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft }}
+                <FloatingLabelInput style={{ fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft}}
                     label={props.name}
                     placeholderTextColor={colors.floatingInput.placeholder}
                     value={props.value}
                     onChangeText={props.onChangeText}
                     keyboardType = 'numeric'
                     containerStyles={{
+                        paddingBottom: '10%',
                         height: 28,
                         borderBottomWidth: 1,
                         borderColor: colors.floatingInput.border,

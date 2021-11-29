@@ -14,8 +14,8 @@ import ProductBox from "../components/ProductBox";
 import Divider from '../components/Divider';
 
 const Category = ({ navigation }) => {
-    
-    const {colors, isDark} = useTheme();
+
+    const { colors, isDark } = useTheme();
 
     const tabBarHeight = useBottomTabBarHeight() + 10;
 
@@ -45,7 +45,7 @@ const Category = ({ navigation }) => {
                     <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
                         name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' />
                     {show ?
-                        <TouchableOpacity activeOpacity={.75} style={{ position: 'absolute', right: 15, top: 15, justifyContent: "center", paddingLeft: 15 }}>
+                        <TouchableOpacity activeOpacity={.75} style={{ position: 'absolute', right: 5, top: 15, justifyContent: "center", alignItems:'center', padding:15, paddingTop: 0}}>
 
                             <Icon name={Platform.OS === "ios" ? "ios-filter-outline" : "md-filter-outline"} size={20}
                                 style={{}}
@@ -53,7 +53,7 @@ const Category = ({ navigation }) => {
                                 onPress={toggleText} />
                         </TouchableOpacity>
                         :
-                        <TouchableOpacity activeOpacity={.75} style={{ position: 'absolute', right: 15, top: 15, justifyContent: "center", paddingLeft: 15 }}>
+                        <TouchableOpacity activeOpacity={.75} style={{ position: 'absolute', right: 5, top: 15, justifyContent: "center", alignItems:'center', padding:15, paddingTop: 0 }}>
 
                             <Icon name={Platform.OS === "ios" ? "ios-filter-outline" : "md-filter-outline"} size={20}
                                 style={{}}
@@ -88,8 +88,8 @@ const Category = ({ navigation }) => {
 };
 
 const FilterColor = (props) => {
-    
-    const {colors, isDark} = useTheme();
+
+    const { colors, isDark } = useTheme();
 
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
@@ -122,8 +122,8 @@ const FilterColor = (props) => {
 
 }
 const FilterSize = (props) => {
-    
-    const {colors, isDark} = useTheme();
+
+    const { colors, isDark } = useTheme();
 
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
@@ -156,8 +156,8 @@ const FilterSize = (props) => {
 
 }
 const FilterPrice = (props) => {
-    
-    const {colors, isDark} = useTheme();
+
+    const { colors, isDark } = useTheme();
 
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
@@ -179,17 +179,18 @@ const FilterPrice = (props) => {
                         <View style={{ flexDirection: 'row', marginRight: 15 }}>
                             <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 12 }}>Prezzo</Text>
                         </View>
-                        <View style={{ width: '35%' }}>
-                            <PriceFilter params={{ marginTop: 0, width: '100%' }}
-                                name="Da" icon="" rotation="0deg" secure='false' value={from} onChangeText={setFrom} />
-                        </View>
-                        <View style={{ width: '5%' }}></View>
-                        <View style={{ width: '35%' }}>
-                            <PriceFilter params={{ marginTop: 0, width: '100%' }}
-                                name="A" icon="" rotation="0deg" secure='false' value={to} onChangeText={setTo} />
+                        <View style={{justifyContent: 'center', flexDirection: 'row', marginBottom: 5}}>
+                            <View style={{ width: '35%' }}>
+                                <PriceFilter params={{width: '100%' }}
+                                    name="Da" icon="" rotation="0deg" secure='false' value={from} onChangeText={setFrom} />
+                            </View>
+                            <View style={{ width: '5%' }}></View>
+                            <View style={{ width: '35%' }}>
+                                <PriceFilter params={{width: '100%' }}
+                                    name="A" icon="" rotation="0deg" secure='false' value={to} onChangeText={setTo} />
+                            </View>
                         </View>
                     </View>
-                    <Divider width={"100%"} />
                 </View>
             </View>
         )
