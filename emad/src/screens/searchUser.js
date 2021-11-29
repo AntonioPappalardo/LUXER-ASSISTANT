@@ -56,13 +56,13 @@ const searchUser = ({ navigation }) => {
                 <Divider width="100%" />
                 <ScrollView>
                     {user.map((item) => (
-                        <View key={item.id} style={{height: 75, width: "90%",flexDirection: "row", alignSelf: "center",marginTop: 5, marginBottom: 5, }}>
+                        <View key={item.id} style={{height: 75, width: "90%",flexDirection: "row", alignSelf: "center",marginTop: 5, marginBottom: 5, }}  >
                                 <View style={{width: '25%'}}>
                                 <View style={{ justifyContent: "center", marginLeft: 5, height: 70, width: 70, shadowColor: '#000', shadowOpacity: 1, elevation: 10, marginRight: 10, borderRadius: 5 }}>
                                     <Image source={require('../../assets/img/img.jpg')} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
                                 </View>
                                 </View>
-                                <TouchableOpacity style={{flexDirection: 'row', width: '75%'}} activeOpacity={.75}>
+                                <TouchableOpacity style={{flexDirection: 'row', width: '75%'}} activeOpacity={.75} onPress={() => { navigation.navigate('UserPage',{user:item.id}) }}>
                                     <View style={{ flexDirection: "column", justifyContent: "center" }}>
                                         <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colorTheme.theme.title }}>{item.name}</Text>
                                         <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colorTheme.theme.subtitle }}>Codice cliente: {item.id}</Text>
