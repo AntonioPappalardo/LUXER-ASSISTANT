@@ -4,17 +4,23 @@ import InputButton from "../components/InputButton";
 import InputText from "../components/InputText";
 import BackButton from "../components/BackButton";
 import { AuthContext } from "./context";
+import { Appearance } from 'react-native';
 import dark from '../../src/theme/dark';
 import light from '../../src/theme/light';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import { useTheme } from "../theme/ThemeProvider";
+
+const colorScheme = Appearance.getColorScheme();
 
 const Login = ({ navigation }) => {
-  const {colors, isDark} = useTheme();
-  
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+
+  if (colorScheme === 'dark') {
+    var colorTheme = dark;
+  } else {
+    var colorTheme = light;
+  }
 
   const { signIn } = React.useContext(AuthContext)
   let [fontsLoaded] = useFonts({
@@ -34,7 +40,7 @@ const Login = ({ navigation }) => {
             Accedi{"\n"}al tuo account
           </Text>
         </View>
-        <View style={{ backgroundColor: colors.theme.background, height: "100%", alignItems: "center", paddingTop: 15 }}>
+        <View style={{ backgroundColor: colorTheme.theme.background, height: "100%", alignItems: "center", paddingTop: 15 }}>
           <InputText params={{ marginTop: 25, width: "75%" }} name="Email" icon="mail-outline" rotation="0deg" value={username} onChangeText={setUsername} secure='false' />
           <InputText params={{ marginTop: 10, width: "75%" }} name="Password" icon="key-outline" rotation="0deg" value={password} onChangeText={setPassword} secure='true' />
 

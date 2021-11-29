@@ -3,11 +3,16 @@ import { View } from "react-native";
 import { Appearance } from 'react-native';
 import dark from '../../src/theme/dark';
 import light from '../../src/theme/light';
-import { useTheme } from "../theme/ThemeProvider";
+
+const colorScheme = Appearance.getColorScheme();
 
 const Divider = (props) => {
 
-  const {colors, isDark} = useTheme();
+  if (colorScheme === 'dark') {
+    var colorTheme = dark;
+  } else {
+    var colorTheme = light;
+  }
 
   return (
     <View
@@ -15,7 +20,7 @@ const Divider = (props) => {
       style={{
         width: props.width,
         alignSelf: 'center',
-        borderBottomColor: colors.divider.background,
+        borderBottomColor: colorTheme.divider.background,
         borderBottomWidth: 0.5,
         marginBottom: props.marginBottom
       }}

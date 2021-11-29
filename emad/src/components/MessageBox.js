@@ -1,55 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import TextInput from 'react-native-paper';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
-import Icon from 'react-native-vector-icons/Ionicons';
-import AppLoading from 'expo-app-loading';
-import { useFonts } from 'expo-font';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Appearance } from 'react-native';
+import dark from '../../src/theme/dark';
+import light from '../../src/theme/light';
+const colorScheme = Appearance.getColorScheme();
 
 const MessageBox = (props) => {
-    let [fontsLoaded] = useFonts({
-        'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-        'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
-        'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
-    });
-
-    if (!fontsLoaded) {
-        return <AppLoading />;
-    } else {
-        return (
-            <FloatingLabelInput
-                style={{ textAlignVertical: "top", marginLeft: 10, fontSize: 25, width: 250, marginTop: 75 }}
-                label="Messaggio"
-                editable
-                maxLength={250}
-                multiline
-                numberOfLines={1}
-                
-                placeholderTextColor={props.theme.floatingInput.placeholder}
-                value={props.value}
-                onChangeText={props.onChangeText}
-                rightComponent={<Icon name={Platform.OS === "ios" ? "ios-"+props.icon : "md-"+props.icon } size={20} style={{ marginTop: 10 }} color={props.theme.floatingInput.label} />}
-                containerStyles={{
-                    minHeight: 58,
-                    borderBottomWidth: 1,
-                    borderColor: props.theme.floatingInput.border,
-                }}
-                customLabelStyles={{
-                    textAlignVertical: "top",
-                    fontFamily: 'SFProDisplayMedium',
-                    colorBlurred: props.theme.floatingInput.placeholder,
-                    colorFocused: props.theme.floatingInput.placeholder,
-                    fontSizeFocused: 12,
-                }}
-                inputStyles={{
-                    fontSize: 18,
-                    fontFamily: 'SFProDisplayMedium',
-                    paddingTop: 15,
-                    paddingLeft: 5,
-                    
-                    textAlignVertical: "top",
-                    color: props.theme.floatingInput.label
-                }}
-            />
-        )
-    }
+    return (
+        <FloatingLabelInput 
+            style={{textAlignVertical:"top",marginLeft:10,fontSize:25 ,width:250,marginTop:75}}
+            label="Messaggio"
+            editable
+            maxLength={250}
+            multiline
+            numberOfLines={11}
+            placeholderTextColor={props.theme.floatingInput.placeholder}
+            value={props.value}
+            onChangeText={props.onChangeText}
+            rightComponent={<Ionicons name="md-mail-open-outline" color={props.theme.floatingInput.label} size={25} style={{ top:0 ,marginRight:15}} />}
+            containerStyles={{
+            marginTop:85,
+            borderBottomWidth: 0.5,
+            borderColor:props.theme.floatingInput.border,
+            }}
+            customLabelStyles={{
+            colorBlurred:props.theme.floatingInput.placeholder,
+            colorFocused:props.theme.floatingInput.placeholder,
+            fontSizeFocused: 20,
+            }}
+            inputStyles={{
+            fontSize: 25,
+            paddingTop: 15,
+            textAlignVertical:"top",
+            paddingLeft: 5,
+            color:props.theme.floatingInput.label}}
+        />
+    )
 }
 export default MessageBox;
