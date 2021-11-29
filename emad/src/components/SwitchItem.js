@@ -1,27 +1,15 @@
 import React, {useState} from "react";
 import { TouchableOpacity, StyleSheet, Text, Switch,View } from "react-native";
-import { Appearance } from 'react-native';
-import dark from '../theme/dark';
-import light from '../theme/light';
 import Divider from "./Divider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
+import { useTheme } from "../theme/ThemeProvider";
 
-const colorScheme = Appearance.getColorScheme();
 
 const SwitchItem = (props) => {
 
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
-    if (colorScheme === 'dark') {
-        var colorTheme = dark;
-    } else {
-        var colorTheme = light;
-    }
-    if (props.type === 'fixed') {
-        colorTheme.backbutton.color = 'white';
-    }
+    const {colors, isDark} = useTheme();
+    
 
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
@@ -36,8 +24,9 @@ const SwitchItem = (props) => {
             <View style={{marginTop:10}}>
             <TouchableOpacity activeOpacity={1} onPress={props.onPress} style={{ width: "75%", height: 48, alignSelf: "center" }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <Text style={{ color: colorTheme.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 13 }}>{props.title}</Text>
-                    <Switch style={styles.switch} trackColor={{ false: "#767577", true: "#66d871" }} thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"} ios_backgroundColor="#3e3e3e" onValueChange={toggleSwitch} value={isEnabled}/>
+                    <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 13 }}>{props.title}</Text>
+                    <Switch style={styles.switch} trackColor={{ false: "#767577", true: "#66d871" }} 
+                    thumbColor={props.value ? "#f4f3f4" : "#f4f3f4"} ios_backgroundColor="#3e3e3e" onValueChange={props.onValueChange} value={props.value}/>
                 </View>
                 <Divider width={"100%"} />
                 </TouchableOpacity>

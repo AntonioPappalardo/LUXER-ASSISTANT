@@ -4,11 +4,14 @@ import { StyleSheet, Image, View, Text, Button, Vibration, Appearance} from "rea
 import {BarCodeScanner} from "expo-barcode-scanner";
 import BarcodeMask from 'react-native-barcode-mask';
 import BackButton from '../components/BackButton';
+import { useTheme } from "../theme/ThemeProvider";
+
 
 //Duration of the vibration
-const DURATION = 1000;
+const DURATION = 3000;
 
 const ScanQR = ({ navigation }) => {
+    const {colors, isDark} = useTheme();
 
     //To start the vibration for the defined Duration
     const startVibration = () => {
@@ -44,9 +47,10 @@ const ScanQR = ({ navigation }) => {
     }
 
     return(
+        
         <View style={styles.barcodebox}>
             <BarCodeScanner onBarCodeScanned ={scanned ? undefined: barCodeScanned} style={styles.container}/>    
-            <BarcodeMask width={300} height={250} showAnimatedLine={false} edgeHeight={35} edgeWidth={35} edgeBorderWidth={10} edgeColor={"#FFF"} edgeRadius={10} outerMaskOpacity={0.6}/>
+            <BarcodeMask width={250} height={250} showAnimatedLine={false} edgeHeight={35} edgeWidth={35} edgeBorderWidth={10} edgeColor={"#FFF"} edgeRadius={10} outerMaskOpacity={0.6}/>
         </View>
     )
 

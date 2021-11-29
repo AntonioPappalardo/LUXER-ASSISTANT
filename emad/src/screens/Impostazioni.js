@@ -1,30 +1,27 @@
 import React, { useState } from "react";
-import { View, Text, Switch, Image, StyleSheet, ScrollView, Appearance, Dimensions} from 'react-native'
+import { View, Text, Switch, Image, StyleSheet, ScrollView, Dimensions} from 'react-native'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import BackButton from '../components/BackButton';
 import MenuItem from '../components/MenuItem';
-import Divider from '../components/Divider';
-import dark from '../../src/theme/dark';
-import light from '../../src/theme/light';
+import { useTheme } from "../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import SwitchItem from "../components/SwitchItem";
 
-const colorScheme = Appearance.getColorScheme();
-
 
 const Impostazioni = ({ navigation }) => {
+    const {colors, setScheme, isDark} = useTheme();
 
+    const toggleScheme = () => {
+        isDark ? setScheme('light') : setScheme('dark');
+        console.log(isDark);
+    }
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     const windowWidth = Dimensions.get('window').width;
     const tabBarHeight = useBottomTabBarHeight();
-    if (colorScheme === 'dark') {
-        var colorTheme = dark;
-    } else {
-        var colorTheme = light;
-    }
+    
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
@@ -35,10 +32,10 @@ const Impostazioni = ({ navigation }) => {
         return <AppLoading />;
     } else {
         return (
-        <View style={{ backgroundColor: colorTheme.theme.background, flex: 1 }}>
+        <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
             <BackButton onPress={() => { navigation.goBack() }}/>
             <ScrollView style={{marginBottom: tabBarHeight, marginTop: 50}}>
-            <SwitchItem title={'Tema Scuro'}/>
+            <SwitchItem value={isDark} onValueChange={toggleScheme} title={'Tema Scuro'}/>
             <SwitchItem title={'Altro Switch'}/>
             <MenuItem title={'Info su Luxer Assistant'} onPress={() => navigation.navigate('AddUser')} />
             <MenuItem title={'Note sulla versione'} onPress={() => navigation.navigate('Catalogo')} />
