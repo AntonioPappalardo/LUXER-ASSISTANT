@@ -8,8 +8,10 @@ import Login from './Login';
 import Communication from './Communication';
 import searchUser from './searchUser';
 import prova from './prova';
-import Icon from 'react-native-vector-icons/Ionicons'
 import Category from './Category';
+import ScanQR from './ScanQR';
+import Impostazioni from './Impostazioni';
+import UserPage from '.UserPage';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +32,9 @@ const Home = ({ navigation }) => {
       <Stack.Screen name="Communication" component={Communication} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="searchUser" component={searchUser} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Category" component={Category} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="ScanQR" component={ScanQR} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="Impostazioni" component={Impostazioni} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="UserPage" component={UserPage} options={{cardStyleInterpolator: CardStyleEffect}}/>
     </Stack.Navigator>
   );
 };

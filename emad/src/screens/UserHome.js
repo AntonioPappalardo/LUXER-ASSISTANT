@@ -37,10 +37,10 @@ const UserHome = ({ navigation }) => {
           <ScrollView style={{marginBottom: tabBarHeight}}>
           <Divider width={"100%"} opacity={1} marginBottom={12} />
           <MenuItem title={'Nuovo Cliente'} onPress={() => navigation.navigate('AddUser')} />
-          <MenuItem title={'Scheda Cliente'} onPress={() => navigation.navigate('Communication')}/>
+          <MenuItem title={'Scheda Cliente'} onPress={() => navigation.navigate('UserPage')}/>
           <MenuItem title={'Catalogo'} onPress={() => navigation.navigate('Catalogo')} />
-          <MenuItem title={'Scannerizza QR Code'} />
-          <MenuItem title={'Impostazioni'} />
+          <MenuItem title={'Scannerizza QR Code'} onPress={() => navigation.navigate('ScanQR')} />
+          <MenuItem title={'Impostazioni'} onPress={() => navigation.navigate('Impostazioni')} />
           <MenuItem title={'Logout'} />
         </ScrollView>
       </View>
