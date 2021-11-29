@@ -1,20 +1,13 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'
-import { Appearance } from 'react-native';
-import dark from '../../src/theme/dark';
-import light from '../../src/theme/light';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { useTheme } from "../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 
-const colorScheme = Appearance.getColorScheme();
-
 const InputButton = (props) => {
-  if (colorScheme === 'dark') {
-    var colorTheme = dark;
-  } else {
-    var colorTheme = light;
-  }
+
+  const {colors, isDark} = useTheme();
 
   let [fontsLoaded] = useFonts({
     'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
@@ -50,10 +43,10 @@ const InputButton = (props) => {
             <TouchableOpacity
               activeOpacity={.75}
               style={{
-                width: '100%', height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center', shadowColor: '#000', backgroundColor: colorTheme.button.background,
+                width: '100%', height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center', shadowColor: '#000', backgroundColor: colors.button.background,
               }}
               onPress={props.onPress}>
-              <Text style={[styles.text, { fontFamily: props.params.fontFamily, color: colorTheme.button.color }]}>
+              <Text style={[styles.text, { fontFamily: props.params.fontFamily, color: colors.button.color }]}>
                 {props.name}
               </Text>
 

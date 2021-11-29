@@ -23,13 +23,19 @@ const light = {
     icon: '#17181A',
   },
   tabbar: {
-    active: "#34b7f1",
+    active: "#17181A",
     inactive: "#AEAEAE",
+    mode: 'light'
   },
   productBox: {
     name: "#17181A",
     reference: "rgba(23,24,26,0.3)",
     price: "#17181A",
+  },
+  sizeFilter: {
+    background: '#17181A',
+    primary: '#FFFFFF',
+    secondary: '#17181A',
   }
 }
 export default light

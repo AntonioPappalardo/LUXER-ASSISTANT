@@ -18,7 +18,7 @@ const SplashScreen = ({ navigation }) => {
         return (
             <View style={styles.screen}>
                 <ImageBackground source={require('../../assets/background/splash.png')} resizeMode="cover" style={styles.image} blurRadius={0}>
-                    <Image source={require("../../assets/logo/chanel.png")} style={{ position: "absolute", top: 50, alignSelf: "center", width: 142, height: 80, marginBottom: "5%" }} />
+                    <Image source={require("../../assets/logo/chanel_large.png")} style={{ position: "absolute", top: '7.5%', alignSelf: "center", width: 150, height: 96}} />
                     <Text style={{ fontSize: 30, fontFamily: 'SFProDisplayBold', width: "75%", color: 'white', alignSelf: "center", marginBottom: "5%" }}>
                         Luxer{"\n"}Assistant
                     </Text>

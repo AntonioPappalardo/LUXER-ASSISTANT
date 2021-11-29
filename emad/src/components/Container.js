@@ -1,14 +1,12 @@
 import React from "react";
-import { StyleSheet, Image, ImageBackground, View, Text, TouchableOpacity, ScrollView } from "react-native";
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet, ImageBackground, View, Text, TouchableOpacity } from "react-native";
 
 const Container = (props) => {
   if (props.params.marginBottom === undefined) {
     props.params.marginBottom = 0;
   }
   return (
-    <TouchableOpacity activeOpacity={.6} style={{ margin: 20, marginBottom: props.params.marginBottom}} onPress={() => navigation.navigate('Catalogo')}>
+    <TouchableOpacity activeOpacity={.6} style={{ margin: 20, marginBottom: props.params.marginBottom}} onPress={props.onPress}>
       <View style={[styles.container, {marginTop: props.params.marginTop,}]}>
         <ImageBackground source={props.image} style={{ width: '100%', height: '100%', justifyContent: 'flex-end', }} imageStyle={{ borderRadius: 10, opacity: 0.7 }} >
           <View style={{ flexDirection: "row", }}>
@@ -30,7 +28,7 @@ const Container = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 140,
+    height: 150,
     borderRadius: 10,
     backgroundColor: 'rgba(0,0,0,1)',
     shadowColor: '#000000',
