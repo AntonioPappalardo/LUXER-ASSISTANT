@@ -1,8 +1,5 @@
 import React from "react";
 import { View } from "react-native";
-import { Appearance } from 'react-native';
-import dark from '../../src/theme/dark';
-import light from '../../src/theme/light';
 import { useTheme } from "../theme/ThemeProvider";
 
 const Divider = (props) => {

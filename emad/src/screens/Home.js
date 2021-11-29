@@ -12,7 +12,7 @@ import Category from './Category';
 import ScanQR from './ScanQR';
 import Impostazioni from './Impostazioni';
 import UserPage from './UserPage';
-
+import Cart from './Cart';
 const Stack = createStackNavigator();
 
 
@@ -35,6 +35,7 @@ const Home = ({ navigation }) => {
       <Stack.Screen name="ScanQR" component={ScanQR} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Impostazioni" component={Impostazioni} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="UserPage" component={UserPage} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="Cart" component={Cart} options={{cardStyleInterpolator: CardStyleEffect}}/>
     </Stack.Navigator>
   );
 };

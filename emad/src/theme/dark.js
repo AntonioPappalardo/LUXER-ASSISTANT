@@ -36,6 +36,6 @@ const dark = {
     background: '#484646',
     primary: '#FFFFFF',
     secondary: '#D1D1D1',
-  }
+  },
 }
 export default dark

@@ -41,7 +41,7 @@ const UserHome = ({ navigation }) => {
           <MenuItem title={'Catalogo'} onPress={() => navigation.navigate('Catalogo')} />
           <MenuItem title={'Scannerizza QR Code'} onPress={() => navigation.navigate('ScanQR')} />
           <MenuItem title={'Impostazioni'} onPress={() => navigation.navigate('Impostazioni')} />
-          <MenuItem title={'Logout'} />
+          <MenuItem title={'Logout'}  onPress={() => navigation.navigate('Cart')} />
         </ScrollView>
       </View>
     )
