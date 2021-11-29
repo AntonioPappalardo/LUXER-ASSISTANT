@@ -11,7 +11,7 @@ import prova from './prova';
 import Category from './Category';
 import ScanQR from './ScanQR';
 import Impostazioni from './Impostazioni';
-import UserPage from '.UserPage';
+import UserPage from './UserPage';
 
 const Stack = createStackNavigator();
 
