@@ -10,7 +10,7 @@ import { BarChart, LineChart } from 'react-native-chart-kit';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Svg, Text as TextSVG, Rect } from 'react-native-svg';
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 const users = [
@@ -225,6 +225,44 @@ const UserPage = ({ navigation, route }) => {
         />
     );
 
+    const FourthRoute = () => (
+        <BarChart
+            data={{
+                labels: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu"],
+                datasets: [
+                    {
+                        data: [
+                            5,
+                            12,
+                            1,
+                            3,
+                            4,
+                            1,
+                        ]
+                    }
+                ]
+            }}
+            width={350}
+            height={220}
+            chartConfig={{
+                backgroundColor: "#e26a00",
+                backgroundGradientFrom: colors.theme.background,
+                backgroundGradientTo: colors.theme.background,
+                color: (opacity = 1) => '#EA9F5A',
+                labelColor: (opacity = 1) => colors.theme.primary,
+                style: { borderRadius: 16 },
+                decimalPlaces: 0,
+                
+            }}
+            withInnerLines={false}
+            bezier
+            style={{
+                marginTop: '5%',
+                marginLeft: -25
+            }}
+        />
+    );
+
 
     const { colors, isDark } = useTheme();
 
@@ -233,15 +271,17 @@ const UserPage = ({ navigation, route }) => {
 
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
-        { key: 'first', title: 'Acquisti' },
+        { key: 'first', title:  'Acquisti'},
         { key: 'second', title: 'Ordini' },
-        { key: 'third', title: 'Appuntamenti' },
+        { key: 'third', title: 'Visite' },
+        { key: 'fourth', title: 'Preferiti' },
     ]);
 
     const renderScene = SceneMap({
         first: FirstRoute,
         second: SecondRoute,
         third: ThirdRoute,
+        fourth: FourthRoute,
     });
 
     const [user, setUser] = React.useState(users.find(us => us.id === route.params.user));
@@ -301,7 +341,7 @@ const UserPage = ({ navigation, route }) => {
                     <Divider width={"100%"} />
                     <MenuItem title={'Nuovo Appuntamento'} />
                     <MenuItem title={'Contatta'} onPress={() => navigation.navigate('Communication')} />
-                    <View style={{ height: 280 }}>
+                    <View style={{ height: 300}}>
                         <TabView
                             navigationState={{ index, routes }}
                             renderScene={renderScene}
