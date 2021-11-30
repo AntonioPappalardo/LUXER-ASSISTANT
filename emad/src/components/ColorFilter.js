@@ -30,7 +30,11 @@ const ColorFilter = (props) => {
                     width: 18,
                     height: 18,
                     borderRadius: 9,
-                    backgroundColor: props.color
+                    backgroundColor: props.color,
+                    shadowColor: '#000000',
+                    shadowOffset: { width: 1, height: 2 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 5, elevation: 5
                 }}
                 />
             }

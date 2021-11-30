@@ -16,6 +16,9 @@ const light = {
   backbutton: {
     color: '#17181A'
   },
+  backbutton_inverted: {
+    color: '#FFFFFF'
+  },
   floatingInput: {
     placeholder: '#A2A2A2',
     label: '#17181A',

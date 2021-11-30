@@ -29,7 +29,7 @@ const Login = ({ navigation }) => {
     return (
       <View style={styles.screen}>
         <View style={styles.headerTop}>
-          <BackButton onPress={() => { navigation.goBack() }} type="fixed"/>
+          <BackButton onPress={() => { navigation.goBack() }} fixed/>
           <Text style={{ fontSize: 30, fontFamily: 'SFProDisplayBold', width: "100%", color: 'white', alignSelf: "center", marginLeft: "20%" , marginBottom: "5%"}}>
             Accedi{"\n"}al tuo account
           </Text>

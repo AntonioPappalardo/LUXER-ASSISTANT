@@ -75,7 +75,7 @@ const Category = ({ navigation }) => {
                 <ScrollView>
                     <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap', alignItems: "center" }}>
                         <ProductBox name={"Borsa Chanel 19"} price={"8500"} reference={"1273100"}
-                            image={{ uri: 'https://tinyurl.com/29dbrt9m' }} />
+                            image={{ uri: 'https://tinyurl.com/29dbrt9m' }} onPress={() => navigation.navigate('ProductPage')} />
                         <ProductBox name={"Eau de Parfum\nChanel n°5"} price={"145"} reference={"1231283"}
                             image={{ uri: 'https://tinyurl.com/nss9ywwk' }} />
                         <ProductBox name={"Chanel Pink Sandals"} price={"8645"} reference={"1231283"}
