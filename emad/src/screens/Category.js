@@ -39,7 +39,14 @@ const Category = ({ navigation }) => {
     } else {
         return (
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
-                <BackButton onPress={() => { navigation.goBack() }} />
+                <View style={{flexDirection: 'row'}}>
+                    <BackButton onPress={() => { navigation.goBack() }} />
+                    <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 18, color: colors.theme.subtitle}}>Catalogo ·</Text>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 18, color: colors.theme.title}}> Borse e Accessori</Text>
+                    </View>
+                </View>
+                
                 <View style={{ alignItems: "center", marginBottom: 15 }}>
 
                     <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}

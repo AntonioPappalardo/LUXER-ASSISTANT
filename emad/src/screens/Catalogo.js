@@ -26,7 +26,7 @@ const Catalogo = ({navigation}) => {
     return (
       <View style={{backgroundColor: colors.theme.background, flex: 1}}>
         <BackButton onPress={() => { navigation.goBack() }}/>
-        <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 32, color: colors.theme.title, alignSelf: 'center', }}> Catalogo</Text>
+        <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 24, color: colors.theme.title, alignSelf: 'center', }}> Catalogo</Text>
         <ScrollView>
         <Container params={{}} image={require('../../assets/4.jpg')} title="Borse e Accessori" subTitle="221 prodotti" onPress={() => navigation.navigate('Category')}/>
         <Container params={{}} image={require('../../assets/3.jpg')} title="Scarpe Uomo" subTitle="221 prodotti" />

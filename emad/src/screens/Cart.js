@@ -27,7 +27,7 @@ const Cart = ({ navigation }) => {
         return (
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
                 <BackButton onPress={() => { navigation.goBack() }} />
-                <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 32, color: colors.theme.title, alignSelf: 'center', }}> Carrello</Text>
+                <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 24, color: colors.theme.title, alignSelf: 'center', }}> Carrello</Text>
                 <ScrollView>
                     <CartItem name="Prodotto 1" reference="10231023" specifics={"Specifiche"} price={50} image={{ uri: 'https://tinyurl.com/29dbrt9m' }} min={0} max={2} />
                     <CartItem name="Prodotto 1" reference="10231023" specifics={"Specifiche"} price={50} image={{ uri: 'https://tinyurl.com/29dbrt9m' }} min={0} max={2} />
