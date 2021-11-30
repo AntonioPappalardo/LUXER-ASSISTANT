@@ -7,25 +7,48 @@ import { useFonts } from 'expo-font';
 
 const InputButton = (props) => {
 
-  const {colors, isDark} = useTheme();
+  const { colors, isDark } = useTheme();
 
   let [fontsLoaded] = useFonts({
     'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
     'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
     'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
   });
+  if (!props.params.height) {
+    props.params.height = 50;
+  }
 
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
-    if (props.fixed) {
+    if (props.outline) {
       return (
         <View style={{ marginTop: props.params.marginTop, marginBottom: props.params.marginBottom, justifyContent: 'center', alignItems: 'center', width: '100%', }} >
           <View style={{ width: props.params.width }}>
             <TouchableOpacity
               activeOpacity={.75}
               style={{
-                width: '100%', height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center', shadowColor: '#000', backgroundColor: "#FFFFFF",
+                width: '100%', height: props.params.height, borderRadius: 25, justifyContent: 'center', alignItems: 'center', shadowColor: '#000', backgroundColor: 'transparent',
+                borderColor:colors.theme.primary, borderWidth: 1.5
+              }}
+              onPress={props.onPress}>
+              <Text style={[styles.text, { fontFamily: props.params.fontFamily, color: colors.theme.primary }]}>
+                {props.name}
+              </Text>
+  
+            </TouchableOpacity>
+          </View>
+        </View>
+      )
+    }
+    if (props.fixed) {
+      return (
+        <View style={{ marginTop: props.params.marginTop, marginBottom: props.params.marginBottom, justifyContent: 'center', alignItems: 'center', width: '100%', }} >
+          <View style={{ width: props.params.width, }}>
+            <TouchableOpacity
+              activeOpacity={.75}
+              style={{
+                width: '100%', height: props.params.height, borderRadius: 25, justifyContent: 'center', alignItems: 'center', shadowColor: '#000', backgroundColor: "#FFFFFF",
               }}
               onPress={props.onPress}>
               <Text style={[styles.text, { fontFamily: props.params.fontFamily, color: "#17181A" }]}>
@@ -36,26 +59,26 @@ const InputButton = (props) => {
           </View>
         </View>
       )
-    } else {
-      return (
-        <View style={{ marginTop: props.params.marginTop, marginBottom: props.params.marginBottom, justifyContent: 'center', alignItems: 'center', width: '100%', }} >
-          <View style={{ width: props.params.width }}>
-            <TouchableOpacity
-              activeOpacity={.75}
-              style={{
-                width: '100%', height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center', shadowColor: '#000', backgroundColor: colors.button.background,
-              }}
-              onPress={props.onPress}>
-              <Text style={[styles.text, { fontFamily: props.params.fontFamily, color: colors.button.color }]}>
-                {props.name}
-              </Text>
-
-            </TouchableOpacity>
-          </View>
-        </View>
-      )
     }
+    return (
+      <View style={{ marginTop: props.params.marginTop, marginBottom: props.params.marginBottom, justifyContent: 'center', alignItems: 'center', width: '100%', }} >
+        <View style={{ width: props.params.width }}>
+          <TouchableOpacity
+            activeOpacity={.75}
+            style={{
+              width: '100%', height: props.params.height, borderRadius: 25, justifyContent: 'center', alignItems: 'center', shadowColor: '#000', backgroundColor: colors.button.background,
+            }}
+            onPress={props.onPress}>
+            <Text style={[styles.text, { fontFamily: props.params.fontFamily, color: colors.button.color }]}>
+              {props.name}
+            </Text>
+
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
   }
+
 }
 
 function displayicon(props) {
