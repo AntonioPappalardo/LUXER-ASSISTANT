@@ -25,6 +25,7 @@
     "fluidbottomnavigation-rn": "^0.1.1",
     "install": "^0.13.0",
     "lottie-react-native": "^4.0.3",
+    "moment": "^2.29.1",
     "npm": "^8.1.2",
     "prop-types": "^15.6.2",
     "react": "^17.0.2",

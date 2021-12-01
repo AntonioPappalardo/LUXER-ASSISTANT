@@ -4,6 +4,7 @@ import dark from './dark';
 import light from './light';
 
 export const ThemeContext = React.createContext({
+    key: 'light',
     isDark: false,
     colors: light,
     setScheme: () => {},
@@ -28,6 +29,7 @@ export const ThemeProvider = (props) => {
         isDark,
         // Chaning color schemes according to theme
         colors: isDark ? dark : light,
+        key: isDark ? 'dark' : 'light',
         // Overrides the isDark value will cause re-render inside the context.  
         setScheme: (scheme) => setIsDark(scheme === "dark"),
     };

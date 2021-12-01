@@ -11,6 +11,7 @@ import InputButton from "../components/InputButton";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import SlidingUpPanel from 'rn-sliding-up-panel';
 import BottomSheet from "../components/BottomProduct";
+
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
