@@ -9,15 +9,6 @@ import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import { useTheme } from "../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import {LocaleConfig} from 'react-native-calendars';
-
-LocaleConfig.locales['it'] = {
-    monthNames:['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novebre','Dicembre'],
-    dayNames:['Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica'],
-    dayNamesShort:['L', 'M', 'M', 'G', 'V', 'S', 'D'],
-    today: 'Oggi'
-};
-LocaleConfig.defaultLocale = 'it';
 
 const users = [
     { "name": "Maria Rossi", "id": "001", "next_appointment": "1 Dicembre 2021 11:00-12:00", "reserved": "true" },
@@ -45,7 +36,10 @@ const appointmentList = ({ navigation }) => {
         return (
         <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
             <Calendar
-            style={{marginTop:'10%', height: '45%', backgroundColor: colors.theme.background}}
+            style={{marginTop:'10%', height: '45%', calendarBackground: colors.theme.background}}
+            dayNames={'Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica'}
+            monthNames={'Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novebre','Dicembre'}
+            dayNamesShort={ 'L', 'M', 'M', 'G', 'V', 'S', 'D'}
             renderArrow={(direction) => (<Arrow/>)}
             hideArrows={true}
             hideExtraDays={true}
@@ -70,7 +64,7 @@ const appointmentList = ({ navigation }) => {
                 textMonthFontWeight: 'bold',
                 textDayHeaderFontWeight: '300',
                 textDayFontSize: 16,
-                textMonthFontSize: 20,
+                textMonthFontSize: 16,
                 textDayHeaderFontSize: 16
             }}
             />

@@ -18,7 +18,6 @@ LocaleConfig.locales['it'] = {
     today: 'Oggi'
 };
 LocaleConfig.defaultLocale = 'it';
-
 const users = [
     { "name": "Maria Rossi", "id": "001", "next_appointment": "1 Dicembre 2021 11:00-12:00", "reserved": "true" },
     { "name": "Antonella Rossi", "id": "002", "next_appointment": "1 Dicembre 2021 13:00-14:00", "reserved": "true" },
@@ -45,6 +44,7 @@ const appointmentList = ({ navigation }) => {
         return (
         <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
             <Calendar
+            LocaleConfig = {'it'}
             style={{marginTop:'10%', height: '45%', backgroundColor: colors.theme.background}}
             renderArrow={(direction) => (<Arrow/>)}
             hideArrows={true}
@@ -70,7 +70,7 @@ const appointmentList = ({ navigation }) => {
                 textMonthFontWeight: 'bold',
                 textDayHeaderFontWeight: '300',
                 textDayFontSize: 16,
-                textMonthFontSize: 20,
+                textMonthFontSize: 16,
                 textDayHeaderFontSize: 16
             }}
             />

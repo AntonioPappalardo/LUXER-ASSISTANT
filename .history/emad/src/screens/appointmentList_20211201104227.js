@@ -11,13 +11,15 @@ import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import {LocaleConfig} from 'react-native-calendars';
 
-LocaleConfig.locales['it'] = {
-    monthNames:['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novebre','Dicembre'],
-    dayNames:['Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica'],
-    dayNamesShort:['L', 'M', 'M', 'G', 'V', 'S', 'D'],
-    today: 'Oggi'
+LocaleConfig.locales['fr'] = {
+  monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+  monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
+  dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+  dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
+  today: 'Aujourd\'hui'
 };
-LocaleConfig.defaultLocale = 'it';
+
+LocaleConfig.defaultLocale = 'fr';
 
 const users = [
     { "name": "Maria Rossi", "id": "001", "next_appointment": "1 Dicembre 2021 11:00-12:00", "reserved": "true" },
@@ -44,36 +46,7 @@ const appointmentList = ({ navigation }) => {
     } else {
         return (
         <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
-            <Calendar
-            style={{marginTop:'10%', height: '45%', backgroundColor: colors.theme.background}}
-            renderArrow={(direction) => (<Arrow/>)}
-            hideArrows={true}
-            hideExtraDays={true}
-            onPressArrowLeft={subtractMonth => subtractMonth()}
-            onPressArrowRight={addMonth => addMonth()}
-            //renderHeader={(date) => {/*Return JSX*/}}
-            theme={{
-                textSectionTitleColor: '#b6c1cd',
-                textSectionTitleDisabledColor: '#d9e1e8',
-                selectedDayBackgroundColor: '#00adf5',
-                selectedDayTextColor: '#ffffff',
-                todayTextColor: 'white',
-                todayBackgroundColor:'orange',
-                dayTextColor: '#2d4150',
-                textDisabledColor: '#d9e1e8',
-                dotColor: '#00adf5',
-                selectedDotColor: '#ffffff',
-                arrowColor: 'orange',
-                disabledArrowColor: '#d9e1e8',
-                monthTextColor: 'white',
-                indicatorColor: 'white',
-                textMonthFontWeight: 'bold',
-                textDayHeaderFontWeight: '300',
-                textDayFontSize: 16,
-                textMonthFontSize: 20,
-                textDayHeaderFontSize: 16
-            }}
-            />
+            <LocaleConfig/>
 
             <Divider width="100%" />
             <ScrollView>
