@@ -65,11 +65,12 @@ const appointmentList = ({ navigation }) => {
                 selectedDotColor: '#ffffff',
                 arrowColor: 'orange',
                 disabledArrowColor: '#d9e1e8',
+                monthTextColor: 'white',
                 indicatorColor: 'white',
                 textMonthFontWeight: 'bold',
                 textDayHeaderFontWeight: '300',
                 textDayFontSize: 16,
-                textMonthFontSize: 22,
+                textMonthFontSize: 20,
                 textDayHeaderFontSize: 16
             }}
             />

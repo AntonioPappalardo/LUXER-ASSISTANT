@@ -69,7 +69,7 @@ const appointmentList = ({ navigation }) => {
                 textMonthFontWeight: 'bold',
                 textDayHeaderFontWeight: '300',
                 textDayFontSize: 16,
-                textMonthFontSize: 22,
+                textMonthFontSize: 24,
                 textDayHeaderFontSize: 16
             }}
             />

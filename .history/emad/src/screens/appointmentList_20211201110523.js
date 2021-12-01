@@ -45,7 +45,7 @@ const appointmentList = ({ navigation }) => {
         return (
         <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
             <Calendar
-            style={{marginTop:'10%', height: '45%', backgroundColor: colors.theme.background, monthTextColor: colors.theme.title}}
+            style={{marginTop:'10%', height: '45%', backgroundColor: colors.theme.background, monthTextColor: colors.theme.subtitle}}
             renderArrow={(direction) => (<Arrow/>)}
             hideArrows={true}
             hideExtraDays={true}
@@ -65,11 +65,12 @@ const appointmentList = ({ navigation }) => {
                 selectedDotColor: '#ffffff',
                 arrowColor: 'orange',
                 disabledArrowColor: '#d9e1e8',
+                monthTextColor: 'white',
                 indicatorColor: 'white',
                 textMonthFontWeight: 'bold',
                 textDayHeaderFontWeight: '300',
                 textDayFontSize: 16,
-                textMonthFontSize: 22,
+                textMonthFontSize: 20,
                 textDayHeaderFontSize: 16
             }}
             />
