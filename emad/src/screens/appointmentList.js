@@ -30,13 +30,9 @@ const users = [
 const appointmentList = ({ navigation }) => {
 
     const { key, colors, setScheme, isDark } = useTheme();
+
     const [daySelected, setDaySelected] = useState(new Date);
     
-    const CustomHeader = ({ date }) => {
-        const dateStr = date.toISOString();
-        const endIndex = dateStr.indexOf("T");
-        const title = moment(dateStr.slice(0, endIndex)).format("MMMM YYYY");
-    }
     const onDayPress = day => {
         setDaySelected(day.dateString);
     }
@@ -71,6 +67,7 @@ const appointmentList = ({ navigation }) => {
                 </View>
             )
     }
+
     let [fontsLoaded] = useFonts({
         'SFProDisplayRegular': require('../../assets/fonts/SFProDisplayRegular.otf'),
         'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
@@ -110,12 +107,11 @@ const appointmentList = ({ navigation }) => {
                 <Divider width="100%" />
                 <ScrollView>
                     {users.map((item) => (
-                        <View key={item.id} style={{ height: '30%', width: "90%", flexDirection: "row", alignSelf: "center", marginTop: 10, marginBottom: 5, }}>
+                        <View key={item.id} style={{ height: 75, width: "90%", flexDirection: "row", alignSelf: "center", marginTop: 5, marginBottom: 5, }}>
                             <View style={{ width: '25%' }}>
                                 <View style={{ justifyContent: "center", marginLeft: 5, height: 70, width: 70, shadowOffset: { width: 1, height: 2 }, shadowOpacity: 0.25, shadowRadius: 5, elevation: 5, marginRight: 10, borderRadius: 5 }}>
                                     <Image source={require('../../assets/img/img.jpg')} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
                                 </View>
-
                             </View>
                             <TouchableOpacity style={{ flexDirection: 'row', width: '75%' }} activeOpacity={.75} onPress={() => { navigation.navigate('UserPage', { user: item.id }) }}>
                                 <View style={{ flexDirection: "column", justifyContent: "center" }}>
@@ -127,7 +123,6 @@ const appointmentList = ({ navigation }) => {
                                     <Ionicons name="chevron-forward" size={25} color={colors.theme.title} />
                                 </View>
                             </TouchableOpacity>
-
                         </View>
 
                     ))}
