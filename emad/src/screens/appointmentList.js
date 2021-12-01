@@ -36,7 +36,17 @@ const appointmentList = ({ navigation }) => {
     const onDayPress = day => {
         setDaySelected(day.dateString);
     }
-    
+    const onMonthChange = day => {
+        var today = new Date;
+        today.setHours(0,0,0,0)
+        var selected = new Date(day.dateString)
+        if(today.getTime() != selected.getTime()) {
+            setDaySelected(day.dateString);
+        } else {
+            setDaySelected(undefined)
+        }
+    }
+     
     const toggleScheme = () => {
         isDark ? setScheme('light') : setScheme('dark');
     }
@@ -58,7 +68,7 @@ const appointmentList = ({ navigation }) => {
         var Data = new Date()
             return (
             <View style= {{position: 'absolute', top: "10%", alignSelf: 'center',zIndex: 1}}>
-                    <Text style={{ textTransform: 'capitalize', fontSize: 28, textAlign: 'left', color: colors.theme.primary}}>
+                    <Text style={{ textTransform: 'capitalize', fontSize: 16, textAlign: 'left', color: colors.theme.primary}}>
                         {moment(Data).format('dddd')}
                     </Text>
                     <Text style={{ textTransform: 'capitalize', fontSize: 28, textAlign: 'left', color: colors.theme.primary, marginBottom: 15 }}>
@@ -91,6 +101,7 @@ const appointmentList = ({ navigation }) => {
                     onPressArrowLeft={subtractMonth => subtractMonth()}
                     onPressArrowRight={addMonth => addMonth()}
                     onDayPress={onDayPress}
+                    onMonthChange={onMonthChange}
                     markedDates={{
                         [daySelected]: {
                             selected: true,
