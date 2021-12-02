@@ -66,7 +66,25 @@ const light = {
   calendar_select: {
     circle: '#D1D1D1',
     text: '#17181A'
+  },
+  topModal: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    backgroundColor: '#f86968',
+    alignItems: 'center'
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    shadowColor: '#000000',
+    shadowOffset: { width: 1, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 5,
+    elevation: 5,
   }
-
 }
 export default light
