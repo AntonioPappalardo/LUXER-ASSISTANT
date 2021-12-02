@@ -25,7 +25,7 @@ const SplashScreen = ({ navigation }) => {
                     <Divider type="fixed" opacity={0.3} />
                     <InputButton
                         params={{ marginTop: "5%", marginBottom: "20%", width: "75%", fontFamily: 'SFProDisplayMedium', color: '#17181A', }} fixed name="ACCEDI"
-                        onPress={() => navigation.replace('Login')} />
+                        onPress={() => navigation.navigate('Login')} />
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayUltraLightItalic', width: "75%", color: 'white', textAlign: "center", alignSelf: "center", marginBottom: "1%" }}>
                         Powered by
                     </Text>

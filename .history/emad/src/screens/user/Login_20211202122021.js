@@ -49,7 +49,7 @@ const Login = ({ navigation }) => {
     return (
       <View style={styles.screen}>
         <Modal isVisible={isModalVisible}
-          
+          backdropColor='red'
           animationIn={'slideInUp'}
           animationOut={'slideOutDown'}>
           <View style={colors.topModal}>
