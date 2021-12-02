@@ -4,10 +4,9 @@ import { BottomTabBarHeightContext, createBottomTabNavigator } from '@react-navi
 import { BlurView } from 'expo-blur';
 import Icon from 'react-native-vector-icons/Ionicons'
 import Home from '../screens/Home';
-import Search from '../screens/Search';
-import searchUser from '../screens/searchUser';
-import appointmentList from '../screens/appointmentList';
-import Test from '../screens/prova';
+import SearchProduct from '../screens/shop/SearchProduct';
+import SearchUser from '../screens/customer/SearchUser';
+import AppointmentList from '../screens/customer/AppointmentList';
 import { useTheme } from "../theme/ThemeProvider";
 
 const Tab = createBottomTabNavigator()
@@ -69,7 +68,7 @@ const TabBarNavigation = (props) => {
 				/>
 				<Tab.Screen
 					name="Clienti"
-					component={searchUser}
+					component={SearchUser}
 					options={{
 						tabBarIcon: ({ focused, color }) => (
 							<TabBarIcon
@@ -83,7 +82,7 @@ const TabBarNavigation = (props) => {
 				/>
 				<Tab.Screen
 					name="Calendario"
-					component={appointmentList}
+					component={AppointmentList}
 					options={{
 						
 						tabBarIcon: ({ focused, color, size }) => (
@@ -97,7 +96,7 @@ const TabBarNavigation = (props) => {
 				/>
 				<Tab.Screen
 					name="Cerca"
-					component={Search}
+					component={SearchProduct}
 					options={{
 						tabBarIcon: ({ focused, color }) => (
 							<TabBarIcon

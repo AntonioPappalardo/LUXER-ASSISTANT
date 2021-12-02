@@ -2,10 +2,10 @@ import React from "react";
 import {Image, View, Text, TouchableOpacity, ScrollView, TouchableHighlight } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import BackButton from "../components/BackButton";
-import Divider from "../components/Divider";
-import InputText from "../components/InputText";
-import { useTheme } from "../theme/ThemeProvider";
+import BackButton from "../../components/BackButton";
+import Divider from "../../components/Divider";
+import InputText from "../../components/InputText";
+import { useTheme } from "../../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 
@@ -17,7 +17,7 @@ const users = [
     { "name": "Michela Gargiulo", "id": "005", "next_appointment": "29 Novembre 2021 15:00-16:00", "reserved": "true" },
 ]
 
-const searchUser = ({ navigation }) => {
+const SearchUser = ({ navigation }) => {
     
     const {colors, isDark} = useTheme();
 
@@ -30,8 +30,8 @@ const searchUser = ({ navigation }) => {
 
     }
     let [fontsLoaded] = useFonts({
-        'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-        'SFProDisplayRegular': require('../../assets/fonts/SFProDisplayRegular.otf'),
+        'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+        'SFProDisplayRegular': require('../../../assets/fonts/SFProDisplayRegular.otf'),
     });
 
     if (!fontsLoaded) {
@@ -51,10 +51,10 @@ const searchUser = ({ navigation }) => {
                         <View key={item.id} style={{height: 75, width: "90%",flexDirection: "row", alignSelf: "center",marginTop: 5, marginBottom: 5, }}>
                                 <View style={{width: '25%'}}>
                                 <View style={{ justifyContent: "center", marginLeft: 5, height: 70, width: 70, shadowOffset: { width: 1, height: 2 },shadowOpacity: 0.25,shadowRadius: 5, elevation: 5, marginRight: 10, borderRadius: 5 }}>
-                                    <Image source={require('../../assets/img/img.jpg')} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
+                                    <Image source={require('../../../assets/img/img.jpg')} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
                                 </View>
                                 </View>
-                                <TouchableOpacity style={{flexDirection: 'row', width: '75%'}} activeOpacity={.75} onPress={() => { navigation.navigate('UserPage',{user:item.id}) }}>
+                                <TouchableOpacity style={{flexDirection: 'row', width: '75%'}} activeOpacity={.75} onPress={() => { navigation.navigate('CustomerPage',{user:item.id}) }}>
                                     <View style={{ flexDirection: "column", justifyContent: "center" }}>
                                         <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{item.name}</Text>
                                         <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>Codice cliente: {item.id}</Text>
@@ -74,4 +74,4 @@ const searchUser = ({ navigation }) => {
     }
 };
 
-export default searchUser;
+export default SearchUser;

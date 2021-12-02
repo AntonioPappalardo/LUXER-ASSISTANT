@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet, TextInput, View, Text, TouchableOpacity, ScrollView } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import { useTheme } from "../theme/ThemeProvider";
-import BackButton from "../components/BackButton";
-import InputButton from "../components/InputButton";
-import MessageBox from '../components/MessageBox';
+import { useTheme } from "../../theme/ThemeProvider";
+import BackButton from "../../components/BackButton";
+import InputButton from "../../components/InputButton";
+import MessageBox from '../../components/MessageBox';
 
 const Communication = ({ navigation }) => {
 

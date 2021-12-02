@@ -4,13 +4,13 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import { useTheme } from "../theme/ThemeProvider";
-import InputText from "../components/InputText";
-import BackButton from '../components/BackButton';
-import ProductBox from "../components/ProductBox";
-import Divider from '../components/Divider';
+import { useTheme } from "../../theme/ThemeProvider";
+import InputText from "../../components/InputText";
+import BackButton from '../../components/BackButton';
+import ProductBox from "../../components/ProductBox";
+import Divider from '../../components/Divider';
 
-const Search = ({ navigation }) => {
+const SearchProduct = ({ navigation }) => {
 
   const {colors, isDark} = useTheme();
 
@@ -19,9 +19,9 @@ const Search = ({ navigation }) => {
   const [prodotto, setProdotto] = React.useState('');
 
   let [fontsLoaded] = useFonts({
-    'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-    'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
-    'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+    'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+    'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+    'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
   });
 
   if (!fontsLoaded) {
@@ -64,4 +64,4 @@ const Search = ({ navigation }) => {
 };
 
 
-export default Search;
+export default SearchProduct;

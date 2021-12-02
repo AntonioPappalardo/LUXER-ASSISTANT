@@ -3,8 +3,8 @@ import React, {useState,useEffect} from "react";
 import { StyleSheet, Image, View, Text, Button, Vibration, Appearance} from "react-native";
 import {BarCodeScanner} from "expo-barcode-scanner";
 import BarcodeMask from 'react-native-barcode-mask';
-import BackButton from '../components/BackButton';
-import { useTheme } from "../theme/ThemeProvider";
+import BackButton from '../../components/BackButton';
+import { useTheme } from "../../theme/ThemeProvider";
 
 
 //Duration of the vibration

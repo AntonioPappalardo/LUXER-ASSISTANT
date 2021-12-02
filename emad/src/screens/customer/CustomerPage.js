@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Image, View, Text, ScrollView, useWindowDimensions, StyleSheet, } from "react-native";
-import { useTheme } from "../theme/ThemeProvider";
-import BackButton from "../components/BackButton";
+import { useTheme } from "../../theme/ThemeProvider";
+import BackButton from "../../components/BackButton";
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import Divider from "../components/Divider";
-import MenuItem from "../components/MenuItem";
+import Divider from "../../components/Divider";
+import MenuItem from "../../components/MenuItem";
 import { BarChart, LineChart } from 'react-native-chart-kit';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
@@ -40,7 +40,7 @@ const acquisti = [
 
 
 
-const UserPage = ({ navigation, route }) => {
+const CustomerPage = ({ navigation, route }) => {
     let [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0, visible: false, value: 0 })
     const layout = useWindowDimensions();
 
@@ -289,10 +289,9 @@ const UserPage = ({ navigation, route }) => {
     const average = tot / (acquisti.filter(a => a.cliente == user.id).length)
     const last = (acquisti.filter(a => a.cliente == user.id).map(a => a.data).sort().reverse())[0]
     let [fontsLoaded] = useFonts({
-        'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-        'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
-        'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf'),
-        'SFProDisplayRegular': require('../../assets/fonts/SFProDisplayRegular.otf'),
+        'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+        'SFProDisplayRegular': require('../../../assets/fonts/SFProDisplayRegular.otf'),
     });
 
     if (!fontsLoaded) {
@@ -304,7 +303,7 @@ const UserPage = ({ navigation, route }) => {
                 <View style={{ flexDirection: "column", width: "100%", alignItems: "center", marginTop: '5%', marginBottom: '10%' }}>
                     <View style={{ flexDirection: "row", width: "80%" }}>
                         <View style={{ justifyContent: "flex-start", height: 120, width: 120, shadowOffset: { width: 1, height: 2 },shadowOpacity: 0.25,shadowRadius: 5, elevation: 5, borderRadius: 5 }}>
-                            <Image source={require('../../assets/img/img.jpg')} style={{ height: 120, width: 120, borderRadius: 5, borderWidth: 5, borderColor: "white"}} />
+                            <Image source={require('../../../assets/img/img.jpg')} style={{ height: 120, width: 120, borderRadius: 5, borderWidth: 5, borderColor: "white"}} />
                         </View>
                         <View style={{ flexDirection: "column", paddingLeft: 15, alignItems: "flex-start" }}>
                             <Text style={{ color: colors.theme.title, fontSize: 24, fontFamily: "SFProDisplayBold" }}>{user.name}</Text>
@@ -373,4 +372,4 @@ const UserPage = ({ navigation, route }) => {
         )
     };
 }
-export default UserPage;
+export default CustomerPage;

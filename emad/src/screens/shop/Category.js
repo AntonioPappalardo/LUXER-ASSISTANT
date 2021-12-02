@@ -4,14 +4,14 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import { useTheme } from "../theme/ThemeProvider";
-import PriceFilter from '../components/PriceFilter';
-import InputText from '../components/InputText';
-import ColorFilter from '../components/ColorFilter';
-import SizeFilter from '../components/SizeFilter';
-import BackButton from '../components/BackButton';
-import ProductBox from "../components/ProductBox";
-import Divider from '../components/Divider';
+import { useTheme } from "../../theme/ThemeProvider";
+import PriceFilter from '../../components/PriceFilter';
+import InputText from '../../components/InputText';
+import ColorFilter from '../../components/ColorFilter';
+import SizeFilter from '../../components/SizeFilter';
+import BackButton from '../../components/BackButton';
+import ProductBox from "../../components/ProductBox";
+import Divider from '../../components/Divider';
 
 const Category = ({ navigation }) => {
 
@@ -29,9 +29,9 @@ const Category = ({ navigation }) => {
 
 
     let [fontsLoaded] = useFonts({
-        'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-        'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
-        'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+        'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+        'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
     });
 
     if (!fontsLoaded) {
@@ -99,9 +99,9 @@ const FilterColor = (props) => {
     const { colors, isDark } = useTheme();
 
     let [fontsLoaded] = useFonts({
-        'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-        'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
-        'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+        'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+        'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
     });
 
     const [show, setSelected] = React.useState(false)
@@ -133,9 +133,9 @@ const FilterSize = (props) => {
     const { colors, isDark } = useTheme();
 
     let [fontsLoaded] = useFonts({
-        'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-        'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
-        'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+        'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+        'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
     });
 
     const [show, setSelected] = React.useState(false)
@@ -167,9 +167,9 @@ const FilterPrice = (props) => {
     const { colors, isDark } = useTheme();
 
     let [fontsLoaded] = useFonts({
-        'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-        'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
-        'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+        'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+        'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
     });
     const [from, setFrom] = React.useState('');
     const [to, setTo] = React.useState('');

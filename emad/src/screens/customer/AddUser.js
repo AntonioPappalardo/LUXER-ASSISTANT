@@ -1,13 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text, ScrollView} from "react-native";
-import { AuthContext } from "./context";
+import { AuthContext } from "../context";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import { useTheme } from "../theme/ThemeProvider";
-import InputButton from "../components/InputButton";
-import InputText from "../components/InputText";
-import BackButton from "../components/BackButton";
+import { useTheme } from "../../theme/ThemeProvider";
+import InputButton from "../../components/InputButton";
+import InputText from "../../components/InputText";
+import BackButton from "../../components/BackButton";
 
 const AddUser = ({navigation}) => {
 
@@ -26,9 +26,9 @@ const AddUser = ({navigation}) => {
   const { add } = React.useContext(AuthContext)
   
   let [fontsLoaded] = useFonts({
-    'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-    'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
-    'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+    'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+    'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+    'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
   });
 
   if (!fontsLoaded) {

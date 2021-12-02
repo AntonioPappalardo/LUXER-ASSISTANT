@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Image, View, Text, TouchableOpacity, ScrollView, Dimensions } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import BackButton from "../components/BackButton";
-import Divider from "../components/Divider";
+import BackButton from "../../components/BackButton";
+import Divider from "../../components/Divider";
 import { Calendar, LocaleConfig } from 'react-native-calendars';
-import { useTheme } from "../theme/ThemeProvider";
+import { useTheme } from "../../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import moment from 'moment';
@@ -27,7 +27,7 @@ const users = [
     { "name": "Margherita Rosi", "id": "003", "next_appointment": "1 Dicembre 2021 15:00-16:00", "reserved": "true" }
 ]
 
-const appointmentList = ({ navigation }) => {
+const AppointmentList = ({ navigation }) => {
 
     const { key, colors, setScheme, isDark } = useTheme();
 
@@ -79,10 +79,10 @@ const appointmentList = ({ navigation }) => {
     }
 
     let [fontsLoaded] = useFonts({
-        'SFProDisplayRegular': require('../../assets/fonts/SFProDisplayRegular.otf'),
-        'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-        'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
-        'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+        'SFProDisplayRegular': require('../../../assets/fonts/SFProDisplayRegular.otf'),
+        'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+        'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
     });
 
     if (!fontsLoaded) {
@@ -121,7 +121,7 @@ const appointmentList = ({ navigation }) => {
                         <View key={item.id} style={{ height: 75, width: "90%", flexDirection: "row", alignSelf: "center", marginTop: 5, marginBottom: 5, }}>
                             <View style={{ width: '25%' }}>
                                 <View style={{ justifyContent: "center", marginLeft: 5, height: 70, width: 70, shadowOffset: { width: 1, height: 2 }, shadowOpacity: 0.25, shadowRadius: 5, elevation: 5, marginRight: 10, borderRadius: 5 }}>
-                                    <Image source={require('../../assets/img/img.jpg')} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
+                                    <Image source={require('../../../assets/img/img.jpg')} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
                                 </View>
                             </View>
                             <TouchableOpacity style={{ flexDirection: 'row', width: '75%' }} activeOpacity={.75} onPress={() => { navigation.navigate('UserPage', { user: item.id }) }}>
@@ -147,4 +147,4 @@ const appointmentList = ({ navigation }) => {
 
 }
 
-export default appointmentList;
+export default AppointmentList;

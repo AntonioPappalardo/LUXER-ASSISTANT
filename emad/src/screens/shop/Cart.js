@@ -3,10 +3,10 @@ import { StyleSheet, Image, View, Text, ScrollView } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import { useTheme } from "../theme/ThemeProvider";
-import BackButton from "../components/BackButton";
-import CartItem from "../components/CartItem";
-import InputButton from "../components/InputButton";
+import { useTheme } from "../../theme/ThemeProvider";
+import BackButton from "../../components/BackButton";
+import CartItem from "../../components/CartItem";
+import InputButton from "../../components/InputButton";
 
 
 const Cart = ({ navigation }) => {
@@ -16,9 +16,9 @@ const Cart = ({ navigation }) => {
     const tabBarHeight = useBottomTabBarHeight();
 
     let [fontsLoaded] = useFonts({
-        'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-        'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
-        'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+        'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+        'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
     });
 
     if (!fontsLoaded) {

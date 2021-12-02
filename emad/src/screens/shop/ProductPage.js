@@ -1,16 +1,16 @@
 import React from "react";
 import { Text, Dimensions, StyleSheet, View, ScrollView, TouchableOpacity, ImageBackground } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import { useTheme } from "../theme/ThemeProvider";
+import { useTheme } from "../../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
-import BackButton from "../components/BackButton";
-import ColorFilter from "../components/ColorFilter";
-import InputButton from "../components/InputButton";
+import BackButton from "../../components/BackButton";
+import ColorFilter from "../../components/ColorFilter";
+import InputButton from "../../components/InputButton";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import SlidingUpPanel from 'rn-sliding-up-panel';
-import BottomSheet from "../components/BottomProduct";
+import BottomSheet from "../../components/BottomProduct";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -22,10 +22,10 @@ const ProductPage = ({ navigation }) => {
     const tabBarHeight = useBottomTabBarHeight();
 
     let [fontsLoaded] = useFonts({
-        'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-        'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
-        'SFProDisplayBold': require('../../assets/fonts/SFProDisplayRegular.otf'),
-        'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+        'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayRegular.otf'),
+        'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
     });
 
     if (!fontsLoaded) {

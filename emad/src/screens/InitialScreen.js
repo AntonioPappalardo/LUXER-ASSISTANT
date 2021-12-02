@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import SplashScreen from './SplashScreen';
-import Login from './Login';
+import SplashScreen from './intro/SplashScreen';
+import Login from './user/Login';
 import TabBarNavigation from '../navigation/TabBarNavigation';
 import { AuthContext } from './context';
 import { StyleSheet } from 'react-native';

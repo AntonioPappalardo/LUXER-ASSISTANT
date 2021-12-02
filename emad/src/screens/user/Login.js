@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { StyleSheet, Image, View, Text } from "react-native";
-import InputButton from "../components/InputButton";
-import InputText from "../components/InputText";
-import BackButton from "../components/BackButton";
-import { AuthContext } from "./context";
-import dark from '../../src/theme/dark';
-import light from '../../src/theme/light';
+import InputButton from "../../components/InputButton";
+import InputText from "../../components/InputText";
+import BackButton from "../../components/BackButton";
+import { AuthContext } from "../context";
+import dark from '../../theme/dark';
+import light from '../../theme/light';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import { useTheme } from "../theme/ThemeProvider";
+import { useTheme } from "../../theme/ThemeProvider";
 
 const Login = ({ navigation }) => {
   const {colors, isDark} = useTheme();
@@ -18,9 +18,9 @@ const Login = ({ navigation }) => {
 
   const { signIn } = React.useContext(AuthContext)
   let [fontsLoaded] = useFonts({
-    'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
-    'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
-    'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+    'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+    'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+    'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
   });
 
   if (!fontsLoaded) {
