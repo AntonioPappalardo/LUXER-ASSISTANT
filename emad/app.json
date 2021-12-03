@@ -23,13 +23,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "LuxerAssistant.apk"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "androidNavigationBar": {
-      "visible": "sticky-immersive"
-    }
+    "userInterfaceStyle": "automatic"
   }
 }

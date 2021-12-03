@@ -1,11 +1,13 @@
 import React from 'react'
-import {TouchableOpacity, StyleSheet} from 'react-native'
-import {BottomTabBarHeightContext, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { TouchableOpacity, StyleSheet, Platform} from 'react-native'
+import { BottomTabBarHeightContext, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BlurView } from 'expo-blur';
-import Icon from 'react-native-vector-icons/Feather'
+import Icon from 'react-native-vector-icons/Ionicons'
 import Home from '../screens/Home';
-import Search from '../screens/Search';
-import Test from '../screens/prova';
+import SearchProduct from '../screens/shop/SearchProduct';
+import SearchUser from '../screens/customer/SearchUser';
+import AppointmentList from '../screens/customer/AppointmentList';
+import { useTheme } from "../theme/ThemeProvider";
 
 const Tab = createBottomTabNavigator()
 const TabBarIcon = props => {
@@ -18,20 +20,35 @@ const TabBarIcon = props => {
 	)
 }
 
-export default () => (
+var BlurTabBar = null;
+var tabColor = 'light';
+
+const TabBarNavigation = (props) => {
+	
+	const {colors, isDark} = useTheme();
+	isDark ? tabColor = 'dark' : tabColor = 'light'
+
+	
+	Platform.OS === "ios" ? 
+	BlurTabBar = <BlurView tint={colors.tabbar.mode} intensity={100} style={[StyleSheet.absoluteFill]} /> : 
+	BlurTabBar = <BlurView tint={colors.tabbar.mode} intensity={200} style={[StyleSheet.absoluteFill]} /> 
+	return(
 	<BottomTabBarHeightContext.Consumer>
 		{tabBarHeight => (
 			<Tab.Navigator
 				initialRouteName="Home"
 				screenOptions={{
-					
-					tabBarActiveTintColor: 'rgba(255,255,255,1)',
-					tabBarInactiveTintColor: 'rgba(255,255,255,0.3)',
+					tabBarActiveTintColor: colors.tabbar.active,
+					tabBarInactiveTintColor: colors.tabbar.inactive,
 					tabBarShowIcon: true,
-					tabBarStyle: {position: 'absolute',elevation: 0, borderTopWidth: 0}, tabBarShowLabel: false, headerShown: false,
+					tabBarStyle: { position: 'absolute', elevation: 0, borderTopWidth: 0 },
+					tabBarHideOnKeyboard: true,
+					tabBarShowLabel: true,
+					headerShown: false,
+					tabBarItemStyle: {paddingTop: 5},
 					tabBarButton: props => <TouchableOpacity activeOpacity={.3} {...props} />,
 					tabBarBackground: () => (
-						<BlurView tint="dark" intensity={100} style={[StyleSheet.absoluteFill]} />
+						BlurTabBar
 					),
 				}}
 			>
@@ -42,34 +59,49 @@ export default () => (
 						tabBarIcon: ({ focused, color }) => (
 							<TabBarIcon
 								focused={focused}
-								tintColor={(focused) ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.3)"}
-								name="home"
+								tintColor={(focused) ? colors.tabbar.active : colors.tabbar.inactive}
+								name={Platform.OS === "ios" ? "ios-home" : "md-home"}
 							/>
 						),
 					}}
 
 				/>
 				<Tab.Screen
-					name="Calendar"
-					component={Test}
+					name="Clienti"
+					component={SearchUser}
 					options={{
+						tabBarIcon: ({ focused, color }) => (
+							<TabBarIcon
+								focused={focused}
+								tintColor={(focused) ? colors.tabbar.active : colors.tabbar.inactive}
+								name={Platform.OS === "ios" ? "ios-person" : "md-person"}
+							/>
+						),
+					}}
+
+				/>
+				<Tab.Screen
+					name="Calendario"
+					component={AppointmentList}
+					options={{
+						
 						tabBarIcon: ({ focused, color, size }) => (
 							<TabBarIcon
 								focused={focused}
-								tintColor={(focused) ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.3)"}
-								name="calendar"
+								tintColor={(focused) ? colors.tabbar.active : colors.tabbar.inactive}
+								name={Platform.OS === "ios" ? "ios-calendar" : "md-calendar"}
 							/>
 						),
 					}}
 				/>
 				<Tab.Screen
-					name="Search"
-					component={Search}
+					name="Cerca"
+					component={SearchProduct}
 					options={{
 						tabBarIcon: ({ focused, color }) => (
 							<TabBarIcon
 								focused={focused}
-								tintColor={(focused) ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.3)"}
+								tintColor={(focused) ? colors.tabbar.active : colors.tabbar.inactive}
 								name="search"
 							/>
 						),
@@ -78,4 +110,6 @@ export default () => (
 			</Tab.Navigator>
 		)}
 	</BottomTabBarHeightContext.Consumer>
-)
+	)
+}
+export default TabBarNavigation;

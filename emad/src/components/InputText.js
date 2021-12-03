@@ -1,44 +1,124 @@
 import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'
+import { StyleSheet, Text, View } from 'react-native';
+import TextInput from 'react-native-paper';
+import { FloatingLabelInput } from 'react-native-floating-label-input';
+import Icon from 'react-native-vector-icons/Ionicons';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
+import { useTheme } from "../theme/ThemeProvider";
 
 const InputText = (props) => {
+    const {colors, isDark} = useTheme();
+
     return (
-        <View style={{ marginTop: props.params.marginTop, height: 54, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
-            <View style={{ position: "absolute", zIndex: 1, left: '10%', bottom: -12, }}>
-                <Icon name={props.icon} size={25} color={"white"} style={{ transform: [{ rotateZ: props.rotation }], }} />
-            </View>
-            {displayTextInput(props)}
+        <View style={{ width: props.params.width, marginTop: props.params.marginTop, height: 54, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
+            {displayTextInput(props, colors)}
         </View>
     )
 }
-function displayTextInput(props) {
-    if (props.secure === 'true') {
-        return (
-            <TextInput style={[styles.input, {fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft}]}
-                placeholder={props.name}
-                placeholderTextColor="white"
-                value={props.value}
-                onChangeText={props.onChangeText}
-                underlineColorAndroid="transparent"
-                secureTextEntry
-            />
-        )
+
+function displayTextInput(props, colorTheme) {
+    let [fontsLoaded] = useFonts({
+        'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
+        'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
+        'SFProDisplayUltraLightItalic': require('../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+    });
+
+    if (!fontsLoaded) {
+        return <AppLoading />;
     } else {
-        return (
-            <TextInput style={[styles.input, {fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft}]}
-                placeholder={props.name}
-                placeholderTextColor="white"
-                value={props.value}
-                onChangeText={props.onChangeText}
-                underlineColorAndroid="transparent" />
-        )
+        if (props.secure === 'true') {
+            return (
+                <FloatingLabelInput style={{ textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft }}
+                    label={props.name}
+                    placeholderTextColor={colorTheme.floatingInput.placeholder}
+                    isPassword
+                    value={props.value}
+                    onChangeText={props.onChangeText}
+                    customShowPasswordComponent={<Icon name={Platform.OS === "ios" ? "ios-eye-outline" : "md-eye-outline"} size={20} color={colorTheme.floatingInput.icon} />}
+                    customHidePasswordComponent={<Icon name={Platform.OS === "ios" ? "ios-eye-off-outline" : "md-eye-off-outline"} size={20} color={colorTheme.floatingInput.icon} />}
+                    containerStyles={{
+                        height: 58,
+                        borderBottomWidth: 1,
+                        borderColor: colorTheme.floatingInput.border,
+                    }}
+                    customLabelStyles={{
+                        fontFamily: 'SFProDisplayMedium',
+                        colorBlurred: colorTheme.floatingInput.placeholder,
+                        colorFocused: colorTheme.floatingInput.placeholder,
+                        fontSizeFocused: 12,
+                    }}
+                    inputStyles={{
+                        fontSize: 18,
+                        fontFamily: 'SFProDisplayMedium',
+                        paddingTop: 15,
+                        paddingLeft: 5,
+                        color: colorTheme.floatingInput.label,
+                    }} />
+            )
+        } else if(props.icon) {
+            return (
+                <FloatingLabelInput style={{ fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft }}
+                    label={props.name}
+                    placeholderTextColor={colorTheme.floatingInput.placeholder}
+                    value={props.value}
+                    onChangeText={props.onChangeText}
+                    rightComponent={<Icon name={Platform.OS === "ios" ? "ios-"+props.icon : "md-"+props.icon } size={20} style={{ marginTop: 10 }} color={colorTheme.floatingInput.icon} />}
+                    containerStyles={{
+                        height: 58,
+                        borderBottomWidth: 1,
+                        borderColor: colorTheme.floatingInput.border,
+                    }}
+                    customLabelStyles={{
+                        fontFamily: 'SFProDisplayMedium',
+                        colorBlurred: colorTheme.floatingInput.placeholder,
+                        colorFocused: colorTheme.floatingInput.placeholder,
+                        fontSizeFocused: 12,
+                    }}
+                    inputStyles={{
+                        fontSize: 18,
+                        fontFamily: 'SFProDisplayMedium',
+                        paddingTop: 15,
+                        paddingLeft: 5,
+                        color: colorTheme.floatingInput.label,
+                    }} />
+            )
+        } else {
+            return (
+                <FloatingLabelInput style={{ fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft }}
+                    label={props.name}
+                    placeholderTextColor={colorTheme.floatingInput.placeholder}
+                    value={props.value}
+                    onChangeText={props.onChangeText}
+                    containerStyles={{
+                        height: 58,
+                        borderBottomWidth: 1,
+                        borderColor: colorTheme.floatingInput.border,
+                    }}
+                    customLabelStyles={{
+                        fontFamily: 'SFProDisplayMedium',
+                        colorBlurred: colorTheme.floatingInput.placeholder,
+                        colorFocused: colorTheme.floatingInput.placeholder,
+                        fontSizeFocused: 12,
+                    }}
+                    inputStyles={{
+                        fontSize: 18,
+                        fontFamily: 'SFProDisplayMedium',
+                        paddingTop: 15,
+                        paddingLeft: 5,
+                        color: colorTheme.floatingInput.label,
+                    }} 
+                    />
+            )
+        }
     }
 }
+
 function clearText() {
     TextInput.clear();
     console.log('is this being reached???')
 }
+
 const styles = StyleSheet.create({
     passwordContainer: {
         paddingBottom: 10,
@@ -48,19 +128,7 @@ const styles = StyleSheet.create({
     },
     inputStyle: {
         flex: 1,
-    },
-    input: {
-        flex: 1,
-        textAlign: "center",
-        marginTop: 25,
-        alignSelf: "stretch",
-        marginHorizontal: 15,
-        padding: 10,
-        height: 55,
-        width: "90%",
-        borderRadius: 25,
-        color: "white",
-        backgroundColor: "#363A4E"
     }
-});
+})
+
 export default InputText;
