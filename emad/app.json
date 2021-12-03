@@ -29,6 +29,11 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "androidNavigationBar": {
+      "barStyle": "light-content",
+      "visible": "sticky-immersive"
+    },
+
     "userInterfaceStyle": "automatic"
   }
 }

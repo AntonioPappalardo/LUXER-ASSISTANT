@@ -3,11 +3,13 @@ import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import InitialScreen from './src/screens/InitialScreen'
 import { AppearanceProvider } from 'react-native-appearance';
-import { ThemeProvider } from './src/theme/ThemeProvider';
+import { ThemeProvider} from './src/theme/ThemeProvider';
+
 
 export default function App() {
+	
 	return (
-		<AppearanceProvider>
+		<AppearanceProvider >
 			<ThemeProvider>
 				<NavigationContainer>
 					<InitialScreen />

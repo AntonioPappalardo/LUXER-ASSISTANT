@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Image, ImageBackground, StyleSheet, Text, View, } from "react-native";
+import { Image, ImageBackground, StyleSheet, Text, View, NativeModules } from "react-native";
 import InputButton from "../../components/InputButton";
 import Divider from "../../components/Divider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
+import { StatusBar } from 'expo-status-bar';
 
 const SplashScreen = ({ navigation }) => {
     let [fontsLoaded] = useFonts({
@@ -17,6 +18,7 @@ const SplashScreen = ({ navigation }) => {
     } else {
         return (
             <View style={styles.screen}>
+                <StatusBar style='light'/>
                 <ImageBackground source={require('../../../assets/background/splash.png')} resizeMode="cover" style={styles.image} blurRadius={0}>
                     <Image source={require("../../../assets/logo/chanel_large.png")} style={{ position: "absolute", top: '7.5%', alignSelf: "center", width: 150, height: 96}} />
                     <Text style={{ fontSize: 30, fontFamily: 'SFProDisplayBold', width: "75%", color: 'white', alignSelf: "center", marginBottom: "5%" }}>
@@ -25,7 +27,7 @@ const SplashScreen = ({ navigation }) => {
                     <Divider type="fixed" opacity={0.3} />
                     <InputButton
                         params={{ marginTop: "5%", marginBottom: "20%", width: "75%", fontFamily: 'SFProDisplayMedium', color: '#17181A', }} fixed name="ACCEDI"
-                        onPress={() => navigation.replace('Login')} />
+                        onPress={() => navigation.navigate('Login')} />
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayUltraLightItalic', width: "75%", color: 'white', textAlign: "center", alignSelf: "center", marginBottom: "1%" }}>
                         Powered by
                     </Text>

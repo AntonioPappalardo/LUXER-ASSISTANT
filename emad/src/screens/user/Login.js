@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text,Dimensions } from "react-native";
 import InputButton from "../../components/InputButton";
 import InputText from "../../components/InputText";
 import BackButton from "../../components/BackButton";
@@ -7,8 +7,12 @@ import { AuthContext } from "../context";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { useTheme } from "../../theme/ThemeProvider";
-import Modal from "react-native-modal";
 import Icon from 'react-native-vector-icons/Ionicons';
+import { StatusBar } from 'expo-status-bar';
+import Modal from 'react-native-modal'
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('screen').height;
 
 const Login = ({ navigation }) => {
   const { colors, isDark } = useTheme();
@@ -48,19 +52,31 @@ const Login = ({ navigation }) => {
   } else {
     return (
       <View style={styles.screen}>
-        <Modal isVisible={isModalVisible}
-          
-          animationIn={'slideInUp'}
-          animationOut={'slideOutDown'}>
-          <View style={colors.topModal}>
-            <Icon name="close-circle-outline" size={75} color={'#FFFFFF'}/>
-          </View>
-          <View style={colors.modalContent}>
-            <Text style={{color: colors.theme.primary, textAlign: 'center'}}>{errorText}</Text>
-            <InputButton params={{marginTop: '5%', width: "75%" }} 
-            name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
-          </View>
-        </Modal>
+        <StatusBar style='light'/>
+      
+          <Modal 
+            isVisible={isModalVisible}
+            statusBarTranslucent={true}
+            animationIn="jello"
+            animationOut="fadeOutDownBig"
+            hasBackdrop={true}
+            backdropOpacity={10}
+            backdropColor={"rgba(0, 0, 0, 0.3)"}
+            useNativeDriverForBackdrop={true}
+            hideModalContentWhileAnimating={true}
+            deviceHeight={height}
+            >
+              <View style={{padding: 20}}>
+            <View style={colors.topModal}>
+              <Icon name="close-circle-outline" size={75} color={'#FFFFFF'} />
+            </View>
+            <View style={colors.modalContent}>
+              <Text style={{ color: colors.theme.primary, textAlign: 'center' }}>{errorText}</Text>
+              <InputButton params={{ marginTop: '5%', width: "75%" }}
+                name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
+            </View>
+            </View>
+          </Modal>
         <View style={styles.headerTop}>
           <BackButton onPress={() => { navigation.goBack() }} fixed />
           <Text style={{ fontSize: 30, fontFamily: 'SFProDisplayBold', width: "100%", color: 'white', alignSelf: "center", marginLeft: "20%", marginBottom: "5%" }}>
