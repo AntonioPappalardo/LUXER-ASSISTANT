@@ -34,9 +34,9 @@ const SearchProduct = ({ navigation }) => {
          
             <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
               name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' />
-            <TouchableOpacity activeOpacity={.75} style={{position: 'absolute', right: 15,top:15,justifyContent:"center", paddingLeft: 15}}>
-              <Icon name={Platform.OS === "ios" ? "ios-qr-code-outline" : "md-qr-code-outline"} size={20} 
-              style={{}} 
+            <TouchableOpacity onPress={() => navigation.navigate('ScanQR')} activeOpacity={.75} style={{position: 'absolute', right: 15,top:15,justifyContent:"center"}}>
+              <Icon name={Platform.OS === "ios" ? "ios-qr-code-outline" : "md-qr-code-outline"} size={30} 
+              style={{marginLeft:15, marginTop:3}} 
               color={colors.floatingInput.icon} />
             </TouchableOpacity>
         </View>
