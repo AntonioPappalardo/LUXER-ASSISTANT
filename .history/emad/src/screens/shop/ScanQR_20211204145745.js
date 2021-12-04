@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Button, View, Image, Vibration,  TouchableOpacity, Dimensions } from "react-native";
+import { StyleSheet, Button, View, Vibration, Dimensions } from "react-native";
 import BarcodeMask from 'react-native-barcode-mask';
 import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";
 import { Camera } from 'expo-camera';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { green100 } from "react-native-paper/lib/typescript/styles/colors";
 
 //Duration of the vibration
 const DURATION = 3000;
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -17,7 +16,7 @@ const ScanQR = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("Not Scanned");
-  
+
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -49,9 +48,8 @@ const ScanQR = ({ navigation }) => {
     <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
       <BackButton onPress={() => { navigation.goBack() }} />
       <View>
-      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } style={{ height: windowHeight }}>
-      <View style={{alignSelf:'center', marginVertical:'40%' ,flexDirection:1,height:250, width:250, borderWidth:5, borderColor:'white', borderRadius:20, padding:20}} />
-      </Camera>
+      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } style={{ height: windowHeight }} />
+      <BarcodeMask width={250} height={250} showAnimatedLine={false} edgeHeight={25} edgeWidth={25} edgeBorderWidth={10} edgeColor={"#FFF"} edgeRadius={10} outerMaskOpacity={0.6} animatedLineColor={green100} />
       </View>
     </View>
   )
@@ -59,10 +57,9 @@ const ScanQR = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  buttonStyle: {
-      backgroundColor: '#8ad24e',
-      borderRadius:10
-  }
+marker:{
+  marginTop:-110
+}
 });
 
 export default ScanQR;

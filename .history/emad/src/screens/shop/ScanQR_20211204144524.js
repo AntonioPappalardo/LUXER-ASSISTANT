@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Button, View, Image, Vibration,  TouchableOpacity, Dimensions } from "react-native";
+import { StyleSheet, Button, View, Vibration, Dimensions } from "react-native";
 import BarcodeMask from 'react-native-barcode-mask';
 import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";
 import { Camera } from 'expo-camera';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Icon from "react-native-vector-icons/Ionicons";
 
 //Duration of the vibration
 const DURATION = 3000;
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -17,20 +16,23 @@ const ScanQR = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("Not Scanned");
-  
+
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(true);      
+      setHasPermission(true);
+      
+    console.log(hasPermission)
     })();
   }, []);
 
   const handleBarCodeScanned  = ({ type, data }) => {
+  
     setScanned(true);
     startVibration();
     stopVibration();
     setText(data);
-    console.log(`Type: ${type}\nData: ${data}`);
+    console.log(`Bar code with type ${type} and data ${data} has been scanned!`);
     navigation.goBack();
   }
 
@@ -43,15 +45,14 @@ const ScanQR = ({ navigation }) => {
   const stopVibration = () => {
     Vibration.cancel();
   };
-  
   return (
 
     <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
       <BackButton onPress={() => { navigation.goBack() }} />
+      <View style={{ backgroundColor: 'red' }}>
+      </View>
       <View>
-      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } style={{ height: windowHeight }}>
-      <View style={{alignSelf:'center', marginVertical:'40%' ,flexDirection:1,height:250, width:250, borderWidth:5, borderColor:'white', borderRadius:20, padding:20}} />
-      </Camera>
+      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } flashMode={true} style={{ height: windowHeight }} />
       </View>
     </View>
   )
@@ -59,10 +60,7 @@ const ScanQR = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  buttonStyle: {
-      backgroundColor: '#8ad24e',
-      borderRadius:10
-  }
+
 });
 
 export default ScanQR;

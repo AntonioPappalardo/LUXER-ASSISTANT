@@ -5,6 +5,8 @@ import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";
 import { Camera } from 'expo-camera';
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import Torch from 'react-native-torch';
+
 
 //Duration of the vibration
 const DURATION = 3000;
@@ -17,7 +19,18 @@ const ScanQR = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("Not Scanned");
+  const [flashMode, setFlashMode] = React.useState('off')
   
+  const __handleFlashMode = () => {
+   if (flashMode === 'on') {
+     setFlashMode('off')
+   } else if (flashMode === 'off') {
+     setFlashMode('on')
+   } else {
+     setFlashMode('auto')
+   }
+
+ }
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -49,9 +62,21 @@ const ScanQR = ({ navigation }) => {
     <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
       <BackButton onPress={() => { navigation.goBack() }} />
       <View>
-      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } style={{ height: windowHeight }}>
-      <View style={{alignSelf:'center', marginVertical:'40%' ,flexDirection:1,height:250, width:250, borderWidth:5, borderColor:'white', borderRadius:20, padding:20}} />
+      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } flashMode={flashMode} style={{ height: windowHeight }}>
+      <View style={{alignSelf:'center', marginVertical:'40%' ,flexDirection:1,height:250, width:250, borderWidth:5, borderColor:'white', borderRadius:10, padding:20}} />
       </Camera>
+      <TouchableOpacity
+            onPress={__handleFlashMode}
+            style={{
+            position: 'absolute',
+            left: '5%',
+            top: '10%',
+            backgroundColor: flashMode === 'off' ? '#000' : '#fff',
+            borderRadius: '50%',
+            height: 25,
+            width: 25
+        }}
+        />
       </View>
     </View>
   )

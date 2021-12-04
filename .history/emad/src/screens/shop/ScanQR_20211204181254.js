@@ -6,6 +6,7 @@ import { useTheme } from "../../theme/ThemeProvider";
 import { Camera } from 'expo-camera';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
+
 //Duration of the vibration
 const DURATION = 3000;
 
@@ -50,8 +51,19 @@ const ScanQR = ({ navigation }) => {
       <BackButton onPress={() => { navigation.goBack() }} />
       <View>
       <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } style={{ height: windowHeight }}>
-      <View style={{alignSelf:'center', marginVertical:'40%' ,flexDirection:1,height:250, width:250, borderWidth:5, borderColor:'white', borderRadius:20, padding:20}} />
+      <View style={{alignSelf:'center', marginVertical:'40%' ,flexDirection:1,height:250, width:250, borderWidth:5, borderColor:'white', borderRadius:10, padding:20}} />
       </Camera>
+      <TouchableOpacity
+            style={{
+              backgroundColor:'red',
+              flex: 1,
+              marginTop:-200,
+              alignSelf: 'flex-end',
+              alignItems: 'center',
+            }}
+           >
+            <Ionicons name='flashlight' size={25} color={'#FFF'} style={{padding:10}}/> 
+            </TouchableOpacity>
       </View>
     </View>
   )

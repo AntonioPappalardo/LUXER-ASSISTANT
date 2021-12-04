@@ -5,6 +5,8 @@ import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";
 import { Camera } from 'expo-camera';
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import Torch from 'react-native-torch';
+
 
 //Duration of the vibration
 const DURATION = 3000;
@@ -17,7 +19,13 @@ const ScanQR = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("Not Scanned");
-  
+  const [isTorchOn, setIsTorchOn] = useState(false);
+
+  const handlePress = () => {
+    Torch.switchState(!isTorchOn);
+    setIsTorchOn(!isTorchOn);
+  };
+
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -50,7 +58,10 @@ const ScanQR = ({ navigation }) => {
       <BackButton onPress={() => { navigation.goBack() }} />
       <View>
       <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } style={{ height: windowHeight }}>
-      <View style={{alignSelf:'center', marginVertical:'40%' ,flexDirection:1,height:250, width:250, borderWidth:5, borderColor:'white', borderRadius:20, padding:20}} />
+      <View style={{alignSelf:'center', marginVertical:'40%' ,flexDirection:1,height:250, width:250, borderWidth:5, borderColor:'white', borderRadius:10, padding:20}} />
+      <TouchableOpacity activeOpacity={0.7} style={styles.buttonStyle} onPress={handlePress}>
+      <Ionicons name='flashlight' size={25} /> 
+      </TouchableOpacity>
       </Camera>
       </View>
     </View>
@@ -60,8 +71,12 @@ const ScanQR = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   buttonStyle: {
-      backgroundColor: '#8ad24e',
-      borderRadius:10
+    justifyContent: 'center',
+    marginTop: -100,
+    padding: 10,
+    backgroundColor: '#8ad24e',
+    marginRight: 2,
+    marginLeft: 2,
   }
 });
 

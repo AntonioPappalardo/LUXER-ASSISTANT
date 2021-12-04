@@ -6,6 +6,7 @@ import { useTheme } from "../../theme/ThemeProvider";
 import { Camera } from 'expo-camera';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
+
 //Duration of the vibration
 const DURATION = 3000;
 
@@ -17,6 +18,7 @@ const ScanQR = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("Not Scanned");
+  const [type, setType] = useState(Camera.Constants.Type.back);
   
   useEffect(() => {
     (async () => {
@@ -49,9 +51,23 @@ const ScanQR = ({ navigation }) => {
     <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
       <BackButton onPress={() => { navigation.goBack() }} />
       <View>
-      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } style={{ height: windowHeight }}>
-      <View style={{alignSelf:'center', marginVertical:'40%' ,flexDirection:1,height:250, width:250, borderWidth:5, borderColor:'white', borderRadius:20, padding:20}} />
+      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } type={type} style={{ height: windowHeight }}>
+      <View style={{alignSelf:'center', marginVertical:'40%' ,flexDirection:1,height:250, width:250, borderWidth:5, borderColor:'white', borderRadius:10, padding:20}} />
       </Camera>
+      <TouchableOpacity
+            style={{
+              backgroundColor:'red',
+              flex: 0.1,
+              alignSelf: 'flex-end',
+              alignItems: 'center',
+            }}
+            onPress={() => {
+              setType(
+                type === Camera.Constants.Type.back
+                  ? Camera.Constants.Type.front
+                  : Camera.Constants.Type.back
+              );
+            }}/>
       </View>
     </View>
   )
