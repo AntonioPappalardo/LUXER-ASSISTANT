@@ -85,6 +85,18 @@ const light = {
     shadowOpacity: 0.25,
     shadowRadius: 5,
     elevation: 5,
+  },
+  buttonTorch: {
+    flexDirection: 'column',
+    alignSelf:'center', 
+    position:'relative', 
+    bottom:'15%',
+    backgroundColor: '#FFF',
+    borderRadius:25,
+    padding:1
+  },
+  iconTorch: {
+    backgroundColor:'#2d4150'
   }
 }
 export default light

@@ -4,7 +4,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";
 import { Camera } from 'expo-camera';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 //Duration of the vibration
 const DURATION = 3000;
@@ -15,7 +15,6 @@ const windowHeight = Dimensions.get('window').height;
 const ScanQR = ({ navigation }) => {
   const { colors, isDark } = useTheme();
   const tabBarHeight = useBottomTabBarHeight();
-
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("Not Scanned");
@@ -54,14 +53,14 @@ const ScanQR = ({ navigation }) => {
       <View style={{paddingTop: '5%'}}>
       <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } flashMode={flash} style={{ height: windowHeight-tabBarHeight, width: windowWidth }}>
       <View style={styles.marker} />
-      <TouchableOpacity style={styles.torch}
+      <TouchableOpacity style={colors.buttonTorch}
             onPress={() => {
               setFlash(
                 flash === Camera.Constants.FlashMode.off
                   ? Camera.Constants.FlashMode.torch
                   : Camera.Constants.FlashMode.off);
             }}>
-      <Ionicons name='flashlight' size={30} color={'#FFF'} style={{padding:10}}/> 
+      <Ionicons name='flashlight' size={30} color={colors.iconTorch.backgroundColor} style={{padding:10}}/> 
       </TouchableOpacity>
       </Camera>
 
@@ -85,12 +84,6 @@ const styles = StyleSheet.create({
     borderColor:'white', 
     borderRadius:20, 
     padding:20
-  },
-  torch:{
-    flexDirection: 'column',
-    alignSelf:'center', 
-    position:'relative', 
-    bottom:'15%'
   }
 });
 

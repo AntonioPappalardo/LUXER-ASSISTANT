@@ -86,5 +86,17 @@ const dark = {
     shadowRadius: 5,
     elevation: 5,
   },
+  buttonTorch: {
+    flexDirection: 'column',
+    alignSelf:'center', 
+    position:'relative', 
+    bottom:'15%',
+    backgroundColor: '#2d4150',
+    borderRadius:25,
+    padding:1
+  },
+  iconTorch: {
+    backgroundColor:'#FFF'
+  }
 }
 export default dark
