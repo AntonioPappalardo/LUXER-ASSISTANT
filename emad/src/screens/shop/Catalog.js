@@ -28,11 +28,16 @@ const Catalogo = ({navigation}) => {
         <BackButton onPress={() => { navigation.goBack() }}/>
         <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 24, color: colors.theme.title, alignSelf: 'center', }}> Catalogo</Text>
         <ScrollView>
-        <Container params={{}} image={require('../../../assets/4.jpg')} title="Borse e Accessori" subTitle="221 prodotti" onPress={() => navigation.navigate('Category')}/>
-        <Container params={{}} image={require('../../../assets/3.jpg')} title="Scarpe Uomo" subTitle="221 prodotti" />
-        <Container params={{}} image={require('../../../assets/2.jpg')} title="Scarpe Donna" subTitle="221 prodotti" />
-        <Container params={{}} image={require('../../../assets/5.jpg')} title="Intimo Uomo" subTitle="221 prodotti" />
-        <Container params={{}} image={require('../../../assets/1.jpg')} title="Intimo Donna" subTitle="221 prodotti" />
+        <Container image={require('../../../assets/categorie/1.webp')} title="Donna" subTitle="221 prodotti" opacity={1} onPress={() => navigation.navigate('Category')}/>
+        <Container image={require('../../../assets/categorie/2.webp')} title="Uomo" subTitle="221 prodotti"  opacity={1}/>
+        <Container image={require('../../../assets/categorie/3.webp')} title="Borse Donna" subTitle="221 prodotti"  opacity={1}/>
+        <Container image={require('../../../assets/categorie/4.webp')} title="Abbigliamento Donna" subTitle="221 prodotti" opacity={1} />
+        <Container image={require('../../../assets/categorie/5.webp')} title="Calzature Donna" subTitle="221 prodotti" opacity={1} />
+        <Container image={require('../../../assets/categorie/6.webp')} title="Accessori Donna" subTitle="221 prodotti"  opacity={1}/>
+        <Container image={require('../../../assets/categorie/7.webp')} title="Borse Uomo" subTitle="221 prodotti"  opacity={1}/>
+        <Container image={require('../../../assets/categorie/8.webp')} title="Abbigliamento Uomo" subTitle="221 prodotti" opacity={1} />
+        <Container image={require('../../../assets/categorie/9.webp')} title="Calzature Uomo" subTitle="221 prodotti" opacity={1} />
+        <Container image={require('../../../assets/categorie/10.webp')} title="Accessori Uomo" subTitle="221 prodotti"  opacity={1}/>
         <View style={{marginBottom: tabBarHeight+ 10}}></View>
       </ScrollView>
       </View>
