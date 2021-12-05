@@ -60,7 +60,11 @@ const ScanQR = ({ navigation }) => {
                   ? Camera.Constants.FlashMode.torch
                   : Camera.Constants.FlashMode.off);
             }}>
-      <Ionicons name='flashlight' size={30} color={colors.iconTorch.backgroundColor} style={{padding:10}}/> 
+      {flash ? 
+       <Ionicons name='flashlight' size={30} color={colors.iconTorch.on} style={{padding:10}}/>
+       : 
+       <Ionicons name='flashlight' size={30} color={colors.iconTorch.off} style={{padding:10}}/>
+       }
       </TouchableOpacity>
       </Camera>
 

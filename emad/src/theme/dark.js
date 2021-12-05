@@ -96,7 +96,8 @@ const dark = {
     padding:1
   },
   iconTorch: {
-    backgroundColor:'#FFF'
+    off:'#FFFFFF',
+    on:'#e26a00'
   }
 }
 export default dark

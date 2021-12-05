@@ -96,7 +96,8 @@ const light = {
     padding:1
   },
   iconTorch: {
-    backgroundColor:'#2d4150'
+    off:'#2d4150',
+    on:'#e26a00'
   }
 }
 export default light
