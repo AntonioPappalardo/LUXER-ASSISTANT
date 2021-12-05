@@ -51,7 +51,7 @@ const ScanQR = ({ navigation }) => {
 
     <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
       <BackButton onPress={() => { navigation.goBack() }} />
-      <View>
+      <View style={{paddingTop: '5%'}}>
       <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } flashMode={flash} style={{ height: windowHeight-tabBarHeight, width: windowWidth }}>
       <View style={styles.marker} />
       <TouchableOpacity style={styles.torch}
