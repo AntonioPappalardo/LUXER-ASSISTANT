@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Button, View, Image, Vibration, Dimensions, TouchableOpacity } from "react-native";
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";
 import { Camera } from 'expo-camera';
@@ -8,11 +9,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 //Duration of the vibration
 const DURATION = 3000;
 
-const windowWidth = Dimensions.get('window').width;
+const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ScanQR = ({ navigation }) => {
   const { colors, isDark } = useTheme();
+  const tabBarHeight = useBottomTabBarHeight();
+
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("Not Scanned");
@@ -49,7 +52,7 @@ const ScanQR = ({ navigation }) => {
     <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
       <BackButton onPress={() => { navigation.goBack() }} />
       <View>
-      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } flashMode={flash} style={{ height: windowHeight }}>
+      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } flashMode={flash} style={{ height: windowHeight-tabBarHeight, width: windowWidth }}>
       <View style={styles.marker} />
       <TouchableOpacity style={styles.torch}
             onPress={() => {
