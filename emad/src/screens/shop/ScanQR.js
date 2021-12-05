@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Button, View, Vibration, Dimensions } from "react-native";
-import BarcodeMask from 'react-native-barcode-mask';
+import { StyleSheet, Button, View, Image, Vibration, Dimensions, TouchableOpacity } from "react-native";
 import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";
 import { Camera } from 'expo-camera';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 //Duration of the vibration
 const DURATION = 3000;
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -15,23 +16,21 @@ const ScanQR = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("Not Scanned");
+  const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
 
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(true);
-      
-    console.log(hasPermission)
+      setHasPermission(true);      
     })();
   }, []);
 
   const handleBarCodeScanned  = ({ type, data }) => {
-  
     setScanned(true);
     startVibration();
     stopVibration();
     setText(data);
-    console.log(`Bar code with type ${type} and data ${data} has been scanned!`);
+    console.log(`Type: ${type}\nData: ${data}`);
     navigation.goBack();
   }
 
@@ -44,15 +43,25 @@ const ScanQR = ({ navigation }) => {
   const stopVibration = () => {
     Vibration.cancel();
   };
+  
   return (
 
     <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
       <BackButton onPress={() => { navigation.goBack() }} />
-      <View style={{ backgroundColor: 'red' }}>
-      </View>
       <View>
-      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } style={{ height: windowHeight }} />
-      <BarcodeMask width={250} height={250} showAnimatedLine={false} edgeHeight={35} edgeWidth={35} edgeBorderWidth={10} edgeColor={"#FFF"} edgeRadius={10} outerMaskOpacity={0.6} />
+      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } flashMode={flash} style={{ height: windowHeight }}>
+      <View style={styles.marker} />
+      <TouchableOpacity style={styles.torch}
+            onPress={() => {
+              setFlash(
+                flash === Camera.Constants.FlashMode.off
+                  ? Camera.Constants.FlashMode.torch
+                  : Camera.Constants.FlashMode.off);
+            }}>
+      <Ionicons name='flashlight' size={30} color={'#FFF'} style={{padding:10}}/> 
+      </TouchableOpacity>
+      </Camera>
+
       </View>
     </View>
   )
@@ -60,7 +69,26 @@ const ScanQR = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-
+  buttonStyle: {
+      backgroundColor: '#8ad24e',
+      borderRadius:10
+  },
+  marker:{
+    alignSelf:'center', 
+    marginVertical:'40%',
+    height:250, 
+    width:250, 
+    borderWidth:5, 
+    borderColor:'white', 
+    borderRadius:20, 
+    padding:20
+  },
+  torch:{
+    flexDirection: 'column',
+    alignSelf:'center', 
+    position:'relative', 
+    bottom:'15%'
+  }
 });
 
 export default ScanQR;
