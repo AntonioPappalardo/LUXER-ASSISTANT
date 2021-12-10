@@ -6,13 +6,16 @@ import Catalog from './shop/Catalog';
 import Category from './shop/Category';
 import Cart from './shop/Cart';
 import Communication from './shop/Communication';
+import CustomerPage from './customer/CustomerPage';
 import Login from './user/Login';
 import ProductPage from './shop/ProductPage';
 import ScanQR from './shop/ScanQR';
 import SearchUser from './customer/SearchUser';
 import Settings from './user/Settings';
+import Store from './shop/Store';
+import StoreList from './shop/StoreList';
 import UserHome from './user/UserHome';
-import CustomerPage from './customer/CustomerPage';
+
 const Stack = createStackNavigator();
 
 
@@ -36,6 +39,8 @@ const Home = ({ navigation }) => {
       <Stack.Screen name="ProductPage" component={ProductPage} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="ScanQR" component={ScanQR} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="SearchUser" component={SearchUser} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="Store" component={Store} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="StoreList" component={StoreList} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="UserHome"component={UserHome} options={{cardStyleInterpolator: CardStyleEffect}}/>
     </Stack.Navigator>
   );

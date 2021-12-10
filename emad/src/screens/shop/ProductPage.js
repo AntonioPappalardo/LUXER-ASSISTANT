@@ -39,7 +39,7 @@ const ProductPage = ({ navigation }) => {
                     <ImageBackground source={{ uri: 'https://tinyurl.com/2p8b95x3' }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
                     <ImageBackground source={{ uri: 'https://tinyurl.com/2p8b95x3' }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
                 </SwiperFlatList>
-            <BottomSheet colors={colors} tabBarHeight={tabBarHeight}/>
+            <BottomSheet colors={colors} tabBarHeight={tabBarHeight} navigation={navigation}/>
             </View>
         )
     }

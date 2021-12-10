@@ -23,7 +23,6 @@ const styles = {
 class ScrollViewInsidePanel extends React.Component {
     constructor(props) {
         super(props)
-
     }
 
     render() {
@@ -82,7 +81,8 @@ class ScrollViewInsidePanel extends React.Component {
                                         </Text>
                                     </View>
                                 </View>
-                                <InputButton params={{ marginTop: "5%", width: "60%", height: 30, fontFamily: 'SFProDisplayMedium', fontSize: 14 }} name="VEDI IN ALTRI STORE" outline />
+                                <InputButton params={{ marginTop: "5%", width: "60%", height: 30, fontFamily: 'SFProDisplayMedium', fontSize: 14 }} 
+                                name="VEDI IN ALTRI STORE" outline onPress={() => this.props.navigation.navigate('StoreList')}/>
                                 <View style={{ paddingTop: '5%' }}>
                                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: this.props.colors.theme.primary }}>
                                         Scheda Prodotto
