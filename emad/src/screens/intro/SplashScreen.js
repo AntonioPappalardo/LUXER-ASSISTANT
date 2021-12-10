@@ -19,11 +19,9 @@ const SplashScreen = ({ navigation }) => {
         return (
             <View style={styles.screen}>
                 <StatusBar style='light'/>
-                <ImageBackground source={require('../../../assets/background/splash.png')} resizeMode="cover" style={styles.image} blurRadius={0}>
-                    <Image source={require("../../../assets/logo/chanel_large.png")} style={{ position: "absolute", top: '7.5%', alignSelf: "center", width: 150, height: 96}} />
-                    <Text style={{ fontSize: 30, fontFamily: 'SFProDisplayBold', width: "75%", color: 'white', alignSelf: "center", marginBottom: "5%" }}>
-                        Luxer{"\n"}Assistant
-                    </Text>
+                <ImageBackground source={require('../../../assets/background/splash.webp')} resizeMode="cover" style={styles.image} blurRadius={0}>
+                    <Image source={require("../../../assets/logo/prada_large.png")} style={{ position: "absolute", top: '5%', alignSelf: "center", width: 150, height: 61}} />
+                    
                     <Divider type="fixed" opacity={0.3} />
                     <InputButton
                         params={{ marginTop: "5%", marginBottom: "20%", width: "75%", fontFamily: 'SFProDisplayMedium', color: '#17181A', }} fixed name="ACCEDI"
