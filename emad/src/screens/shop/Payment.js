@@ -45,7 +45,7 @@ const Payment = ({ navigation }) => {
         
                         backgroundColor: colors.payment.backgroundColor,
                         width: width+5,
-                        height: 500,
+                        height: 350,
                     }}>
                         <Text  style={{fontFamily: "SFProDisplayBold", fontSize: 15, color: colors.theme.title, marginTop: '10%', alignSelf: 'center'}}>Avvicina il dispositivo abilitato</Text>
                     {isDark ?
