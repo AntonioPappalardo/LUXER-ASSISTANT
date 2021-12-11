@@ -47,7 +47,7 @@ class ScrollViewInsidePanel extends React.Component {
                         <TouchableOpacity activeOpacity={0.5} style={{
                             height: 45, width: 45, borderRadius: 22.5, backgroundColor: '#EA9F5A', position: 'absolute', top: '4%', right: '10%',
                             justifyContent: 'center', alignItems: 'center', alignContent: 'center', shadowOffset: { width: 1, height: 2 }, shadowOpacity: 0.25, shadowRadius: 5, elevation: 5,
-                        }}>
+                        }} onPress={() => this.props.navigation.navigate('Cart')}>
                             <Icon name="cart-plus" size={24} color={'white'} style={{ marginRight: 2 }} />
                         </TouchableOpacity>
                         

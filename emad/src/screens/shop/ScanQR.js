@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Button, View, Image, Vibration, Dimensions, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Vibration, Dimensions, TouchableOpacity } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";

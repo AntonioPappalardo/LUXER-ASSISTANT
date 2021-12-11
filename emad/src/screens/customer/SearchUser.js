@@ -1,5 +1,5 @@
 import React from "react";
-import {Image, View, Text, TouchableOpacity, ScrollView, TouchableHighlight } from "react-native";
+import {Image, View, Text, TouchableOpacity, ScrollView} from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import BackButton from "../../components/BackButton";

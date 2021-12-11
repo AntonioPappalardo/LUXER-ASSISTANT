@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { TouchableOpacity, StyleSheet, Text, Switch,View } from "react-native";
+import React from "react";
+import { StyleSheet, Text, Switch,View } from "react-native";
 import Divider from "./Divider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';

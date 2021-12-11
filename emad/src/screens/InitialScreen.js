@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
+import {CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from './intro/SplashScreen';
 import Login from './user/Login';
+import Payment from './shop/Payment';
 import TabBarNavigation from '../navigation/TabBarNavigation';
 import { AuthContext } from './context';
 import { StyleSheet } from 'react-native';
@@ -15,7 +16,11 @@ const InitialScreen = (props) => {
         }
     }))
     const [userToken, setUserToken] = React.useState(null);
-
+    if (Platform.OS === "ios") {
+        var CardStyleEffect = CardStyleInterpolators.forVerticalIOS;
+      } else {
+        var CardStyleEffect = CardStyleInterpolators.forRevealFromBottomAndroid;
+      }
     return (
         
         <AuthContext.Provider value={authContext}>
@@ -24,6 +29,7 @@ const InitialScreen = (props) => {
                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
                 <Stack.Screen name="TabBar" component={TabBarNavigation} />
                 <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Payment" component={Payment} options={{cardStyleInterpolator: CardStyleEffect}}/>
             </Stack.Navigator>
         </AuthContext.Provider>
     );

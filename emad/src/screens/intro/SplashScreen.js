@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Image, ImageBackground, StyleSheet, Text, View, NativeModules } from "react-native";
+import React from "react";
+import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import InputButton from "../../components/InputButton";
 import Divider from "../../components/Divider";
 import AppLoading from 'expo-app-loading';

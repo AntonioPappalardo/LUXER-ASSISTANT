@@ -98,6 +98,9 @@ const light = {
   iconTorch: {
     off:'#2d4150',
     on:'#e26a00'
+  },
+  payment: {
+    backgroundColor: '#FFFFFF'
   }
 }
 export default light

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Switch, Image, StyleSheet, ScrollView, Dimensions} from 'react-native'
+import { View, ScrollView, Dimensions} from 'react-native'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import BackButton from '../../components/BackButton';
 import MenuItem from '../../components/MenuItem';

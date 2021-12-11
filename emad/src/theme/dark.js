@@ -98,6 +98,9 @@ const dark = {
   iconTorch: {
     off:'#FFFFFF',
     on:'#e26a00'
+  },
+  payment: {
+    backgroundColor: '#494a4e'
   }
 }
 export default dark

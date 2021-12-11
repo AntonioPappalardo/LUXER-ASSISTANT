@@ -10,7 +10,6 @@ import { BarChart, LineChart } from 'react-native-chart-kit';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Svg, Text as TextSVG, Rect } from 'react-native-svg';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 
 const users = [

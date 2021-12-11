@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TextInput, View, Text, TouchableOpacity, ScrollView } from "react-native";
+import {View, ScrollView } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useTheme } from "../../theme/ThemeProvider";

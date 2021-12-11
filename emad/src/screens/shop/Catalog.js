@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Image, View, Text, ScrollView} from "react-native";
+import { StyleSheet, View, Text, ScrollView} from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';

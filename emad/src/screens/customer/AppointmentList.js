@@ -9,7 +9,6 @@ import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import moment from 'moment';
 import 'moment/locale/it';
-import { func } from "prop-types";
 
 const width = Dimensions.get('window').width;
 moment.locale('it')

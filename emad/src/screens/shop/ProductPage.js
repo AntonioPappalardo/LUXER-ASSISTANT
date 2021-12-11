@@ -1,15 +1,11 @@
 import React from "react";
-import { Text, Dimensions, StyleSheet, View, ScrollView, TouchableOpacity, ImageBackground } from "react-native";
+import { Dimensions, StyleSheet, View, ImageBackground } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useTheme } from "../../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import BackButton from "../../components/BackButton";
-import ColorFilter from "../../components/ColorFilter";
-import InputButton from "../../components/InputButton";
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import SlidingUpPanel from 'rn-sliding-up-panel';
 import BottomSheet from "../../components/BottomProduct";
 
 const width = Dimensions.get('window').width;

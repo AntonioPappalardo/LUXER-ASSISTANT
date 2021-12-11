@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, Appearance, TouchableOpacity } from "react-native";
+import {View, ScrollView, TouchableOpacity } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
