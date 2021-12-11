@@ -54,7 +54,7 @@ const AppointmentList = ({ navigation }) => {
         if (date) {
             var Data = new Date(date)
             return (
-                <View style= {{position: 'absolute', top: "10%", alignSelf: 'center',zIndex: 1}}>
+                <View style= {{position: 'absolute', top: "5%", alignSelf: 'center',zIndex: 1}}>
                     <Text style={{ textTransform: 'capitalize', fontSize: 16, textAlign: 'left', color: colors.theme.primary}}>
                         {moment(Data).format('dddd')}
                     </Text>
@@ -66,7 +66,7 @@ const AppointmentList = ({ navigation }) => {
         }
         var Data = new Date()
             return (
-            <View style= {{position: 'absolute', top: "10%", alignSelf: 'center',zIndex: 1}}>
+            <View style= {{position: 'absolute', top: "5%", alignSelf: 'center',zIndex: 1}}>
                     <Text style={{ textTransform: 'capitalize', fontSize: 16, textAlign: 'left', color: colors.theme.primary}}>
                         {moment(Data).format('dddd')}
                     </Text>
@@ -90,11 +90,11 @@ const AppointmentList = ({ navigation }) => {
 
         return (
             <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
-                <BackButton onPress={() => { navigation.goBack() }} />
+               
                 {renderHeader(daySelected)}
                 <Calendar
                     key={key}
-                    style={{ backgroundColor: colors.theme.background, monthTextColor: colors.theme.title }}
+                    style={{ backgroundColor: colors.theme.background, monthTextColor: colors.theme.title, marginTop: '10%' }}
                     hideArrows={false}
                     hideExtraDays={false}
                     onPressArrowLeft={subtractMonth => subtractMonth()}

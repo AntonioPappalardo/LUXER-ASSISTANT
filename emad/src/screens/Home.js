@@ -15,19 +15,20 @@ import Settings from './user/Settings';
 import Store from './shop/Store';
 import StoreList from './shop/StoreList';
 import UserHome from './user/UserHome';
-
+import TabBarNavigation from '../navigation/TabBarNavigation';
 const Stack = createStackNavigator();
 
 
 const Home = ({ navigation }) => {
   if (Platform.OS === "ios") {
-    var CardStyleEffect = CardStyleInterpolators.forVerticalIOS;
+    var CardStyleEffect = CardStyleInterpolators.forHorizontalIOS;
   } else {
     var CardStyleEffect = CardStyleInterpolators.forRevealFromBottomAndroid;
   }
 
   return (
     <Stack.Navigator initialRouteName="UserHome" screenOptions={{ headerShown: false }} >
+      <Stack.Screen name="TabBar" component={TabBarNavigation} />
       <Stack.Screen name="AddUser" component={AddUser} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Catalog" component={Catalog} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Category" component={Category} options={{cardStyleInterpolator: CardStyleEffect}}/>

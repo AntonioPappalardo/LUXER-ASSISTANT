@@ -27,8 +27,8 @@ const InitialScreen = (props) => {
            
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
-                <Stack.Screen name="TabBar" component={TabBarNavigation} />
                 <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="TabBar" component={TabBarNavigation} />
                 <Stack.Screen name="Payment" component={Payment} options={{cardStyleInterpolator: CardStyleEffect}}/>
             </Stack.Navigator>
         </AuthContext.Provider>

@@ -40,8 +40,8 @@ const SearchUser = ({ navigation }) => {
         return (
             
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
-                <BackButton onPress={() => { navigation.goBack() }} />
-                <View style={{ alignItems: "center", marginBottom: 15 }}>
+                
+                <View style={{ alignItems: "center", marginBottom: 15, marginTop: '10%' }}>
                     <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
                         name="Cliente" icon="search" rotation="0deg" value={search} onChangeText={cerca => ook(cerca)} secure='false' />
                 </View>
