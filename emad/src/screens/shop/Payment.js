@@ -25,8 +25,12 @@ const Payment = ({ navigation }) => {
     } else {
         return (
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
-                <BackButton onPress={() => { navigation.goBack() }} />
-                
+                <View style={{flexDirection: 'row', marginBottom:20}}>
+                    <BackButton onPress={() => { navigation.goBack() }} />
+                    <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Paga Ora</Text>
+                    </View>
+                </View>                
                     {isDark ? 
                 <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/card_light.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:100,maxWidth: 400}} resizeMode="contain"/>
                     :

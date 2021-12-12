@@ -17,7 +17,7 @@ const InitialScreen = (props) => {
     }))
     const [userToken, setUserToken] = React.useState(null);
     if (Platform.OS === "ios") {
-        var CardStyleEffect = CardStyleInterpolators.forVerticalIOS;
+        var CardStyleEffect = CardStyleInterpolators.forHorizontalIOS;
       } else {
         var CardStyleEffect = CardStyleInterpolators.forRevealFromBottomAndroid;
       }

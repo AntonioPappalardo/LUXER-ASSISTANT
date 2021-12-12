@@ -47,7 +47,7 @@ const Category = ({ navigation }) => {
                 <View style={{ alignItems: "center", marginBottom: 15 }}>
 
                     <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
-                        name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' />
+                        name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' left='true' />
                     {show ?
                         <TouchableOpacity activeOpacity={.75} style={{ position: 'absolute', right: 5, top: 20, justifyContent: "center", alignItems:'center', padding:15, paddingTop: 0}}>
 
