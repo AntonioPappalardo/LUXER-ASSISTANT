@@ -78,7 +78,7 @@ const Login = ({ navigation }) => {
             </View>
           </Modal>
         <View style={styles.headerTop}>
-          <BackButton onPress={() => { navigation.goBack() }} fixed />
+          <BackButton onPress={() => { navigation.replace('SplashScreen') }} fixed />
           <Text style={{ fontSize: 30, fontFamily: 'SFProDisplayBold', width: "100%", color: 'white', alignSelf: "center", marginLeft: "20%", marginBottom: "5%" }}>
             Accedi{"\n"}al tuo account
           </Text>

@@ -25,10 +25,10 @@ const InitialScreen = (props) => {
         
         <AuthContext.Provider value={authContext}>
            
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="SplashScreen" component={SplashScreen} />
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="TabBar" component={TabBarNavigation} />
+            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="SplashScreen">
+                <Stack.Screen name="SplashScreen" component={SplashScreen} options={{cardStyleInterpolator: CardStyleEffect}}/>
+                <Stack.Screen name="Login" component={Login} options={{cardStyleInterpolator: CardStyleEffect}}/>
+                <Stack.Screen name="TabBar" component={TabBarNavigation} options={{cardStyleInterpolator: CardStyleEffect}}/>
                 <Stack.Screen name="Payment" component={Payment} options={{cardStyleInterpolator: CardStyleEffect}}/>
             </Stack.Navigator>
         </AuthContext.Provider>

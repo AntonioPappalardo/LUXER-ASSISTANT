@@ -42,7 +42,7 @@ const UserHome = ({ navigation }) => {
           <MenuItem title={'Catalogo'} onPress={() => navigation.navigate('Catalog')} />
           <MenuItem title={'Scannerizza QR Code'} onPress={() => navigation.navigate('ScanQR')} />
           <MenuItem title={'Impostazioni'} onPress={() => navigation.navigate('Settings')} />
-          <MenuItem title={'Logout'}  onPress={() => navigation.popToTop()} />
+          <MenuItem title={'Logout'}  onPress={() => navigation.replace('SplashScreen')} />
         </ScrollView>
       </View>
     )

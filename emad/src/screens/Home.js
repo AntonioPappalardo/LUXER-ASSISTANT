@@ -7,7 +7,6 @@ import Category from './shop/Category';
 import Cart from './shop/Cart';
 import Communication from './shop/Communication';
 import CustomerPage from './customer/CustomerPage';
-import Login from './user/Login';
 import ProductPage from './shop/ProductPage';
 import ScanQR from './shop/ScanQR';
 import SearchUser from './customer/SearchUser';
@@ -16,6 +15,7 @@ import Store from './shop/Store';
 import StoreList from './shop/StoreList';
 import UserHome from './user/UserHome';
 import TabBarNavigation from '../navigation/TabBarNavigation';
+
 const Stack = createStackNavigator();
 
 
@@ -28,7 +28,6 @@ const Home = ({ navigation }) => {
 
   return (
     <Stack.Navigator initialRouteName="UserHome" screenOptions={{ headerShown: false }} >
-      <Stack.Screen name="TabBar" component={TabBarNavigation} />
       <Stack.Screen name="AddUser" component={AddUser} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Catalog" component={Catalog} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Category" component={Category} options={{cardStyleInterpolator: CardStyleEffect}}/>
@@ -36,7 +35,6 @@ const Home = ({ navigation }) => {
       <Stack.Screen name="Communication" component={Communication} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="CustomerPage" component={CustomerPage} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Settings" component={Settings} options={{cardStyleInterpolator: CardStyleEffect}}/>
-      <Stack.Screen name="Login" component={Login} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="ProductPage" component={ProductPage} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="ScanQR" component={ScanQR} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="SearchUser" component={SearchUser} options={{cardStyleInterpolator: CardStyleEffect}}/>
