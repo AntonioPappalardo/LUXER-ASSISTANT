@@ -54,11 +54,11 @@ const height = Dimensions.get('window').height;
 const Store = ({ navigation, route }) => {
 
     const { colors, isDark } = useTheme();
-
+    
     const [store, setStore] = React.useState(stores.find(us => us.id === route.params.store));
     const [day, setDays] = React.useState(days.find(us => us.id === route.params.store));
     var weekDays = ['Domenica','Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
-
+    
     var now = weekDays[new Date().getDay()];
     const tabBarHeight = useBottomTabBarHeight();
 
@@ -80,7 +80,7 @@ const Store = ({ navigation, route }) => {
                 </View>
                 <ScrollView>
                     <View style={{ maxWidth: width, maxHeight: 250, marginTop: '5%' }}>
-                        <Image source={store.img} style={{ maxWidth: width, maxHeight: 250 }} />
+                        <Image source={store.img} style={{ maxWidth: width, minHeight:220, maxHeight: 240 }} />
                     </View>
                     <View style={{marginTop: '5%'}}>
                         {day.days.map((item) => (
