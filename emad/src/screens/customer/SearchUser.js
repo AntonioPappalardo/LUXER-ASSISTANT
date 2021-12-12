@@ -41,7 +41,7 @@ const SearchUser = ({ navigation }) => {
             
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
                 
-                <View style={{ alignItems: "center", marginBottom: 15, marginTop: '10%' }}>
+                <View style={{ alignItems: "center", marginBottom: 15, marginTop: '12%' }}>
                     <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
                         name="Cliente" icon="search" rotation="0deg" value={search} onChangeText={cerca => ook(cerca)} secure='false' />
                 </View>

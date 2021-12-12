@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Image, View, Text, TouchableOpacity, ScrollView, Dimensions } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import BackButton from "../../components/BackButton";
 import Divider from "../../components/Divider";
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 import { useTheme } from "../../theme/ThemeProvider";
@@ -54,7 +53,8 @@ const AppointmentList = ({ navigation }) => {
         if (date) {
             var Data = new Date(date)
             return (
-                <View style= {{position: 'absolute', top: "5%", alignSelf: 'center',zIndex: 1}}>
+                <View style={{marginTop:'15%', zIndex:1}}>
+                <View style= {{position: 'absolute', top: "15%", alignSelf: 'center',zIndex: 1}}>
                     <Text style={{ textTransform: 'capitalize', fontSize: 16, textAlign: 'left', color: colors.theme.primary}}>
                         {moment(Data).format('dddd')}
                     </Text>
@@ -62,11 +62,12 @@ const AppointmentList = ({ navigation }) => {
                         {moment(Data).format('DD MMMM YYYY')}
                     </Text>
                 </View>
+                </View>
             )
         }
         var Data = new Date()
             return (
-            <View style= {{position: 'absolute', top: "5%", alignSelf: 'center',zIndex: 1}}>
+            <View style= {{position: 'absolute', top: 0, alignSelf: 'center',zIndex: 1}}>
                     <Text style={{ textTransform: 'capitalize', fontSize: 16, textAlign: 'left', color: colors.theme.primary}}>
                         {moment(Data).format('dddd')}
                     </Text>
@@ -94,7 +95,7 @@ const AppointmentList = ({ navigation }) => {
                 {renderHeader(daySelected)}
                 <Calendar
                     key={key}
-                    style={{ backgroundColor: colors.theme.background, monthTextColor: colors.theme.title, marginTop: '10%' }}
+                    style={{ backgroundColor: colors.theme.background, monthTextColor: colors.theme.title, marginTop: 5 }}
                     hideArrows={false}
                     hideExtraDays={false}
                     onPressArrowLeft={subtractMonth => subtractMonth()}
@@ -117,7 +118,7 @@ const AppointmentList = ({ navigation }) => {
                 <Divider width="100%" />
                 <ScrollView>
                     {users.map((item) => (
-                        <View key={item.id} style={{ height: 75, width: "90%", flexDirection: "row", alignSelf: "center", marginTop: 5, marginBottom: 5, }}>
+                        <View key={item.id} style={{ height: 75, width: "90%", flexDirection: "row", alignSelf: "center", marginTop: 10, marginBottom: 5, }}>
                             <View style={{ width: '25%' }}>
                                 <View style={{ justifyContent: "center", marginLeft: 5, height: 70, width: 70, shadowOffset: { width: 1, height: 2 }, shadowOpacity: 0.25, shadowRadius: 5, elevation: 5, marginRight: 10, borderRadius: 5 }}>
                                     <Image source={require('../../../assets/img/img.jpg')} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />

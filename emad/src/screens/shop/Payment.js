@@ -28,9 +28,9 @@ const Payment = ({ navigation }) => {
                 <BackButton onPress={() => { navigation.goBack() }} />
                 
                     {isDark ? 
-                <Image source={require("../../../assets/img/card_light.png")} style={{marginTop: '10%', width: width,maxWidth: 400}} resizeMode="contain"/>
+                <Image source={require("../../../assets/img/card_light.png")} style={{marginTop: '10%', alignSelf:'center', width: width,maxWidth: 400}} resizeMode="contain"/>
                     :
-                <Image source={require("../../../assets/img/card_dark.png")} style={{marginTop: '10%', width: width, maxWidth: 400}} resizeMode="contain"/>
+                <Image source={require("../../../assets/img/card_dark.png")} style={{marginTop: '10%', alignSelf:'center', width: width, maxWidth: 400}} resizeMode="contain"/>
                     }
                 
                 <ShadowBox

@@ -6985,6 +6985,11 @@
   "resolved" "https://registry.npmjs.org/react-native-navigation-bar-color/-/react-native-navigation-bar-color-2.0.1.tgz"
   "version" "2.0.1"
 
+"react-native-neomorph-shadows@0.0.8":
+  "integrity" "sha512-dslhj0ge1jRruXvQimnUczgor30btk/5o1VhuV++ZtRn01snR1j/AC5LYI9o7a5JabPiAAc7egary66Y5Tpeww=="
+  "resolved" "https://registry.npmjs.org/react-native-neomorph-shadows/-/react-native-neomorph-shadows-0.0.8.tgz"
+  "version" "0.0.8"
+
 "react-native-pager-view@^5.4.6":
   "integrity" "sha512-yZiG65xlOeC8LOCNF0N8Cdc+MDQGWJnOpsmlHAndWXQhuVPjj4/KnS556BeTddcQ2EqJu/DjL7o8j0hpB+nkVg=="
   "resolved" "https://registry.npmjs.org/react-native-pager-view/-/react-native-pager-view-5.4.6.tgz"
@@ -7050,6 +7055,11 @@
   "integrity" "sha512-r5WZLpmx2hHjC1RgMdPq5YpSU9tEhBpUaZ5M1SUtNIONyiLqQVxabhRCINdebIk4depJiIl7yw2Q85zJyeX6fw=="
   "resolved" "https://registry.npmjs.org/react-native-screens/-/react-native-screens-2.18.1.tgz"
   "version" "2.18.1"
+
+"react-native-shadow@^1.2.2":
+  "integrity" "sha512-kwTmqRKmPEML9KbJi0uvvKd+67rOJQcr3IyNp9bg+qi/H+Wnwev/Mr8sUiUZlYEJ433ii2iNwpjc1ERMjHtMWw=="
+  "resolved" "https://registry.npmjs.org/react-native-shadow/-/react-native-shadow-1.2.2.tgz"
+  "version" "1.2.2"
 
 "react-native-size-matters@^0.3.1":
   "integrity" "sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw=="

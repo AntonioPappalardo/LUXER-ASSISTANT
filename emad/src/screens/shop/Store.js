@@ -11,32 +11,32 @@ import InputButton from "../../components/InputButton";
 const stores = [
     {
         "id": "01", "name": "Prada - Roma",
-        "img": require('../../../assets/negozi/Prada-roma.jpg'),
+        "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-roma.jpg'},
         "address": "Via Arturo Ferrarin, 2", "citta": "Roma", "provincia": "RM", "zip": "00054"
     },
     {
         "id": "02", "name": "Prada - Rinascente Roma",
-        "img": require('../../../assets/negozi/Prada-rinascente_roma.jpg'),
+        "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-rinascente_roma.jpg'},
         "address": "Via del Tritone, 61", "citta": "Roma", "provincia": "RM", "zip": "00187"
     },
     {
         "id": "03", "name": "Prada - Firenze",
-        "img": require('../../../assets/negozi/Prada-firenze.jpg'),
+        "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-firenze.jpg'},
         "address": "Via Tornabuoni, 53R-67R", "citta": "Firenze", "provincia": "FI", "zip": "50123"
     },
     {
         "id": "04", "name": "Prada - Milano Spiga",
-        "img": require('../../../assets/negozi/Prada-milano-spiga.jpg'),
+        "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-milano-spiga.jpg'},
         "address": "Via Montenapoleone, 8", "citta": "Milano", "provincia": "MI", "zip": "20122"
     },
     {
         "id": "05", "name": "Prada - Milano Montenap...",
-        "img": require('../../../assets/negozi/Prada-montenapoleone.jpg'),
+        "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-montenapoleone.jpg'},
         "address": "Via Montenapoleone, 8", "citta": "Milano", "provincia": "MI", "zip": "20121"
     },
     {
         "id": "06", "name": "Prada - Venezia",
-        "img": require('../../../assets/negozi/Prada-venezia.jpg'),
+        "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-venezia.jpg'},
         "address": "Salizada San Moise, 1464-1468", "citta": "Venezia", "provincia": "VE", "zip": "30124"
     },
 ];
@@ -76,7 +76,7 @@ const Store = ({ navigation, route }) => {
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
                 <View style={{ flexDirection: 'row' }}>
                     <BackButton onPress={() => { navigation.goBack() }} />
-                    <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 18, color: colors.theme.title, paddingTop: "14.5%" }}>{store.name}</Text>
+                    <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, color: colors.theme.title, paddingTop: "14.5%" }}>{store.name}</Text>
                 </View>
                 <ScrollView>
                     <View style={{ maxWidth: width, maxHeight: 250, marginTop: '5%' }}>

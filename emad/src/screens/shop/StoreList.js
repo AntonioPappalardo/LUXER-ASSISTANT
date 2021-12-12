@@ -8,12 +8,12 @@ import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 
 const stores = [
-    { "id": "01","name": "Prada - Roma", "ref": "04559811", "qty": "5", "img": require('../../../assets/negozi/Prada-roma.jpg') },
-    { "id": "02","name": "Prada - Rinascente Roma", "ref": "04559811", "qty": "5", "img": require('../../../assets/negozi/Prada-rinascente_roma.jpg') },
-    { "id": "03","name": "Prada - Firenze", "ref": "04559811", "qty": "5", "img": require('../../../assets/negozi/Prada-firenze.jpg') },
-    { "id": "04","name": "Prada - Milano Spiga", "ref": "04559811", "qty": "5", "img": require('../../../assets/negozi/Prada-milano-spiga.jpg') },
-    { "id": "05","name": "Prada - Milano Montenap...", "ref": "04559811", "qty": "5", "img": require('../../../assets/negozi/Prada-montenapoleone.jpg') },
-    { "id": "06","name": "Prada - Venezia", "ref": "04559811", "qty": "5", "img": require('../../../assets/negozi/Prada-venezia.jpg') },
+    { "id": "01","name": "Prada - Roma", "ref": "04559811", "qty": "5", "img":{uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-roma.jpg'} },
+    { "id": "02","name": "Prada - Rinascente Roma", "ref": "04559811", "qty": "5", "img":{uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-rinascente_roma.jpg'} },
+    { "id": "03","name": "Prada - Firenze", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-firenze.jpg'} },
+    { "id": "04","name": "Prada - Milano Spiga", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-milano-spiga.jpg'} },
+    { "id": "05","name": "Prada - Milano Montenap...", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-montenapoleone.jpg'} },
+    { "id": "06","name": "Prada - Venezia", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-venezia.jpg'} },
 ]
 
 const StoreList = ({ navigation }) => {
