@@ -27,7 +27,7 @@ const stores = [
     {
         "id": "04", "name": "Prada - Milano Spiga",
         "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-milano-spiga.jpg'},
-        "address": "Via Montenapoleone, 8", "citta": "Milano", "provincia": "MI", "zip": "20122"
+        "address": "Via della Spiga, 18", "citta": "Milano", "provincia": "MI", "zip": "20122"
     },
     {
         "id": "05", "name": "Prada - Milano Montenap...",
@@ -39,6 +39,11 @@ const stores = [
         "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-venezia.jpg'},
         "address": "Salizada San Moise, 1464-1468", "citta": "Venezia", "provincia": "VE", "zip": "30124"
     },
+    {
+        "id": "07", "name": "Prada - Forte dei Marmi",
+        "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-forte_dei_marmi.jpg'},
+        "address": "Via Giosuè Carducci, 2", "citta": "Forte dei Marmi", "provincia": "LU", "zip": "55042"
+    },
 ];
 const days = [
     { "id": "01", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
@@ -47,6 +52,8 @@ const days = [
     { "id": "04", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
     { "id": "05", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
     { "id": "06", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
+    { "id": "07", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
+    { "id": "08", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
 
 ];
 const width = Dimensions.get('window').width;
@@ -76,7 +83,7 @@ const Store = ({ navigation, route }) => {
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
                 <View style={{ flexDirection: 'row' }}>
                     <BackButton onPress={() => { navigation.goBack() }} />
-                    <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, color: colors.theme.title, paddingTop: "14.5%" }}>{store.name}</Text>
+                    <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22,alignSelf:'center', color: colors.theme.title, paddingTop: "14.5%" }}>{store.name}</Text>
                 </View>
                 <ScrollView>
                     <View style={{ maxWidth: width, maxHeight: 250, marginTop: '5%' }}>

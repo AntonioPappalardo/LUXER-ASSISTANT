@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Vibration, Dimensions, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, Vibration, Dimensions, TouchableOpacity } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";
@@ -49,8 +49,12 @@ const ScanQR = ({ navigation }) => {
   return (
 
     <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
-      <BackButton onPress={() => { navigation.goBack() }} />
-      <View style={{paddingTop: '5%'}}>
+      <View style={{flexDirection: 'row', marginBottom:20}}>
+          <BackButton onPress={() => { navigation.goBack() }} />
+          <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
+          <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> Scannerizza QR Code</Text>
+          </View>
+      </View>
       <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } flashMode={flash} style={{ height: windowHeight-tabBarHeight, width: windowWidth }}>
       <View style={styles.marker} />
       <TouchableOpacity style={colors.buttonTorch}
@@ -68,7 +72,6 @@ const ScanQR = ({ navigation }) => {
       </TouchableOpacity>
       </Camera>
 
-      </View>
     </View>
   )
 

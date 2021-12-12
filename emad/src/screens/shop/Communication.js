@@ -1,5 +1,5 @@
 import React from "react";
-import {View, ScrollView } from "react-native";
+import {View, ScrollView, Text } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useTheme } from "../../theme/ThemeProvider";
@@ -10,14 +10,17 @@ import MessageBox from '../../components/MessageBox';
 const Communication = ({ navigation }) => {
 
   const {colors, isDark} = useTheme();
-
   const tabBarHeight = useBottomTabBarHeight();
-
   const [Message, onChangeText] = React.useState('');
   
   return (
     <View style={{ backgroundColor: colors.theme.background, height: "100%" }}>
-      <BackButton onPress={() => { navigation.goBack() }} />
+      <View style={{flexDirection: 'row', marginBottom:20}}>
+          <BackButton onPress={() => { navigation.goBack() }} />
+          <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
+          <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Contatta</Text>
+          </View>
+      </View>
       <ScrollView style={{ marginTop: "5%", width: "75%", alignSelf: "center" }}>
 
         <MessageBox value={Message} onChangeText={onChangeText} theme={colors} icon="mail-open-outline"/>

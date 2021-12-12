@@ -28,10 +28,10 @@ const Payment = ({ navigation }) => {
                 <BackButton onPress={() => { navigation.goBack() }} />
                 
                     {isDark ? 
-                <Image source={require("../../../assets/img/card_light.png")} style={{marginTop: '10%', alignSelf:'center', width: width,maxWidth: 400}} resizeMode="contain"/>
+                <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/card_light.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:100,maxWidth: 400}} resizeMode="contain"/>
                     :
-                <Image source={require("../../../assets/img/card_dark.png")} style={{marginTop: '10%', alignSelf:'center', width: width, maxWidth: 400}} resizeMode="contain"/>
-                    }
+                    <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/card_dark.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:0,maxWidth: 400}} resizeMode="contain"/>
+                }
                 
                 <ShadowBox
                     inner
@@ -46,11 +46,11 @@ const Payment = ({ navigation }) => {
                         width: width+5,
                         height: 350,
                     }}>
-                        <Text  style={{fontFamily: "SFProDisplayBold", fontSize: 15, color: colors.theme.title, marginTop: '10%', alignSelf: 'center'}}>Avvicina il dispositivo abilitato</Text>
+                        <Text  style={{fontFamily: "SFProDisplayBold", fontSize: 15, color: colors.theme.title, marginTop: '10%', alignSelf: 'center'}}>Avvicina il dispositivo abilitato NFC</Text>
                     {isDark ?
-                        <Image source={require("../../../assets/img/nfc_light.png")} style={{ marginTop: '5%', width: width, maxWidth: 100, alignSelf: 'center'}} resizeMode="contain" />
+                        <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/nfc_light.png'}} style={{ marginTop: '5%', height:100,width: width, maxWidth: 100, alignSelf: 'center'}} resizeMode="contain" />
                         :
-                        <Image source={require("../../../assets/img/nfc_dark.png")} style={{ marginTop: '5%', width: width, maxWidth: 100, alignSelf: 'center'}} resizeMode="contain" />
+                        <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/nfc_dark.png'}} style={{marginTop: '5%', height:100,width: width, maxWidth: 100, alignSelf: 'center'}} resizeMode="contain" />
                     }
                 </ShadowBox>
 

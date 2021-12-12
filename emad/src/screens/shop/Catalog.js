@@ -25,8 +25,12 @@ const Catalogo = ({navigation}) => {
   } else {
     return (
       <View style={{backgroundColor: colors.theme.background, flex: 1}}>
-        <BackButton onPress={() => { navigation.goBack() }}/>
-        <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 24, color: colors.theme.title, alignSelf: 'center', }}> Catalogo</Text>
+        <View style={{flexDirection: 'row'}}>
+            <BackButton onPress={() => { navigation.goBack() }} />
+            <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
+            <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Catalogo</Text>
+            </View>
+        </View>
         <ScrollView>
         <Container image={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/categorie/1.webp'}} title="Donna" subTitle="221 prodotti" opacity={1} onPress={() => navigation.navigate('Category')}/>
         <Container image={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/categorie/2.webp'}} title="Uomo" subTitle="221 prodotti"  opacity={1}/>

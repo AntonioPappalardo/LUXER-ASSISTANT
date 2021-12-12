@@ -36,7 +36,12 @@ const AddUser = ({navigation}) => {
   } else {
     return (
       <View style={{backgroundColor: colors.theme.background }}>
-      <BackButton onPress={() => { navigation.goBack() }}/>
+        <View style={{flexDirection: 'row', marginBottom:20}}>
+            <BackButton onPress={() => { navigation.goBack() }} />
+            <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
+            <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> Nuovo Cliente</Text>
+            </View>
+        </View>
       <ScrollView style={{height: "100%"}}>
         <View style={styles.form}>
           <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}

@@ -298,7 +298,12 @@ const CustomerPage = ({ navigation, route }) => {
     } else {
         return (
             <View style={{ backgroundColor: colors.theme.background, height: '100%' }}>
-                <BackButton onPress={() => { navigation.goBack() }} />
+                <View style={{flexDirection: 'row'}}>
+                    <BackButton onPress={() => { navigation.goBack() }} />
+                    <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Scheda Cliente</Text>
+                    </View>
+                </View>                
                 <View style={{ flexDirection: "column", width: "100%", alignItems: "center", marginTop: '5%', marginBottom: '10%' }}>
                     <View style={{ flexDirection: "row", width: "80%" }}>
                         <View style={{ justifyContent: "flex-start", height: 120, width: 120, shadowOffset: { width: 1, height: 2 },shadowOpacity: 0.25,shadowRadius: 5, elevation: 5, borderRadius: 5 }}>

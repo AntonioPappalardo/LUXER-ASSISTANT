@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, ScrollView, Dimensions} from 'react-native'
+import { View, Text, ScrollView, Dimensions} from 'react-native'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import BackButton from '../../components/BackButton';
 import MenuItem from '../../components/MenuItem';
@@ -32,7 +32,12 @@ const Impostazioni = ({ navigation }) => {
     } else {
         return (
         <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
-            <BackButton onPress={() => { navigation.goBack() }}/>
+            <View style={{flexDirection: 'row'}}>
+                <BackButton onPress={() => { navigation.goBack() }} />
+                <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
+                <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Impostazioni</Text>
+                </View>
+            </View>            
             <ScrollView style={{marginBottom: tabBarHeight, marginTop: "5%"}}>
             <SwitchItem value={isDark} onValueChange={toggleScheme} title={'Tema Scuro'}/>
             <MenuItem title={'Info su Luxer Assistant'} onPress={() => navigation.navigate('AddUser')} />

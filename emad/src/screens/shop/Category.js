@@ -16,11 +16,8 @@ import Divider from '../../components/Divider';
 const Category = ({ navigation }) => {
 
     const { colors, isDark } = useTheme();
-
     const tabBarHeight = useBottomTabBarHeight() + 10;
-
     const [prodotto, setProdotto] = React.useState('');
-
     const productColors = ["red", "blue", "green", "purple"];
     const size = ["XS", "S", "M", "L"];
 
@@ -39,11 +36,11 @@ const Category = ({ navigation }) => {
     } else {
         return (
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
-                <View style={{flexDirection: 'row'}}>
+                <View style={{flexDirection: 'row', marginBottom:20}}>
                     <BackButton onPress={() => { navigation.goBack() }} />
                     <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
-                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 18, color: colors.theme.subtitle}}>Catalogo ·</Text>
-                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 18, color: colors.theme.title}}> Borse e Accessori</Text>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.subtitle}}>Catalogo ·</Text>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> Borse e Accessori</Text>
                     </View>
                 </View>
                 
@@ -52,7 +49,7 @@ const Category = ({ navigation }) => {
                     <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
                         name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' />
                     {show ?
-                        <TouchableOpacity activeOpacity={.75} style={{ position: 'absolute', right: 5, top: 15, justifyContent: "center", alignItems:'center', padding:15, paddingTop: 0}}>
+                        <TouchableOpacity activeOpacity={.75} style={{ position: 'absolute', right: 5, top: 20, justifyContent: "center", alignItems:'center', padding:15, paddingTop: 0}}>
 
                             <Icon name={Platform.OS === "ios" ? "ios-filter-outline" : "md-filter-outline"} size={20}
                                 style={{}}
@@ -60,7 +57,7 @@ const Category = ({ navigation }) => {
                                 onPress={toggleText} />
                         </TouchableOpacity>
                         :
-                        <TouchableOpacity activeOpacity={.75} style={{ position: 'absolute', right: 5, top: 15, justifyContent: "center", alignItems:'center', padding:15, paddingTop: 0 }}>
+                        <TouchableOpacity activeOpacity={.75} style={{ position: 'absolute', right: 5, top: 20, justifyContent: "center", alignItems:'center', padding:15, paddingTop: 0 }}>
 
                             <Icon name={Platform.OS === "ios" ? "ios-filter-outline" : "md-filter-outline"} size={20}
                                 style={{}}

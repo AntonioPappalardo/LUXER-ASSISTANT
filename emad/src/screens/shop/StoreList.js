@@ -14,6 +14,7 @@ const stores = [
     { "id": "04","name": "Prada - Milano Spiga", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-milano-spiga.jpg'} },
     { "id": "05","name": "Prada - Milano Montenap...", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-montenapoleone.jpg'} },
     { "id": "06","name": "Prada - Venezia", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-venezia.jpg'} },
+    { "id": "07","name": "Prada - Forte dei Marmi", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-forte_dei_marmi.jpg'} },
 ]
 
 const StoreList = ({ navigation }) => {
@@ -34,8 +35,13 @@ const StoreList = ({ navigation }) => {
     } else {
         return (
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
-                <BackButton onPress={() => { navigation.goBack() }} />
-                <ScrollView style={{marginTop: 15}}>
+                <View style={{flexDirection: 'row'}}>
+                    <BackButton onPress={() => { navigation.goBack() }} />
+                    <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, color: colors.theme.title, alignSelf:'center'}}>Store Network Availability</Text>
+                    </View>
+                </View>
+                <ScrollView style={{marginTop: 25}}>
                     {stores.map((item) => (
                         <View key={item.id} style={{height: 75, width: "90%",flexDirection: "row", alignSelf: "center",marginTop: 5, marginBottom: 5, }}>
                                 <View style={{width: '35%'}}>
