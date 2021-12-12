@@ -64,10 +64,10 @@ function displayTextInput(props, colorTheme) {
                         placeholderTextColor={colorTheme.floatingInput.placeholder}
                         value={props.value}
                         onChangeText={props.onChangeText}
-                        leftComponent={<Icon name={Platform.OS === "ios" ? "ios-" + props.icon : "md-" + props.icon} size={20} style={{ marginTop: 15 }} color={colorTheme.floatingInput.icon} />}
+                        leftComponent={<Icon name={Platform.OS === "ios" ? "ios-" + props.icon : "md-" + props.icon} size={20} style={{ marginTop: 5 }} color={colorTheme.floatingInput.icon} />}
                         rightComponent={props.right}
                         containerStyles={{
-                            height: 58,
+                            height: 50,
                             borderBottomWidth: 1,
                             borderColor: colorTheme.floatingInput.border,
                         }}

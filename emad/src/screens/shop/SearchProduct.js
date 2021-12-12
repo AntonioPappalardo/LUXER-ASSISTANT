@@ -29,12 +29,12 @@ const SearchProduct = ({ navigation }) => {
   } else {
     return (
       <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
-        <View style={{ alignItems: "center", marginBottom: 15, marginTop: '10%' }}>
+        <View style={{ alignItems: "center", marginBottom: 15, marginTop: '12%' }}>
          
             <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
               name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' left='true' 
               right={
-            <TouchableOpacity onPress={() => navigation.navigate('ScanQR')} activeOpacity={.75} style={{marginTop: 15}}>
+            <TouchableOpacity onPress={() => navigation.navigate('ScanQR')} activeOpacity={.75} style={{marginTop: 5}}>
               <Icon name={Platform.OS === "ios" ? "ios-qr-code-outline" : "md-qr-code-outline"} size={20} 
               style={{marginLeft:15, marginTop:3}} 
               color={colors.floatingInput.icon} />

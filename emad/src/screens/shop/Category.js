@@ -40,7 +40,7 @@ const Category = ({ navigation }) => {
                     <BackButton onPress={() => { navigation.goBack() }} />
                     <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
                     <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.subtitle}}>Catalogo ·</Text>
-                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> Borse e Accessori</Text>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> Donna</Text>
                     </View>
                 </View>
                 
