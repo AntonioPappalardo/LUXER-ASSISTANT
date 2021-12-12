@@ -32,12 +32,13 @@ const SearchProduct = ({ navigation }) => {
         <View style={{ alignItems: "center", marginBottom: 15, marginTop: '10%' }}>
          
             <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
-              name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' />
-            <TouchableOpacity onPress={() => navigation.navigate('ScanQR')} activeOpacity={.75} style={{position: 'absolute', right: 10,top:12,justifyContent:"center"}}>
-              <Icon name={Platform.OS === "ios" ? "ios-qr-code-outline" : "md-qr-code-outline"} size={30} 
+              name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' left='true' 
+              right={
+            <TouchableOpacity onPress={() => navigation.navigate('ScanQR')} activeOpacity={.75} style={{marginTop: 15}}>
+              <Icon name={Platform.OS === "ios" ? "ios-qr-code-outline" : "md-qr-code-outline"} size={20} 
               style={{marginLeft:15, marginTop:3}} 
               color={colors.floatingInput.icon} />
-            </TouchableOpacity>
+            </TouchableOpacity>}/>
         </View>
         <Divider width="100%" />
         <ScrollView>

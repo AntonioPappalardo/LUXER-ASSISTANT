@@ -8,7 +8,7 @@ import { useFonts } from 'expo-font';
 import { useTheme } from "../theme/ThemeProvider";
 
 const InputText = (props) => {
-    const {colors, isDark} = useTheme();
+    const { colors, isDark } = useTheme();
 
     return (
         <View style={{ width: props.params.width, marginTop: props.params.marginTop, height: 54, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
@@ -56,33 +56,67 @@ function displayTextInput(props, colorTheme) {
                         color: colorTheme.floatingInput.label,
                     }} />
             )
-        } else if(props.icon) {
-            return (
-                <FloatingLabelInput style={{ fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft }}
-                    label={props.name}
-                    placeholderTextColor={colorTheme.floatingInput.placeholder}
-                    value={props.value}
-                    onChangeText={props.onChangeText}
-                    rightComponent={<Icon name={Platform.OS === "ios" ? "ios-"+props.icon : "md-"+props.icon } size={20} style={{ marginTop: 10 }} color={colorTheme.floatingInput.icon} />}
-                    containerStyles={{
-                        height: 58,
-                        borderBottomWidth: 1,
-                        borderColor: colorTheme.floatingInput.border,
-                    }}
-                    customLabelStyles={{
-                        fontFamily: 'SFProDisplayMedium',
-                        colorBlurred: colorTheme.floatingInput.placeholder,
-                        colorFocused: colorTheme.floatingInput.placeholder,
-                        fontSizeFocused: 12,
-                    }}
-                    inputStyles={{
-                        fontSize: 18,
-                        fontFamily: 'SFProDisplayMedium',
-                        paddingTop: 15,
-                        paddingLeft: 5,
-                        color: colorTheme.floatingInput.label,
-                    }} />
-            )
+        } else if (props.icon) {
+            if (props.left) {
+                return (
+                    <FloatingLabelInput style={{ fontSize: props.params.fontSize, paddingLeft: props.params.paddingLeft }}
+                        label={props.name}
+                        placeholderTextColor={colorTheme.floatingInput.placeholder}
+                        value={props.value}
+                        onChangeText={props.onChangeText}
+                        leftComponent={<Icon name={Platform.OS === "ios" ? "ios-" + props.icon : "md-" + props.icon} size={20} style={{ marginTop: 15 }} color={colorTheme.floatingInput.icon} />}
+                        rightComponent={props.right}
+                        containerStyles={{
+                            height: 58,
+                            borderBottomWidth: 1,
+                            borderColor: colorTheme.floatingInput.border,
+                        }}
+                        customLabelStyles={{
+                            fontFamily: 'SFProDisplayMedium',
+                            colorBlurred: colorTheme.floatingInput.placeholder,
+                            colorFocused: colorTheme.floatingInput.placeholder,
+                            fontSizeFocused: 12,
+                        }}
+                        labelStyles={{
+                            paddingLeft: 5,
+                        }}
+                        inputStyles={{
+                            textAlign: props.params.textAlign,
+                            fontSize: 18,
+                            fontFamily: 'SFProDisplayMedium',
+                            paddingTop: 15,
+                            paddingLeft: 10,
+                            color: colorTheme.floatingInput.label,
+                        }} />
+                )
+            } else {
+                return (
+                    <FloatingLabelInput style={{ fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft }}
+                        label={props.name}
+                        placeholderTextColor={colorTheme.floatingInput.placeholder}
+                        value={props.value}
+                        onChangeText={props.onChangeText}
+                        rightComponent={<Icon name={Platform.OS === "ios" ? "ios-" + props.icon : "md-" + props.icon} size={20} style={{ marginTop: 10 }} color={colorTheme.floatingInput.icon} />}
+                        containerStyles={{
+                            height: 58,
+                            borderBottomWidth: 1,
+                            borderColor: colorTheme.floatingInput.border,
+                        }}
+                        customLabelStyles={{
+                            fontFamily: 'SFProDisplayMedium',
+                            colorBlurred: colorTheme.floatingInput.placeholder,
+                            colorFocused: colorTheme.floatingInput.placeholder,
+                            fontSizeFocused: 12,
+                        }}
+                        inputStyles={{
+                            fontSize: 18,
+                            fontFamily: 'SFProDisplayMedium',
+                            paddingTop: 15,
+                            paddingLeft: 5,
+                            color: colorTheme.floatingInput.label,
+                        }} />
+                )
+            }
         } else {
             return (
                 <FloatingLabelInput style={{ fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft }}
@@ -107,8 +141,8 @@ function displayTextInput(props, colorTheme) {
                         paddingTop: 15,
                         paddingLeft: 5,
                         color: colorTheme.floatingInput.label,
-                    }} 
-                    />
+                    }}
+                />
             )
         }
     }
