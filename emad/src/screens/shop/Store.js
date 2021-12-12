@@ -57,10 +57,9 @@ const Store = ({ navigation, route }) => {
 
     const [store, setStore] = React.useState(stores.find(us => us.id === route.params.store));
     const [day, setDays] = React.useState(days.find(us => us.id === route.params.store));
-    var weekDays = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
+    var weekDays = ['Domenica','Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
 
-    var now = weekDays[new Date().getDay() - 1];
-
+    var now = weekDays[new Date().getDay()];
     const tabBarHeight = useBottomTabBarHeight();
 
 
@@ -85,7 +84,7 @@ const Store = ({ navigation, route }) => {
                     </View>
                     <View style={{marginTop: '5%'}}>
                         {day.days.map((item) => (
-                            <View key={item.id} style={{ width: '80%', alignSelf: 'center', marginBottom: '2%', flexDirection: 'row' }}>
+                            <View key={item.giorno} style={{ width: '80%', alignSelf: 'center', marginBottom: '2%', flexDirection: 'row' }}>
                                 {now == item.giorno ?
                                     <View style={{ width: '5%', justifyContent: 'center' }}>
                                         <View style={{ width: 7, height: 7, backgroundColor: '#EA9F5A', borderRadius: 3.5 }} />
