@@ -14,7 +14,7 @@ const styles = {
         zIndex: 1
     },
     dragHandler: {
-        height: 65,
+        height: 80,
         width: '75%',
         alignSelf: 'center',
         marginTop: '5%'
@@ -39,8 +39,8 @@ class ScrollViewInsidePanel extends React.Component {
                             <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayBold', color: this.props.colors.theme.subtitle }}>
                                 1780,00 €
                             </Text>
-                            <Text style={{ fontSize: 24, fontFamily: 'SFProDisplayBold', color: this.props.colors.theme.title, paddingTop: 5 }}>
-                                Nome Prodotto
+                            <Text style={{ fontSize: 18, fontFamily: 'SFProDisplayBold', color: this.props.colors.theme.title, paddingTop: 5 }}>
+                            Mini borsa Prada Cleo{'\n'}in pelle spazzolata
                             </Text>
                         </View>
 
