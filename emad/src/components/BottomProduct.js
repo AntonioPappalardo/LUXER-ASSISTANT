@@ -37,7 +37,7 @@ class ScrollViewInsidePanel extends React.Component {
 
                         <View style={styles.dragHandler} {...dragHandler}>
                             <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayBold', color: this.props.colors.theme.subtitle }}>
-                                400,00 €
+                                1780,00 €
                             </Text>
                             <Text style={{ fontSize: 24, fontFamily: 'SFProDisplayBold', color: this.props.colors.theme.title, paddingTop: 5 }}>
                                 Nome Prodotto

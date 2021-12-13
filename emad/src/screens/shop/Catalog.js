@@ -32,9 +32,9 @@ const Catalogo = ({navigation}) => {
             </View>
         </View>
         <ScrollView>
-        <Container image={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/categorie/1.webp'}} title="Donna" subTitle="221 prodotti" opacity={1} onPress={() => navigation.navigate('Category')}/>
+        <Container image={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/categorie/1.webp'}} title="Donna" subTitle="221 prodotti" opacity={1}/>
         <Container image={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/categorie/2.webp'}} title="Uomo" subTitle="221 prodotti"  opacity={1}/>
-        <Container image={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/categorie/3.webp'}} title="Borse Donna" subTitle="221 prodotti"  opacity={1}/>
+        <Container image={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/categorie/3.webp'}} title="Borse Donna" subTitle="221 prodotti" opacity={1} onPress={() => navigation.navigate('Category')}/>
         <Container image={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/categorie/4.webp'}} title="Abbigliamento Donna" subTitle="221 prodotti" opacity={1} />
         <Container image={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/categorie/5.webp'}} title="Calzature Donna" subTitle="221 prodotti" opacity={1} />
         <Container image={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/categorie/6.webp'}} title="Accessori Donna" subTitle="221 prodotti"  opacity={1}/>

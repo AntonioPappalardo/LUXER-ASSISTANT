@@ -35,8 +35,8 @@ const Cart = ({ navigation }) => {
                     </View>
                 </View> 
                 <ScrollView>
-                    <CartItem name="Prodotto 1" reference="10231023" specifics={"Specifiche"} price={1499} image={{ uri: 'https://tinyurl.com/29dbrt9m' }} min={0} max={2} />
-                    <CartItem name="Prodotto 2" reference="10231023" specifics={"Specifiche"} price={1499} image={{ uri: 'https://tinyurl.com/29dbrt9m' }} min={0} max={2} />
+                    <CartItem name="Prodotto 1" reference="10231023" specifics={"Specifiche"} price={1780} image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_1.webp' }} min={0} max={2} />
+                    <CartItem name="Prodotto 2" reference="10231023" specifics={"Specifiche"} price={1650} image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p10_3.webp' }} min={0} max={2} />
 
                     <View style={{ width: '75%', alignSelf: 'center', marginTop: '5%', marginBottom:'5%' }}>
                         <View style={{ flexDirection: 'row', width: '100%' }}>
@@ -47,7 +47,7 @@ const Cart = ({ navigation }) => {
                             </View>
                             <View style={{ width: '50%' }}>
                                 <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary, textAlign: 'right' }}>
-                                    4
+                                    2
                                 </Text>
                             </View>
                         </View>
@@ -60,7 +60,7 @@ const Cart = ({ navigation }) => {
                             </View>
                             <View style={{ width: '50%' }}>
                                 <Text style={{ fontSize: 20, fontFamily: 'SFProDisplayMedium', fontWeight:"bold", color: colors.theme.primary, textAlign: 'right' }}>
-                                € 80.00
+                                € 3430,00
                                 </Text>
                             </View>
                         </View>

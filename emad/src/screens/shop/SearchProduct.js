@@ -42,21 +42,21 @@ const SearchProduct = ({ navigation }) => {
         </View>
         <Divider width="100%" />
         <ScrollView>
-          <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap', alignItems: "center" }}>
-            <ProductBox name={"Borsa Chanel 19"} price={"8500"} reference={"1273100"}
-              image={{ uri: 'https://tinyurl.com/29dbrt9m' }} />
-            <ProductBox name={"Eau de Parfum\nChanel n°5"} price={"145"} reference={"1231283"}
-              image={{ uri: 'https://tinyurl.com/nss9ywwk' }} />
-            <ProductBox name={"Chanel Pink Sandals"} price={"8645"} reference={"1231283"}
-              image={{ uri: 'https://tinyurl.com/e8dfvbzs' }} />
-               <ProductBox name={"Borsa Chanel 19"} price={"8500"} reference={"1273100"}
-              image={{ uri: 'https://tinyurl.com/29dbrt9m' }} />
-            <ProductBox name={"Eau de Parfum Chanel n°5"} price={"145"} reference={"1231283"}
-              image={{ uri: 'https://tinyurl.com/nss9ywwk' }} />
-            <ProductBox name={"Chanel Pink Sandals"} price={"8645"} reference={"1231283"}
-              image={{ uri: 'https://tinyurl.com/e8dfvbzs' }} />
-          </View>
-          <View style={{marginBottom: tabBarHeight+ 10}}></View>
+        <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap', alignItems: "center" }}>
+        <ProductBox name={"Mini borsa Prada Cleo in pelle spazzolata"} price={"1780"} reference={"1273100"}
+            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_1.webp' }}/>
+        <ProductBox name={"Camicia in chiffon con micro borchie"} price={"2600"} reference={"1231283"}
+            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p11_1.webp' }} />
+        <ProductBox name={"Giacca corta in kid mohair"} price={"1900"} reference={"1273100"}
+            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p13_1.webp' }} />
+        <ProductBox name={"Borsa Prada Cleo in raso con applicazioni"} price={"2600"} reference={"1231283"}
+            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p5_1.webp' }} />
+        <ProductBox name={"Borsa Prada Signaux in nappa imbottita"} price={"2200"} reference={"1231283"}
+            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p7_1.webp' }} />
+        <ProductBox name={"Cappello da pescatore con paillettes"} price={"980"} reference={"1231283"}
+            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p14_1.webp' }} />
+        </View>
+        <View style={{marginBottom: tabBarHeight+ 10}}></View>
         </ScrollView>
       </View>
     )
