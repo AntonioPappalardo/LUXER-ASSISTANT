@@ -96,7 +96,7 @@ class ScrollViewInsidePanel extends React.Component {
                                         </Text>
                                     </View>
                                 </View>
-                                <InputButton params={{ marginTop: "5%", width: "100%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }} name="VISUALIZZA IN AR" />
+                                <InputButton params={{ marginTop: "5%", width: "100%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }} name="VISUALIZZA IN AR" onPress={() => { this.props.navigation.navigate('ExpoAR') }}/>
                             </View>
                             <View style={{ marginBottom: '5%' }}></View>
                         </ScrollView>

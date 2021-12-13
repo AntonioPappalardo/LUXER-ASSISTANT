@@ -14,7 +14,7 @@ import Settings from './user/Settings';
 import Store from './shop/Store';
 import StoreList from './shop/StoreList';
 import UserHome from './user/UserHome';
-import TabBarNavigation from '../navigation/TabBarNavigation';
+import ExpoAR from '../ar/ExpoAR';
 
 const Stack = createStackNavigator();
 
@@ -41,6 +41,7 @@ const Home = ({ navigation }) => {
       <Stack.Screen name="Store" component={Store} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="StoreList" component={StoreList} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="UserHome"component={UserHome} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="ExpoAR" component={ExpoAR}/>
     </Stack.Navigator>
   );
 };
