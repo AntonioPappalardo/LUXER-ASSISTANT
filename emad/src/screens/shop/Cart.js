@@ -30,7 +30,7 @@ const Cart = ({ navigation }) => {
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
                 <View style={{flexDirection: 'row',marginBottom:20}}>
                     <BackButton onPress={() => { navigation.goBack() }} />
-                    <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
+                    <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
                     <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Carrello</Text>
                     </View>
                 </View> 

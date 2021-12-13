@@ -37,7 +37,7 @@ const StoreList = ({ navigation }) => {
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
                 <View style={{flexDirection: 'row'}}>
                     <BackButton onPress={() => { navigation.goBack() }} />
-                    <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
+                    <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
                     <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, color: colors.theme.title, alignSelf:'center'}}>Store Network Availability</Text>
                     </View>
                 </View>

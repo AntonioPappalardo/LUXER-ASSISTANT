@@ -30,10 +30,9 @@ const ProductPage = ({ navigation }) => {
         return (
             <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
                 <BackButton onPress={() => { navigation.goBack() }} inverted/>
-                <SwiperFlatList autoplay autoplayDelay={2} autoplayLoop index={2} showPagination style={{ position: 'absolute', zIndex: -100 }}>
-                    <ImageBackground source={{ uri: 'https://tinyurl.com/2p8b95x3' }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
-                    <ImageBackground source={{ uri: 'https://tinyurl.com/2p8b95x3' }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
-                    <ImageBackground source={{ uri: 'https://tinyurl.com/2p8b95x3' }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
+                <SwiperFlatList autoplay autoplayDelay={3} autoplayLoop index={1} showPagination style={{ position: 'absolute', zIndex: -100 }}>
+                    <ImageBackground source={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_1.webp' }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
+                    <ImageBackground source={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_2.webp' }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
                 </SwiperFlatList>
             <BottomSheet colors={colors} tabBarHeight={tabBarHeight} navigation={navigation}/>
             </View>

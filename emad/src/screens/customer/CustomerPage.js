@@ -300,11 +300,11 @@ const CustomerPage = ({ navigation, route }) => {
             <View style={{ backgroundColor: colors.theme.background, height: '100%' }}>
                 <View style={{flexDirection: 'row'}}>
                     <BackButton onPress={() => { navigation.goBack() }} />
-                    <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
+                    <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
                     <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Scheda Cliente</Text>
                     </View>
                 </View>                
-                <View style={{ flexDirection: "column", width: "100%", alignItems: "center", marginTop: '5%', marginBottom: '10%' }}>
+                <View style={{ flexDirection: "column", width: "100%", alignItems: "center", marginTop: '10%', marginBottom: '5%' }}>
                     <View style={{ flexDirection: "row", width: "80%" }}>
                         <View style={{ justifyContent: "flex-start", height: 120, width: 120, shadowOffset: { width: 1, height: 2 },shadowOpacity: 0.25,shadowRadius: 5, elevation: 5, borderRadius: 5 }}>
                             <Image source={require('../../../assets/img/img.jpg')} style={{ height: 120, width: 120, borderRadius: 5, borderWidth: 5, borderColor: "white"}} />
@@ -323,7 +323,7 @@ const CustomerPage = ({ navigation, route }) => {
                             </View>
                         </View>
                     </View>
-                    <View style={{ flexDirection: "row", width: "80%", justifyContent: "space-between", marginTop: 10 }}>
+                    <View style={{ flexDirection: "row", width: "80%", justifyContent: "space-between", marginTop: 20 }}>
                         <View>
                             <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular" }}>Totale Acquisti</Text>
                             <Text style={{ fontSize: 16, color: colors.theme.title, fontFamily: "SFProDisplayRegular" }}>{tot} €</Text>

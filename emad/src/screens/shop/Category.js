@@ -38,8 +38,7 @@ const Category = ({ navigation }) => {
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
                 <View style={{flexDirection: 'row', marginBottom:20}}>
                     <BackButton onPress={() => { navigation.goBack() }} />
-                    <View style={{flexDirection: 'row', width:'100%',alignItems:'flex-start', paddingTop: '15%'}}>
-                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.subtitle}}>Catalogo ·</Text>
+                    <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
                     <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> Donna</Text>
                     </View>
                 </View>
@@ -71,18 +70,18 @@ const Category = ({ navigation }) => {
                 <Divider width="100%" />
                 <ScrollView>
                     <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap', alignItems: "center" }}>
-                        <ProductBox name={"Borsa Chanel 19"} price={"8500"} reference={"1273100"}
-                            image={{ uri: 'https://tinyurl.com/29dbrt9m' }} onPress={() => navigation.navigate('ProductPage')} />
-                        <ProductBox name={"Eau de Parfum\nChanel n°5"} price={"145"} reference={"1231283"}
-                            image={{ uri: 'https://tinyurl.com/nss9ywwk' }} />
-                        <ProductBox name={"Chanel Pink Sandals"} price={"8645"} reference={"1231283"}
-                            image={{ uri: 'https://tinyurl.com/e8dfvbzs' }} />
-                        <ProductBox name={"Borsa Chanel 19"} price={"8500"} reference={"1273100"}
-                            image={{ uri: 'https://tinyurl.com/29dbrt9m' }} />
-                        <ProductBox name={"Eau de Parfum Chanel n°5"} price={"145"} reference={"1231283"}
-                            image={{ uri: 'https://tinyurl.com/nss9ywwk' }} />
-                        <ProductBox name={"Chanel Pink Sandals"} price={"8645"} reference={"1231283"}
-                            image={{ uri: 'https://tinyurl.com/e8dfvbzs' }} />
+                        <ProductBox name={"Mini borsa Prada Cleo in pelle spazzolata"} price={"1780"} reference={"1273100"}
+                            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_1.webp' }} onPress={() => navigation.navigate('ProductPage')} />
+                        <ProductBox name={"Mini borsa in pelle metallizzata"} price={"1300"} reference={"1231283"}
+                            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p4_1.webp' }} />
+                        <ProductBox name={"Borsa Prada Cleo in raso con applicazioni"} price={"2600"} reference={"1231283"}
+                            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p5_1.webp' }} />
+                        <ProductBox name={"Borsa Prada Triangle a tracolla in pelle"} price={"1650"} reference={"1273100"}
+                            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p6_1.webp' }} />
+                        <ProductBox name={"Borsa Prada Signaux in nappa imbottita"} price={"2200"} reference={"1231283"}
+                            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p7_1.webp' }} />
+                        <ProductBox name={"Borsa shopping in tessuto effetto pelliccia"} price={"1900"} reference={"1231283"}
+                            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p8_1.webp' }} />
                     </View>
                     <View style={{ marginBottom: tabBarHeight + 10 }}></View>
                 </ScrollView>

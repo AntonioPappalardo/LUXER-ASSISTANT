@@ -81,9 +81,11 @@ const Store = ({ navigation, route }) => {
     } else {
         return (
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{flexDirection: 'row'}}>
                     <BackButton onPress={() => { navigation.goBack() }} />
-                    <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22,alignSelf:'center', color: colors.theme.title, paddingTop: "14.5%" }}>{store.name}</Text>
+                    <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>{store.name}</Text>
+                    </View>
                 </View>
                 <ScrollView>
                     <View style={{ maxWidth: width, maxHeight: 250, marginTop: '5%' }}>
