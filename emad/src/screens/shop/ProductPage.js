@@ -20,7 +20,7 @@ const ProductPage = ({ navigation }) => {
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
-        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayRegular.otf'),
+        'SFProDisplayRegular': require('../../../assets/fonts/SFProDisplayRegular.otf'),
         'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
     });
 

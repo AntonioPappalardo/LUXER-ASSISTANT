@@ -342,7 +342,7 @@ const CustomerPage = ({ navigation, route }) => {
                 <ScrollView style={{ marginBottom: tabBarHeight, width: '100%' }} contentContainerStyle={{ flexGrow: 1 }}>
 
                     <Divider width={"100%"} />
-                    <MenuItem title={'Nuovo Appuntamento'} />
+                    <MenuItem title={'Nuovo Appuntamento'} onPress={() => navigation.navigate('AddAppointment')} />
                     <MenuItem title={'Contatta'} onPress={() => navigation.navigate('Communication')} />
                     <View style={{ height: 300}}>
                         <TabView

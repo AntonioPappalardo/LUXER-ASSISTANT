@@ -2,6 +2,7 @@ import React from 'react';
 import {Platform } from 'react-native'
 import {CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import AddUser from './customer/AddUser';
+import AddAppointment from './customer/AddAppointment';
 import Catalog from './shop/Catalog';
 import Category from './shop/Category';
 import Cart from './shop/Cart';
@@ -32,6 +33,7 @@ const Home = ({ navigation }) => {
       <Stack.Screen name="Catalog" component={Catalog} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Category" component={Category} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Cart" component={Cart} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="AddAppointment" component={AddAppointment} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Communication" component={Communication} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="CustomerPage" component={CustomerPage} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Settings" component={Settings} options={{cardStyleInterpolator: CardStyleEffect}}/>
