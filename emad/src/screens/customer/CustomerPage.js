@@ -227,22 +227,22 @@ const CustomerPage = ({ navigation, route }) => {
     const FourthRoute = () => (
         <BarChart
             data={{
-                labels: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu"],
+                labels: ["Cat1", "Cat2", "Cat3", "Cat4","Cat5"],
                 datasets: [
                     {
                         data: [
-                            5,
+                            14,
+                            38,
                             12,
-                            1,
-                            3,
+                            31,
                             4,
-                            1,
                         ]
                     }
                 ]
             }}
             width={350}
             height={220}
+            yAxisSuffix="%"
             chartConfig={{
                 backgroundColor: "#e26a00",
                 backgroundGradientFrom: colors.theme.background,

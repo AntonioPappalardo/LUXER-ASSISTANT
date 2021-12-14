@@ -54,7 +54,7 @@ const AppointmentList = ({ navigation }) => {
             var Data = new Date(date)
             return (
                 <View style={{marginTop:'15%', zIndex:1}}>
-                <View style= {{position: 'absolute', top: "15%", alignSelf: 'center',zIndex: 1}}>
+                <View style= {{position: 'absolute', top: 0, alignSelf: 'center',zIndex: 1}}>
                     <Text style={{ textTransform: 'capitalize', fontSize: 16, textAlign: 'left', color: colors.theme.primary}}>
                         {moment(Data).format('dddd')}
                     </Text>
@@ -95,7 +95,7 @@ const AppointmentList = ({ navigation }) => {
                 {renderHeader(daySelected)}
                 <Calendar
                     key={key}
-                    style={{ backgroundColor: colors.theme.background, monthTextColor: colors.theme.title, marginTop: 5 }}
+                    style={{ backgroundColor: colors.theme.background, monthTextColor: colors.theme.title, marginTop: 5,  }}
                     hideArrows={false}
                     hideExtraDays={false}
                     onPressArrowLeft={subtractMonth => subtractMonth()}
