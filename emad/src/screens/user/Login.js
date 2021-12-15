@@ -11,7 +11,7 @@ import { useTheme } from "../../theme/ThemeProvider";
 import Icon from 'react-native-vector-icons/Ionicons';
 import { StatusBar } from 'expo-status-bar';
 import Modal from 'react-native-modal'
-
+import { getUtente,getUtenteByLogin } from "../../db/connect";
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('screen').height;
 
@@ -56,7 +56,12 @@ const Login = ({ navigation }) => {
       setModalVisible(true)
       return;
     }*/
-    navigation.navigate('TabBar');
+    let idUser=getUtenteByLogin(userEmail,userPassword)
+    if(idUser!== undefined) navigation.navigate('TabBar',{user:idUser})
+    else{
+      setErrorText("L'utente non è stato trovato")
+      setModalVisible(true)
+    }
   }
 
   if (!fontsLoaded) {

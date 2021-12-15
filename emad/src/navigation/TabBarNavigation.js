@@ -8,7 +8,7 @@ import SearchProduct from '../screens/shop/SearchProduct';
 import SearchUser from '../screens/customer/SearchUser';
 import AppointmentList from '../screens/customer/AppointmentList';
 import { useTheme } from "../theme/ThemeProvider";
-
+import { getUtenteById } from '../db/connect';
 const Tab = createBottomTabNavigator()
 const TabBarIcon = props => {
 	return (
@@ -27,7 +27,7 @@ const TabBarNavigation = (props) => {
 	
 	const {colors, isDark} = useTheme();
 	isDark ? tabColor = 'dark' : tabColor = 'light'
-
+	var utente =props.route.params.user
 	
 	Platform.OS === "ios" ? 
 	BlurTabBar = <BlurView tint={colors.tabbar.mode} intensity={100} style={[StyleSheet.absoluteFill]} /> : 
@@ -50,11 +50,14 @@ const TabBarNavigation = (props) => {
 					tabBarBackground: () => (
 						BlurTabBar
 					),
+					
 				}}
+				
 			>
 				<Tab.Screen
 					name="Home"
 					component={Home}
+					initialParams={{ "user": utente }}
 					options={{
 						tabBarIcon: ({ focused, color }) => (
 							<TabBarIcon
@@ -65,10 +68,12 @@ const TabBarNavigation = (props) => {
 						),
 					}}
 
+
 				/>
 				<Tab.Screen
 					name="Clienti"
 					component={SearchUser}
+					initialParams={{ "user": utente }}
 					options={{
 						tabBarIcon: ({ focused, color }) => (
 							<TabBarIcon
@@ -77,12 +82,13 @@ const TabBarNavigation = (props) => {
 								name={Platform.OS === "ios" ? "ios-person" : "md-person"}
 							/>
 						),
-					}}
 
+					}}
 				/>
 				<Tab.Screen
 					name="Calendario"
 					component={AppointmentList}
+					initialParams={{ "user": utente }}
 					options={{
 						
 						tabBarIcon: ({ focused, color, size }) => (
@@ -92,11 +98,14 @@ const TabBarNavigation = (props) => {
 								name={Platform.OS === "ios" ? "ios-calendar" : "md-calendar"}
 							/>
 						),
+
 					}}
+
 				/>
 				<Tab.Screen
 					name="Cerca"
 					component={SearchProduct}
+					initialParams={{ "user": utente }}
 					options={{
 						tabBarIcon: ({ focused, color }) => (
 							<TabBarIcon
@@ -105,6 +114,7 @@ const TabBarNavigation = (props) => {
 								name="search"
 							/>
 						),
+
 					}}
 				/>
 			</Tab.Navigator>

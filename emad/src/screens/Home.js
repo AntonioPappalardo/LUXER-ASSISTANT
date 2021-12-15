@@ -20,7 +20,9 @@ import ExpoAR from '../ar/ExpoAR';
 const Stack = createStackNavigator();
 
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation , route}) => {
+  
+  var utente=route.params.user
   if (Platform.OS === "ios") {
     var CardStyleEffect = CardStyleInterpolators.forHorizontalIOS;
   } else {
@@ -29,9 +31,9 @@ const Home = ({ navigation }) => {
 
   return (
     <Stack.Navigator initialRouteName="UserHome" screenOptions={{ headerShown: false }} >
-      <Stack.Screen name="AddUser" component={AddUser} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="AddUser" component={AddUser}  options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Catalog" component={Catalog} options={{cardStyleInterpolator: CardStyleEffect}}/>
-      <Stack.Screen name="Category" component={Category} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="Category" component={Category}  options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Cart" component={Cart} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="AddAppointment" component={AddAppointment} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Communication" component={Communication} options={{cardStyleInterpolator: CardStyleEffect}}/>
@@ -39,10 +41,10 @@ const Home = ({ navigation }) => {
       <Stack.Screen name="Settings" component={Settings} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="ProductPage" component={ProductPage} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="ScanQR" component={ScanQR} options={{cardStyleInterpolator: CardStyleEffect}}/>
-      <Stack.Screen name="SearchUser" component={SearchUser} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="SearchUser" component={SearchUser} initialParams={{ "user": utente }} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Store" component={Store} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="StoreList" component={StoreList} options={{cardStyleInterpolator: CardStyleEffect}}/>
-      <Stack.Screen name="UserHome"component={UserHome} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="UserHome"component={UserHome} initialParams={{ "user": utente }} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="ExpoAR" component={ExpoAR}/>
     </Stack.Navigator>
   );
