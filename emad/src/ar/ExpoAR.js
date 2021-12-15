@@ -38,6 +38,10 @@ export default function App({ navigation }) {
             <GLView
                 style={{ flex: 1 }}
                 onContextCreate={async (gl) => {
+                    var ext = gl.getExtension('EXT_blend_minmax');
+                    console.log(gl)
+                    gl.blendEquation(ext.MAX_EXT);
+                    gl.getParameter(gl.BLEND_EQUATION) == ext.MAX_EXT;
                     const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
                     const sceneColor = 0x000000;
                     // Create a WebGLRenderer without a DOM element
@@ -47,7 +51,7 @@ export default function App({ navigation }) {
                     renderer.capabilities.maxVertexUniforms = 52502;
                     const camera = new PerspectiveCamera(68, width / height, 0.1, 1000);
                     camera.position.set(0, 5, 10);
-
+                    
                     const scene = new Scene();
                     scene.fog = new Fog(sceneColor, 1, 10000);
 
@@ -65,11 +69,11 @@ export default function App({ navigation }) {
                     const cube = new IconMesh();
 
                     const model = {
-                        'bag.obj': { uri: 'http://vvfsalerno.hostinggratis.it/public/models/3d-model.obj' },
+                        'bag.3ds': { uri: 'http://vvfsalerno.hostinggratis.it/public/models/3d-model.3ds' },
                         'bag.mtl': { uri: 'http://vvfsalerno.hostinggratis.it/public/models/3d-model.mtl' },
                     };
                     // Load model!
-                    await ExpoTHREE.loadAsync([model['bag.obj'], model['bag.mtl']], null, name => model[name])
+                    await ExpoTHREE.loadAsync({ uri: 'http://vvfsalerno.hostinggratis.it/public/models/3d-model.3ds' }, null, name => model[name])
                         .then((obj) => {
                             // // Update size and position
                             ExpoTHREE.utils.scaleLongestSideToSize(obj, 4);

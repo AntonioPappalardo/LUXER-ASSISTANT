@@ -6,7 +6,7 @@ import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import BackButton from "../../components/BackButton";
-import BottomSheet from "../../components/BottomProduct";
+import BottomSheet from "../../components/BottomProduct2";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -14,9 +14,7 @@ const height = Dimensions.get('window').height;
 const ProductPage = ({ navigation }) => {
 
     const { colors, isDark } = useTheme();
-
-    const tabBarHeight = useBottomTabBarHeight();
-
+   
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
@@ -29,12 +27,22 @@ const ProductPage = ({ navigation }) => {
     } else {
         return (
             <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
-                <BackButton onPress={() => { navigation.goBack() }} inverted/>
-                <SwiperFlatList autoplay autoplayDelay={3} autoplayLoop index={1} showPagination style={{ position: 'absolute', zIndex: -100 }}>
+                <BackButton onPress={() => { navigation.goBack() }} black/>
+                <SwiperFlatList autoplay
+                    autoplayDelay={5}
+                    autoplayLoop
+                    index={0}
+                    showPagination
+                    paginationStyle={{position:'absolute', bottom:'22.5%'}}
+                    paginationStyleItemActive={{backgroundColor: '#EA9F5A'}}
+                    style={{ position: 'absolute', zIndex: -100 }}>
                     <ImageBackground source={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_1.webp' }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
                     <ImageBackground source={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_2.webp' }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
                 </SwiperFlatList>
-            <BottomSheet colors={colors} tabBarHeight={tabBarHeight} navigation={navigation}/>
+            <BottomSheet 
+            /*colors={colors} 
+            tabBarHeight={tabBarHeight} */
+            navigation={navigation}/>
             </View>
         )
     }

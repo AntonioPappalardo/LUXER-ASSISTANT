@@ -36,7 +36,7 @@ const Login = ({ navigation }) => {
   });
 
   const handleSubmitPress = () => {
-    if (!userEmail) {
+    /*if (!userEmail) {
       setErrorText("Il campo Email è obbligatorio!")
       setModalVisible(true)
       return;
@@ -55,7 +55,7 @@ const Login = ({ navigation }) => {
       setErrorText("La password relativa a " + userEmail + " è errata")
       setModalVisible(true)
       return;
-    }
+    }*/
     navigation.navigate('TabBar');
   }
 

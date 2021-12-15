@@ -40,6 +40,7 @@
     "expo-three": "^6.0.1",
     "expo-three-ar": "0.0.0",
     "fluidbottomnavigation-rn": "^0.1.1",
+    "gl-react": "^5.0.0",
     "install": "^0.13.0",
     "lottie-react-native": "^4.0.3",
     "moment": "^2.29.1",

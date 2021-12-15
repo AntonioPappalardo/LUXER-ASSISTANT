@@ -23,11 +23,11 @@ const ScanQR = ({ navigation }) => {
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(true);      
+      setHasPermission(true);
     })();
   }, []);
 
-  const handleBarCodeScanned  = ({ type, data }) => {
+  const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     startVibration();
     stopVibration();
@@ -45,31 +45,32 @@ const ScanQR = ({ navigation }) => {
   const stopVibration = () => {
     Vibration.cancel();
   };
-  
+
   return (
 
     <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
-      <View style={{flexDirection: 'row', marginBottom:20}}>
-          <BackButton onPress={() => { navigation.goBack() }} />
-          <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
-          <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> Scannerizza QR Code</Text>
-          </View>
+      <View style={{ flexDirection: 'row', marginBottom: 20 }}>
+        <BackButton onPress={() => { navigation.goBack() }} />
+        <View style={{ flex: 1, justifyContent: "center", marginRight: '15%', alignItems: "center", paddingTop: '15%' }}>
+          <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}> Scannerizza QR Code</Text>
+        </View>
       </View>
-      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned } flashMode={flash} style={{ height: windowHeight-tabBarHeight, width: windowWidth }}>
-      <View style={styles.marker} />
-      <TouchableOpacity style={colors.buttonTorch}
-            onPress={() => {
-              setFlash(
-                flash === Camera.Constants.FlashMode.off
-                  ? Camera.Constants.FlashMode.torch
-                  : Camera.Constants.FlashMode.off);
-            }}>
-      {flash ? 
-       <Ionicons name='flashlight' size={30} color={colors.iconTorch.on} style={{padding:10}}/>
-       : 
-       <Ionicons name='flashlight' size={30} color={colors.iconTorch.off} style={{padding:10}}/>
-       }
-      </TouchableOpacity>
+      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned} flashMode={flash} style={{ height: windowHeight - tabBarHeight, width: windowWidth }}>
+        <View style={styles.marker} />
+        <TouchableOpacity style={colors.buttonTorch}
+          activeOpacity={0.75}
+          onPress={() => {
+            setFlash(
+              flash === Camera.Constants.FlashMode.off
+                ? Camera.Constants.FlashMode.torch
+                : Camera.Constants.FlashMode.off);
+          }}>
+          {flash ?
+            <Ionicons name='flashlight' size={30} color={colors.iconTorch.on} style={{ padding: 10 }} />
+            :
+            <Ionicons name='flashlight' size={30} color={colors.iconTorch.off} style={{ padding: 10 }} />
+          }
+        </TouchableOpacity>
       </Camera>
 
     </View>
@@ -79,18 +80,18 @@ const ScanQR = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   buttonStyle: {
-      backgroundColor: '#8ad24e',
-      borderRadius:10
+    backgroundColor: '#8ad24e',
+    borderRadius: 10
   },
-  marker:{
-    alignSelf:'center', 
-    marginVertical:'40%',
-    height:250, 
-    width:250, 
-    borderWidth:5, 
-    borderColor:'white', 
-    borderRadius:20, 
-    padding:20
+  marker: {
+    alignSelf: 'center',
+    marginVertical: '40%',
+    height: 250,
+    width: 250,
+    borderWidth: 5,
+    borderColor: 'white',
+    borderRadius: 20,
+    padding: 20
   }
 });
 

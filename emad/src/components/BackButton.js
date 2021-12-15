@@ -16,6 +16,15 @@ const BackButton = (props) => {
         </View>
     )
     }
+    if (props.black) {
+      return (
+        <View>
+          <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{paddingLeft: "5%", paddingTop: "15%",width: '15%'}}>
+            <Icon name={Platform.OS === "ios" ? "ios-chevron-back-outline" : "md-chevron-back-outline"} size={24} color={'#17181A'} style={{marginTop: props.marginTop, marginBottom: props.marginBottom}}/>
+          </TouchableOpacity>
+        </View>
+    )
+    }
     if (props.inverted) {
       return (
         <View>

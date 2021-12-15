@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Picker } from '@react-native-picker/picker';
-import { Text, View, Dimensions, ImageBackground, TouchableOpacity, ScrollView } from "react-native";
+import { Text, View, Dimensions, TouchableOpacity, ScrollView } from "react-native";
 import SlidingUpPanel from "rn-sliding-up-panel";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import ColorFilter from "./ColorFilter";
@@ -8,6 +8,7 @@ import InputButton from "./InputButton";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
+const slidePadding = height*0.15;
 const productColors = ["red", "blue", "green", "purple"];
 var selectedValue = undefined;
 const styles = {
@@ -32,7 +33,7 @@ class ScrollViewInsidePanel extends React.Component {
         return (
             <SlidingUpPanel
                 ref={c => (this._panel = c)}
-                draggableRange={{ top: height * 0.8, bottom: 90 + this.props.tabBarHeight }}
+                draggableRange={{ top: height * 0.8, bottom: slidePadding + this.props.tabBarHeight }}
                 animatedValue={this._draggedValue}
                 showBackdrop={true}>
                 {dragHandler => (
@@ -60,12 +61,12 @@ class ScrollViewInsidePanel extends React.Component {
                                     <View style={{ flexDirection: 'row', paddingTop: 15, width: '50%' }}>
                                     {productColors.map((item, key) => (
                                         <ColorFilter key={key} color={item} />
-
                                     ))}
                                     </View>
                                     <Picker
                                         selectedValue={selectedValue}
-                                        style={{ width: '50%', alignSelf:'center' }}
+                                        style={{ width: '50%', alignSelf:'center',fontFamily: 'SFProDisplayBold', color: this.props.colors.theme.title }}
+                                        dropdownIconColor={this.props.colors.theme.title }
                                         onValueChange={(itemValue, itemIndex) =>
                                             selectedValue = itemValue
                                         }>
