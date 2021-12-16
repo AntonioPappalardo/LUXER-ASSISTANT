@@ -32,7 +32,7 @@ const Home = ({ navigation , route}) => {
   return (
     <Stack.Navigator initialRouteName="UserHome" screenOptions={{ headerShown: false }} >
       <Stack.Screen name="AddUser" component={AddUser}  options={{cardStyleInterpolator: CardStyleEffect}}/>
-      <Stack.Screen name="Catalog" component={Catalog} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="Catalog" component={Catalog}  initialParams={{ "utente": utente }} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Category" component={Category}  options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Cart" component={Cart} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="AddAppointment" component={AddAppointment} options={{cardStyleInterpolator: CardStyleEffect}}/>

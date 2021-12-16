@@ -12,9 +12,11 @@ import SizeFilter from '../../components/SizeFilter';
 import BackButton from '../../components/BackButton';
 import ProductBox from "../../components/ProductBox";
 import Divider from '../../components/Divider';
-
-const Category = ({ navigation }) => {
-
+import { getCategoriaById, getImmagineByProdotto, getProdottiByCategoria } from '../../db/connect';
+const Category = ({ navigation,route }) => {
+    var categoria=getCategoriaById(route.params.categoria);
+    var prodotti= getProdottiByCategoria(categoria.id)
+    
     const { colors, isDark } = useTheme();
     const tabBarHeight = useBottomTabBarHeight() + 10;
     const [prodotto, setProdotto] = React.useState('');
@@ -39,7 +41,7 @@ const Category = ({ navigation }) => {
                 <View style={{flexDirection: 'row', marginBottom:20}}>
                     <BackButton onPress={() => { navigation.goBack() }} />
                     <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
-                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> Borse Donna</Text>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> {categoria.nome}</Text>
                     </View>
                 </View>
                 
@@ -70,18 +72,13 @@ const Category = ({ navigation }) => {
                 <Divider width="100%" />
                 <ScrollView>
                     <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap', alignItems: "center" }}>
-                        <ProductBox name={"Mini borsa Prada Cleo in pelle spazzolata"} price={"1780"} reference={"1273100"}
-                            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_1.webp' }} onPress={() => navigation.navigate('ProductPage')} />
-                        <ProductBox name={"Mini borsa in pelle metallizzata"} price={"1300"} reference={"1231283"}
-                            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p4_1.webp' }} />
-                        <ProductBox name={"Borsa Prada Cleo in raso con applicazioni"} price={"2600"} reference={"1231283"}
-                            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p5_1.webp' }} />
-                        <ProductBox name={"Borsa Prada Triangle a tracolla in pelle"} price={"1650"} reference={"1273100"}
-                            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p6_1.webp' }} />
-                        <ProductBox name={"Borsa Prada Signaux in nappa imbottita"} price={"2200"} reference={"1231283"}
-                            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p7_1.webp' }} />
-                        <ProductBox name={"Borsa shopping in tessuto effetto pelliccia"} price={"1900"} reference={"1231283"}
-                            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p8_1.webp' }} />
+                        {
+                            prodotti.map((prodotto)=>(
+                                <ProductBox key={prodotto.id} name={prodotto.nome} price={prodotto.prezzo} reference={prodotto.ean13}
+                            image={{ uri: getImmagineByProdotto(prodotto.id) }} onPress={() => navigation.navigate('ProductPage',{prodotto:prodotto.id,utente:route.params.utente})} />
+                            ))
+                        }
+                        
                     </View>
                     <View style={{ marginBottom: tabBarHeight + 10 }}></View>
                 </ScrollView>

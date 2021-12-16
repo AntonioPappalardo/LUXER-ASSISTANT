@@ -289,7 +289,6 @@ const CustomerPage = ({ navigation, route }) => {
         'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
         'SFProDisplayRegular': require('../../../assets/fonts/SFProDisplayRegular.otf'),
     });
-    console.log(user)
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {

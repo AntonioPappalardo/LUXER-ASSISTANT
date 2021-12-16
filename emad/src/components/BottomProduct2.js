@@ -8,11 +8,15 @@ import ColorFilter from "./ColorFilter";
 import InputButton from "./InputButton";
 import { useTheme } from "../theme/ThemeProvider";
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-
+import { getStockByUserProduct, getQtaByProduct, getCaratteristicheProduct, getAttributoColoreByProduct,getAttributoTagliaByProduct } from "../db/connect";
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-const BottomProduct2 = ({ navigation }) => {
+const BottomProduct2 = ({ navigation,prodotto,utente }) => {
+
+    var qta=getStockByUserProduct(prodotto.id,utente)
+    var otherqta=getQtaByProduct(prodotto.id,utente)
+    var caratteristiche= getCaratteristicheProduct(prodotto.id)
     function renderTabBar (props)  {
         const inputRange = props.navigationState.routes.map((x, i) => i);
     
@@ -49,7 +53,7 @@ const BottomProduct2 = ({ navigation }) => {
                         In Negozio:
                     </Text>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary, paddingLeft: 10 }}>
-                        0
+                        {qta}
                     </Text>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
@@ -57,12 +61,12 @@ const BottomProduct2 = ({ navigation }) => {
                         In altri store:
                     </Text>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary, paddingLeft: 5 }}>
-                        12
+                        {otherqta}
                     </Text>
                 </View>
             </View>
             <InputButton params={{ marginTop: "5%", width: "80%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }}
-                name="VEDI IN ALTRI STORE" onPress={() => navigation.navigate('StoreList')} />
+                name="VEDI IN ALTRI STORE" onPress={() => navigation.navigate('StoreList',{prodotto:prodotto,utente:utente})} />
             {/*<InputButton params={{ marginTop: "5%", width: "60%", height: 30, fontFamily: 'SFProDisplayMedium', fontSize: 14 }}
                 name="VEDI IN ALTRI STORE" outline onPress={() => navigation.navigate('StoreList')} />*/}
         </View>
@@ -75,9 +79,7 @@ const BottomProduct2 = ({ navigation }) => {
                 </Text>
                 <View style={{ width: '90%',flexDirection: 'column', paddingTop: 5 , alignSelf: 'center'}}>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary, textAlign: 'justify' }}>
-                        Una perfetta sintesi di classicismo e futurismo, la borsa Prada Cleo reinterpreta un design iconico proveniente dagli archivi del marchio.
-                        Linee curve ed essenziali, enfatizzate dalla particolare costruzione inclinata sul fondo e ai lati, donano a questo modello con pattina
-                        un'allure sofisticata, mentre il manico con prolunga rende l'accessorio funzionale e permette di indossarlo sia a spalla che a mano.
+                       {prodotto.descrizione}
                     </Text>
                 </View>
             </View>
@@ -91,10 +93,7 @@ const BottomProduct2 = ({ navigation }) => {
                 </Text>
                 <View style={{ flexDirection: 'column', paddingTop: 5 }}>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
-                        · Pelle con interno in Re-Nylon siglato{'\n'}
-                        · Altezza: 17cm{'\n'}
-                        · Lunghezza: 6cm{'\n'}
-                        · Larghezza: 22cm
+                        {caratteristiche}
                     </Text>
                 </View>
             </View>
@@ -113,7 +112,8 @@ const BottomProduct2 = ({ navigation }) => {
     const animatedValue1 = new Animated.Value(1);
     const slidePadding = height * 0.15;
 
-    const productColors = ["red", "blue", "green", "purple"];
+    const productColors = getAttributoColoreByProduct(prodotto.id);
+    const taglia= getAttributoTagliaByProduct(prodotto.id)
     const { colors, isDark } = useTheme();
     const tabBarHeight = useBottomTabBarHeight();
     const elementRef = useRef();
@@ -140,10 +140,10 @@ const BottomProduct2 = ({ navigation }) => {
                 <View style={[styles.container, { backgroundColor: colors.theme.background }]}>
                     <View style={styles.dragHandler} {...dragHandler}>
                         <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayBold', color: colors.theme.subtitle }}>
-                            1780,00 €
+                            {prodotto.prezzo}
                         </Text>
                         <Text style={{ fontSize: 18, fontFamily: 'SFProDisplayBold', color: colors.theme.title, paddingTop: 5 }}>
-                            Mini borsa Prada Cleo{'\n'}in pelle spazzolata
+                           {prodotto.nome}
                         </Text>
                     </View>
                     <TouchableOpacity activeOpacity={0.5} style={{
@@ -170,11 +170,9 @@ const BottomProduct2 = ({ navigation }) => {
                                         setSelect(itemValue)
                                     }
                                     mode="dropdown">
-                                    <Picker.Item label="XS" value="1" />
-                                    <Picker.Item label="S" value="2" />
-                                    <Picker.Item label="M" value="3" />
-                                    <Picker.Item label="L" value="4" />
-                                    <Picker.Item label="XL" value="5" />
+                                        {taglia.map(item=>{
+                                            return  <Picker.Item key={item.id} label={item.valore} value={item.valore} />
+                                        })}
                                 </Picker>
                             </View>
                             <InputButton params={{ marginTop: "5%", width: "100%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }} name="VISUALIZZA IN AR" onPress={() => { navigation.navigate('ExpoAR') }} />

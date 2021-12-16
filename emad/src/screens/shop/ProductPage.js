@@ -7,12 +7,14 @@ import { useFonts } from 'expo-font';
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import BackButton from "../../components/BackButton";
 import BottomSheet from "../../components/BottomProduct2";
+import { getImmaginiByProdotto, getProdottoById } from "../../db/connect";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-const ProductPage = ({ navigation }) => {
-
+const ProductPage = ({ navigation,route }) => {
+    var prodotto=getProdottoById(route.params.prodotto);
+    var Immagini=getImmaginiByProdotto(route.params.prodotto)
     const { colors, isDark } = useTheme();
    
     let [fontsLoaded] = useFonts({
@@ -36,13 +38,16 @@ const ProductPage = ({ navigation }) => {
                     paginationStyle={{position:'absolute', bottom:'22.5%'}}
                     paginationStyleItemActive={{backgroundColor: '#EA9F5A'}}
                     style={{ position: 'absolute', zIndex: -100 }}>
-                    <ImageBackground source={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_1.webp' }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
-                    <ImageBackground source={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_2.webp' }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
+                    <ImageBackground source={{ uri: Immagini[0].remote_path }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
+                    <ImageBackground source={{ uri: Immagini[1].remote_path}} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
                 </SwiperFlatList>
             <BottomSheet 
             /*colors={colors} 
             tabBarHeight={tabBarHeight} */
-            navigation={navigation}/>
+            navigation={navigation}
+            prodotto={prodotto}
+            utente={route.params.utente}
+            />
             </View>
         )
     }
