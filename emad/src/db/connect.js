@@ -34,8 +34,6 @@ export function connect(){
         stock = response.data.stock;
         utente = response.data.utente;
     }) 
-    
-
 }
 
     export function getAppuntamento(){

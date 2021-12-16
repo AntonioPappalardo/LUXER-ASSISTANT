@@ -12,10 +12,9 @@ import { getCliente } from "../../db/connect";
 import { getNextAppuntamentoByCliente } from '../../db/connect';
 
 const SearchUser = ({ navigation, route}) => {
-    const users =getCliente();
+    const users = getCliente();
     var utente= route.params.user
     const {colors, isDark} = useTheme();
-
     const tabBarHeight = useBottomTabBarHeight();
     const [search, onChangeText] = React.useState('');
     const [user, onSearch] = React.useState([]);

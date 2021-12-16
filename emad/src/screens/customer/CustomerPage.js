@@ -10,15 +10,12 @@ import { BarChart, LineChart } from 'react-native-chart-kit';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Svg, Text as TextSVG, Rect } from 'react-native-svg';
+import { getCliente } from "../../db/connect";
+import moment from 'moment';
+import 'moment/locale/it';
 
+moment.locale('it')
 
-const users = [
-    { "name": "Maria Rossi", "id": "001", "next_appointment": "", "reserved": "true", "signin": "27/07/2018" },
-    { "name": "Antonella Rossi", "id": "002", "next_appointment": "", "reserved": "true", "signin": "27/07/2018" },
-    { "name": "Margherita Rosi", "id": "003", "next_appointment": "", "reserved": "true", "signin": "27/07/2018" },
-    { "name": "Maria Bianchi", "id": "004", "next_appointment": "", "reserved": "true", "signin": "27/07/2018" },
-    { "name": "Michela Gargiulo", "id": "005", "next_appointment": "29 Novembre 2021 15:00-16:00", "reserved": "true", "signin": "27/07/2018" },
-]
 const acquisti = [
     { "id": "00001", "cliente": "001", "data": "2021/07/24", "saldo": 450.50 },
     { "id": "00002", "cliente": "002", "data": "2021/07/25", "saldo": 450.50 },
@@ -41,8 +38,8 @@ const acquisti = [
 
 const CustomerPage = ({ navigation, route }) => {
     let [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0, visible: false, value: 0 })
+    const users = getCliente();
     const layout = useWindowDimensions();
-
     const FirstRoute = () => (
         <View style={{ justifyContent: 'center' }}>
             <LineChart
@@ -292,7 +289,7 @@ const CustomerPage = ({ navigation, route }) => {
         'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
         'SFProDisplayRegular': require('../../../assets/fonts/SFProDisplayRegular.otf'),
     });
-
+    console.log(user)
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
@@ -307,12 +304,12 @@ const CustomerPage = ({ navigation, route }) => {
                 <View style={{ flexDirection: "column", width: "100%", alignItems: "center", marginTop: '10%', marginBottom: '5%' }}>
                     <View style={{ flexDirection: "row", width: "80%" }}>
                         <View style={{ justifyContent: "flex-start", height: 120, width: 120, shadowOffset: { width: 1, height: 2 },shadowOpacity: 0.25,shadowRadius: 5, elevation: 5, borderRadius: 5 }}>
-                            <Image source={require('../../../assets/img/img.jpg')} style={{ height: 120, width: 120, borderRadius: 5, borderWidth: 5, borderColor: "white"}} />
+                            <Image source={{uri:user.avatar}} style={{ height: 120, width: 120, borderRadius: 5, borderWidth: 5, borderColor: "white"}} />
                         </View>
                         <View style={{ flexDirection: "column", paddingLeft: 15, alignItems: "flex-start" }}>
-                            <Text style={{ color: colors.theme.title, fontSize: 24, fontFamily: "SFProDisplayBold" }}>{user.name}</Text>
+                            <Text style={{ color: colors.theme.title, fontSize: 24, fontFamily: "SFProDisplayBold" }}>{user.nome} {user.cognome}</Text>
 
-                            <Text style={{ color: colors.theme.subtitle, fontSize: 12, fontFamily: "SFProDisplayRegular", marginBottom: 2 }}>Cliente dal {user.signin}</Text>
+                            <Text style={{ color: colors.theme.subtitle, fontSize: 12, fontFamily: "SFProDisplayRegular", marginBottom: 2 }}>Cliente dal {moment(new Date(user.data_registrazione)).format('DD/MM/YYYY')}</Text>
 
                             <Text style={{ color: colors.theme.title, fontSize: 10, fontFamily: "SFProDisplayMedium" }}>Tasso di fedeltà</Text>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
