@@ -116,7 +116,7 @@ const AppointmentList = ({ navigation }) => {
                 />
                 
                 <Divider width="100%" />
-                <ScrollView>
+                <ScrollView overScrollMode="never">
                     {users.map((item) => (
                         <View key={item.id} style={{ height: 75, width: "90%", flexDirection: "row", alignSelf: "center", marginTop: 10, marginBottom: 5, }}>
                             <View style={{ width: '25%' }}>

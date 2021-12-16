@@ -42,7 +42,7 @@ const AddUser = ({navigation}) => {
             <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> Nuovo Cliente</Text>
             </View>
         </View>
-      <ScrollView style={{height: "100%"}}>
+      <ScrollView overScrollMode="never" style={{height: "100%"}}>
         <View style={styles.form}>
           <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
             name="Nome" icon="" rotation="0deg" value={nome} onChangeText={setNome} />

@@ -41,7 +41,7 @@ const SearchProduct = ({ navigation }) => {
             </TouchableOpacity>}/>
         </View>
         <Divider width="100%" />
-        <ScrollView>
+        <ScrollView overScrollMode="never">
         <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap', alignItems: "center" }}>
         <ProductBox name={"Mini borsa Prada Cleo in pelle spazzolata"} price={"1780"} reference={"1273100"}
             image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_1.webp' }}/>

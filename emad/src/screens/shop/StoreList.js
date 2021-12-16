@@ -41,7 +41,7 @@ const StoreList = ({ navigation }) => {
                     <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, color: colors.theme.title, alignSelf:'center'}}>Store Network Availability</Text>
                     </View>
                 </View>
-                <ScrollView style={{marginTop: 25}}>
+                <ScrollView overScrollMode="never" style={{marginTop: 25}}>
                     {stores.map((item) => (
                         <View key={item.id} style={{height: 75, width: "90%",flexDirection: "row", alignSelf: "center",marginTop: 5, marginBottom: 5, }}>
                                 <View style={{width: '35%'}}>

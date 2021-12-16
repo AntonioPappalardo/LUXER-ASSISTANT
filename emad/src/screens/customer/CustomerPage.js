@@ -335,7 +335,7 @@ const CustomerPage = ({ navigation, route }) => {
                     </View>
                 </View>
 
-                <ScrollView style={{ marginBottom: tabBarHeight, width: '100%' }} contentContainerStyle={{ flexGrow: 1 }}>
+                <ScrollView overScrollMode="never" style={{ marginBottom: tabBarHeight, width: '100%' }} contentContainerStyle={{ flexGrow: 1 }}>
 
                     <Divider width={"100%"} />
                     <MenuItem title={'Nuovo Appuntamento'} onPress={() => navigation.navigate('AddAppointment')} />

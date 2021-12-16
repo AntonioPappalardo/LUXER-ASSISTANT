@@ -40,7 +40,7 @@ const Home = ({ navigation , route}) => {
       <Stack.Screen name="CustomerPage" component={CustomerPage} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Settings" component={Settings} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="ProductPage" component={ProductPage} options={{cardStyleInterpolator: CardStyleEffect}}/>
-      <Stack.Screen name="ScanQR" component={ScanQR} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="ScanQR" component={ScanQR} initialParams={{ "utente": utente }} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="SearchUser" component={SearchUser} initialParams={{ "user": utente }} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Store" component={Store} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="StoreList" component={StoreList} options={{cardStyleInterpolator: CardStyleEffect}}/>

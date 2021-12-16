@@ -47,7 +47,7 @@ const Impostazioni = ({ navigation }) => {
                         <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}>Impostazioni</Text>
                     </View>
                 </View>
-                <ScrollView style={{ marginBottom: tabBarHeight, marginTop: "5%" }}>
+                <ScrollView overScrollMode="never" style={{ marginBottom: tabBarHeight, marginTop: "5%" }}>
                     <SwitchItem value={isDark} onValueChange={toggleScheme} title={'Tema Scuro'} />
                     <Picker
                         selectedValue={selectedLanguage}

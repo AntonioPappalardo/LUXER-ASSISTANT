@@ -5,18 +5,20 @@ import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";
 import { Camera } from 'expo-camera';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import { getProdottoByReference } from "../../db/connect";
 //Duration of the vibration
 const DURATION = 3000;
 
 const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('window').height;
 
-const ScanQR = ({ navigation }) => {
+const ScanQR = ({ navigation,route }) => {
+  
   const { colors, isDark } = useTheme();
   const tabBarHeight = useBottomTabBarHeight();
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
+  
   const [text, setText] = useState("Not Scanned");
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
 
@@ -28,19 +30,23 @@ const ScanQR = ({ navigation }) => {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
+    
     setScanned(true);
     startVibration();
     stopVibration();
     setText(data);
     console.log(`Type: ${type}\nData: ${data}`);
-    navigation.goBack();
+    var prodotto = getProdottoByReference(data)
+    navigation.replace('ProductPage',{prodotto:prodotto.id,utente:route.params.utente})
   }
-
+  const setScannedFalse = () => {
+    setScanned(false);
+  }
   //To start the vibration for the defined Duration
   const startVibration = () => {
     Vibration.vibrate(DURATION);
   };
-
+console.log(scanned)
   //To Stop the vibration
   const stopVibration = () => {
     Vibration.cancel();
@@ -55,7 +61,7 @@ const ScanQR = ({ navigation }) => {
           <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}> Scannerizza QR Code</Text>
         </View>
       </View>
-      <Camera onBarCodeScanned={scanned ? undefined : handleBarCodeScanned} flashMode={flash} style={{ height: windowHeight - tabBarHeight, width: windowWidth }}>
+      <Camera onBarCodeScanned={scanned ? setScannedFalse : handleBarCodeScanned} flashMode={flash} style={{ height: windowHeight - tabBarHeight, width: windowWidth }}>
         <View style={styles.marker} />
         <TouchableOpacity style={colors.buttonTorch}
           activeOpacity={0.75}

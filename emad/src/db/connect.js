@@ -48,7 +48,6 @@ export function connect(){
     export function getCategoria(){
         return categoria;
     }
-    
     export function getCliente(){
         return cliente;
     }
@@ -123,7 +122,12 @@ export function connect(){
         numprodotti=numprodotti+ (prodotto.filter(prodotto=>prodotto.id_categoria===categ)).length
         return numprodotti
     }
-
+    /*
+    Funzione che ritorna le categoria basandoci sul parent
+    */
+    export function getCategoriaByParent(parent){
+        return categoria.find(categoria=>(categoria.parent_category===parent))
+    }
     /*
     Funzione che recupera la categoria tramite id
     */
@@ -162,6 +166,9 @@ export function connect(){
     }
     export function getProdottoById(id){
         return prodotto.find(pro=> pro.id==id)
+    }
+    export function getProdottoByReference(ref){
+        return prodotto.find(pro=> pro.ean13==ref)
     }
     export function getImmaginiByProdotto(id){
         return Immagine.filter(im=> im.id_prodotto===id)

@@ -123,7 +123,7 @@ const AddAppointment = ({ navigation }) => {
                 />
 
                 <Divider width="100%" />
-                <ScrollView style={{ height: "100%" }}>
+                <ScrollView overScrollMode="never" style={{ height: "100%" }}>
                     <View style={{flex: 1, width:'75%', alignSelf:'center', justifyContent:'center', alignItems:'center'}}>
                         <View style={styles.section}>
                             <Checkbox

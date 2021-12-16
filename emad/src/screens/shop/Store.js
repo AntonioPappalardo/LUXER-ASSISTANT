@@ -87,7 +87,7 @@ const Store = ({ navigation, route }) => {
                     <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>{store.name}</Text>
                     </View>
                 </View>
-                <ScrollView>
+                <ScrollView overScrollMode="never">
                     <View style={{ maxWidth: width, maxHeight: 250, marginTop: '5%' }}>
                         <Image source={store.img} style={{ maxWidth: width, minHeight:220, maxHeight: 240 }} />
                     </View>

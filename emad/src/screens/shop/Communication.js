@@ -21,7 +21,7 @@ const Communication = ({ navigation }) => {
           <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Contatta</Text>
           </View>
       </View>
-      <ScrollView style={{ marginTop: "5%", width: "75%", alignSelf: "center" }}>
+      <ScrollView overScrollMode="never" style={{ marginTop: "5%", width: "75%", alignSelf: "center" }}>
 
         <MessageBox value={Message} onChangeText={onChangeText} theme={colors} icon="mail-open-outline"/>
 

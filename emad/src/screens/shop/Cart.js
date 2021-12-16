@@ -34,7 +34,7 @@ const Cart = ({ navigation }) => {
                     <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Carrello</Text>
                     </View>
                 </View> 
-                <ScrollView>
+                <ScrollView overScrollMode="never">
                     <CartItem name="Prodotto 1" reference="10231023" specifics={"Specifiche"} price={1780} image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_1.webp' }} min={0} max={2} />
                     <CartItem name="Prodotto 2" reference="10231023" specifics={"Specifiche"} price={1650} image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p10_3.webp' }} min={0} max={2} />
 

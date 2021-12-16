@@ -40,7 +40,7 @@ const SearchUser = ({ navigation, route}) => {
                         name="Nome Cliente o Codice" icon="search" rotation="0deg" value={search} onChangeText={cerca => ook(cerca)} secure='false' left='true' />
                 </View>
                 <Divider width="100%" />
-                <ScrollView>
+                <ScrollView overScrollMode="never">
                     {user.map((item) => (
                         <View key={item.id} style={{height: 75, width: "90%",flexDirection: "row", alignSelf: "center",marginTop: 5, marginBottom: 5, }}>
                                 <View style={{width: '25%'}}>

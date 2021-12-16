@@ -20,7 +20,7 @@ const Category = ({ navigation,route }) => {
     const { colors, isDark } = useTheme();
     const tabBarHeight = useBottomTabBarHeight() + 10;
     const [prodotto, setProdotto] = React.useState('');
-    const productColors = ["red", "blue", "green", "purple"];
+    const productColors = ["000000", "ffffff", "green", "purple"];
     const size = ["XS", "S", "M", "L"];
 
     const [show, setShow] = React.useState(false)
@@ -70,7 +70,7 @@ const Category = ({ navigation,route }) => {
                 </View>
                 {show ? <View><FilterColor colors={productColors} /><FilterSize size={size} /><FilterPrice /></View> : null}
                 <Divider width="100%" />
-                <ScrollView>
+                <ScrollView overScrollMode="never">
                     <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap', alignItems: "center" }}>
                         {
                             prodotti.map((prodotto)=>(
