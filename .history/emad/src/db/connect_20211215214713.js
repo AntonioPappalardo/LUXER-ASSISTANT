@@ -1,6 +1,4 @@
 import axios from 'axios'
-import sha512 from 'js-sha512'
-
     let appuntamento = [];
     let attributi = [];
     let caratteristiche = [];
@@ -42,7 +40,6 @@ export function connect(){
         return appuntamento;
     }
     export function getUtenteByLogin(email,password){
-        password = sha512(password);
         var a=utente.find(user=>(user.email===email && user.password===password))
         if (a!==undefined)return a.id
         return undefined

@@ -12,7 +12,6 @@ import {
     PerspectiveCamera,
     PointLight,
     Scene,
-    GridHelper,
     SpotLight,
 } from 'three';
 import BackButton from '../components/BackButton';
@@ -39,10 +38,10 @@ export default function App({ navigation }) {
             <GLView
                 style={{ flex: 1 }}
                 onContextCreate={async (gl) => {
-                    /*var ext = gl.getExtension('EXT_blend_minmax');
+                    var ext = gl.getExtension('EXT_blend_minmax');
                     console.log(gl)
                     gl.blendEquation(ext.MAX_EXT);
-                    gl.getParameter(gl.BLEND_EQUATION) == ext.MAX_EXT;*/
+                    gl.getParameter(gl.BLEND_EQUATION) == ext.MAX_EXT;
                     const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
                     const sceneColor = 0x000000;
                     // Create a WebGLRenderer without a DOM element
@@ -82,7 +81,6 @@ export default function App({ navigation }) {
                             // Add the mesh to the scene
                             scene.add(obj);
                             camera.lookAt(obj.position);
-                            scene.add(new GridHelper(50,50,0xFFFFFF,0x555555))
                         }).catch((error) => {
                             console.log(error);
                         });
@@ -90,7 +88,7 @@ export default function App({ navigation }) {
                     console.log(scene.children.length)
 
                     function update() {
-                        if (scene.children.length == 5)
+                        if (scene.children.length == 4)
                             scene.children[3].rotateY(0.03);
                     }
 
