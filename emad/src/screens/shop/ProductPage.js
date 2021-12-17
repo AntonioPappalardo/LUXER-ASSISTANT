@@ -7,7 +7,7 @@ import { useFonts } from 'expo-font';
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import BackButton from "../../components/BackButton";
 import BottomSheet from "../../components/BottomProduct2";
-import { getImmaginiByProdotto, getProdottoById } from "../../db/connect";
+import { getImmaginiByProdotto, getProdottoById,getAttributoColoreByProduct } from "../../db/connect";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -15,6 +15,10 @@ const height = Dimensions.get('window').height;
 const ProductPage = ({ navigation,route }) => {
     var prodotto=getProdottoById(route.params.prodotto);
     var Immagini=getImmaginiByProdotto(route.params.prodotto)
+    var colori = getAttributoColoreByProduct(prodotto.id)
+   
+    var imagesList = Array.from(Array(2*colori.length).keys());
+
     const { colors, isDark } = useTheme();
    
     let [fontsLoaded] = useFonts({
@@ -38,8 +42,9 @@ const ProductPage = ({ navigation,route }) => {
                     paginationStyle={{position:'absolute', bottom:'22.5%'}}
                     paginationStyleItemActive={{backgroundColor: '#EA9F5A'}}
                     style={{ position: 'absolute', zIndex: -100 }}>
-                    <ImageBackground source={{ uri: Immagini[0].remote_path }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
-                    <ImageBackground source={{ uri: Immagini[1].remote_path}} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
+                    {imagesList.map((object, i) => 
+                        <ImageBackground key={i} source={{ uri: Immagini[i].remote_path }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
+                    )}
                 </SwiperFlatList>
             <BottomSheet 
             /*colors={colors} 
