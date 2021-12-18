@@ -13,8 +13,10 @@ module.exports = (async () => {
                 },
             }),
         },
+        
+
         resolver: {
-            assetExts: [...assetExts, 'obj','mtl'],
+            assetExts: [...assetExts,'obj', 'mtl', 'db', 'mp3', 'ttf', 'obj', 'png', 'jpg', 'gltf', 'dae', 'bin','glb'],
         },
     }
 })()
