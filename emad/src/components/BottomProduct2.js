@@ -161,7 +161,10 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
                                         <ColorFilter key={key} color={item} />
                                     ))}
                                 </View>
-
+                                {taglia.length == 0 ?
+                                
+                                null
+                                : 
                                 <Picker
                                     selectedValue={selected}
                                     style={{ width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center' }}
@@ -174,6 +177,8 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
                                             return  <Picker.Item key={item.id} label={item.valore} value={item.valore} />
                                         })}
                                 </Picker>
+                                
+                                }
                             </View>
                             <InputButton params={{ marginTop: "5%", width: "100%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }} name="VISUALIZZA IN AR" onPress={() => { navigation.navigate('ExpoAR') }} />
                         </View>

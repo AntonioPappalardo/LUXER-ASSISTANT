@@ -15,10 +15,7 @@ const height = Dimensions.get('window').height;
 const ProductPage = ({ navigation,route }) => {
     var prodotto=getProdottoById(route.params.prodotto);
     var Immagini=getImmaginiByProdotto(route.params.prodotto)
-    var colori = getAttributoColoreByProduct(prodotto.id)
    
-    var imagesList = Array.from(Array(2*colori.length).keys());
-
     const { colors, isDark } = useTheme();
    
     let [fontsLoaded] = useFonts({
@@ -42,8 +39,8 @@ const ProductPage = ({ navigation,route }) => {
                     paginationStyle={{position:'absolute', bottom:'22.5%'}}
                     paginationStyleItemActive={{backgroundColor: '#EA9F5A'}}
                     style={{ position: 'absolute', zIndex: -100 }}>
-                    {imagesList.map((object, i) => 
-                        <ImageBackground key={i} source={{ uri: Immagini[i].remote_path }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
+                    {Immagini.map((item) => 
+                        <ImageBackground key={item.id} source={{ uri: item.remote_path }} resizeMode="cover" style={[styles.child, { backgroundColor: colors.theme.background }]} />
                     )}
                 </SwiperFlatList>
             <BottomSheet 
