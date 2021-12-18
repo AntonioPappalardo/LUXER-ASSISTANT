@@ -55,7 +55,7 @@ export default function App() {
 
     setCamera(camera);
     const asset = Asset.fromModule(
-      require("./assets/weapons/v_knife_karam/v_knife_karam.gltf")
+      require("./assets/weapons/v_knife_karam/p1_1.gltf")
     );
     await asset.downloadAsync();
     const scene = new Scene();
