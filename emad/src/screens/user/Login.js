@@ -11,7 +11,7 @@ import { useTheme } from "../../theme/ThemeProvider";
 import Icon from 'react-native-vector-icons/Ionicons';
 import { StatusBar } from 'expo-status-bar';
 import Modal from 'react-native-modal'
-import { getUtente,getUtenteByLogin } from "../../db/connect";
+import { getUtente,getUtenteByLogin } from "../../back/connect";
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('screen').height;
 

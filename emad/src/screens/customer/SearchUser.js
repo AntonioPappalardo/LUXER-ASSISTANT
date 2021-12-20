@@ -8,8 +8,8 @@ import InputText from "../../components/InputText";
 import { useTheme } from "../../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import { getCliente } from "../../db/connect";
-import { getNextAppuntamentoByCliente } from '../../db/connect';
+import { getCliente } from "../../back/connect";
+import { getNextAppuntamentoByCliente } from '../../back/connect';
 
 const SearchUser = ({ navigation, route}) => {
     const users = getCliente();

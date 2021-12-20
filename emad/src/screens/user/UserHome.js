@@ -8,13 +8,15 @@ import Divider from '../../components/Divider';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
-import { getUtenteById } from '../../db/connect';
+import { getUtenteById } from '../../back/connect';
 import { useLanguage } from "../../localization/Localization";
+import { createCart } from '../../back/cart';
 
 const colorScheme = Appearance.getColorScheme();
 
 
 const UserHome = ({ navigation, route }) => {
+  createCart()
   var utente = getUtenteById(route.params.user)
   const {colors, isDark} = useTheme();
   const [lang, setLanguage] = useLanguage();

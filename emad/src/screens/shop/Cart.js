@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
@@ -9,14 +9,32 @@ import CartItem from "../../components/CartItem";
 import InputButton from "../../components/InputButton";
 import InputText from "../../components/InputText";
 import Divider from "../../components/Divider";
+import { addProduct, decreaseProduct, getNumOfArticle, getTotale, increaseProduct, removeProduct } from "../../back/cart";
+import { getImmagineByProdotto } from "../../back/connect";
 
-const Cart = ({ navigation }) => {
-
+const Cart = ({ navigation,route }) => {
+    const [cart,setCart]=useState(addProduct(route.params.prodotto))
     const { colors, isDark } = useTheme();
-
+    const [totale,setTotale]=useState(getTotale())
+    const [numOfArticle,setNum]=useState(getNumOfArticle())
     const tabBarHeight = useBottomTabBarHeight();
     const [userEmail, setUserEmail] = useState('');
-
+    
+    const OnMin=useCallback((id)=>{
+        setCart(removeProduct(id))
+        setTotale(getTotale());
+        setNum(getNumOfArticle());
+    })
+    const OnIncrementProduct=useCallback((id)=>{
+        setCart(increaseProduct(id))
+        setTotale(getTotale());
+        setNum(getNumOfArticle());
+    })
+    const OnDecrementProduct=useCallback((id)=>{
+        setCart(decreaseProduct(id))
+        setTotale(getTotale());
+        setNum(getNumOfArticle());
+    })
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
@@ -26,6 +44,9 @@ const Cart = ({ navigation }) => {
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
+
+
+        
         return (
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
                 <View style={{flexDirection: 'row',marginBottom:20}}>
@@ -35,8 +56,9 @@ const Cart = ({ navigation }) => {
                     </View>
                 </View> 
                 <ScrollView overScrollMode="never">
-                    <CartItem name="Prodotto 1" reference="10231023" specifics={"Specifiche"} price={1780} image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_1.webp' }} min={0} max={2} />
-                    <CartItem name="Prodotto 2" reference="10231023" specifics={"Specifiche"} price={1650} image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p10_3.webp' }} min={0} max={2} />
+                    {cart.map((prod)=>(
+                        <CartItem key={prod.prodotto.id} OnIncrementProduct={OnIncrementProduct} OnMin={OnMin} OnDecrementProduct={OnDecrementProduct} value={prod.qta-1} id={prod.prodotto.id} name={prod.prodotto.nome} reference={prod.prodotto.ean13} specifics={"Specifiche"} price={prod.prodotto.prezzo} image={{ uri: getImmagineByProdotto(prod.prodotto.id) }} min={0} max={2} />
+                    ))}
 
                     <View style={{ width: '75%', alignSelf: 'center', marginTop: '5%', marginBottom:'5%' }}>
                         <View style={{ flexDirection: 'row', width: '100%' }}>
@@ -47,7 +69,7 @@ const Cart = ({ navigation }) => {
                             </View>
                             <View style={{ width: '50%' }}>
                                 <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary, textAlign: 'right' }}>
-                                    2
+                                    {numOfArticle}
                                 </Text>
                             </View>
                         </View>
@@ -60,7 +82,7 @@ const Cart = ({ navigation }) => {
                             </View>
                             <View style={{ width: '50%' }}>
                                 <Text style={{ fontSize: 20, fontFamily: 'SFProDisplayMedium', fontWeight:"bold", color: colors.theme.primary, textAlign: 'right' }}>
-                                € 3430,00
+                                € {totale}
                                 </Text>
                             </View>
                         </View>

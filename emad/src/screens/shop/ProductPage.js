@@ -7,7 +7,7 @@ import { useFonts } from 'expo-font';
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import BackButton from "../../components/BackButton";
 import BottomSheet from "../../components/BottomProduct2";
-import { getImmaginiByProdotto, getProdottoById,getAttributoColoreByProduct } from "../../db/connect";
+import { getImmaginiByProdotto, getProdottoById,getAttributoColoreByProduct } from "../../back/connect";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;

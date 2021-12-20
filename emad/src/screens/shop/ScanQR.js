@@ -5,7 +5,7 @@ import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";
 import { Camera } from 'expo-camera';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { getProdottoByReference } from "../../db/connect";
+import { getProdottoByReference } from "../../back/connect";
 //Duration of the vibration
 const DURATION = 3000;
 

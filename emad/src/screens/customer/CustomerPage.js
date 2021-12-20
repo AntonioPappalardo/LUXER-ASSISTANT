@@ -10,7 +10,7 @@ import { BarChart, LineChart } from 'react-native-chart-kit';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Svg, Text as TextSVG, Rect } from 'react-native-svg';
-import { getCliente } from "../../db/connect";
+import { getCliente } from "../../back/connect";
 import moment from 'moment';
 import 'moment/locale/it';
 

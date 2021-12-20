@@ -8,7 +8,7 @@ import ColorFilter from "./ColorFilter";
 import InputButton from "./InputButton";
 import { useTheme } from "../theme/ThemeProvider";
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import { getStockByUserProduct, getQtaByProduct, getCaratteristicheProduct, getAttributoColoreByProduct,getAttributoTagliaByProduct } from "../db/connect";
+import { getStockByUserProduct, getQtaByProduct, getCaratteristicheProduct, getAttributoColoreByProduct,getAttributoTagliaByProduct } from "../back/connect";
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
@@ -56,6 +56,7 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
                         {qta}
                     </Text>
                 </View>
+                { qta==0 ?(
                 <View style={{ flexDirection: 'row' }}>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
                         In altri store:
@@ -64,12 +65,17 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
                         {otherqta}
                     </Text>
                 </View>
+                ):null
+                }
             </View>
+            {qta==0?(
             <InputButton params={{ marginTop: "5%", width: "80%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }}
                 name="VEDI IN ALTRI STORE" onPress={() => navigation.navigate('StoreList',{prodotto:prodotto,utente:utente})} />
+            ):null}
             {/*<InputButton params={{ marginTop: "5%", width: "60%", height: 30, fontFamily: 'SFProDisplayMedium', fontSize: 14 }}
                 name="VEDI IN ALTRI STORE" outline onPress={() => navigation.navigate('StoreList')} />*/}
         </View>
+        
     );
     const SecondRoute= () => (
         <ScrollView style={{ width: '100%', alignSelf: 'center' }}>
@@ -146,12 +152,14 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
                            {prodotto.nome}
                         </Text>
                     </View>
+                   {qta!=0?(
                     <TouchableOpacity activeOpacity={0.5} style={{
                         height: 45, width: 45, borderRadius: 22.5, backgroundColor: '#EA9F5A', position: 'absolute', top: '4%', right: '10%',
                         justifyContent: 'center', alignItems: 'center', alignContent: 'center', shadowOffset: { width: 1, height: 2 }, shadowOpacity: 0.25, shadowRadius: 5, elevation: 5,
-                    }} onPress={() => navigation.navigate('Cart')}>
+                    }} onPress={() => navigation.navigate('Cart',{prodotto:prodotto})}>
                         <Icon name="cart-plus" size={24} color={'white'} style={{ marginRight: 2 }} />
                     </TouchableOpacity>
+                   ):null}
                     <ScrollView style={{ width: '100%', backgroundColor: colors.theme.background, marginBottom: tabBarHeight }}>
                         
                         <View style={{width: '75%', alignSelf: 'center' }}>

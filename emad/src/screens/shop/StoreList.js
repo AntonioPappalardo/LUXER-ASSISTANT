@@ -6,7 +6,7 @@ import BackButton from "../../components/BackButton";
 import { useTheme } from "../../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import { getOtherStores, getstockByProdMag } from "../../db/connect";
+import { getOtherStores, getstockByProdMag } from "../../back/connect";
 
 
 const StoreList = ({ navigation,route }) => {

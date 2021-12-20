@@ -8,7 +8,7 @@ import SearchProduct from '../screens/shop/SearchProduct';
 import SearchUser from '../screens/customer/SearchUser';
 import AppointmentList from '../screens/customer/AppointmentList';
 import { useTheme } from "../theme/ThemeProvider";
-import { getUtenteById } from '../db/connect';
+import { getUtenteById } from '../back/connect';
 const Tab = createBottomTabNavigator()
 const TabBarIcon = props => {
 	return (

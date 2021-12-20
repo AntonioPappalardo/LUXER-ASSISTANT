@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { View, Dimensions, Image, Text } from "react-native";
 import InputSpinner from "react-native-input-spinner";
 import { useTheme } from "../theme/ThemeProvider";
 import Divider from "./Divider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
+import {  removeProduct } from "../back/cart";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const CartItem = (props) => {
-
     const { colors, isDark } = useTheme();
-
+    
+    
+    var nome=props.name.substr(0,20)+"\n"+props.name.substr(20);
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
@@ -26,8 +28,8 @@ const CartItem = (props) => {
             <View style={{ marginTop: '5%' }}>
                 <View style={{ flexDirection: 'row', width: '75%', alignSelf: 'center', marginBottom: '5%' }}>
                     <Image source={props.image} style={{ width: (windowWidth * 0.35), height: windowHeight * 0.2, borderRadius: 5, marginBottom: 10 }} />
-                    <View style={{padding: 15}}>
-                        <Text style={{fontSize: 18, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary}}>
+                    <View style={{padding: 10}}>
+                        <Text  style={{ width: (windowWidth * 0.45), fontSize: 18, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary}}>
                             {props.name}
                         </Text>
                         <Text style={{fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.secondary}}>
@@ -41,7 +43,7 @@ const CartItem = (props) => {
                                 {props.price} €
                             </Text>
                             <InputSpinner
-                                max={props.max}
+                                value={props.value}
                                 min={props.min}
                                 step={1}
                                 colorMax={colors.theme.secondary}
@@ -50,9 +52,16 @@ const CartItem = (props) => {
                                 skin= 'square'
                                 textColor="#17181A"
                                 height={25}
-                                onChange={(num) => {
-                                    console.log(num);
+                                onMin={()=>{
+                                    props.OnMin(props.id)
                                 }}
+                                onDecrease={(num)=>{
+                                    props.OnDecrementProduct(props.id)
+                                }}
+                                onIncrease={(num)=>{
+                                    props.OnIncrementProduct(props.id)
+                                }}
+                                
                                 buttonFontFamily={'SFProDisplayRegular'}
                                 buttonFontSize={24}
                                 fontFamily={'SFProDisplayRegular'}

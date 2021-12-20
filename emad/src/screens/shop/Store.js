@@ -7,7 +7,7 @@ import { useTheme } from "../../theme/ThemeProvider";
 import BackButton from "../../components/BackButton";
 import Divider from "../../components/Divider";
 import InputButton from "../../components/InputButton";
-import { getMagazzinoById } from "../../db/connect";
+import { getMagazzinoById } from "../../back/connect";
 
 const days = [
     { "id": "01", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
