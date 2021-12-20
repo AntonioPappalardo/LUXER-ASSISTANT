@@ -210,3 +210,15 @@ export function connect(){
     if (taglia!=undefined) return taglia
     else return[]
    }
+   export function getOtherStores(prodotto){
+        var other= stock.filter(stock=> stock.id_prodotto==prodotto)
+        var stores=[]
+        other.forEach(stock=>stores.push(magazzino.find(m=> m.id==stock.id_magazzino)))
+        return stores    
+   }
+   export function getstockByProdMag(magazzino,prodotto){
+        return stock.find(stock=> stock.id_magazzino==magazzino && stock.id_prodotto==prodotto).qta
+   }
+   export function getMagazzinoById(id){
+       return magazzino.find(m=> m.id==id);
+   }

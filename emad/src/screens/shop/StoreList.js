@@ -6,19 +6,11 @@ import BackButton from "../../components/BackButton";
 import { useTheme } from "../../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
+import { getOtherStores, getstockByProdMag } from "../../db/connect";
 
-const stores = [
-    { "id": "01","name": "Prada - Roma", "ref": "04559811", "qty": "5", "img":{uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-roma.jpg'} },
-    { "id": "02","name": "Prada - Rinascente Roma", "ref": "04559811", "qty": "5", "img":{uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-rinascente_roma.jpg'} },
-    { "id": "03","name": "Prada - Firenze", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-firenze.jpg'} },
-    { "id": "04","name": "Prada - Milano Spiga", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-milano-spiga.jpg'} },
-    { "id": "05","name": "Prada - Milano Montenap...", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-montenapoleone.jpg'} },
-    { "id": "06","name": "Prada - Venezia", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-venezia.jpg'} },
-    { "id": "07","name": "Prada - Forte dei Marmi", "ref": "04559811", "qty": "5", "img": {uri:'https://storageaccountemadbc1b.blob.core.windows.net/negozi/Prada-forte_dei_marmi.jpg'} },
-]
 
-const StoreList = ({ navigation }) => {
-    
+const StoreList = ({ navigation,route }) => {
+    var stores= getOtherStores(route.params.prodotto.id)
     const {colors, isDark} = useTheme();
 
     const tabBarHeight = useBottomTabBarHeight();
@@ -46,14 +38,14 @@ const StoreList = ({ navigation }) => {
                         <View key={item.id} style={{height: 75, width: "90%",flexDirection: "row", alignSelf: "center",marginTop: 5, marginBottom: 5, }}>
                                 <View style={{width: '35%'}}>
                                 <View style={{ justifyContent: "center", marginLeft: 5, height: 60, width: 100, shadowOffset: { width: 1, height: 2 },shadowOpacity: 0.25,shadowRadius: 5, elevation: 5, marginRight: 10, borderRadius: 5 }}>
-                                    <Image source={item.img} style={{ height: 60, width: 100, borderRadius: 5 }} />
+                                    <Image source={{uri:item.cover}} style={{ height: 60, width: 100, borderRadius: 5 }} />
                                 </View>
                                 </View>
                                 <TouchableOpacity style={{flexDirection: 'row', width: '65%'}} activeOpacity={.75} onPress={() => { navigation.navigate('Store',{store:item.id}) }}>
                                     <View style={{ flexDirection: "column" }}>
-                                        <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{item.name}</Text>
-                                        <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>Ref: {item.ref}</Text>
-                                        <Text style={{ fontSize: 12, fontFamily: 'SFProDisplayRegular', color: colors.theme.title }}>Disponibilità {item.qty}</Text>
+                                        <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{item.nome}</Text>
+                                        <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>Indirizzo: {item.indirizzo}</Text>
+                                        <Text style={{ fontSize: 12, fontFamily: 'SFProDisplayRegular', color: colors.theme.title }}>Disponibilità { getstockByProdMag(item.id,route.params.prodotto.id) }</Text>
                                     </View>
                                     <View style={{ justifyContent: 'center', alignContent: "center", alignItems: 'center', marginLeft: 'auto', top: 15, marginRight: 5, height: 40, width: 40}}>
                                         <Ionicons name="chevron-forward" size={25} color={colors.theme.title} />

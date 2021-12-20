@@ -12,7 +12,7 @@ import SizeFilter from '../../components/SizeFilter';
 import BackButton from '../../components/BackButton';
 import ProductBox from "../../components/ProductBox";
 import Divider from '../../components/Divider';
-import { getCategoriaById, getImmagineByProdotto, getProdottiByCategoria } from '../../db/connect';
+import { getCategoriaById, getImmagineByProdotto, getProdottiByCategoria } from '../../back/connect';
 const Category = ({ navigation,route }) => {
     var categoria=getCategoriaById(route.params.categoria);
     var prodotti= getProdottiByCategoria(categoria.id)

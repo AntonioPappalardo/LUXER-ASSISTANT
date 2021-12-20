@@ -6,7 +6,7 @@ import { useFonts } from 'expo-font';
 import { useTheme } from "../../theme/ThemeProvider";
 import BackButton from "../../components/BackButton";
 import Container from "../../components/Container";
-import { getCategoria, getCategoriaById, getNumProCategoria, getSubCategory } from "../../db/connect";
+import { getCategoria, getCategoriaById, getNumProCategoria, getSubCategory } from "../../back/connect";
 import Category from "./Category";
 
 const subtitle = (id) => {
