@@ -9,22 +9,17 @@ import CartItem from "../../components/CartItem";
 import InputButton from "../../components/InputButton";
 import InputText from "../../components/InputText";
 import Divider from "../../components/Divider";
-import { addProduct, decreaseProduct, getNumOfArticle, getTotale, increaseProduct, removeProduct } from "../../back/cart";
+import { addProduct, decreaseProduct, getCart, getNumOfArticle, getTotale, increaseProduct, removeProduct } from "../../back/cart";
 import { getImmagineByProdotto } from "../../back/connect";
 
 const Cart = ({ navigation,route }) => {
-    const [cart,setCart]=useState(addProduct(route.params.prodotto))
+    const [cart,setCart]=useState(getCart())
     const { colors, isDark } = useTheme();
     const [totale,setTotale]=useState(getTotale())
     const [numOfArticle,setNum]=useState(getNumOfArticle())
     const tabBarHeight = useBottomTabBarHeight();
     const [userEmail, setUserEmail] = useState('');
     
-    const OnMin=useCallback((id)=>{
-        setCart(removeProduct(id))
-        setTotale(getTotale());
-        setNum(getNumOfArticle());
-    })
     const OnIncrementProduct=useCallback((id)=>{
         setCart(increaseProduct(id))
         setTotale(getTotale());
@@ -57,7 +52,7 @@ const Cart = ({ navigation,route }) => {
                 </View> 
                 <ScrollView overScrollMode="never">
                     {cart.map((prod)=>(
-                        <CartItem key={prod.prodotto.id} OnIncrementProduct={OnIncrementProduct} OnMin={OnMin} OnDecrementProduct={OnDecrementProduct} value={prod.qta-1} id={prod.prodotto.id} name={prod.prodotto.nome} reference={prod.prodotto.ean13} specifics={"Specifiche"} price={prod.prodotto.prezzo} image={{ uri: getImmagineByProdotto(prod.prodotto.id) }} min={0} max={2} />
+                        <CartItem key={prod.prodotto.id} OnIncrementProduct={OnIncrementProduct} OnDecrementProduct={OnDecrementProduct} value={prod.qta} id={prod.prodotto.id} name={prod.prodotto.nome} reference={prod.prodotto.ean13} specifics={"Specifiche"} price={prod.prodotto.prezzo} image={{ uri: getImmagineByProdotto(prod.prodotto.id) }} min={0} max={2} />
                     ))}
 
                     <View style={{ width: '75%', alignSelf: 'center', marginTop: '5%', marginBottom:'5%' }}>

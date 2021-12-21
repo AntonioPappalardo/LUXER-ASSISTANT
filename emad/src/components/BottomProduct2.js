@@ -9,6 +9,7 @@ import InputButton from "./InputButton";
 import { useTheme } from "../theme/ThemeProvider";
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { getStockByUserProduct, getQtaByProduct, getCaratteristicheProduct, getAttributoColoreByProduct,getAttributoTagliaByProduct } from "../back/connect";
+import { addProduct } from "../back/cart";
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
@@ -156,7 +157,11 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
                     <TouchableOpacity activeOpacity={0.5} style={{
                         height: 45, width: 45, borderRadius: 22.5, backgroundColor: '#EA9F5A', position: 'absolute', top: '4%', right: '10%',
                         justifyContent: 'center', alignItems: 'center', alignContent: 'center', shadowOffset: { width: 1, height: 2 }, shadowOpacity: 0.25, shadowRadius: 5, elevation: 5,
-                    }} onPress={() => navigation.navigate('Cart',{prodotto:prodotto})}>
+                    }} onPress={() => {
+                        addProduct(prodotto)
+                        navigation.navigate('Cart',{prodotto:prodotto})
+                    }
+                        }>
                         <Icon name="cart-plus" size={24} color={'white'} style={{ marginRight: 2 }} />
                     </TouchableOpacity>
                    ):null}

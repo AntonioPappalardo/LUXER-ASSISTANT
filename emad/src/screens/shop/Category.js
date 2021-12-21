@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, ScrollView, TouchableOpacity, Text } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
@@ -15,11 +15,14 @@ import Divider from '../../components/Divider';
 import { getCategoriaById, getImmagineByProdotto, getProdottiByCategoria } from '../../back/connect';
 const Category = ({ navigation,route }) => {
     var categoria=getCategoriaById(route.params.categoria);
-    var prodotti= getProdottiByCategoria(categoria.id)
-    
+    const[prodotti,setProdotti]= useState(getProdottiByCategoria(categoria.id))
+    const [prodotto, setProdotto] = React.useState('');
+    const filteringText=(cerca)=>{
+        setProdotto(cerca)
+        setProdotti(prodotti.filter(prod => (prod.nome.toLowerCase().includes(cerca.toLowerCase()) || prod.ean13.includes(cerca))))
+    }
     const { colors, isDark } = useTheme();
     const tabBarHeight = useBottomTabBarHeight() + 10;
-    const [prodotto, setProdotto] = React.useState('');
     const productColors = ["000000", "ffffff", "green", "purple"];
     const size = ["XS", "S", "M", "L"];
 
@@ -48,7 +51,7 @@ const Category = ({ navigation,route }) => {
                 <View style={{ alignItems: "center", marginBottom: 15 }}>
 
                     <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
-                        name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' left='true' />
+                        name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={cerca=>filteringText(cerca)} secure='false' left='true' />
                     {show ?
                         <TouchableOpacity activeOpacity={.75} style={{ position: 'absolute', right: 5, top: 20, justifyContent: "center", alignItems:'center', padding:15, paddingTop: 0}}>
 
@@ -68,7 +71,13 @@ const Category = ({ navigation,route }) => {
                         </TouchableOpacity>
                     }
                 </View>
-                {show ? <View><FilterColor colors={productColors} /><FilterSize size={size} /><FilterPrice /></View> : null}
+                {show ? 
+                    <View>
+                        <FilterColor colors={productColors}  />
+                        <FilterSize size={size} />
+                        <FilterPrice />
+                    </View> 
+                : null}
                 <Divider width="100%" />
                 <ScrollView overScrollMode="never">
                     <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap', alignItems: "center" }}>

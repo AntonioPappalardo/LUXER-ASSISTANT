@@ -22,14 +22,10 @@ export function addProduct(prodotto){
     return cart;
 }
 
-export function removeProduct(idprodotto){
-    var exist=(cart.map(c=>c.prodotto.id)).findIndex(prod=>prod==idprodotto)
-    cart.splice(exist,1)
-    return cart
-}
 export function decreaseProduct(idprodotto){
     var exist=(cart.map(c=>c.prodotto.id)).findIndex(prod=>prod==idprodotto)
-    cart[exist].qta-=1
+    if(cart[exist].qta==1){cart.splice(exist,1)}
+    else {cart[exist].qta= cart[exist].qta-1}
     return cart;
 }
 

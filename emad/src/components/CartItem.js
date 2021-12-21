@@ -52,9 +52,6 @@ const CartItem = (props) => {
                                 skin= 'square'
                                 textColor="#17181A"
                                 height={25}
-                                onMin={()=>{
-                                    props.OnMin(props.id)
-                                }}
                                 onDecrease={(num)=>{
                                     props.OnDecrementProduct(props.id)
                                 }}
