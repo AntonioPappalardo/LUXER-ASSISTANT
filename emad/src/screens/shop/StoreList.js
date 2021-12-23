@@ -7,16 +7,17 @@ import { useTheme } from "../../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { getOtherStores, getstockByProdMag } from "../../back/connect";
-
+import { useLanguage } from "../../localization/Localization";
 
 const StoreList = ({ navigation,route }) => {
     var stores= getOtherStores(route.params.prodotto.id)
     const {colors, isDark} = useTheme();
+    const [lang, setLanguage] = useLanguage();
 
     const tabBarHeight = useBottomTabBarHeight();
     const [search, onChangeText] = React.useState('');
     const [user, onSearch] = React.useState([]);
-   
+
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayRegular': require('../../../assets/fonts/SFProDisplayRegular.otf'),
@@ -44,8 +45,8 @@ const StoreList = ({ navigation,route }) => {
                                 <TouchableOpacity style={{flexDirection: 'row', width: '65%'}} activeOpacity={.75} onPress={() => { navigation.navigate('Store',{store:item.id}) }}>
                                     <View style={{ flexDirection: "column" }}>
                                         <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{item.nome}</Text>
-                                        <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>Indirizzo: {item.indirizzo}</Text>
-                                        <Text style={{ fontSize: 12, fontFamily: 'SFProDisplayRegular', color: colors.theme.title }}>Disponibilità { getstockByProdMag(item.id,route.params.prodotto.id) }</Text>
+                                        <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>{lang.indirizzo}: {item.indirizzo}</Text>
+                                        <Text style={{ fontSize: 12, fontFamily: 'SFProDisplayRegular', color: colors.theme.title }}>{lang.disponibilita}: { getstockByProdMag(item.id,route.params.prodotto.id) }</Text>
                                     </View>
                                     <View style={{ justifyContent: 'center', alignContent: "center", alignItems: 'center', marginLeft: 'auto', top: 15, marginRight: 5, height: 40, width: 40}}>
                                         <Ionicons name="chevron-forward" size={25} color={colors.theme.title} />

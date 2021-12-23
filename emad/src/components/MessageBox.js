@@ -3,8 +3,11 @@ import { FloatingLabelInput } from 'react-native-floating-label-input';
 import Icon from 'react-native-vector-icons/Ionicons';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
+import { useLanguage } from "../localization/Localization";
 
 const MessageBox = (props) => {
+    const [lang, setLanguage] = useLanguage();
+
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
@@ -17,7 +20,7 @@ const MessageBox = (props) => {
         return (
             <FloatingLabelInput
                 style={{ textAlignVertical: "top", marginLeft: 10, fontSize: 25, width: 250, marginTop: 75 }}
-                label="Messaggio"
+                label={lang.messaggio}
                 editable
                 maxLength={250}
                 multiline

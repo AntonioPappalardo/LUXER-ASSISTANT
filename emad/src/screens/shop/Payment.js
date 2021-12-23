@@ -5,6 +5,7 @@ import { useFonts } from 'expo-font';
 import { useTheme } from "../../theme/ThemeProvider";
 import BackButton from "../../components/BackButton";
 import { ShadowBox } from 'react-native-neomorph-shadows';
+import { useLanguage } from "../../localization/Localization";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -12,7 +13,7 @@ const height = Dimensions.get('window').height;
 const Payment = ({ navigation }) => {
 
     const { colors, isDark } = useTheme();
-
+    const [lang, setLanguage] = useLanguage();
 
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
@@ -28,7 +29,7 @@ const Payment = ({ navigation }) => {
                 <View style={{flexDirection: 'row', marginBottom:20}}>
                     <BackButton onPress={() => { navigation.goBack() }} />
                     <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
-                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Paga Ora</Text>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>{lang.paga}</Text>
                     </View>
                 </View>                
                     {isDark ? 
@@ -50,7 +51,7 @@ const Payment = ({ navigation }) => {
                         width: width+5,
                         height: 350,
                     }}>
-                        <Text  style={{fontFamily: "SFProDisplayBold", fontSize: 15, color: colors.theme.title, marginTop: '10%', alignSelf: 'center'}}>Avvicina il dispositivo abilitato NFC</Text>
+                        <Text  style={{fontFamily: "SFProDisplayBold", fontSize: 15, color: colors.theme.title, marginTop: '10%', alignSelf: 'center'}}>{lang.notificaPagamento}</Text>
                     {isDark ?
                         <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/nfc_light.png'}} style={{ marginTop: '5%', height:100,width: width, maxWidth: 100, alignSelf: 'center'}} resizeMode="contain" />
                         :

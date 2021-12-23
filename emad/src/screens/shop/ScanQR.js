@@ -5,6 +5,7 @@ import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";
 import { Camera } from 'expo-camera';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useLanguage } from "../../localization/Localization";
 import { getProdottoByReference } from "../../back/connect";
 //Duration of the vibration
 const DURATION = 3000;
@@ -16,6 +17,8 @@ const ScanQR = ({ navigation,route }) => {
   
   const { colors, isDark } = useTheme();
   const tabBarHeight = useBottomTabBarHeight();
+
+  const [lang, setLanguage] = useLanguage();
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
   
@@ -58,7 +61,7 @@ console.log(scanned)
       <View style={{ flexDirection: 'row', marginBottom: 20 }}>
         <BackButton onPress={() => { navigation.goBack() }} />
         <View style={{ flex: 1, justifyContent: "center", marginRight: '15%', alignItems: "center", paddingTop: '15%' }}>
-          <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}> Scannerizza QR Code</Text>
+          <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}>{lang.scan}</Text>
         </View>
       </View>
       <Camera onBarCodeScanned={scanned ? setScannedFalse : handleBarCodeScanned} flashMode={flash} style={{ height: windowHeight - tabBarHeight, width: windowWidth }}>

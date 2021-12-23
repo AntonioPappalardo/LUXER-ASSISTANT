@@ -8,6 +8,7 @@ import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import BackButton from "../../components/BackButton";
 import BottomSheet from "../../components/BottomProduct2";
 import { getImmaginiByProdotto, getProdottoById,getAttributoColoreByProduct } from "../../back/connect";
+import { useLanguage } from "../../localization/Localization";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -17,7 +18,8 @@ const ProductPage = ({ navigation,route }) => {
     var Immagini=getImmaginiByProdotto(route.params.prodotto)
    
     const { colors, isDark } = useTheme();
-   
+    const [lang, setLanguage] = useLanguage();
+
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),

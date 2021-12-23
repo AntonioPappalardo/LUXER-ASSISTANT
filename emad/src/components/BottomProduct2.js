@@ -10,6 +10,8 @@ import { useTheme } from "../theme/ThemeProvider";
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { getStockByUserProduct, getQtaByProduct, getCaratteristicheProduct, getAttributoColoreByProduct,getAttributoTagliaByProduct } from "../back/connect";
 import { addProduct } from "../back/cart";
+import { useLanguage } from "../localization/Localization";
+
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
@@ -20,7 +22,8 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
     var caratteristiche= getCaratteristicheProduct(prodotto.id)
     function renderTabBar (props)  {
         const inputRange = props.navigationState.routes.map((x, i) => i);
-    
+        const [lang, setLanguage] = useLanguage();
+
         return (
           <View style={styles.tabBar}>
             {props.navigationState.routes.map((route, i) => {
@@ -43,15 +46,17 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
         );
       };
     const [index, setIndex] = useState(0);
+    const [lang, setLanguage] = useLanguage();
+
     const FirstRoute = () => (
         <View style={{ width: '95%', alignSelf: 'center' }}>
             <View style={{ paddingTop: '5%' }}>
                 <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary }}>
-                    Disponibilità
+                    
                 </Text>
                 <View style={{ flexDirection: 'row', paddingTop: 5 }}>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
-                        In Negozio:
+                        {lang.inNegozio}:
                     </Text>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary, paddingLeft: 10 }}>
                         {qta}
@@ -60,7 +65,7 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
                 { qta==0 ?(
                 <View style={{ flexDirection: 'row' }}>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
-                        In altri store:
+                        {lang.inAltri}:
                     </Text>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary, paddingLeft: 5 }}>
                         {otherqta}
@@ -71,7 +76,7 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
             </View>
             {qta==0?(
             <InputButton params={{ marginTop: "5%", width: "80%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }}
-                name="VEDI IN ALTRI STORE" onPress={() => navigation.navigate('StoreList',{prodotto:prodotto,utente:utente})} />
+                name={lang.altriStore} onPress={() => navigation.navigate('StoreList',{prodotto:prodotto,utente:utente})} />
             ):null}
             {/*<InputButton params={{ marginTop: "5%", width: "60%", height: 30, fontFamily: 'SFProDisplayMedium', fontSize: 14 }}
                 name="VEDI IN ALTRI STORE" outline onPress={() => navigation.navigate('StoreList')} />*/}
@@ -107,9 +112,9 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
         </ScrollView>
     );
     const [routes] = useState([
-        { key: 'first', title: 'Disponibilità' },
-        { key: 'second', title: 'Descrizione' },
-        { key: 'third', title: 'Scheda Prodotto' },
+        { key: 'first', title: lang.disponibilita },
+        { key: 'second', title: lang.descrizione },
+        { key: 'third', title: lang.schedaProdotto },
     ]);
     const renderScene = SceneMap({
         first: FirstRoute,
@@ -193,7 +198,7 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
                                 
                                 }
                             </View>
-                            <InputButton params={{ marginTop: "5%", width: "100%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }} name="VISUALIZZA IN AR" onPress={() => { navigation.navigate('ExpoAR') }} />
+                            <InputButton params={{ marginTop: "5%", width: "100%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }} name={lang.visualizzaAR} onPress={() => { navigation.navigate('ExpoAR') }} />
                         </View>
 
                         <View style={{ height: height*0.325, marginTop: '5%' }}>

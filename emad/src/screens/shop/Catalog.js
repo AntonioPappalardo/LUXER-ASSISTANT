@@ -6,6 +6,7 @@ import { useFonts } from 'expo-font';
 import { useTheme } from "../../theme/ThemeProvider";
 import BackButton from "../../components/BackButton";
 import Container from "../../components/Container";
+import { useLanguage } from "../../localization/Localization";
 import { getCategoria, getCategoriaById, getNumProCategoria, getSubCategory } from "../../back/connect";
 import Category from "./Category";
 
@@ -13,6 +14,8 @@ const subtitle = (id) => {
   return "" + getNumProCategoria(id) + " prodotti"
 }
 const Catalogo = ({ navigation, route }) => {
+  const [lang, setLanguage] = useLanguage();
+
   let parent = route.params.categoria;
   let nextPage = 'Catalog';
   let categoria;
@@ -48,7 +51,7 @@ const Catalogo = ({ navigation, route }) => {
         <View style={{ flexDirection: 'row', marginBottom: 20 }}>
           <BackButton onPress={toggleBack} />
           <View style={{ flex: 1, justifyContent: "center", marginRight: '15%', alignItems: "center", paddingTop: '15%' }}>
-            <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, color: colors.theme.title }}>Catalogo</Text>
+            <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, color: colors.theme.title }}>{lang.catalogo}</Text>
           </View>
         </View>
         <ScrollView overScrollMode="never">

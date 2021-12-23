@@ -6,6 +6,7 @@ import { Calendar, LocaleConfig } from 'react-native-calendars';
 import { useTheme } from "../../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
+import { useLanguage } from "../../localization/Localization";
 import moment from 'moment';
 import 'moment/locale/it';
 
@@ -28,6 +29,7 @@ const users = [
 const AppointmentList = ({ navigation }) => {
 
     const { key, colors, setScheme, isDark } = useTheme();
+    const [lang, setLanguage] = useLanguage();
 
     const [daySelected, setDaySelected] = useState(new Date);
     
@@ -127,7 +129,7 @@ const AppointmentList = ({ navigation }) => {
                             <TouchableOpacity style={{ flexDirection: 'row', width: '75%' }} activeOpacity={.75} onPress={() => { navigation.navigate('CustomerPage',{user:item.id}) }}>
                                 <View style={{ flexDirection: "column", justifyContent: "center" }}>
                                     <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{item.name}</Text>
-                                    <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>Codice cliente: {item.id}</Text>
+                                    <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>{lang.codiceCliente}: {item.id}</Text>
                                     <Text style={{ fontSize: 12, fontFamily: 'SFProDisplayRegular', color: colors.theme.title }}>{item.next_appointment}</Text>
                                 </View>
                                 <View style={{ justifyContent: 'center', alignContent: "center", alignItems: 'center', marginLeft: 'auto', top: 15, marginRight: 5, height: 40, width: 40 }}>

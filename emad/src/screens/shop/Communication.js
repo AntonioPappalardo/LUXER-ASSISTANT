@@ -6,11 +6,13 @@ import { useTheme } from "../../theme/ThemeProvider";
 import BackButton from "../../components/BackButton";
 import InputButton from "../../components/InputButton";
 import MessageBox from '../../components/MessageBox';
+import { useLanguage } from "../../localization/Localization";
 
 const Communication = ({ navigation }) => {
 
   const {colors, isDark} = useTheme();
   const tabBarHeight = useBottomTabBarHeight();
+  const [lang, setLanguage] = useLanguage();
   const [Message, onChangeText] = React.useState('');
   
   return (
@@ -18,7 +20,7 @@ const Communication = ({ navigation }) => {
       <View style={{flexDirection: 'row', marginBottom:20}}>
           <BackButton onPress={() => { navigation.goBack() }} />
           <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
-          <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Contatta</Text>
+          <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>{lang.contatta}</Text>
           </View>
       </View>
       <ScrollView overScrollMode="never" style={{ marginTop: "5%", width: "75%", alignSelf: "center" }}>
@@ -29,7 +31,7 @@ const Communication = ({ navigation }) => {
           <MaterialCommunityIcons name="telegram" color="#2da5e1" size={35} onPress={() => { console.log("Apri Telegram " + Message) }} style={{ marginRight: 7.5 }} />
           <MaterialCommunityIcons name="whatsapp" color="#2ac54d" size={35} onPress={() => { console.log("Apri Whatsapp " + Message) }} style={{ marginLeft: 7.5 }} />
         </View>
-        <InputButton params={{ marginTop: 100, width: "100%" }} name="Invia" icon="arrow-forward-outline" rotation="-45deg"
+        <InputButton params={{ marginTop: 100, width: "100%" }} name={lang.invia} icon="arrow-forward-outline" rotation="-45deg"
           onPress={() => { console.log("Invia Messaggio " + Message) }} />
         <View style={{marginBottom: tabBarHeight+ 10}}></View>
       </ScrollView>

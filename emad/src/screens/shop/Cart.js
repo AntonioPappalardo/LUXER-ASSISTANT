@@ -11,10 +11,12 @@ import InputText from "../../components/InputText";
 import Divider from "../../components/Divider";
 import { addProduct, decreaseProduct, getCart, getNumOfArticle, getTotale, increaseProduct, removeProduct } from "../../back/cart";
 import { getImmagineByProdotto } from "../../back/connect";
+import { useLanguage } from "../../localization/Localization";
 
 const Cart = ({ navigation,route }) => {
     const [cart,setCart]=useState(getCart())
     const { colors, isDark } = useTheme();
+    const [lang, setLanguage] = useLanguage();
     const [totale,setTotale]=useState(getTotale())
     const [numOfArticle,setNum]=useState(getNumOfArticle())
     const tabBarHeight = useBottomTabBarHeight();
@@ -47,7 +49,7 @@ const Cart = ({ navigation,route }) => {
                 <View style={{flexDirection: 'row',marginBottom:20}}>
                     <BackButton onPress={() => { navigation.goBack() }} />
                     <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
-                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Carrello</Text>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>{lang.carrello}</Text>
                     </View>
                 </View> 
                 <ScrollView overScrollMode="never">
@@ -59,7 +61,7 @@ const Cart = ({ navigation,route }) => {
                         <View style={{ flexDirection: 'row', width: '100%' }}>
                             <View style={{ width: '50%' }}>
                                 <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary }}>
-                                    Articoli Totali:
+                                    {lang.articoliTot}:
                                 </Text>
                             </View>
                             <View style={{ width: '50%' }}>
@@ -72,7 +74,7 @@ const Cart = ({ navigation,route }) => {
                         <View style={{ flexDirection: 'row', width: '100%', marginBottom:'5%' }}>
                             <View style={{ width: '50%' }}>
                                 <Text style={{ fontSize: 20, fontFamily: 'SFProDisplayMedium', fontWeight:"bold", color: colors.theme.primary }}>
-                                Totale:
+                                {lang.totale}:
                                 </Text>
                             </View>
                             <View style={{ width: '50%' }}>
@@ -82,12 +84,12 @@ const Cart = ({ navigation,route }) => {
                             </View>
                         </View>
                         <Divider width={"100%"} opacity={1} marginBottom={12} />
-                        <InputText params={{ marginTop: 25, alignSelf:'center',width: "100%" }} name="Inserisci Email" icon="mail-outline" rotation="0deg" value={userEmail} onChangeText={setUserEmail} secure='false' />
+                        <InputText params={{ marginTop: 25, alignSelf:'center',width: "100%" }} name={lang.email} icon="mail-outline" rotation="0deg" value={userEmail} onChangeText={setUserEmail} secure='false' />
 
 
                     </View>
-                    <InputButton params={{ marginTop: 26, width: "75%" }} name="PAGA IN CASSA" icon="arrow-forward-outline" rotation="-45deg" />
-                    <InputButton params={{ marginTop: 26, width: "75%" }} name="PAGA ORA" icon="arrow-forward-outline" rotation="-45deg" onPress={() => navigation.navigate('Payment')} />
+                    <InputButton params={{ marginTop: 26, width: "75%" }} name={lang.pagaCassa} icon="arrow-forward-outline" rotation="-45deg" />
+                    <InputButton params={{ marginTop: 26, width: "75%" }} name={lang.pagaOra} icon="arrow-forward-outline" rotation="-45deg" onPress={() => navigation.navigate('Payment')} />
 
                     <View style={{ marginBottom: tabBarHeight + 100 }}></View>
                 </ScrollView>

@@ -51,7 +51,7 @@ export default function App() {
     renderer.setSize(width, height);
 
     const camera = new PerspectiveCamera(120, width / height, 0.01, 1000);
-    camera.position.set(0, 10, 0)
+    camera.position.set(0, 20, 0)
 
     setCamera(camera);
     const asset = Asset.fromModule(
@@ -79,7 +79,7 @@ export default function App() {
     loader.load(
       asset.uri || "",
       (gltf) => {
-        gltf.scene.scale.set(1.5, 1.5, 1.5);
+        gltf.scene.scale.set(0.5, 0.5, 0.5);
         scene.add(gltf.scene);
         console.log(scene)
       },

@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, Image, View, Text, ScrollView } from "react-native";
+import { Dimensions, Image, View, Text, ScrollView, Linking} from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
@@ -8,6 +8,7 @@ import BackButton from "../../components/BackButton";
 import Divider from "../../components/Divider";
 import InputButton from "../../components/InputButton";
 import { getMagazzinoById } from "../../back/connect";
+import { useLanguage } from "../../localization/Localization";
 
 const days = [
     { "id": "01", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
@@ -29,7 +30,8 @@ const height = Dimensions.get('window').height;
 const Store = ({ navigation, route }) => {
 
     const { colors, isDark } = useTheme();
-    
+    const [lang, setLanguage] = useLanguage();
+
     const [store, setStore] = React.useState(getMagazzinoById(route.params.store));
     const [day, setDays] = React.useState(JSON.parse(store.orari).days);
     var weekDays = ['Domenica','Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
@@ -90,7 +92,7 @@ const Store = ({ navigation, route }) => {
                     <View style={{ width: "75%", alignSelf: 'center' }}>
                         <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 14, color: colors.theme.title, marginTop: '5%' }}>{store.indirizzo}, {store.zip}{'\n'}{store.citta} {store.provincia}</Text>
                     </View>
-                    <InputButton params={{ marginTop: '5%', width: "75%" }} name="CHIAMA" icon="arrow-forward-outline" rotation="-45deg" />
+                    <InputButton params={{ marginTop: '5%', width: "75%" }} name={lang.chiama} icon="arrow-forward-outline" rotation="-45deg" />
                     <View style={{ marginBottom: tabBarHeight + 10 }} />
                 </ScrollView>
             </View>

@@ -44,11 +44,11 @@ const Impostazioni = ({ navigation }) => {
                 <View style={{ flexDirection: 'row' }}>
                     <BackButton onPress={() => { navigation.goBack() }} />
                     <View style={{ flex: 1, justifyContent: "center", marginRight: '15%', alignItems: "center", paddingTop: '15%' }}>
-                        <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}>Impostazioni</Text>
+                        <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}>{language.impostazioni}</Text>
                     </View>
                 </View>
                 <ScrollView overScrollMode="never" style={{ marginBottom: tabBarHeight, marginTop: "5%" }}>
-                    <SwitchItem value={isDark} onValueChange={toggleScheme} title={'Tema Scuro'} />
+                    <SwitchItem value={isDark} onValueChange={toggleScheme} title={language.tema} />
                     <Picker
                         selectedValue={selectedLanguage}
                         style={{ width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center' }}
@@ -61,8 +61,8 @@ const Impostazioni = ({ navigation }) => {
                         <Picker.Item label="English" value="en-US" />
                         <Picker.Item label="Francais" value="fr-FR" />
                     </Picker>
-                    <MenuItem title={'Info su Luxer Assistant'} onPress={() => navigation.navigate('AddUser')} />
-                    <MenuItem title={'Note sulla versione'} onPress={() => navigation.navigate('Catalogo')} />
+                    <MenuItem title={language.info} onPress={() => navigation.navigate('AddUser')} />
+                    <MenuItem title={language.note} onPress={() => navigation.navigate('Catalogo')} />
 
                 </ScrollView>
             </View>

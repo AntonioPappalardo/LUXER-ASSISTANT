@@ -8,10 +8,12 @@ import { useTheme } from "../../theme/ThemeProvider";
 import InputButton from "../../components/InputButton";
 import InputText from "../../components/InputText";
 import BackButton from "../../components/BackButton";
+import { useLanguage } from "../../localization/Localization";
 
 const AddUser = ({navigation}) => {
 
   const {colors, isDark} = useTheme();
+  const [lang, setLanguage] = useLanguage();
 
   const tabBarHeight = useBottomTabBarHeight()+20;
 
@@ -39,16 +41,16 @@ const AddUser = ({navigation}) => {
         <View style={{flexDirection: 'row', marginBottom:20}}>
             <BackButton onPress={() => { navigation.goBack() }} />
             <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
-            <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> Nuovo Cliente</Text>
+            <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>{lang.nuovoCliente}</Text>
             </View>
         </View>
       <ScrollView overScrollMode="never" style={{height: "100%"}}>
         <View style={styles.form}>
           <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
-            name="Nome" icon="" rotation="0deg" value={nome} onChangeText={setNome} />
+            name={lang.nome} icon="" rotation="0deg" value={nome} onChangeText={setNome} />
 
           <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
-            name="Cognome" icon="" rotation="0deg" value={cognome} onChangeText={setCognome} />
+            name={lang.cognome} icon="" rotation="0deg" value={cognome} onChangeText={setCognome} />
 
           <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
             name="Email" icon="mail-outline" rotation="0deg" value={email} onChangeText={setEmail} />
@@ -57,16 +59,16 @@ const AddUser = ({navigation}) => {
             name="+39 111 222 33 44" icon="call-outline" rotation="0deg" value={tel} onChangeText={setTelefono} />
 
           <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
-            name="Sesso" icon="" rotation="0deg" value={sesso} onChangeText={setSesso} />
+            name={lang.sesso} icon="" rotation="0deg" value={sesso} onChangeText={setSesso} />
 
           <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
-            name="Età" icon="" rotation="0deg" value={eta} onChangeText={setEta} />
+            name={lang.eta} icon="" rotation="0deg" value={eta} onChangeText={setEta} />
 
           <InputText params={{ marginTop: 1, width: "75%", paddingLeft: 25, textAlign: "left" }}
-            name="Nazionalità" icon="" rotation="0deg" value={nazionalita} onChangeText={setNazionalita} />
+            name={lang.nazionalita} icon="" rotation="0deg" value={nazionalita} onChangeText={setNazionalita} />
 
         </View>         
-         <InputButton params={{ marginTop: 26, width: "75%", marginBottom: tabBarHeight }} name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
+         <InputButton params={{ marginTop: 26, width: "75%", marginBottom: tabBarHeight }} name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
       </ScrollView>
       </View>
     )

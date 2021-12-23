@@ -9,10 +9,12 @@ import InputText from "../../components/InputText";
 import BackButton from '../../components/BackButton';
 import ProductBox from "../../components/ProductBox";
 import Divider from '../../components/Divider';
+import { useLanguage } from "../../localization/Localization";
 
 const SearchProduct = ({ navigation }) => {
 
   const {colors, isDark} = useTheme();
+  const [lang, setLanguage] = useLanguage();
 
   const tabBarHeight = useBottomTabBarHeight()+10;
 
@@ -32,7 +34,7 @@ const SearchProduct = ({ navigation }) => {
         <View style={{ alignItems: "center", marginBottom: 15, marginTop: '12%' }}>
          
             <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
-              name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' left='true' 
+              name={lang.inputProdName} icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' left='true' 
               right={
             <TouchableOpacity onPress={() => navigation.navigate('ScanQR')} activeOpacity={.75} style={{marginTop: 5}}>
               <Icon name={Platform.OS === "ios" ? "ios-qr-code-outline" : "md-qr-code-outline"} size={20} 

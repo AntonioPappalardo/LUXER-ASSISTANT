@@ -39,15 +39,15 @@ const UserHome = ({ navigation, route }) => {
          <StatusBar style={isDark? 'light': 'dark'}/>
         <Image source={{uri:utente.avatar}} style={{ width: windowWidth/2, height: windowWidth/2, alignSelf: 'center', borderRadius: windowWidth/4, marginTop: "15%" }} />
           <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 36, color: colors.theme.title, alignSelf: 'center', marginTop: "5%" }}>{lang.hello}, {utente.nome}!</Text>
-          <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 18, color: colors.theme.subtitle, alignSelf: 'center', marginBottom: "4%" }}>La tua Dashboard</Text>
+          <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 18, color: colors.theme.subtitle, alignSelf: 'center', marginBottom: "4%" }}>{lang.dashboard}</Text>
           <ScrollView overScrollMode="never" style={{marginBottom: tabBarHeight}}>
           <Divider width={"100%"} opacity={1} marginBottom={12} />
-          <MenuItem title={'Nuovo Cliente'} onPress={() => navigation.navigate('AddUser')} />
-          <MenuItem title={'Scheda Cliente'} onPress={() => navigation.navigate('SearchUser',{user:utente.id})}/>
-          <MenuItem title={'Catalogo'} onPress={() => navigation.navigate('Catalog')} />
-          <MenuItem title={'Scannerizza QR Code'} onPress={() => navigation.navigate('ScanQR')} />
-          <MenuItem title={'Impostazioni'} onPress={() => navigation.navigate('Settings')} />
-          <MenuItem title={'Logout'}  onPress={() => navigation.replace('SplashScreen')} />
+          <MenuItem title={lang.nuovoCliente} onPress={() => navigation.navigate('AddUser')} />
+          <MenuItem title={lang.schedaCliente} onPress={() => navigation.navigate('SearchUser',{user:utente.id})}/>
+          <MenuItem title={lang.catalogo} onPress={() => navigation.navigate('Catalog')} />
+          <MenuItem title={lang.scan} onPress={() => navigation.navigate('ScanQR')} />
+          <MenuItem title={lang.impostazioni} onPress={() => navigation.navigate('Settings')} />
+          <MenuItem title={lang.logout}  onPress={() => navigation.replace('SplashScreen')} />
         </ScrollView>
       </View>
     )

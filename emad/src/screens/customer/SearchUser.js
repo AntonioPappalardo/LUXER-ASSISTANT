@@ -10,11 +10,14 @@ import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { getCliente } from "../../back/connect";
 import { getNextAppuntamentoByCliente } from '../../back/connect';
+import { useLanguage } from "../../localization/Localization";
 
 const SearchUser = ({ navigation, route}) => {
     const users = getCliente();
     var utente= route.params.user
     const {colors, isDark} = useTheme();
+    const [lang, setLanguage] = useLanguage();
+
     const tabBarHeight = useBottomTabBarHeight();
     const [search, onChangeText] = React.useState('');
     const [user, onSearch] = React.useState([]);
@@ -37,7 +40,7 @@ const SearchUser = ({ navigation, route}) => {
                 
                 <View style={{ alignItems: "center", marginBottom: 15, marginTop: '12%' }}>
                     <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
-                        name="Nome Cliente o Codice" icon="search" rotation="0deg" value={search} onChangeText={cerca => ook(cerca)} secure='false' left='true' />
+                        name={lang.inputName} icon="search" rotation="0deg" value={search} onChangeText={cerca => ook(cerca)} secure='false' left='true' />
                 </View>
                 <Divider width="100%" />
                 <ScrollView overScrollMode="never">
@@ -51,7 +54,7 @@ const SearchUser = ({ navigation, route}) => {
                                 <TouchableOpacity style={{flexDirection: 'row', width: '75%'}} activeOpacity={.75} onPress={() => { navigation.navigate('CustomerPage',{user:item.id}) }}>
                                     <View style={{ flexDirection: "column", justifyContent: "center" }}>
                                         <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{item.nome} {item.cognome}</Text>
-                                        <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>Codice cliente: {item.codice_cliente}</Text>
+                                        <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>{lang.codiceCliente}: {item.codice_cliente}</Text>
                                         <Text style={{ fontSize: 12, fontFamily: 'SFProDisplayRegular', color: colors.theme.title }}>{getNextAppuntamentoByCliente(utente,item.id)}</Text>
                                     </View>
                                     <View style={{ justifyContent: 'center', alignContent: "center", alignItems: 'center', marginLeft: 'auto', top: 15, marginRight: 5, height: 40, width: 40}}>

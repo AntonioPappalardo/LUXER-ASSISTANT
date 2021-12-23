@@ -12,11 +12,14 @@ import SizeFilter from '../../components/SizeFilter';
 import BackButton from '../../components/BackButton';
 import ProductBox from "../../components/ProductBox";
 import Divider from '../../components/Divider';
+import { useLanguage } from "../../localization/Localization";
 import { getCategoriaById, getImmagineByProdotto, getProdottiByCategoria } from '../../back/connect';
 const Category = ({ navigation,route }) => {
     var categoria=getCategoriaById(route.params.categoria);
     const[prodotti,setProdotti]= useState(getProdottiByCategoria(categoria.id))
     const [prodotto, setProdotto] = React.useState('');
+    const [lang, setLanguage] = useLanguage();
+
     const filteringText=(cerca)=>{
         setProdotto(cerca)
         setProdotti(prodotti.filter(prod => (prod.nome.toLowerCase().includes(cerca.toLowerCase()) || prod.ean13.includes(cerca))))
@@ -51,7 +54,7 @@ const Category = ({ navigation,route }) => {
                 <View style={{ alignItems: "center", marginBottom: 15 }}>
 
                     <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
-                        name="Nome o Codice Prodotto" icon="search" rotation="0deg" value={prodotto} onChangeText={cerca=>filteringText(cerca)} secure='false' left='true' />
+                        name={lang.inputProdName} icon="search" rotation="0deg" value={prodotto} onChangeText={cerca=>filteringText(cerca)} secure='false' left='true' />
                     {show ?
                         <TouchableOpacity activeOpacity={.75} style={{ position: 'absolute', right: 5, top: 20, justifyContent: "center", alignItems:'center', padding:15, paddingTop: 0}}>
 
@@ -99,6 +102,7 @@ const Category = ({ navigation,route }) => {
 const FilterColor = (props) => {
 
     const { colors, isDark } = useTheme();
+    const [lang, setLanguage] = useLanguage();
 
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
@@ -117,7 +121,7 @@ const FilterColor = (props) => {
                 <View style={{ width: "75%", height: 48, alignSelf: "center" }}>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={{ flexDirection: 'row', marginRight: 15 }}>
-                            <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 12 }}>Colori</Text>
+                            <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 12 }}>{lang.colori}</Text>
                         </View>
                         {props.colors.map((item, key) => (
                             <ColorFilter key={key} color={item} />
@@ -133,6 +137,7 @@ const FilterColor = (props) => {
 const FilterSize = (props) => {
 
     const { colors, isDark } = useTheme();
+    const [lang, setLanguage] = useLanguage();
 
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
@@ -151,7 +156,7 @@ const FilterSize = (props) => {
                 <View style={{ width: "75%", height: 48, alignSelf: "center" }}>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={{ flexDirection: 'row', marginRight: 15 }}>
-                            <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 12 }}>Taglie</Text>
+                            <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 12 }}>{lang.taglie}</Text>
                         </View>
                         {props.size.map((item, key) => (
                             <SizeFilter key={key} size={item} />
@@ -167,6 +172,7 @@ const FilterSize = (props) => {
 const FilterPrice = (props) => {
 
     const { colors, isDark } = useTheme();
+    const [lang, setLanguage] = useLanguage();
 
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
@@ -186,17 +192,17 @@ const FilterPrice = (props) => {
                 <View style={{ width: "75%", height: 48, alignSelf: "center" }}>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={{ flexDirection: 'row', marginRight: 15 }}>
-                            <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 12 }}>Prezzo</Text>
+                            <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 12 }}>{lang.prezzo}</Text>
                         </View>
                         <View style={{justifyContent: 'center', flexDirection: 'row', marginBottom: 5}}>
                             <View style={{ width: '35%' }}>
                                 <PriceFilter params={{width: '100%' }}
-                                    name="Da" icon="" rotation="0deg" secure='false' value={from} onChangeText={setFrom} />
+                                    name={lang.da} icon="" rotation="0deg" secure='false' value={from} onChangeText={setFrom} />
                             </View>
                             <View style={{ width: '5%' }}></View>
                             <View style={{ width: '35%' }}>
                                 <PriceFilter params={{width: '100%' }}
-                                    name="A" icon="" rotation="0deg" secure='false' value={to} onChangeText={setTo} />
+                                    name={lang.a} icon="" rotation="0deg" secure='false' value={to} onChangeText={setTo} />
                             </View>
                         </View>
                     </View>

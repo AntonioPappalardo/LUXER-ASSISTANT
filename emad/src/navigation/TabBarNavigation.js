@@ -9,6 +9,8 @@ import SearchUser from '../screens/customer/SearchUser';
 import AppointmentList from '../screens/customer/AppointmentList';
 import { useTheme } from "../theme/ThemeProvider";
 import { getUtenteById } from '../back/connect';
+import { useLanguage } from "../localization/Localization";
+
 const Tab = createBottomTabNavigator()
 const TabBarIcon = props => {
 	return (
@@ -24,7 +26,7 @@ var BlurTabBar = null;
 var tabColor = 'light';
 
 const TabBarNavigation = (props) => {
-	
+	const [lang, setLanguage] = useLanguage();
 	const {colors, isDark} = useTheme();
 	isDark ? tabColor = 'dark' : tabColor = 'light'
 	var utente =props.route.params.user
@@ -66,6 +68,7 @@ const TabBarNavigation = (props) => {
 								name={Platform.OS === "ios" ? "ios-home" : "md-home"}
 							/>
 						),
+						tabBarLabel:lang.home
 					}}
 
 
@@ -82,6 +85,7 @@ const TabBarNavigation = (props) => {
 								name={Platform.OS === "ios" ? "ios-person" : "md-person"}
 							/>
 						),
+						tabBarLabel:lang.clienti
 
 					}}
 				/>
@@ -98,6 +102,7 @@ const TabBarNavigation = (props) => {
 								name={Platform.OS === "ios" ? "ios-calendar" : "md-calendar"}
 							/>
 						),
+						tabBarLabel:lang.calendario
 
 					}}
 
@@ -114,6 +119,7 @@ const TabBarNavigation = (props) => {
 								name="search"
 							/>
 						),
+						tabBarLabel:lang.cerca
 
 					}}
 				/>

@@ -9,6 +9,7 @@ import { Calendar, LocaleConfig } from 'react-native-calendars';
 import { useTheme } from "../../theme/ThemeProvider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
+import { useLanguage } from "../../localization/Localization";
 import moment from 'moment';
 import 'moment/locale/it';
 
@@ -25,6 +26,7 @@ LocaleConfig.defaultLocale = 'it';
 const AddAppointment = ({ navigation }) => {
 
     const { key, colors, setScheme, isDark } = useTheme();
+    const [lang, setLanguage] = useLanguage();
 
     const [isChecked, setChecked] = useState(false);
     const [selectedFirstSlot, setSelectedFirstSlot] = useState();
@@ -96,7 +98,7 @@ const AddAppointment = ({ navigation }) => {
                 <View style={{ flexDirection: 'row' }}>
                     <BackButton onPress={() => { navigation.goBack() }} />
                     <View style={{ flex: 1, justifyContent: "center", marginRight: '15%', alignItems: "center", paddingTop: '15%' }}>
-                        <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}>Nuovo Appuntamento</Text>
+                        <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}>{lang.nuovoAppuntamento}</Text>
                     </View>
                 </View>
                 {renderHeader(daySelected)}
@@ -132,18 +134,18 @@ const AddAppointment = ({ navigation }) => {
                                 onValueChange={setChecked}
                                 color={isChecked ? '#e78630' : undefined}
                             />
-                            <Text style={{ margin: 25,fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>Riserva l'intero negozio</Text>
+                            <Text style={{ margin: 25,fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.riservaNegozio}</Text>
                         </View>
                     </View>
 
                     <View style={{ flexDirection: 'row', width: '100%' }}>
                         <View style={{ width: '5%' }} />
                         <View style={{ width: '45%' }} >
-                            <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>Dalle:</Text>
+                            <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.dalle}:</Text>
                         </View>
                         <View style={{ width: '5%' }} />
                         <View style={{ width: '45%' }} >
-                            <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>Alle:</Text>
+                            <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.alle}:</Text>
                         </View>
                         <View style={{ width: '5%' }} />
                     </View>
@@ -218,7 +220,7 @@ const AddAppointment = ({ navigation }) => {
                         <View style={{ width: '5%' }} />
 
                     </View>
-                    <InputButton params={{ marginTop: 20, width: "75%" }} name="Conferma" icon="arrow-forward-outline" rotation="-45deg" />
+                    <InputButton params={{ marginTop: 20, width: "75%" }} name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" />
                 </ScrollView>
 
             </View>

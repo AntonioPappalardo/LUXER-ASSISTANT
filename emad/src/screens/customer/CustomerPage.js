@@ -11,6 +11,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Svg, Text as TextSVG, Rect } from 'react-native-svg';
 import { getCliente } from "../../back/connect";
+import { useLanguage } from "../../localization/Localization";
 import moment from 'moment';
 import 'moment/locale/it';
 
@@ -37,6 +38,7 @@ const acquisti = [
 
 
 const CustomerPage = ({ navigation, route }) => {
+    const [lang, setLanguage] = useLanguage();
     let [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0, visible: false, value: 0 })
     const users = getCliente();
     const layout = useWindowDimensions();
@@ -267,10 +269,10 @@ const CustomerPage = ({ navigation, route }) => {
 
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
-        { key: 'first', title:  'Acquisti'},
-        { key: 'second', title: 'Ordini' },
-        { key: 'third', title: 'Visite' },
-        { key: 'fourth', title: 'Preferiti' },
+        { key: 'first', title:  lang.acquisti},
+        { key: 'second', title: lang.ordini },
+        { key: 'third', title: lang.visite },
+        { key: 'fourth', title: lang.preferiti },
     ]);
 
     const renderScene = SceneMap({
@@ -297,7 +299,7 @@ const CustomerPage = ({ navigation, route }) => {
                 <View style={{flexDirection: 'row'}}>
                     <BackButton onPress={() => { navigation.goBack() }} />
                     <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
-                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>Scheda Cliente</Text>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>{lang.schedaCliente}</Text>
                     </View>
                 </View>                
                 <View style={{ flexDirection: "column", width: "100%", alignItems: "center", marginTop: '10%', marginBottom: '5%' }}>
@@ -308,9 +310,9 @@ const CustomerPage = ({ navigation, route }) => {
                         <View style={{ flexDirection: "column", paddingLeft: 15, alignItems: "flex-start" }}>
                             <Text style={{ color: colors.theme.title, fontSize: 24, fontFamily: "SFProDisplayBold" }}>{user.nome} {user.cognome}</Text>
 
-                            <Text style={{ color: colors.theme.subtitle, fontSize: 12, fontFamily: "SFProDisplayRegular", marginBottom: 2 }}>Cliente dal {moment(new Date(user.data_registrazione)).format('DD/MM/YYYY')}</Text>
+                            <Text style={{ color: colors.theme.subtitle, fontSize: 12, fontFamily: "SFProDisplayRegular", marginBottom: 2 }}>{lang.regCliente} {moment(new Date(user.data_registrazione)).format('DD/MM/YYYY')}</Text>
 
-                            <Text style={{ color: colors.theme.title, fontSize: 10, fontFamily: "SFProDisplayMedium" }}>Tasso di fedeltà</Text>
+                            <Text style={{ color: colors.theme.title, fontSize: 10, fontFamily: "SFProDisplayMedium" }}>{lang.tassoFedelta}</Text>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <View style={{ width: '50%', height: 6, backgroundColor: '#D4D4D4', borderRadius: 3 }}>
                                     <View style={{ position: 'absolute', width: '35%', height: 6, backgroundColor: '#EA9F5A', borderRadius: 3 }}></View>
@@ -321,15 +323,15 @@ const CustomerPage = ({ navigation, route }) => {
                     </View>
                     <View style={{ flexDirection: "row", width: "80%", justifyContent: "space-between", marginTop: 20 }}>
                         <View>
-                            <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular" }}>Totale Acquisti</Text>
+                            <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular" }}>{lang.totaleAcquisti}</Text>
                             <Text style={{ fontSize: 16, color: colors.theme.title, fontFamily: "SFProDisplayRegular" }}>{tot} €</Text>
                         </View>
                         <View>
-                            <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular" }}>Media Acquisti</Text>
+                            <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular" }}>{lang.mediaAcquisti}</Text>
                             <Text style={{ fontSize: 16, color: colors.theme.title, fontFamily: "SFProDisplayRegular" }}>{average} €</Text>
                         </View>
                         <View>
-                            <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular" }}>Ultimo Acquisto</Text>
+                            <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular" }}>{lang.ultimoAcquisto}</Text>
                             <Text style={{ fontSize: 16, color: colors.theme.title, fontFamily: "SFProDisplayRegular" }}>{last}</Text>
                         </View>
                     </View>
@@ -338,8 +340,8 @@ const CustomerPage = ({ navigation, route }) => {
                 <ScrollView overScrollMode="never" style={{ marginBottom: tabBarHeight, width: '100%' }} contentContainerStyle={{ flexGrow: 1 }}>
 
                     <Divider width={"100%"} />
-                    <MenuItem title={'Nuovo Appuntamento'} onPress={() => navigation.navigate('AddAppointment')} />
-                    <MenuItem title={'Contatta'} onPress={() => navigation.navigate('Communication')} />
+                    <MenuItem title={lang.nuovoAppuntamento} onPress={() => navigation.navigate('AddAppointment')} />
+                    <MenuItem title={lang.contatta} onPress={() => navigation.navigate('Communication')} />
                     <View style={{ height: 300}}>
                         <TabView
                             navigationState={{ index, routes }}
