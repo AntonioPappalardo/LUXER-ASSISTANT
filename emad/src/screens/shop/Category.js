@@ -14,6 +14,7 @@ import ProductBox from "../../components/ProductBox";
 import Divider from '../../components/Divider';
 import { useLanguage } from "../../localization/Localization";
 import { getCategoriaById, getImmagineByProdotto, getProdottiByCategoria } from '../../back/connect';
+
 const Category = ({ navigation,route }) => {
     var categoria=getCategoriaById(route.params.categoria);
     const[prodotti,setProdotti]= useState(getProdottiByCategoria(categoria.id))
@@ -24,14 +25,14 @@ const Category = ({ navigation,route }) => {
         setProdotto(cerca)
         setProdotti(prodotti.filter(prod => (prod.nome.toLowerCase().includes(cerca.toLowerCase()) || prod.ean13.includes(cerca))))
     }
+
     const { colors, isDark } = useTheme();
     const tabBarHeight = useBottomTabBarHeight() + 10;
     const productColors = ["000000", "ffffff", "green", "purple"];
-    const size = ["XS", "S", "M", "L"];
+    const size = ["XS", "S", "M", "L","XL","2XL","3XL"];
 
     const [show, setShow] = React.useState(false)
     const toggleText = () => setShow(show => !show)
-
 
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),

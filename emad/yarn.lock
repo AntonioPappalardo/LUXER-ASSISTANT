@@ -1561,6 +1561,7 @@
     "dequal" "^1.0.0"
 
 "@mindinventory/react-native-tab-bar-interaction@github:mindinventory/react-native-tab-bar-interaction":
+  "integrity" "sha512-ygXXnTBNnTcx161weIGHhntIrbHxKEAdNvZiIQ8c6Nm53Q6i0eKmaMOBL0n28dmKk+kLHJe+omeMQiVQpCX73Q=="
   "resolved" "git+ssh://git@github.com/mindinventory/react-native-tab-bar-interaction.git#08c976f7c40eadfec6834c769a49ccb069b0cf1d"
   "version" "2.1.4"
   dependencies:
@@ -7860,6 +7861,11 @@
   "integrity" "sha512-xyk6DC/JL/P8ozGZt+qXvfzK3QugxJjjPWZRUZ7xIfhbHxX44Kw0Afc9gxk9LhVKrAKfwtjGUJgcx9/4FNMGvA=="
   "resolved" "https://registry.npmjs.org/react-native-torch/-/react-native-torch-1.2.0.tgz"
   "version" "1.2.0"
+
+"react-native-uuid@^2.0.1":
+  "integrity" "sha512-cptnoIbL53GTCrWlb/+jrDC6tvb7ypIyzbXNJcpR3Vab0mkeaaVd5qnB3f0whXYzS+SMoSQLcUUB0gEWqkPC0g=="
+  "resolved" "https://registry.npmjs.org/react-native-uuid/-/react-native-uuid-2.0.1.tgz"
+  "version" "2.0.1"
 
 "react-native-view-overflow@^0.0.3":
   "integrity" "sha512-CcX61kqFyO41WAmqARr/1A7YgTkd1GoQGJl0LYrzl+4CL5uw2CAu68T+1DPapt7RdgvSMLZIPlNvj4TzdJY/hw=="

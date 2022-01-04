@@ -92,6 +92,7 @@
     "react-native-system-navigation-bar": "^1.0.2",
     "react-native-tab-view": "^3.1.1",
     "react-native-torch": "^1.2.0",
+    "react-native-uuid": "^2.0.1",
     "react-native-view-overflow": "0.0.5",
     "react-native-web": "0.17.1",
     "react-navigation": "^4.4.4",

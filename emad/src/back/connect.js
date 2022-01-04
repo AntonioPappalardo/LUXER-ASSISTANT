@@ -186,7 +186,7 @@ export function connect(){
         else return other.reduce((accum,item)=>accum+item.qta,0)
     }
     /*
-                            · Pelle con interno in Re-Nylon siglato{'\n'}
+                        · Pelle con interno in Re-Nylon siglato{'\n'}
                         · Altezza: 17cm{'\n'}
                         · Lunghezza: 6cm{'\n'}
                         · Larghezza: 22cm
