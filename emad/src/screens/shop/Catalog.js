@@ -9,22 +9,13 @@ import Container from "../../components/Container";
 import { useLanguage } from "../../localization/Localization";
 import { getCategoria, getCategoriaById, getNumProCategoria, getSubCategory } from "../../back/connect";
 import Category from "./Category";
-import uuid from 'react-native-uuid';
-import axios from 'axios';
 
 const subtitle = (id) => {
   return "" + getNumProCategoria(id) + " prodotti"
 }
 
-
-
 const Catalogo = ({ navigation, route }) => {
   const [lang, setLanguage] = useLanguage();
-
-  //Azure Translator Config
-  const endpoint = "https://api.cognitive.microsofttranslator.com";
-  const subscriptionKey = "2ecf9307a6c547f08b21d68299160d60";
-
   let parent = route.params.categoria;
   let nextPage = 'Catalog';
   let categoria;
@@ -35,35 +26,7 @@ const Catalogo = ({ navigation, route }) => {
   } else {
     categoria = getSubCategory(0);
   }
-
-  const translateText = (text) => {
-
-    return axios({
-       baseURL: endpoint,
-       url: '/translate',
-       method: 'post',
-       headers: {
-           'Ocp-Apim-Subscription-Key': subscriptionKey,
-           'Ocp-Apim-Subscription-Region': 'westeurope',
-           'Content-type': 'application/json',
-           'X-ClientTraceId': uuid.v4().toString()
-       },
-       params: {
-           'api-version': '3.0',
-           'to': lang.code
-       },
-       data: [{
-           'text': text
-       }],
-       responseType: 'json'
-       }).then(response => {
-       return console.log(response.data[0].translations[0].text);
-       }).catch(error => {
-       console.log(error);
-       return Promise.reject(error);
-     });
-   }
-
+ 
   const toggleBack = () => {
     if (parent) {
       navigation.navigate('Catalog')
@@ -92,13 +55,15 @@ const Catalogo = ({ navigation, route }) => {
             <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, color: colors.theme.title }}>{lang.catalogo}</Text>
           </View>
         </View>
+        
         <ScrollView overScrollMode="never">
           {parent > 0 ?
             <Container
               key={parentDetails.id}
               image={{ uri: parentDetails.cover }}
               title={'Linea ' + parentDetails.nome}
-              subTitle={subtitle(parentDetails.id)} opacity={1}
+              subTitle={subtitle(parentDetails.id)} 
+              opacity={1}
               onPress={() => navigation.navigate(nextPage, { categoria: parentDetails.id, utente: route.params.utente })}
             />
             : null}
@@ -107,8 +72,9 @@ const Catalogo = ({ navigation, route }) => {
             <Container
               key={category.id}
               image={{ uri: category.cover }}
-              title={translateText(category.nome)}
-              subTitle={subtitle(category.id)} opacity={1}
+              title={category.nome}
+              subTitle={subtitle(category.id)}
+              opacity={1}
               onPress={() => navigation.navigate(nextPage, { categoria: category.id, utente: route.params.utente })}
             />
           ))}
