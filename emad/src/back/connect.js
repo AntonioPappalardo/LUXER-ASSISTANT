@@ -222,3 +222,56 @@ export function connect(){
    export function getMagazzinoById(id){
        return magazzino.find(m=> m.id==id);
    }
+   /*
+   Funzione che restituisce i colori disponibili in negozio
+   */
+   export function getColorsDb(){
+    var a=attributi.filter(at=>at.nome=="colore").map(at=>at.valore)
+    return  [...new Set( a)]
+}
+export function getSizeDb(){
+    var a=attributi.filter(at=>at.nome=="taglia").map(at=>at.valore)
+    return  [...new Set( a)]
+}
+/*
+Funzione che restituisce i prodotti che hanno 
+*/
+export function getProductsByColors(colors){
+ var products =[]
+ var a=attributi.filter(at=>at.nome=="colore")
+ colors.forEach(color=>{
+       products=products.concat(  a.filter(at=> at.valore==color).map(at=>at.id_prodotto))
+   })
+   return products
+}
+
+export function getProductsBySize(size){
+ var products =[]
+ var a=attributi.filter(at=>at.nome=="taglia")
+ size.forEach(siz=>{
+       products=products.concat(  a.filter(at=> at.valore==siz).map(at=>at.id_prodotto))
+   })
+   return products
+}
+export function getMaxPrezzo(categoria){
+ var prodotti=prodotto.filter(prodotto=>prodotto.id_categoria===categoria);
+ var subCategory=getSubCategory(categoria)
+ if (prodotti== undefined)prodotti=[]
+ subCategory.forEach( subcategoria=> 
+   {
+   prodotti=prodotti.concat(prodotto.filter(pro=>pro.id_categoria==subcategoria.id))
+   }
+ )
+ return Math.max(... prodotti.map(prod=>prod.prezzo))
+}
+export function getMinPrezzo(categoria){
+ var prodotti=prodotto.filter(prodotto=>prodotto.id_categoria===categoria);
+ var subCategory=getSubCategory(categoria)
+ if (prodotti== undefined)prodotti=[]
+ subCategory.forEach( subcategoria=> 
+   {
+   prodotti=prodotti.concat(prodotto.filter(pro=>pro.id_categoria==subcategoria.id))
+   }
+ )
+ return Math.min(... prodotti.map(prod=>prod.prezzo))
+}

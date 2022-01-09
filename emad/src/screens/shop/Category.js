@@ -13,23 +13,123 @@ import BackButton from '../../components/BackButton';
 import ProductBox from "../../components/ProductBox";
 import Divider from '../../components/Divider';
 import { useLanguage } from "../../localization/Localization";
-import { getCategoriaById, getImmagineByProdotto, getProdottiByCategoria } from '../../back/connect';
+import { getCategoriaById, getColorsDb, getImmagineByProdotto, getProdottiByCategoria, getProductsByColors, getProductsBySize, getMinPrezzo,  getMaxPrezzo, getSizeDb} from '../../back/connect';
+
+var selectedcolors=[]
+var selectedsize=[]
+var productColors = getColorsDb();
+var size = getSizeDb();
+var cerco=''
+var minprezzo=undefined
+var maxprezzo=undefined
 
 const Category = ({ navigation,route }) => {
     var categoria=getCategoriaById(route.params.categoria);
-    const[prodotti,setProdotti]= useState(getProdottiByCategoria(categoria.id))
+    var ProductCategory= getProdottiByCategoria(categoria.id)
+    const[prodotti,setProdotti]= useState(ProductCategory)
     const [prodotto, setProdotto] = React.useState('');
     const [lang, setLanguage] = useLanguage();
+    
+    const [minPrice,setMinPrice]=React.useState(getMinPrezzo(categoria.id))
+    const [maxPrice,setMaxPrice]=React.useState(getMaxPrezzo(categoria.id))
 
-    const filteringText=(cerca)=>{
-        setProdotto(cerca)
-        setProdotti(prodotti.filter(prod => (prod.nome.toLowerCase().includes(cerca.toLowerCase()) || prod.ean13.includes(cerca))))
-    }
+
 
     const { colors, isDark } = useTheme();
     const tabBarHeight = useBottomTabBarHeight() + 10;
-    const productColors = ["000000", "ffffff", "green", "purple"];
-    const size = ["XS", "S", "M", "L","XL","2XL","3XL"];
+    const OnFiltering=()=>{
+        var filteredcolor=[]
+        var filteredsize=[]
+        var filtered=[]
+        if (selectedcolors.length==0 && selectedsize.length ==0 && cerco.length==0 && minprezzo==undefined && maxprezzo==undefined) filtered= ProductCategory;
+        else{
+            var coloredProducts=getProductsByColors(selectedcolors)
+            coloredProducts.forEach(s=>{
+            var x=ProductCategory.find(prod=>prod.id==s)
+            if(x!=undefined) filteredcolor.push(x)
+            })
+            var sizedProducts=getProductsBySize(selectedsize)
+            sizedProducts.forEach(p=>{
+                var x=ProductCategory.find(prod=>prod.id==p)
+                if(x!=undefined) filteredsize.push(x)
+            })
+            var pricedProducts
+            if ((minprezzo==undefined|| minprezzo=='')  && (maxprezzo==undefined||maxprezzo=='')) {
+                pricedProducts=ProductCategory
+            }else
+            if(minprezzo==undefined) pricedProducts=ProductCategory.filter(prod=> (prod.prezzo<=maxprezzo))
+            else if (maxprezzo==undefined)pricedProducts=ProductCategory.filter(prod=> (prod.prezzo>=minprezzo ))
+            else pricedProducts=ProductCategory.filter(prod=> (prod.prezzo>=minprezzo && prod.prezzo<=maxprezzo))
+            var filteredText=ProductCategory.filter(prod => (prod.nome.toLowerCase().includes(cerco.toLowerCase()) || prod.ean13.includes(cerco)))
+            if(minprezzo==undefined && maxprezzo==undefined)
+                {
+                if(selectedcolors.length==0) 
+                {if(selectedsize.length==0) filtered=filteredText
+                    else 
+                    if(cerco.length==0) filtered=filteredsize
+                        else filtered=(filteredText.filter(v=> filteredsize.indexOf(v)>-1))
+                }
+                else {
+                
+                    if (selectedsize.length==0) {
+                        if(cerco.length==0) filtered=filteredcolor
+                        else filtered=(filteredText.filter(v=> filteredcolor.indexOf(v)>-1))
+                    }
+                    else 
+                        if(cerco.length==0) filtered=(filteredsize.filter(v=> filteredcolor.indexOf(v)>-1))
+                        else filtered=(filteredcolor.filter(v=> filteredsize.indexOf(v)>-1)).filter(v=>filteredText.indexOf(v)>-1)
+                }
+            }
+            else{
+                if(selectedcolors.length==0) 
+                {if(selectedsize.length==0) 
+                    if(cerco.length==0) filtered= pricedProducts
+                    else filtered=(filteredText.filter(v=> pricedProducts.indexOf(v)>-1))
+                    else 
+                    if(cerco.length==0) filtered=filteredsize.filter(v=> pricedProducts.indexOf(v)>-1)
+                        else filtered=(filteredText.filter(v=> filteredsize.indexOf(v)>-1)).filter(v=> pricedProducts.indexOf(v)>-1)
+                }
+                else {
+                    if (selectedsize.length==0) {
+                        if(cerco.length==0) filtered=filteredcolor.filter(v=> pricedProducts.indexOf(v)>-1)
+                        else filtered=(filteredText.filter(v=> filteredcolor.indexOf(v)>-1)).filter(v=> pricedProducts.indexOf(v)>-1)
+                    }
+                    else 
+                        if(cerco.length==0) filtered=(filteredsize.filter(v=> filteredcolor.indexOf(v)>-1)).filter(v=> pricedProducts.indexOf(v)>-1)
+                        else filtered=(filteredcolor.filter(v=> filteredsize.indexOf(v)>-1)).filter(v=>filteredText.indexOf(v)>-1).filter(v=> pricedProducts.indexOf(v)>-1)
+                }
+            }
+        }
+        setProdotti(filtered)
+    }
+    const filteringText=(cerca)=>{
+        setProdotto(cerca)
+        cerco=cerca
+        OnFiltering()
+    }
+    const OnColorFilter=useCallback((col)=>{
+        let exist=selectedcolors.findIndex(a=>a==col)
+        if(exist==-1) selectedcolors.push(col);
+        else selectedcolors.splice(exist,1)
+        OnFiltering()
+        
+    })
+    const OnPriceFilter=useCallback((min,max)=>{
+        setMinPrice(min)
+        setMaxPrice(max)
+        minprezzo=min;
+        maxprezzo=max;
+        OnFiltering()
+    })
+    
+    const OnSizeFilter=useCallback((col)=>{
+        let exist=selectedsize.findIndex(a=>a==col)
+        if(exist==-1) selectedsize.push(col);
+        else selectedsize.splice(exist,1)
+        OnFiltering()
+        
+    })
+
 
     const [show, setShow] = React.useState(false)
     const toggleText = () => setShow(show => !show)
@@ -77,9 +177,9 @@ const Category = ({ navigation,route }) => {
                 </View>
                 {show ? 
                     <View>
-                        <FilterColor colors={productColors}  />
-                        <FilterSize size={size} />
-                        <FilterPrice />
+                        <FilterColor colors={productColors} OnColorFilter={OnColorFilter} />
+                        <FilterSize size={size} OnSizeFilter={OnSizeFilter}/>
+                        <FilterPrice min={minPrice} max={maxPrice} OnPriceFilter={OnPriceFilter}/>
                     </View> 
                 : null}
                 <Divider width="100%" />
@@ -104,7 +204,9 @@ const FilterColor = (props) => {
 
     const { colors, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
-
+    const OnColorFilter= useCallback((col)=>{
+        props.OnColorFilter(col)
+    })
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
@@ -124,9 +226,11 @@ const FilterColor = (props) => {
                         <View style={{ flexDirection: 'row', marginRight: 15 }}>
                             <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 12 }}>{lang.colori}</Text>
                         </View>
+                        <ScrollView overScrollMode="never" horizontal={true}>
                         {props.colors.map((item, key) => (
-                            <ColorFilter key={key} color={item} />
+                            <ColorFilter key={key} color={item} OnColorFilter={OnColorFilter} />
                         ))}
+                        </ScrollView>
                     </View>
                     <Divider width={"100%"} />
                 </View>
@@ -139,7 +243,9 @@ const FilterSize = (props) => {
 
     const { colors, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
-
+    const OnSizeFilter= useCallback((size)=>{
+        props.OnSizeFilter(size)
+    })
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
@@ -159,9 +265,11 @@ const FilterSize = (props) => {
                         <View style={{ flexDirection: 'row', marginRight: 15 }}>
                             <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium", paddingBottom: 12 }}>{lang.taglie}</Text>
                         </View>
+                        <ScrollView overScrollMode="never" horizontal={true}>
                         {props.size.map((item, key) => (
-                            <SizeFilter key={key} size={item} />
+                            <SizeFilter key={key} size={item} OnSizeFilter={OnSizeFilter} />
                         ))}
+                        </ScrollView>
                     </View>
                     <Divider width={"100%"} />
                 </View>
@@ -174,7 +282,7 @@ const FilterPrice = (props) => {
 
     const { colors, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
-
+   
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
@@ -184,6 +292,17 @@ const FilterPrice = (props) => {
     const [to, setTo] = React.useState('');
     const [show, setSelected] = React.useState(false)
     const toggleColor = () => setSelected(show => !show)
+    const OnPriceFilter= useCallback((min,max)=>{
+        props.OnPriceFilter(min,max)
+    })
+    const OnFromPriceFilter=(from)=>{
+        setFrom(from)
+        OnPriceFilter(from,to)
+    }
+    const OnToPriceFilter=(to)=>{
+        setTo(to)
+        OnPriceFilter(from,to)
+    }
 
     if (!fontsLoaded) {
         return <AppLoading />;
@@ -198,12 +317,12 @@ const FilterPrice = (props) => {
                         <View style={{justifyContent: 'center', flexDirection: 'row', marginBottom: 5}}>
                             <View style={{ width: '35%' }}>
                                 <PriceFilter params={{width: '100%' }}
-                                    name={lang.da} icon="" rotation="0deg" secure='false' value={from} onChangeText={setFrom} />
+                                    name={lang.da} icon="" rotation="0deg" secure='false' value={from} onChangeText={OnFromPriceFilter} />
                             </View>
                             <View style={{ width: '5%' }}></View>
                             <View style={{ width: '35%' }}>
                                 <PriceFilter params={{width: '100%' }}
-                                    name={lang.a} icon="" rotation="0deg" secure='false' value={to} onChangeText={setTo} />
+                                    name={lang.a} icon="" rotation="0deg" secure='false' value={to} from={from} to={to} onChangeText={OnToPriceFilter} />
                             </View>
                         </View>
                     </View>

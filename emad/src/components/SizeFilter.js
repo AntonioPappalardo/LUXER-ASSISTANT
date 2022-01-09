@@ -9,8 +9,11 @@ const SizeFilter = (props) => {
     const {colors, isDark} = useTheme();
 
     const [show, setSelected] = React.useState(false)
-    const toggleColor = () => setSelected(show => !show)
+    const toggleColor = () => {
+        setSelected(show => !show)
+        props.OnSizeFilter(props.size)
     
+    }
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
