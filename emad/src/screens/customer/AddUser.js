@@ -9,6 +9,7 @@ import InputButton from "../../components/InputButton";
 import InputText from "../../components/InputText";
 import BackButton from "../../components/BackButton";
 import { useLanguage } from "../../localization/Localization";
+import { AddCostumer } from "../../back/connect";
 
 const AddUser = ({navigation}) => {
 
@@ -68,7 +69,17 @@ const AddUser = ({navigation}) => {
             name={lang.nazionalita} icon="" rotation="0deg" value={nazionalita} onChangeText={setNazionalita} />
 
         </View>         
-         <InputButton params={{ marginTop: 26, width: "75%", marginBottom: tabBarHeight }} name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" onPress={() => signIn({ username, password })} />
+         <InputButton params={{ marginTop: 26, width: "75%", marginBottom: tabBarHeight }} name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" onPress={() => {
+           var user={}
+           user.nome=nome;
+           user.cognome=cognome;
+           user.email=email; 
+           user.telefono=tel; 
+           user.genere=sesso;
+           user.eta=eta; 
+           user.nazione=nazionalita;
+           AddCostumer(user);
+           navigation.goBack(); }} />
       </ScrollView>
       </View>
     )

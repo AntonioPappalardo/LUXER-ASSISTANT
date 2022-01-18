@@ -35,6 +35,16 @@ export function connect(){
         utente = response.data.utente;
     }) 
 }
+    export function AddCostumer(user){
+        user.codice_cliente=cliente[cliente.length-1].codice_cliente +1;
+        user.id=cliente.length;
+        var d=new Date()
+        user.data_registrazione= d.toISOString().substring(0,10)
+        user.avatar="";
+        console.log(user)
+        axios.get('https://emad2021.azurewebsites.net/api/InsertCostumer?' , {params:{"user":user}})
+        cliente.push(user)
+    } 
 
     export function getAppuntamento(){
         return appuntamento;
@@ -100,7 +110,7 @@ export function connect(){
     export function getNextAppuntamentoByCliente(cliente,user){
         var a= appuntamento.find(appuntamento=> appuntamento.id_utente===user && appuntamento.id_cliente===cliente)
         if (a===undefined) return""
-        else return a.data
+        else return new Date(a.data).toISOString().substring(0,10)
     }
 
 
@@ -274,4 +284,11 @@ export function getMinPrezzo(categoria){
    }
  )
  return Math.min(... prodotti.map(prod=>prod.prezzo))
+}
+
+export function getAppuntamentoByUser(user){
+    return appuntamento.filter(a=> a.id_utente==user)
+}
+export function getClienteById(id){
+    return cliente.find(a=>a.id==id)
 }

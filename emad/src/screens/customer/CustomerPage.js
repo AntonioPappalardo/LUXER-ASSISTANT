@@ -17,25 +17,13 @@ import 'moment/locale/it';
 
 moment.locale('it')
 
-const acquisti = [
-    { "id": "00001", "cliente": "001", "data": "2021/07/24", "saldo": 450.50 },
-    { "id": "00002", "cliente": "002", "data": "2021/07/25", "saldo": 450.50 },
-    { "id": "00003", "cliente": "003", "data": "2021/07/25", "saldo": 450.50 },
-    { "id": "00004", "cliente": "004", "data": "2021/07/25", "saldo": 450.50 },
-    { "id": "00005", "cliente": "005", "data": "2021/07/25", "saldo": 450.50 },
-    { "id": "00006", "cliente": "001", "data": "2021/08/25", "saldo": 450.50 },
-    { "id": "00007", "cliente": "002", "data": "2021/08/25", "saldo": 450.50 },
-    { "id": "00008", "cliente": "003", "data": "2021/08/25", "saldo": 450.50 },
-    { "id": "00009", "cliente": "004", "data": "2021/08/25", "saldo": 450.50 },
-    { "id": "00010", "cliente": "005", "data": "2021/08/25", "saldo": 450.50 },
-    { "id": "00011", "cliente": "001", "data": "2021/09/25", "saldo": 450.50 },
-    { "id": "00012", "cliente": "002", "data": "2021/09/25", "saldo": 450.50 },
-    { "id": "00013", "cliente": "003", "data": "2021/09/25", "saldo": 450.50 },
-    { "id": "00014", "cliente": "004", "data": "2021/09/25", "saldo": 450.50 },
-    { "id": "00015", "cliente": "005", "data": "2021/09/25", "saldo": 450.50 },
-]
-
-
+const acquisti = []
+const mesi=["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dec"]
+const actualMonth= (new Date()).getMonth()
+console.log(actualMonth)
+/* Da 0 a 6 Funziona */
+const lab =(actualMonth<6)? mesi.slice(actualMonth+6, 12).concat(mesi.slice(0, actualMonth))
+:mesi.slice(actualMonth-6, 6).concat(mesi.slice(6, actualMonth));
 
 const CustomerPage = ({ navigation, route }) => {
     const [lang, setLanguage] = useLanguage();
@@ -94,7 +82,7 @@ const CustomerPage = ({ navigation, route }) => {
 
                 }}
                 data={{
-                    labels: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu"],
+                    labels: lab,
                     datasets: [
                         {
                             data: [
@@ -139,7 +127,7 @@ const CustomerPage = ({ navigation, route }) => {
     const SecondRoute = () => (
         <BarChart
             data={{
-                labels: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu"],
+                labels: lab,
                 datasets: [
                     {
                         data: [
@@ -182,7 +170,7 @@ const CustomerPage = ({ navigation, route }) => {
     const ThirdRoute = () => (
         <BarChart
             data={{
-                labels: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu"],
+                labels: lab,
                 datasets: [
                     {
                         data: [

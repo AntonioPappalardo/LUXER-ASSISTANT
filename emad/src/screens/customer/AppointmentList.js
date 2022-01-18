@@ -9,6 +9,7 @@ import { useFonts } from 'expo-font';
 import { useLanguage } from "../../localization/Localization";
 import moment from 'moment';
 import 'moment/locale/it';
+import { getAppuntamentoByUser, getClienteById, getNextAppuntamentoByCliente } from "../../back/connect";
 
 const width = Dimensions.get('window').width;
 moment.locale('it')
@@ -20,21 +21,24 @@ LocaleConfig.locales['it'] = {
 };
 LocaleConfig.defaultLocale = 'it';
 
-const users = [
-    { "name": "Maria Rossi", "id": "001", "next_appointment": "1 Dicembre 2021 11:00-12:00", "reserved": "true" },
-    { "name": "Antonella Rossi", "id": "002", "next_appointment": "1 Dicembre 2021 13:00-14:00", "reserved": "true" },
-    { "name": "Margherita Rosi", "id": "003", "next_appointment": "1 Dicembre 2021 15:00-16:00", "reserved": "true" }
-]
+var users = []
 
-const AppointmentList = ({ navigation }) => {
 
+const AppointmentList = ({ navigation,route }) => {
+    users= getAppuntamentoByUser(route.params.user).map(u=>new Date(u.data).toISOString().substring(0,10))
     const { key, colors, setScheme, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
+    const filterday=(day)=>{
+        users=getAppuntamentoByUser(route.params.user)
 
+        users=(users.filter(d=>new Date(d.data).toISOString().substring(0,10)==day))
+       
+    }
     const [daySelected, setDaySelected] = useState(new Date);
-    
+    filterday(daySelected)
     const onDayPress = day => {
         setDaySelected(day.dateString);
+        filterday(day.dateString)
     }
     const onMonthChange = day => {
         var today = new Date;
@@ -123,14 +127,14 @@ const AppointmentList = ({ navigation }) => {
                         <View key={item.id} style={{ height: 75, width: "90%", flexDirection: "row", alignSelf: "center", marginTop: 10, marginBottom: 5, }}>
                             <View style={{ width: '25%' }}>
                                 <View style={{ justifyContent: "center", marginLeft: 5, height: 70, width: 70, shadowOffset: { width: 1, height: 2 }, shadowOpacity: 0.25, shadowRadius: 5, elevation: 5, marginRight: 10, borderRadius: 5 }}>
-                                    <Image source={require('../../../assets/img/img.jpg')} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
+                                    <Image source={{uri: getClienteById(item.id_cliente).avatar}} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
                                 </View>
                             </View>
-                            <TouchableOpacity style={{ flexDirection: 'row', width: '75%' }} activeOpacity={.75} onPress={() => { navigation.navigate('CustomerPage',{user:item.id}) }}>
+                            <TouchableOpacity style={{ flexDirection: 'row', width: '75%' }} activeOpacity={.75} onPress={() => { navigation.navigate('CustomerPage',{user:item.id_cliente}) }}>
                                 <View style={{ flexDirection: "column", justifyContent: "center" }}>
-                                    <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{item.name}</Text>
-                                    <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>{lang.codiceCliente}: {item.id}</Text>
-                                    <Text style={{ fontSize: 12, fontFamily: 'SFProDisplayRegular', color: colors.theme.title }}>{item.next_appointment}</Text>
+                                    <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{getClienteById(item.id_cliente).nome} {getClienteById(item.id_cliente).cognome}</Text>
+                                    <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>{lang.codiceCliente}: {getClienteById(item.id_cliente).codice_cliente}</Text>
+                                    <Text style={{ fontSize: 12, fontFamily: 'SFProDisplayRegular', color: colors.theme.title }}>{getNextAppuntamentoByCliente(item.id_cliente,item.id_utente)}</Text>
                                 </View>
                                 <View style={{ justifyContent: 'center', alignContent: "center", alignItems: 'center', marginLeft: 'auto', top: 15, marginRight: 5, height: 40, width: 40 }}>
                                     <Ionicons name="chevron-forward" size={25} color={colors.theme.title} />

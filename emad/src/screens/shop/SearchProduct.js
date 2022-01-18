@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View, ScrollView, TouchableOpacity } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
@@ -10,9 +10,11 @@ import BackButton from '../../components/BackButton';
 import ProductBox from "../../components/ProductBox";
 import Divider from '../../components/Divider';
 import { useLanguage } from "../../localization/Localization";
+import { getImmagineByProdotto, getProdotto } from '../../back/connect';
 
-const SearchProduct = ({ navigation }) => {
-
+var cerco=''
+const SearchProduct = ({ navigation,route }) => {
+  const[prodotti,setProdotti]=useState(getProdotto());
   const {colors, isDark} = useTheme();
   const [lang, setLanguage] = useLanguage();
 
@@ -20,6 +22,11 @@ const SearchProduct = ({ navigation }) => {
 
   const [prodotto, setProdotto] = React.useState('');
 
+  const filteringText=(cerca)=>{
+    setProdotto(cerca)
+    cerco=cerca
+    setProdotti(getProdotto().filter(prod => (prod.nome.toLowerCase().includes(cerco.toLowerCase()) || prod.ean13.includes(cerco))))
+}
   let [fontsLoaded] = useFonts({
     'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
     'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
@@ -34,7 +41,7 @@ const SearchProduct = ({ navigation }) => {
         <View style={{ alignItems: "center", marginBottom: 15, marginTop: '12%' }}>
          
             <InputText params={{ width: "75%", paddingLeft: 75, textAlign: "left" }}
-              name={lang.inputProdName} icon="search" rotation="0deg" value={prodotto} onChangeText={setProdotto} secure='false' left='true' 
+              name={lang.inputProdName} icon="search" rotation="0deg" value={prodotto} onChangeText={cerca=>filteringText(cerca)} secure='false' left='true' 
               right={
             <TouchableOpacity onPress={() => navigation.navigate('ScanQR')} activeOpacity={.75} style={{marginTop: 5}}>
               <Icon name={Platform.OS === "ios" ? "ios-qr-code-outline" : "md-qr-code-outline"} size={20} 
@@ -45,18 +52,12 @@ const SearchProduct = ({ navigation }) => {
         <Divider width="100%" />
         <ScrollView overScrollMode="never">
         <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap', alignItems: "center" }}>
-        <ProductBox name={"Mini borsa Prada Cleo in pelle spazzolata"} price={"1780"} reference={"1273100"}
-            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p3_1.webp' }}/>
-        <ProductBox name={"Camicia in chiffon con micro borchie"} price={"2600"} reference={"1231283"}
-            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p11_1.webp' }} />
-        <ProductBox name={"Giacca corta in kid mohair"} price={"1900"} reference={"1273100"}
-            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p13_1.webp' }} />
-        <ProductBox name={"Borsa Prada Cleo in raso con applicazioni"} price={"2600"} reference={"1231283"}
-            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p5_1.webp' }} />
-        <ProductBox name={"Borsa Prada Signaux in nappa imbottita"} price={"2200"} reference={"1231283"}
-            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p7_1.webp' }} />
-        <ProductBox name={"Cappello da pescatore con paillettes"} price={"980"} reference={"1231283"}
-            image={{ uri: 'https://storageaccountemadbc1b.blob.core.windows.net/prodotti/p14_1.webp' }} />
+        {
+          prodotti.map((prodotto)=>(
+            <ProductBox key={prodotto.id} name={prodotto.nome} price={prodotto.prezzo} reference={prodotto.ean13}
+            image={{ uri:getImmagineByProdotto(prodotto.id) }}  onPress={() => navigation.navigate('ProductPage',{prodotto:prodotto.id,utente:route.params.user})}/>
+          ))
+        }
         </View>
         <View style={{marginBottom: tabBarHeight+ 10}}></View>
         </ScrollView>
