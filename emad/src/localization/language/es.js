@@ -19,7 +19,7 @@ const es = {
   cerca: 'Cerca',
 
   //Casa
-  hello: 'Bienvenido de nuevo',
+  hello: 'Bienvenido',
   dashboard:'Tu panel',
   nuovoCliente:'Cliente nuevo',
   schedaCliente:'Tarjeta de cliente',
