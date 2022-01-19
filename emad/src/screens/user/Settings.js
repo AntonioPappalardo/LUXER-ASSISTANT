@@ -89,6 +89,7 @@ const Impostazioni = ({ navigation }) => {
                                 <Picker.Item label="Italiano" value="it-IT" />
                                 <Picker.Item label="English" value="en-US" />
                                 <Picker.Item label="Français" value="fr-FR" />
+                                <Picker.Item label="Español" value="es-ES" />
                             </Picker>
                         </View>
                     </Modal>

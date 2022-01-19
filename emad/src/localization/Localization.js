@@ -3,11 +3,13 @@ import * as Localization from 'expo-localization';
 import it from './language/it';
 import en from './language/en';
 import fr from './language/fr';
+import es from './language/es';
 
 const lang = {
   'en-US': en,
   'fr-FR': fr,
   'it-IT': it,
+  'es-ES': es,
 }
 
 const langDict = (key) => lang[key]
