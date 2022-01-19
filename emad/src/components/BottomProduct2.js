@@ -22,6 +22,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
     var qta = getStockByUserProduct(prodotto.id, utente)
     var otherqta = getQtaByProduct(prodotto.id, utente)
     var caratteristiche = getCaratteristicheProduct(prodotto.id)
+
     function renderTabBar(props) {
         const inputRange = props.navigationState.routes.map((x, i) => i);
 
@@ -47,6 +48,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
             </View>
         );
     };
+
     const [index, setIndex] = useState(0);
     const [lang, setLanguage] = useLanguage();
 
@@ -131,8 +133,14 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
     const { colors, isDark } = useTheme();
     const tabBarHeight = useBottomTabBarHeight();
     const elementRef = useRef();
+    
     const [selected, setSelect] = useState(undefined);
-
+    
+    const toggleModal = (itemValue) => {
+        setSelect(itemValue);
+        setModalVisible(false);
+    }
+    
     const styles = {
         view: {
             justifyContent: 'flex-end',
@@ -193,6 +201,11 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                                         <ColorFilter key={key} color={item} />
                                     ))}
                                 </View>
+                                {selected == undefined ?
+                                    setSelect(taglia[0].valore)
+                                    :
+                                    null
+                                }
                                 {taglia.length == 0 ?
 
                                     null
@@ -217,7 +230,9 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                                                     selectedValue={selected}
                                                     style={{ width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center' }}
                                                     dropdownIconColor={colors.theme.title}
-                                                    onValueChange={(itemValue, itemIndex) => setSelect(itemValue)}
+                                                    onValueChange={(itemValue) =>
+                                                        toggleModal(itemValue)
+                                                    }
                                                     mode="dialog">
                                                     {taglia.map(item => {
                                                         return <Picker.Item key={item.id} label={item.valore} value={item.valore} />;
