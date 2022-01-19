@@ -20,10 +20,11 @@ const fr = {
   
     //Domicile
     hello: 'Bienvenue',
-    dashboard:'Votre tableau de bord',
+    dashboard:'Votre Tableau de Bord',
     nuovoCliente:'Nouvelle Cliente',
     schedaCliente:'Carte Client',
     catalogo:'Catalogue',
+    linea:'Ligne',
     scan:'Scanner le Code QR',
     impostazioni:'Réglages',
     logout:'Se Déconnecter',
@@ -36,7 +37,7 @@ const fr = {
     nazionalita:'Nationalité',
   
     //Réglages
-    tema:'Mode nuit',
+    tema:'Mode Nuit',
     info:'Informations sur Luxer Assistant',
     note:'Notes de Version',
     lingua:'Langue',
@@ -59,7 +60,7 @@ const fr = {
     preferiti:'Favoris',
   
     //Nouveau rendez-vous
-    riservaNegozio:'Réserver tout le magasin',
+    riservaNegozio:'Réserver tout le Magasin',
     dalle:'Lui Donner',
     alle:'Â',
   
@@ -84,10 +85,11 @@ const fr = {
     
     //Liste des magasins
     indirizzo:'Addresse',
-  
+    giorni:['Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi'],
+
     //Panier
     carrello:'Panier',
-    articoliTot:'Articles au total',
+    articoliTot:'Articles au Total',
     totale:'Le Total',
     email:'Entrer l\'E-mail',
   

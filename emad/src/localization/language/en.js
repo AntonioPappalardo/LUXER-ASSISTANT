@@ -24,6 +24,7 @@ const en = {
   nuovoCliente:'New Client',
   schedaCliente:'Customer Card',
   catalogo:'Catalog',
+  linea:'Line',
   scan:'Scan QR Code',
   impostazioni:'Settings',
   logout:'Logout',
@@ -36,7 +37,7 @@ const en = {
   nazionalita:'Nationality',
 
   //Settings
-  tema:'Dark Theme',
+  tema:'Dark Mode',
   info:'Info on Luxer Assistant',
   note:'Release Notes',
   lingua:'Language',
@@ -79,12 +80,12 @@ const en = {
   descrizione:'Description',
   schedaProdotto:'Product Card',
   inNegozio:'In Store',
-  inAltri:'In other stores',
+  inAltri:'In Other Stores',
   taglia:'Size',
 
   //Store List
   indirizzo:'Address',
-
+  giorni:['Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday'],
   //Cart
   carrello:'Cart',
   articoliTot:'Total Items',

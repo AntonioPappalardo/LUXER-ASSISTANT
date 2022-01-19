@@ -10,21 +10,6 @@ import InputButton from "../../components/InputButton";
 import { getMagazzinoById } from "../../back/connect";
 import { useLanguage } from "../../localization/Localization";
 
-const days = [
-    { "id": "01", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
-    { "id": "02", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
-    { "id": "03", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
-    { "id": "04", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
-    { "id": "05", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
-    { "id": "06", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
-    { "id": "07", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
-    { "id": "08", "days": [{ "giorno": "Lunedì", "orario": "07:00 - 21:00" }, { "giorno": "Martedì", "orario": "07:00 - 21:00" }, { "giorno": "Mercoledì", "orario": "07:00 - 21:00" }, { "giorno": "Giovedì", "orario": "07:00 - 21:00" }, { "giorno": "Venerdì", "orario": "07:00 - 21:00" }, { "giorno": "Sabato", "orario": "07:00 - 21:00" }, { "giorno": "Domenica", "orario": "07:00 - 21:00" }] },
-
-];
-
-
-
-
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 const Store = ({ navigation, route }) => {
@@ -33,8 +18,9 @@ const Store = ({ navigation, route }) => {
     const [lang, setLanguage] = useLanguage();
 
     const [store, setStore] = React.useState(getMagazzinoById(route.params.store));
-    const [day, setDays] = React.useState(JSON.parse(store.orari).days);
-    var weekDays = ['Domenica','Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
+    var orari = 'orari_'+ lang.codice;
+    const [day, setDays] = React.useState(JSON.parse(store.orari_it).days); //Randere dinamico
+    var weekDays = lang.giorni;
     
     var now = weekDays[new Date().getDay()];
     const tabBarHeight = useBottomTabBarHeight();
@@ -92,7 +78,7 @@ const Store = ({ navigation, route }) => {
                     <View style={{ width: "75%", alignSelf: 'center' }}>
                         <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 14, color: colors.theme.title, marginTop: '5%' }}>{store.indirizzo}, {store.zip}{'\n'}{store.citta} {store.provincia}</Text>
                     </View>
-                    <InputButton params={{ marginTop: '5%', width: "75%" }} name={lang.chiama} icon="arrow-forward-outline" rotation="-45deg" />
+                    <InputButton params={{ marginTop: '5%', width: "75%" }} name={lang.chiama} icon="arrow-forward-outline" rotation="-45deg" onPress={()=>{Linking.openURL( `tel:${store.telefono}`);}}/>
                     <View style={{ marginBottom: tabBarHeight + 10 }} />
                 </ScrollView>
             </View>

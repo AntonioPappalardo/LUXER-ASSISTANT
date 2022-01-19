@@ -20,38 +20,39 @@ const es = {
 
   //Casa
   hello: 'Bienvenido',
-  dashboard:'Tu panel',
-  nuovoCliente:'Cliente nuevo',
-  schedaCliente:'Tarjeta de cliente',
+  dashboard:'Tu Panel',
+  nuovoCliente:'Cliente Nuevo',
+  schedaCliente:'Tarjeta de Cliente',
   catalogo:'Catalogar',
-  scan:'Escanear código QR',
+  linea:'Linea de',
+  scan:'Escanear Código QR',
   impostazioni:'Ajustes',
-  logout:'Cerrar sesión',
+  logout:'Cerrar Sesión',
 
   //Cliente nuevo
-  nome:'Nombre de pila',
+  nome:'Nombre de Pila',
   cognome:'Apellido',
   sesso:'Sexo',
   eta:'Envejecer',
   nazionalita:'Nacionalidad',
 
   //Ajustes
-  tema:'Tema oscuro',
+  tema:'Modo Nocturno',
   info:'Acerca del asistente de Luxer',
-  note:'Notas de lanzamiento',
+  note:'Notas de Lanzamiento',
   lingua:'Lengua',
   
   //Búsqueda de clientes
-  inputName: 'Nombre o código del cliente',
-  codiceCliente:'Codigo del cliente',
+  inputName: 'Nombre o Código del cliente',
+  codiceCliente:'Codigo del Cliente',
 
   //Tarjeta de cliente
-  regCliente: 'Cliente desde',
-  tassoFedelta:'Tasa de fidelidad',
+  regCliente: 'Cliente Desde',
+  tassoFedelta:'Tasa de Fidelidad',
   totaleAcquisti: 'Compras Totales',
   mediaAcquisti:'Compras de Medios',
   ultimoAcquisto:'Última Compra',
-  nuovoAppuntamento:'Nueva cita',
+  nuovoAppuntamento:'Nueva Cita',
   contatta:'Contacto',
   acquisti:'Compras',
   ordini:'Pedidos',
@@ -67,7 +68,7 @@ const es = {
   messaggio:'Mensaje',
 
   //Categoría
-  inputProdName:'Nombre o código del Producto',
+  inputProdName:'Nombre o Código del Producto',
   colori:'Colores',
   taglie:'Tallas',
   prezzo:'Precio',
@@ -78,22 +79,22 @@ const es = {
   disponibilita:'Disponibilidad',
   descrizione:'Descripción',
   schedaProdotto:'Detalles de Producto',
-  inNegozio:'En la tienda',
-  inAltri:'En otras tiendas',
+  inNegozio:'En la Tienda',
+  inAltri:'En otras Tiendas',
   taglia:'Tallarines',
 
 
   //Lista de la tienda
   indirizzo:'Habla a',
-
+  giorni:['Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado'],
   //Carrito
-  carrello:'Carrito de compras',
+  carrello:'Carrito de Compras',
   articoliTot:'Articulos Totales',
   totale:'Total',
-  email:'Ingrese correo electrónico',
+  email:'Ingrese correo Electrónico',
 
   //Pagar ahora
-  paga:'Pagar ahora',
+  paga:'Pagar Ahora',
   notificaPagamento:'Acerque el dispositivo habilitado para NFC',
 }
 export default es

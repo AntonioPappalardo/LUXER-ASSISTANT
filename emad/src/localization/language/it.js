@@ -24,6 +24,7 @@ const it = {
   nuovoCliente:'Nuovo Cliente',
   schedaCliente:'Scheda Cliente',
   catalogo:'Catalogo',
+  linea:'Linea',
   scan:'Scannerizza QR Code',
   impostazioni:'Impostazioni',
   logout:'Logout',
@@ -36,7 +37,7 @@ const it = {
   nazionalita:'Nationalità',
 
   //Impostazioni
-  tema:'Modalità notte',
+  tema:'Modalità Notte',
   info:'Info su Luxer Assistant',
   note:'Note sulla Versione',
   lingua:'Lingua',
@@ -84,7 +85,7 @@ const it = {
   
   //Lista Store
   indirizzo:'Indirizzo',
-
+  giorni:['Domenica','Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
   //Carrello
   carrello:'Carrello',
   articoliTot:'Articoli Totali',

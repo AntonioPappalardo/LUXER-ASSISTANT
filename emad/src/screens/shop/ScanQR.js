@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, Vibration, Dimensions, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, Vibration, Dimensions, TouchableOpacity, Platform } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import BackButton from '../../components/BackButton';
 import { useTheme } from "../../theme/ThemeProvider";
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   marker: {
     alignSelf: 'center',
-    marginVertical: '40%',
+    marginVertical: Platform.OS === "android" ? '40%':'30%',
     height: 250,
     width: 250,
     borderWidth: 5,

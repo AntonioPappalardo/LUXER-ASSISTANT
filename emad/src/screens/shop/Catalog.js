@@ -62,7 +62,7 @@ const Catalogo = ({ navigation, route }) => {
             <Container
               key={parentDetails.id}
               image={{ uri: parentDetails.cover }}
-              title={'Linea ' + parentDetails['nome_'+lang.codice]}
+              title={lang.linea+ ' ' + parentDetails['nome_'+lang.codice]}
               subTitle={subtitle(parentDetails.id)} 
               opacity={1}
               onPress={() => navigation.navigate(nextPage, { categoria: parentDetails.id, utente: route.params.utente })}

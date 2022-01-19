@@ -81,15 +81,15 @@ const Impostazioni = ({ navigation }) => {
                             <Picker
                                 selectedValue={selectedLanguage}
                                 style={{width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center', alignSelf: 'center' }}
-                                dropdownIconColor={colors.theme.title}
+                                dropdownIconColor={colors.theme.subtitle}
                                 onValueChange={(itemValue, itemIndex) =>
                                     toggleLanguage(itemValue)
                                 }
                                 mode="dialog">
-                                <Picker.Item label="Italiano" value="it-IT" />
-                                <Picker.Item label="English" value="en-US" />
-                                <Picker.Item label="Français" value="fr-FR" />
-                                <Picker.Item label="Español" value="es-ES" />
+                                <Picker.Item label="Italiano" color={colors.theme.title} value="it-IT" />
+                                <Picker.Item label="English" color={colors.theme.title} value="en-US" />
+                                <Picker.Item label="Français" color={colors.theme.title} value="fr-FR" />
+                                <Picker.Item label="Español" color={colors.theme.title} value="es-ES" />
                             </Picker>
                         </View>
                     </Modal>
