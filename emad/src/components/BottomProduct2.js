@@ -22,7 +22,6 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
     var qta = getStockByUserProduct(prodotto.id, utente)
     var otherqta = getQtaByProduct(prodotto.id, utente)
     var caratteristiche = getCaratteristicheProduct(prodotto.id)
-    console.log(caratteristiche)
     function renderTabBar(props) {
         const inputRange = props.navigationState.routes.map((x, i) => i);
 
@@ -109,7 +108,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                 </Text>
                 <View style={{ flexDirection: 'column', paddingTop: 5 }}>
                 {caratteristiche.map((item)=>(
-                    <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
+                    <Text  key={item['valore_'+lang.codice]} itemstyle={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
                         - {item['valore_'+lang.codice]}
                     </Text>
                     ))}
@@ -162,7 +161,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
         },
         dragHandler: {
             height: 80,
-            width: '75%',
+            width: '100%',
             alignSelf: 'center',
             marginTop: '5%'
         }
@@ -175,16 +174,19 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
             {dragHandler => (
                 <View style={[styles.container, { backgroundColor: colors.theme.background }]}>
                     <View style={styles.dragHandler} {...dragHandler}>
-                        <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayBold', color: colors.theme.subtitle }}>
-                            {prodotto.prezzo}
-                        </Text>
-                        <Text style={{ fontSize: 18, fontFamily: 'SFProDisplayBold', color: colors.theme.title, paddingTop: 5 }}>
-                            {prodotto['nome_'+lang.codice]}
-                        </Text>
-                    </View>
-                    {qta != 0 ? (
+                        <View style={{flexDirection: 'row', alignContent: 'center', alignSelf: 'center'}}>
+                            <View style={{ flexDirection: 'column', width: '60%'}}>
+                                <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayBold', color: colors.theme.subtitle}}>
+                                    {prodotto.prezzo} 
+                                </Text>
+                                <Text style={{ fontSize: 18, fontFamily: 'SFProDisplayBold', color: colors.theme.title, paddingTop: 5 }}>
+                                    {prodotto['nome_' + lang.codice]}
+                                </Text>
+                            </View>
+
+                        {qta != 0 ? (
                         <TouchableOpacity activeOpacity={0.5} style={{
-                            height: 45, width: 45, borderRadius: 22.5, backgroundColor: '#EA9F5A', position: 'absolute', top: '4%', right: '10%',
+                            height: 45, width: 45, borderRadius: 22.5, backgroundColor: '#EA9F5A',
                             justifyContent: 'center', alignItems: 'center', alignContent: 'center', shadowOffset: { width: 1, height: 2 }, shadowOpacity: 0.25, shadowRadius: 5, elevation: 5,
                         }} onPress={() => {
                             addProduct(prodotto)
@@ -194,11 +196,14 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                             <Icon name="cart-plus" size={24} color={'white'} style={{ marginRight: 2 }} />
                         </TouchableOpacity>
                     ) : null}
+                    </View>
+                    </View>
+                    
                     <ScrollView style={{ width: '100%', backgroundColor: colors.theme.background, marginBottom: tabBarHeight }}>
 
                         <View style={{ width: '75%', alignSelf: 'center' }}>
-                            <View style={{ flexDirection: 'row', paddingTop: 5, justifyContent:'center' }}>
-                                <View style={{ flexDirection: 'row', width: '50%' }}>
+                            <View style={{ flexDirection: 'row', paddingTop: 5, justifyContent:'flex-start' }}>
+                                <View style={{ flexDirection: 'row', width: '50%', paddingLeft: 5 }}>
                                     {productColors.map((item, key) => (
                                         <ColorFilter key={key} color={item} />
                                     ))}
