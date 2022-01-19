@@ -1,5 +1,7 @@
 const fr = { 
     code: 'fr-FR',
+    label: 'Français',
+
     //Bouton
     conferma:'CONFIRMATION',
     invia:'SOUMETTRE',
@@ -33,10 +35,11 @@ const fr = {
     nazionalita:'Nationalité',
   
     //Réglages
-    tema:'Thème Sombre',
+    tema:'Mode nuit',
     info:'Informations sur Luxer Assistant',
     note:'Notes de Version',
-  
+    lingua:'Langue',
+    
     //Recherche de client
     inputName: 'Nom ou Code Client',
     codiceCliente:'Code client',
@@ -76,7 +79,8 @@ const fr = {
     schedaProdotto:'Détails du Produit',
     inNegozio:'En Magasin',
     inAltri:'Dans d\'autres Magasins',
-  
+    taglia:'Taille',
+    
     //Liste des magasins
     indirizzo:'Addresse',
   

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView, Dimensions } from 'react-native'
+import { View, Text, ScrollView, Dimensions, StyleSheet } from 'react-native'
+import Modal from 'react-native-modal'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import BackButton from '../../components/BackButton';
 import MenuItem from '../../components/MenuItem';
@@ -9,14 +10,28 @@ import { useFonts } from 'expo-font';
 import SwitchItem from "../../components/SwitchItem";
 import { Picker } from '@react-native-picker/picker';
 import { useLanguage } from "../../localization/Localization";
-import * as Localization from 'expo-localization';
 
 
 const Impostazioni = ({ navigation }) => {
     const { colors, setScheme, isDark } = useTheme();
+    const styles = StyleSheet.create({
+        view: {
+          justifyContent: 'flex-end',
+          margin: 0,
+        },
+        content: {
+            backgroundColor: colors.theme.background,
+            padding: 22,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 4,
+            borderColor: 'rgba(0, 0, 0, 0.1)',
+          },
+      });
 
     const [language, setLanguage] = useLanguage();
     const [selectedLanguage,setSelectedLanguage] = useState(language.code)
+    const [isModalVisible, setModalVisible] = useState(false);
     
     const toggleScheme = () => {
         isDark ? setScheme('light') : setScheme('dark');
@@ -29,6 +44,7 @@ const Impostazioni = ({ navigation }) => {
     const toggleLanguage = (itemValue) => {
         setLanguage(itemValue);
         setSelectedLanguage(itemValue);
+        setModalVisible(false);
     }
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
@@ -48,19 +64,34 @@ const Impostazioni = ({ navigation }) => {
                     </View>
                 </View>
                 <ScrollView overScrollMode="never" style={{ marginBottom: tabBarHeight, marginTop: "5%" }}>
-                    <SwitchItem value={isDark} onValueChange={toggleScheme} title={language.tema} />
-                    <Picker
-                        selectedValue={selectedLanguage}
-                        style={{ width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center' }}
-                        dropdownIconColor={colors.theme.title}
-                        onValueChange={(itemValue, itemIndex) => 
-                            toggleLanguage(itemValue)
-                        }
-                        mode="dropdown">
-                        <Picker.Item label="Italiano" value="it-IT" />
-                        <Picker.Item label="English" value="en-US" />
-                        <Picker.Item label="Francais" value="fr-FR" />
-                    </Picker>
+                    <SwitchItem value={isDark} onValueChange={toggleScheme} title={language.tema}/>
+                    <MenuItem title={language.lingua} rightText={language.label} onPress={() => setModalVisible(true)} />
+                    <Modal
+                        isVisible={isModalVisible}
+                        statusBarTranslucent={true}
+                        animationType="slide"
+                        hasBackdrop={true}
+                        onBackdropPress={()=> setModalVisible(false)}
+                        backdropOpacity={10}
+                        backdropColor={"rgba(0, 0, 0, 0.7)"}
+                        useNativeDriverForBackdrop={true}
+                        hideModalContentWhileAnimating={true}
+                        style={styles.view}>
+                        <View style={styles.content}>
+                            <Picker
+                                selectedValue={selectedLanguage}
+                                style={{width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center', alignSelf: 'center' }}
+                                dropdownIconColor={colors.theme.title}
+                                onValueChange={(itemValue, itemIndex) =>
+                                    toggleLanguage(itemValue)
+                                }
+                                mode="dialog">
+                                <Picker.Item label="Italiano" value="it-IT" />
+                                <Picker.Item label="English" value="en-US" />
+                                <Picker.Item label="Français" value="fr-FR" />
+                            </Picker>
+                        </View>
+                    </Modal>
                     <MenuItem title={language.info} onPress={() => navigation.navigate('AddUser')} />
                     <MenuItem title={language.note} onPress={() => navigation.navigate('Catalogo')} />
 

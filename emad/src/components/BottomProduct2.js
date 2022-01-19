@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Picker } from '@react-native-picker/picker';
-import { Text, View, Dimensions, TouchableOpacity, ScrollView, Animated } from "react-native";
+import { Text, View, Dimensions, TouchableOpacity, ScrollView, Animated, StyleSheet } from "react-native";
+import Modal from 'react-native-modal'
+
 import SlidingUpPanel from "rn-sliding-up-panel";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -8,43 +10,43 @@ import ColorFilter from "./ColorFilter";
 import InputButton from "./InputButton";
 import { useTheme } from "../theme/ThemeProvider";
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import { getStockByUserProduct, getQtaByProduct, getCaratteristicheProduct, getAttributoColoreByProduct,getAttributoTagliaByProduct } from "../back/connect";
+import { getStockByUserProduct, getQtaByProduct, getCaratteristicheProduct, getAttributoColoreByProduct, getAttributoTagliaByProduct } from "../back/connect";
 import { addProduct } from "../back/cart";
-import { useLanguage } from "../localization/Localization";
+import { LanguageContext, useLanguage } from "../localization/Localization";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-const BottomProduct2 = ({ navigation,prodotto,utente }) => {
-
-    var qta=getStockByUserProduct(prodotto.id,utente)
-    var otherqta=getQtaByProduct(prodotto.id,utente)
-    var caratteristiche= getCaratteristicheProduct(prodotto.id)
-    function renderTabBar (props)  {
+const BottomProduct2 = ({ navigation, prodotto, utente }) => {
+    const [isModalVisible, setModalVisible] = useState(false);
+    var qta = getStockByUserProduct(prodotto.id, utente)
+    var otherqta = getQtaByProduct(prodotto.id, utente)
+    var caratteristiche = getCaratteristicheProduct(prodotto.id)
+    function renderTabBar(props) {
         const inputRange = props.navigationState.routes.map((x, i) => i);
-        const [lang, setLanguage] = useLanguage();
+
 
         return (
-          <View style={styles.tabBar}>
-            {props.navigationState.routes.map((route, i) => {
-              const opacity = props.position.interpolate({
-                inputRange,
-                outputRange: inputRange.map((inputIndex) =>
-                  inputIndex === i ? 1 : 0.5
-                ),
-              });
-    
-              return (
-                <TouchableOpacity
-                  style={styles.tabItem}
-                  onPress={() => this.setState({ index: i })}>
-                  <Animated.Text style={{ opacity }}>{route.title}</Animated.Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
+            <View style={styles.tabBar}>
+                {props.navigationState.routes.map((route, i) => {
+                    const opacity = props.position.interpolate({
+                        inputRange,
+                        outputRange: inputRange.map((inputIndex) =>
+                            inputIndex === i ? 1 : 0.5
+                        ),
+                    });
+
+                    return (
+                        <TouchableOpacity
+                            style={styles.tabItem}
+                            onPress={() => this.setState({ index: i })}>
+                            <Animated.Text style={{ opacity }}>{route.title}</Animated.Text>
+                        </TouchableOpacity>
+                    );
+                })}
+            </View>
         );
-      };
+    };
     const [index, setIndex] = useState(0);
     const [lang, setLanguage] = useLanguage();
 
@@ -52,7 +54,7 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
         <View style={{ width: '95%', alignSelf: 'center' }}>
             <View style={{ paddingTop: '5%' }}>
                 <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary }}>
-                    
+
                 </Text>
                 <View style={{ flexDirection: 'row', paddingTop: 5 }}>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
@@ -62,36 +64,36 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
                         {qta}
                     </Text>
                 </View>
-                { qta==0 ?(
-                <View style={{ flexDirection: 'row' }}>
-                    <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
-                        {lang.inAltri}:
-                    </Text>
-                    <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary, paddingLeft: 5 }}>
-                        {otherqta}
-                    </Text>
-                </View>
-                ):null
+                {qta == 0 ? (
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
+                            {lang.inAltri}:
+                        </Text>
+                        <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary, paddingLeft: 5 }}>
+                            {otherqta}
+                        </Text>
+                    </View>
+                ) : null
                 }
             </View>
-            {qta==0?(
-            <InputButton params={{ marginTop: "5%", width: "80%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }}
-                name={lang.altriStore} onPress={() => navigation.navigate('StoreList',{prodotto:prodotto,utente:utente})} />
-            ):null}
+            {qta == 0 ? (
+                <InputButton params={{ marginTop: "5%", width: "80%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }}
+                    name={lang.altriStore} onPress={() => navigation.navigate('StoreList', { prodotto: prodotto, utente: utente })} />
+            ) : null}
             {/*<InputButton params={{ marginTop: "5%", width: "60%", height: 30, fontFamily: 'SFProDisplayMedium', fontSize: 14 }}
                 name="VEDI IN ALTRI STORE" outline onPress={() => navigation.navigate('StoreList')} />*/}
         </View>
-        
+
     );
-    const SecondRoute= () => (
+    const SecondRoute = () => (
         <ScrollView style={{ width: '100%', alignSelf: 'center' }}>
             <View style={{ paddingTop: '5%' }}>
                 <Text style={{ width: '90%', fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary, alignSelf: 'center' }}>
                     Descrizione
                 </Text>
-                <View style={{ width: '90%',flexDirection: 'column', paddingTop: 5 , alignSelf: 'center'}}>
+                <View style={{ width: '90%', flexDirection: 'column', paddingTop: 5, alignSelf: 'center' }}>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary, textAlign: 'justify' }}>
-                       {prodotto.descrizione}
+                        {prodotto.descrizione}
                     </Text>
                 </View>
             </View>
@@ -100,7 +102,7 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
     const ThirdRoute = () => (
         <ScrollView style={{ width: '95%', alignSelf: 'center' }}>
             <View style={{ paddingTop: '5%' }}>
-            <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary }}>
+                <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary }}>
                     Specifiche
                 </Text>
                 <View style={{ flexDirection: 'column', paddingTop: 5 }}>
@@ -125,13 +127,25 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
     const slidePadding = height * 0.15;
 
     const productColors = getAttributoColoreByProduct(prodotto.id);
-    const taglia= getAttributoTagliaByProduct(prodotto.id)
+    const taglia = getAttributoTagliaByProduct(prodotto.id)
     const { colors, isDark } = useTheme();
     const tabBarHeight = useBottomTabBarHeight();
     const elementRef = useRef();
     const [selected, setSelect] = useState(undefined);
 
     const styles = {
+        view: {
+            justifyContent: 'flex-end',
+            margin: 0,
+        },
+        content: {
+            backgroundColor: 'white',
+            padding: 22,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 4,
+            borderColor: 'rgba(0, 0, 0, 0.1)',
+        },
         container: {
             flexGrow: 1,
             zIndex: 1
@@ -155,53 +169,70 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
                             {prodotto.prezzo}
                         </Text>
                         <Text style={{ fontSize: 18, fontFamily: 'SFProDisplayBold', color: colors.theme.title, paddingTop: 5 }}>
-                           {prodotto.nome}
+                            {prodotto.nome}
                         </Text>
                     </View>
-                   {qta!=0?(
-                    <TouchableOpacity activeOpacity={0.5} style={{
-                        height: 45, width: 45, borderRadius: 22.5, backgroundColor: '#EA9F5A', position: 'absolute', top: '4%', right: '10%',
-                        justifyContent: 'center', alignItems: 'center', alignContent: 'center', shadowOffset: { width: 1, height: 2 }, shadowOpacity: 0.25, shadowRadius: 5, elevation: 5,
-                    }} onPress={() => {
-                        addProduct(prodotto)
-                        navigation.navigate('Cart',{prodotto:prodotto})
-                    }
+                    {qta != 0 ? (
+                        <TouchableOpacity activeOpacity={0.5} style={{
+                            height: 45, width: 45, borderRadius: 22.5, backgroundColor: '#EA9F5A', position: 'absolute', top: '4%', right: '10%',
+                            justifyContent: 'center', alignItems: 'center', alignContent: 'center', shadowOffset: { width: 1, height: 2 }, shadowOpacity: 0.25, shadowRadius: 5, elevation: 5,
+                        }} onPress={() => {
+                            addProduct(prodotto)
+                            navigation.navigate('Cart', { prodotto: prodotto })
+                        }
                         }>
-                        <Icon name="cart-plus" size={24} color={'white'} style={{ marginRight: 2 }} />
-                    </TouchableOpacity>
-                   ):null}
+                            <Icon name="cart-plus" size={24} color={'white'} style={{ marginRight: 2 }} />
+                        </TouchableOpacity>
+                    ) : null}
                     <ScrollView style={{ width: '100%', backgroundColor: colors.theme.background, marginBottom: tabBarHeight }}>
-                        
-                        <View style={{width: '75%', alignSelf: 'center' }}>
-                            <View style={{ flexDirection: 'row', paddingTop: 5 }}>
-                                <View style={{ flexDirection: 'row', paddingTop: 15, width: '50%' }}>
+
+                        <View style={{ width: '75%', alignSelf: 'center' }}>
+                            <View style={{ flexDirection: 'row', paddingTop: 5, justifyContent:'center' }}>
+                                <View style={{ flexDirection: 'row', width: '50%' }}>
                                     {productColors.map((item, key) => (
                                         <ColorFilter key={key} color={item} />
                                     ))}
                                 </View>
                                 {taglia.length == 0 ?
-                                
-                                null
-                                : 
-                                <Picker
-                                    selectedValue={selected}
-                                    style={{ width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center' }}
-                                    dropdownIconColor={colors.theme.title}
-                                    onValueChange={(itemValue, itemIndex) =>
-                                        setSelect(itemValue)
-                                    }
-                                    mode="dropdown">
-                                        {taglia.map(item=>{
-                                            return  <Picker.Item key={item.id} label={item.valore} value={item.valore} />
-                                        })}
-                                </Picker>
-                                
+
+                                    null
+                                    :
+                                    <>
+                                        <TouchableOpacity onPress={() => setModalVisible(true)}>
+                                            <Text style={{fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center' }}>{lang.taglia}: {selected}</Text>
+                                        </TouchableOpacity>
+                                        <Modal
+                                            isVisible={isModalVisible}
+                                            statusBarTranslucent={true}
+                                            animationType="slide"
+                                            hasBackdrop={true}
+                                            onBackdropPress={() => setModalVisible(false)}
+                                            backdropOpacity={10}
+                                            backdropColor={"rgba(0, 0, 0, 0.7)"}
+                                            useNativeDriverForBackdrop={true}
+                                            hideModalContentWhileAnimating={true}
+                                            style={styles.view}>
+                                            <View style={styles.content}>
+                                                <Picker
+                                                    selectedValue={selected}
+                                                    style={{ width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center' }}
+                                                    dropdownIconColor={colors.theme.title}
+                                                    onValueChange={(itemValue, itemIndex) => setSelect(itemValue)}
+                                                    mode="dropdown">
+                                                    {taglia.map(item => {
+                                                        return <Picker.Item key={item.id} label={item.valore} value={item.valore} />;
+                                                    })}
+                                                </Picker>
+                                            </View>
+                                        </Modal>
+                                    </>
+
                                 }
                             </View>
                             <InputButton params={{ marginTop: "5%", width: "100%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }} name={lang.visualizzaAR} onPress={() => { navigation.navigate('ExpoAR') }} />
                         </View>
 
-                        <View style={{ height: height*0.325, marginTop: '5%' }}>
+                        <View style={{ height: height * 0.325, marginTop: '5%' }}>
                             <TabView
                                 navigationState={{ index, routes }}
                                 renderScene={renderScene}
@@ -241,4 +272,5 @@ const BottomProduct2 = ({ navigation,prodotto,utente }) => {
         </SlidingUpPanel>
     )
 };
+
 export default BottomProduct2;

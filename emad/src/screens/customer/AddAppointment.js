@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView, Dimensions } from "react-native";
+import { StyleSheet, View, Text, ScrollView, Dimensions, TouchableOpacity } from "react-native";
+import Modal from 'react-native-modal'
 import Checkbox from 'expo-checkbox';
 import { Picker } from '@react-native-picker/picker';
 import Divider from "../../components/Divider";
@@ -24,17 +25,55 @@ LocaleConfig.locales['it'] = {
 LocaleConfig.defaultLocale = 'it';
 
 const AddAppointment = ({ navigation }) => {
-
+    const slots = [
+        { "slot": "09:00", "value": "0" },
+        { "slot": "09:30", "value": "1" },
+        { "slot": "10:00", "value": "2" },
+        { "slot": "10:30", "value": "3" },
+        { "slot": "11:00", "value": "4" },
+        { "slot": "11:30", "value": "5" },
+        { "slot": "12:00", "value": "6" },
+        { "slot": "12:30", "value": "7" },
+        { "slot": "13:00", "value": "8" },
+        { "slot": "13:30", "value": "9" },
+        { "slot": "14:00", "value": "10" },
+        { "slot": "14:30", "value": "11" },
+        { "slot": "15:00", "value": "12" },
+        { "slot": "15:30", "value": "13" },
+        { "slot": "16:00", "value": "14" },
+        { "slot": "16:30", "value": "15" },
+        { "slot": "17:00", "value": "16" },
+        { "slot": "17:30", "value": "17" },
+        { "slot": "18:00", "value": "18" },
+        { "slot": "18:30", "value": "19" },
+        { "slot": "19:00", "value": "20" },
+        { "slot": "19:30", "value": "21" },
+        { "slot": "20:00", "value": "22" },
+        { "slot": "20:30", "value": "23" },
+        { "slot": "21:00", "value": "24" }
+    ]
     const { key, colors, setScheme, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
+    const [isModal1Visible, setModal1Visible] = useState(false);
+    const [isModal2Visible, setModal2Visible] = useState(false);
 
     const [isChecked, setChecked] = useState(false);
     const [selectedFirstSlot, setSelectedFirstSlot] = useState();
     const [selectedSecondSlot, setSelectedSecondSlot] = useState();
-
+    const [selectedFirstSlotLabel, setSelectedFirstSlotLabel] = useState({"slot": "09:00", "value": "0"});
+    const [selectedSecondSlotLabel, setSelectedSecondSlotLabel] = useState({"slot": "09:00", "value": "1"});
     const [daySelected, setDaySelected] = useState(new Date);
 
-
+    const toggleModal1 = (itemValue) => {
+        setSelectedFirstSlot(itemValue);
+        setSelectedFirstSlotLabel(slots.find(slots => slots.value == itemValue))
+        setModal1Visible(false);
+    }
+    const toggleModal2 = (itemValue) => {
+        setSelectedSecondSlot(itemValue);
+        setSelectedSecondSlotLabel(slots.find(slots => slots.value == itemValue))
+        setModal2Visible(false);
+    }
     const onDayPress = day => {
         setDaySelected(day.dateString);
     }
@@ -126,100 +165,82 @@ const AddAppointment = ({ navigation }) => {
 
                 <Divider width="100%" />
                 <ScrollView overScrollMode="never" style={{ height: "100%" }}>
-                    <View style={{flex: 1, width:'75%', alignSelf:'center', justifyContent:'center', alignItems:'center'}}>
+                    <View style={{ flex: 1, width: '75%', alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
                         <View style={styles.section}>
                             <Checkbox
-                                style={{margin: 0, borderRadius: 5 }}
+                                style={{ margin: 0, borderRadius: 5 }}
                                 value={isChecked}
                                 onValueChange={setChecked}
                                 color={isChecked ? '#e78630' : undefined}
                             />
-                            <Text style={{ margin: 25,fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.riservaNegozio}</Text>
+                            <Text style={{ margin: 25, fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.riservaNegozio}</Text>
                         </View>
                     </View>
 
-                    <View style={{ flexDirection: 'row', width: '100%' }}>
-                        <View style={{ width: '5%' }} />
-                        <View style={{ width: '45%' }} >
-                            <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.dalle}:</Text>
-                        </View>
-                        <View style={{ width: '5%' }} />
-                        <View style={{ width: '45%' }} >
-                            <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.alle}:</Text>
-                        </View>
-                        <View style={{ width: '5%' }} />
+                    <View style={{ flexDirection: 'row', width: '100%', justifyContent:'center'}}>
+                        
+                        <TouchableOpacity onPress={() => setModal1Visible(true)}>
+                            <View style={{ flexDirection: 'row' }} >
+                                <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.dalle}:</Text>
+                                <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayMedium', color: colors.theme.title, paddingTop: 2, paddingLeft: 5 }}>{selectedFirstSlotLabel.slot}</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={{width:'20%'}}/>
+                        <TouchableOpacity onPress={() => setModal2Visible(true)}>
+                            <View style={{ flexDirection: 'row' }} >
+                                <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.alle}:</Text>
+                                <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayMedium', color: colors.theme.title, paddingTop: 2, paddingLeft: 5 }}>{selectedSecondSlotLabel.slot}</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
-                    <View style={{ flexDirection: 'row', width: '100%' }}>
-                        <View style={{ width: '5%' }} />
-                        <Picker
-                            selectedValue={selectedFirstSlot}
-                            style={{ width: '40%' }}
-                            onValueChange={(itemValue, itemIndex) =>
-                                setSelectedFirstSlot(itemValue)
-                            }>
-                            <Picker.Item label="09:00" value="0" />
-                            <Picker.Item label="09:30" value="1" />
-                            <Picker.Item label="10:00" value="2" />
-                            <Picker.Item label="10:30" value="3" />
-                            <Picker.Item label="11:00" value="4" />
-                            <Picker.Item label="11:30" value="5" />
-                            <Picker.Item label="12:00" value="6" />
-                            <Picker.Item label="12:30" value="7" />
-                            <Picker.Item label="13:00" value="8" />
-                            <Picker.Item label="13:30" value="9" />
-                            <Picker.Item label="14:00" value="10" />
-                            <Picker.Item label="14:30" value="11" />
-                            <Picker.Item label="15:00" value="12" />
-                            <Picker.Item label="15:30" value="13" />
-                            <Picker.Item label="16:00" value="14" />
-                            <Picker.Item label="16:30" value="15" />
-                            <Picker.Item label="17:00" value="16" />
-                            <Picker.Item label="17:30" value="17" />
-                            <Picker.Item label="18:00" value="18" />
-                            <Picker.Item label="18:30" value="19" />
-                            <Picker.Item label="19:00" value="20" />
-                            <Picker.Item label="19:30" value="21" />
-                            <Picker.Item label="20:00" value="22" />
-                            <Picker.Item label="20:30" value="23" />
-                            <Picker.Item label="21:00" value="24" />
-                        </Picker>
-                        <View style={{ width: '10%' }} />
-                        <Picker
-                            selectedValue={selectedSecondSlot}
-                            style={{ width: '40%' }}
-                            onValueChange={(itemValue, itemIndex) =>
-                                setSelectedSecondSlot(itemValue)
-                            }>
-
-                            <Picker.Item label="09:00" value="0" />
-                            <Picker.Item label="09:30" value="1" />
-                            <Picker.Item label="10:00" value="2" />
-                            <Picker.Item label="10:30" value="3" />
-                            <Picker.Item label="11:00" value="4" />
-                            <Picker.Item label="11:30" value="5" />
-                            <Picker.Item label="12:00" value="6" />
-                            <Picker.Item label="12:30" value="7" />
-                            <Picker.Item label="13:00" value="8" />
-                            <Picker.Item label="13:30" value="9" />
-                            <Picker.Item label="14:00" value="10" />
-                            <Picker.Item label="14:30" value="11" />
-                            <Picker.Item label="15:00" value="12" />
-                            <Picker.Item label="15:30" value="13" />
-                            <Picker.Item label="16:00" value="14" />
-                            <Picker.Item label="16:30" value="15" />
-                            <Picker.Item label="17:00" value="16" />
-                            <Picker.Item label="17:30" value="17" />
-                            <Picker.Item label="18:00" value="18" />
-                            <Picker.Item label="18:30" value="19" />
-                            <Picker.Item label="19:00" value="20" />
-                            <Picker.Item label="19:30" value="21" />
-                            <Picker.Item label="20:00" value="22" />
-                            <Picker.Item label="20:30" value="23" />
-                            <Picker.Item label="21:00" value="24" />
-                        </Picker>
-                        <View style={{ width: '5%' }} />
-
-                    </View>
+                    <Modal
+                        isVisible={isModal1Visible}
+                        statusBarTranslucent={true}
+                        animationType="slide"
+                        hasBackdrop={true}
+                        onBackdropPress={() => setModal1Visible(false)}
+                        backdropOpacity={10}
+                        backdropColor={"rgba(0, 0, 0, 0.7)"}
+                        useNativeDriverForBackdrop={true}
+                        hideModalContentWhileAnimating={true}
+                        style={styles.view}>
+                        <View style={styles.content}>
+                            <Picker
+                                selectedValue={selectedFirstSlot}
+                                style={{ width: '40%' }}
+                                onValueChange={(itemValue, itemLabel) =>
+                                    toggleModal1(itemValue, itemLabel)
+                                }>
+                                {slots.map((item) => (
+                                   <Picker.Item key={item.value} label={item.slot} value={item.value} /> 
+                                ))}
+                            </Picker>
+                        </View>
+                    </Modal>
+                    <Modal
+                        isVisible={isModal2Visible}
+                        statusBarTranslucent={true}
+                        animationType="slide"
+                        hasBackdrop={true}
+                        onBackdropPress={() => setModal2Visible(false)}
+                        backdropOpacity={10}
+                        backdropColor={"rgba(0, 0, 0, 0.7)"}
+                        useNativeDriverForBackdrop={true}
+                        hideModalContentWhileAnimating={true}
+                        style={styles.view}>
+                        <View style={styles.content}>
+                            <Picker
+                                selectedValue={selectedSecondSlot}
+                                style={{ width: '40%' }}
+                                onValueChange={(itemValue, itemIndex) =>
+                                    toggleModal2(itemValue)
+                                }>
+                                {slots.map((item) => (
+                                    <Picker.Item key={item.value} label={item.slot} value={item.value} />
+                                ))}
+                            </Picker>
+                        </View>
+                    </Modal>
                     <InputButton params={{ marginTop: 20, width: "75%" }} name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" />
                 </ScrollView>
 
@@ -231,7 +252,18 @@ const AddAppointment = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-
+    view: {
+        justifyContent: 'flex-end',
+        margin: 0,
+    },
+    content: {
+        backgroundColor: 'white',
+        padding: 22,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 4,
+        borderColor: 'rgba(0, 0, 0, 0.1)',
+    },
     checkboxContainer: {
         flexDirection: "row",
         marginBottom: 20,

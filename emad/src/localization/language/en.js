@@ -1,5 +1,7 @@
 const en = { 
   code: 'en-US',
+  label: 'English',
+
   //Button
   conferma:'Confirm',
   invia:'Send',
@@ -36,6 +38,7 @@ const en = {
   tema:'Dark Theme',
   info:'Info on Luxer Assistant',
   note:'Release Notes',
+  lingua:'Language',
 
   //Client Search
   inputName: 'Client\'s Name or Code',
@@ -76,6 +79,7 @@ const en = {
   schedaProdotto:'Product Card',
   inNegozio:'In Store',
   inAltri:'In other stores',
+  taglia:'Size',
 
   //Store List
   indirizzo:'Address',

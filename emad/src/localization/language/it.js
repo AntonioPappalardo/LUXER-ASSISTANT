@@ -1,5 +1,6 @@
 const it = { 
   code: 'it-IT',
+  label: 'Italiano',
 
   //Button
   conferma:'Conferma',
@@ -34,10 +35,11 @@ const it = {
   nazionalita:'Nationalità',
 
   //Impostazioni
-  tema:'Tema Scuro',
+  tema:'Modalità notte',
   info:'Info su Luxer Assistant',
   note:'Note sulla Versione',
-
+  lingua:'Lingua',
+  
   //Ricerca Cliente
   inputName: 'Nome Cliente o Codice',
   codiceCliente:'Codice cliente',
@@ -77,7 +79,8 @@ const it = {
   schedaProdotto:'Scheda Prodotto',
   inNegozio:'In Negozio',
   inAltri:'In altri store',
-
+  taglia:'Taglia',
+  
   //Lista Store
   indirizzo:'Indirizzo',
 
