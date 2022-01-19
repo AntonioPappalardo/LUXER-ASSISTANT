@@ -20,13 +20,14 @@ const Catalogo = ({ navigation, route }) => {
   let nextPage = 'Catalog';
   let categoria;
   let parentDetails = getCategoriaById(parent);
+  
   if (parent) {
     categoria = getSubCategory(route.params.categoria);
     nextPage = 'Category'
   } else {
     categoria = getSubCategory(0);
   }
- 
+  
   const toggleBack = () => {
     if (parent) {
       navigation.navigate('Catalog')
@@ -61,7 +62,7 @@ const Catalogo = ({ navigation, route }) => {
             <Container
               key={parentDetails.id}
               image={{ uri: parentDetails.cover }}
-              title={'Linea ' + parentDetails.nome}
+              title={'Linea ' + parentDetails['nome_'+lang.codice]}
               subTitle={subtitle(parentDetails.id)} 
               opacity={1}
               onPress={() => navigation.navigate(nextPage, { categoria: parentDetails.id, utente: route.params.utente })}
@@ -72,7 +73,7 @@ const Catalogo = ({ navigation, route }) => {
             <Container
               key={category.id}
               image={{ uri: category.cover }}
-              title={category.nome}
+              title={category['nome_'+lang.codice]}
               subTitle={subtitle(category.id)}
               opacity={1}
               onPress={() => navigation.navigate(nextPage, { categoria: category.id, utente: route.params.utente })}

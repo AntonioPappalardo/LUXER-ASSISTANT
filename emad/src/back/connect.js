@@ -203,11 +203,7 @@ export function connect(){
     */
    export function getCaratteristicheProduct(prodotto){
        var caratteristica=caratteristiche.filter(car=> car.id_prodotto===prodotto);
-       var toreturn=""
-       caratteristica.forEach(car=>{
-           toreturn=toreturn+"-  "+car.valore+"\n";
-       })
-       return toreturn
+       return caratteristica
    }
 
    export function getAttributoColoreByProduct(prodotto){

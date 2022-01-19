@@ -22,7 +22,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
     var qta = getStockByUserProduct(prodotto.id, utente)
     var otherqta = getQtaByProduct(prodotto.id, utente)
     var caratteristiche = getCaratteristicheProduct(prodotto.id)
-
+    console.log(caratteristiche)
     function renderTabBar(props) {
         const inputRange = props.navigationState.routes.map((x, i) => i);
 
@@ -91,11 +91,11 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
         <ScrollView style={{ width: '100%', alignSelf: 'center' }}>
             <View style={{ paddingTop: '5%' }}>
                 <Text style={{ width: '90%', fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary, alignSelf: 'center' }}>
-                    Descrizione
+                    {lang.descrizione}
                 </Text>
                 <View style={{ width: '90%', flexDirection: 'column', paddingTop: 5, alignSelf: 'center' }}>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary, textAlign: 'justify' }}>
-                        {prodotto.descrizione}
+                        {prodotto['descrizione_'+lang.codice]}
                     </Text>
                 </View>
             </View>
@@ -105,12 +105,14 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
         <ScrollView style={{ width: '95%', alignSelf: 'center' }}>
             <View style={{ paddingTop: '5%' }}>
                 <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary }}>
-                    Specifiche
+                    {lang.schedaProdotto}
                 </Text>
                 <View style={{ flexDirection: 'column', paddingTop: 5 }}>
+                {caratteristiche.map((item)=>(
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
-                        {caratteristiche}
+                        - {item['valore_'+lang.codice]}
                     </Text>
+                    ))}
                 </View>
             </View>
         </ScrollView>
@@ -177,7 +179,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                             {prodotto.prezzo}
                         </Text>
                         <Text style={{ fontSize: 18, fontFamily: 'SFProDisplayBold', color: colors.theme.title, paddingTop: 5 }}>
-                            {prodotto.nome}
+                            {prodotto['nome_'+lang.codice]}
                         </Text>
                     </View>
                     {qta != 0 ? (
@@ -201,7 +203,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                                         <ColorFilter key={key} color={item} />
                                     ))}
                                 </View>
-                                {selected == undefined ?
+                                {selected == undefined && taglia.length > 0?
                                     setSelect(taglia[0].valore)
                                     :
                                     null

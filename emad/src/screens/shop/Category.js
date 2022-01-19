@@ -33,8 +33,6 @@ const Category = ({ navigation,route }) => {
     const [minPrice,setMinPrice]=React.useState(getMinPrezzo(categoria.id))
     const [maxPrice,setMaxPrice]=React.useState(getMaxPrezzo(categoria.id))
 
-
-
     const { colors, isDark } = useTheme();
     const tabBarHeight = useBottomTabBarHeight() + 10;
     const OnFiltering=()=>{
@@ -60,7 +58,7 @@ const Category = ({ navigation,route }) => {
             if(minprezzo==undefined) pricedProducts=ProductCategory.filter(prod=> (prod.prezzo<=maxprezzo))
             else if (maxprezzo==undefined)pricedProducts=ProductCategory.filter(prod=> (prod.prezzo>=minprezzo ))
             else pricedProducts=ProductCategory.filter(prod=> (prod.prezzo>=minprezzo && prod.prezzo<=maxprezzo))
-            var filteredText=ProductCategory.filter(prod => (prod.nome.toLowerCase().includes(cerco.toLowerCase()) || prod.ean13.includes(cerco)))
+            var filteredText=ProductCategory.filter(prod => (prod['nome_'+lang.codice].toLowerCase().includes(cerco.toLowerCase()) || prod.ean13.includes(cerco)))
             if(minprezzo==undefined && maxprezzo==undefined)
                 {
                 if(selectedcolors.length==0) 
@@ -148,7 +146,7 @@ const Category = ({ navigation,route }) => {
                 <View style={{flexDirection: 'row', marginBottom:20}}>
                     <BackButton onPress={() => { navigation.goBack() }} />
                     <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
-                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> {categoria.nome}</Text>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}> {categoria['nome_'+lang.codice]}</Text>
                     </View>
                 </View>
                 
@@ -187,7 +185,7 @@ const Category = ({ navigation,route }) => {
                     <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap', alignItems: "center" }}>
                         {
                             prodotti.map((prodotto)=>(
-                                <ProductBox key={prodotto.id} name={prodotto.nome} price={prodotto.prezzo} reference={prodotto.ean13}
+                                <ProductBox key={prodotto.id} name={prodotto['nome_'+lang.codice]} price={prodotto.prezzo} reference={prodotto.ean13}
                             image={{ uri: getImmagineByProdotto(prodotto.id) }} onPress={() => navigation.navigate('ProductPage',{prodotto:prodotto.id,utente:route.params.utente})} />
                             ))
                         }

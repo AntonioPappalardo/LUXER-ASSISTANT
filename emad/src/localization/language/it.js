@@ -1,4 +1,5 @@
 const it = { 
+  codice: 'it',
   code: 'it-IT',
   label: 'Italiano',
 

@@ -1,4 +1,5 @@
-const fr = { 
+const fr = {
+    codice: 'fr',
     code: 'fr-FR',
     label: 'Français',
 
