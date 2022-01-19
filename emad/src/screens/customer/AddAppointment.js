@@ -57,6 +57,33 @@ const AddAppointment = ({ navigation }) => {
     const [isModal1Visible, setModal1Visible] = useState(false);
     const [isModal2Visible, setModal2Visible] = useState(false);
 
+    const styles = StyleSheet.create({
+        view: {
+            justifyContent: 'flex-end',
+            margin: 0,
+        },
+        content: {
+            backgroundColor: colors.theme.background,
+            padding: 22,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 4,
+            borderColor: 'rgba(0, 0, 0, 0.1)',
+        },
+        checkboxContainer: {
+            flexDirection: "row",
+            marginBottom: 20,
+    
+        },
+        section: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
+        checkbox: {
+            margin: 8,
+        },
+    });
+
     const [isChecked, setChecked] = useState(false);
     const [selectedFirstSlot, setSelectedFirstSlot] = useState();
     const [selectedSecondSlot, setSelectedSecondSlot] = useState();
@@ -251,32 +278,7 @@ const AddAppointment = ({ navigation }) => {
 
 }
 
-const styles = StyleSheet.create({
-    view: {
-        justifyContent: 'flex-end',
-        margin: 0,
-    },
-    content: {
-        backgroundColor: 'white',
-        padding: 22,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 4,
-        borderColor: 'rgba(0, 0, 0, 0.1)',
-    },
-    checkboxContainer: {
-        flexDirection: "row",
-        marginBottom: 20,
 
-    },
-    section: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    checkbox: {
-        margin: 8,
-    },
-});
 
 
 export default AddAppointment;

@@ -137,15 +137,15 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
         view: {
             justifyContent: 'flex-end',
             margin: 0,
-        },
-        content: {
-            backgroundColor: 'white',
-            padding: 22,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 4,
-            borderColor: 'rgba(0, 0, 0, 0.1)',
-        },
+          },
+          content: {
+              backgroundColor: colors.theme.background,
+              padding: 22,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 4,
+              borderColor: 'rgba(0, 0, 0, 0.1)',
+            },
         container: {
             flexGrow: 1,
             zIndex: 1
@@ -218,7 +218,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                                                     style={{ width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center' }}
                                                     dropdownIconColor={colors.theme.title}
                                                     onValueChange={(itemValue, itemIndex) => setSelect(itemValue)}
-                                                    mode="dropdown">
+                                                    mode="dialog">
                                                     {taglia.map(item => {
                                                         return <Picker.Item key={item.id} label={item.valore} value={item.valore} />;
                                                     })}
