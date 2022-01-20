@@ -17,13 +17,14 @@ import { getCategoriaById, getColorsDb, getImmagineByProdotto, getProdottiByCate
 
 var selectedcolors=[]
 var selectedsize=[]
+var cerco=''
+const Category = ({ navigation,route }) => {
 var productColors = getColorsDb();
 var size = getSizeDb();
-var cerco=''
+
 var minprezzo=undefined
 var maxprezzo=undefined
 
-const Category = ({ navigation,route }) => {
     var categoria=getCategoriaById(route.params.categoria);
     var ProductCategory= getProdottiByCategoria(categoria.id)
     const[prodotti,setProdotti]= useState(ProductCategory)
@@ -58,7 +59,9 @@ const Category = ({ navigation,route }) => {
             if(minprezzo==undefined) pricedProducts=ProductCategory.filter(prod=> (prod.prezzo<=maxprezzo))
             else if (maxprezzo==undefined)pricedProducts=ProductCategory.filter(prod=> (prod.prezzo>=minprezzo ))
             else pricedProducts=ProductCategory.filter(prod=> (prod.prezzo>=minprezzo && prod.prezzo<=maxprezzo))
+            
             var filteredText=ProductCategory.filter(prod => (prod['nome_'+lang.codice].toLowerCase().includes(cerco.toLowerCase()) || prod.ean13.includes(cerco)))
+            
             if(minprezzo==undefined && maxprezzo==undefined)
                 {
                 if(selectedcolors.length==0) 
@@ -68,9 +71,8 @@ const Category = ({ navigation,route }) => {
                         else filtered=(filteredText.filter(v=> filteredsize.indexOf(v)>-1))
                 }
                 else {
-                
                     if (selectedsize.length==0) {
-                        if(cerco.length==0) filtered=filteredcolor
+                        if(cerco.length==0){ filtered=filteredcolor}
                         else filtered=(filteredText.filter(v=> filteredcolor.indexOf(v)>-1))
                     }
                     else 
@@ -98,7 +100,7 @@ const Category = ({ navigation,route }) => {
                 }
             }
         }
-        setProdotti(filtered)
+        setProdotti([...new Set(filtered)])
     }
     const filteringText=(cerca)=>{
         setProdotto(cerca)
