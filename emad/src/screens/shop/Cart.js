@@ -54,7 +54,7 @@ const Cart = ({ navigation,route }) => {
                 </View> 
                 <ScrollView overScrollMode="never">
                     {cart.map((prod)=>(
-                        <CartItem key={prod.prodotto.id} OnIncrementProduct={OnIncrementProduct} OnDecrementProduct={OnDecrementProduct} value={prod.qta} id={prod.prodotto.id} name={prod.prodotto.nome} reference={prod.prodotto.ean13} specifics={"Specifiche"} price={prod.prodotto.prezzo} image={{ uri: getImmagineByProdotto(prod.prodotto.id) }} min={0} max={2} />
+                        <CartItem key={prod.prodotto.id} OnIncrementProduct={OnIncrementProduct} OnDecrementProduct={OnDecrementProduct} value={prod.qta} id={prod.prodotto.id} name={prod.prodotto['nome_'+lang.codice]} reference={prod.prodotto.ean13} specifics={"Specifiche"} price={prod.prodotto.prezzo} image={{ uri: getImmagineByProdotto(prod.prodotto.id) }} min={0} max={2} />
                     ))}
 
                     <View style={{ width: '75%', alignSelf: 'center', marginTop: '5%', marginBottom:'5%' }}>
