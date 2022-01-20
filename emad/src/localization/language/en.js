@@ -103,6 +103,6 @@ const en = {
   paga: 'Pay Now',
   notificaPagamento: 'Bring the NFC-enabled device closer',
   //AR
-  viewer: '3D Viewer'
+  viewer: 'Products Viewer'
 }
 export default en

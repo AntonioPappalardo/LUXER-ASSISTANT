@@ -18,12 +18,13 @@ const Store = ({ navigation, route }) => {
     const [lang, setLanguage] = useLanguage();
 
     const [store, setStore] = React.useState(getMagazzinoById(route.params.store));
-    var orari = 'orari_'+ lang.codice;
-    const [day, setDays] = React.useState(JSON.parse(store.orari_it).days); //Randere dinamico
-    var weekDays = lang.giorni;
+    const storeDays = store['orari_'+lang.codice]
+    const [day, setDays] = React.useState(JSON.parse(store['orari_'+lang.codice]).days); //Randere dinamico
+    
+    var weekDays = lang.locale.dayNames;
     
     var now = weekDays[new Date().getDay()];
-    const tabBarHeight = useBottomTabBarHeight();
+    const tabBarHeight = useBottomTabBarHeight(); 
 
 
     let [fontsLoaded] = useFonts({
@@ -32,7 +33,7 @@ const Store = ({ navigation, route }) => {
         'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
     });
 
-    if (!fontsLoaded) {
+    if (!fontsLoaded) { 
         return <AppLoading />;
     } else {
         return (

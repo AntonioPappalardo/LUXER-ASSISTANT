@@ -103,6 +103,6 @@ const fr = {
   paga: 'Payez Maintenant',
   notificaPagamento: 'Rapprochez l\'appareil compatible NFC',
   //AR
-  viewer: 'Visionneuse 3D'
+  viewer: 'Visionneuse de produit'
 }
 export default fr
