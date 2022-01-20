@@ -16,29 +16,29 @@ const es = {
   home: 'Casa',
   clienti: 'Clientela',
   calendario: 'Calendario',
-  cerca: 'Cerca',
+  cerca: 'Buscar',
 
   //Casa
   hello: 'Bienvenido',
   dashboard: 'Tu Panel',
-  nuovoCliente: 'Cliente Nuevo',
+  nuovoCliente: 'Nuevo Cliente',
   schedaCliente: 'Tarjeta de Cliente',
-  catalogo: 'Catalogar',
+  catalogo: 'Catalogo',
   linea: 'Linea de',
   scan: 'Escanear Código QR',
   impostazioni: 'Ajustes',
   logout: 'Cerrar Sesión',
 
   //Cliente nuevo
-  nome: 'Nombre de Pila',
+  nome: 'Nombre',
   cognome: 'Apellido',
   sesso: 'Sexo',
-  eta: 'Envejecer',
+  eta: 'Edad',
   nazionalita: 'Nacionalidad',
 
   //Ajustes
   tema: 'Modo Nocturno',
-  info: 'Acerca del asistente de Luxer',
+  info: 'informacion sobre Luxer Assistant',
   note: 'Notas de Lanzamiento',
   lingua: 'Lengua',
 
@@ -61,8 +61,8 @@ const es = {
 
   //Nueva cita
   riservaNegozio: 'Reserva toda la tienda',
-  dalle: 'Darle',
-  alle: 'en',
+  dalle: 'desde',
+  alle: 'hasta',
 
   //Contacto
   messaggio: 'Mensaje',
@@ -73,7 +73,7 @@ const es = {
   taglie: 'Tallas',
   prezzo: 'Precio',
   da: 'Desde',
-  a: 'A',
+  a: 'hasta',
 
   //Detalles de producto
   disponibilita: 'Disponibilidad',
@@ -81,7 +81,7 @@ const es = {
   schedaProdotto: 'Detalles de Producto',
   inNegozio: 'En la Tienda',
   inAltri: 'En otras Tiendas',
-  taglia: 'Tallarines',
+  taglia: 'Talla',
 
 
   //Lista de la tienda
