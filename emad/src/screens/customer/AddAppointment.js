@@ -53,13 +53,8 @@ const AddAppointment = ({ navigation }) => {
     const [isModal2Visible, setModal2Visible] = useState(false);
 
     moment.locale(lang.codice)
-    LocaleConfig.locales['it'] = {
-        monthNames: lang.monthNames,
-        monthNamesShort: lang.monthNamesShort,
-        dayNames:lang.dayNames,
-        dayNamesShort: lang.dayNamesShort,
-        today: lang.today
-      };
+    LocaleConfig.locales[lang.codice] = lang.locale;
+    LocaleConfig.defaultLocale = lang.codice;
 
     const styles = StyleSheet.create({
         view: {
