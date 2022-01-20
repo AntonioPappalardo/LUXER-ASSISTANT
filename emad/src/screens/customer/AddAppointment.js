@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView, Dimensions, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, ScrollView, Dimensions, TouchableOpacity, Platform } from "react-native";
 import Modal from 'react-native-modal'
 import Checkbox from 'expo-checkbox';
 import { Picker } from '@react-native-picker/picker';
@@ -234,13 +234,18 @@ const AddAppointment = ({ navigation }) => {
                         <View style={styles.content}>
                             <Picker
                                 selectedValue={selectedFirstSlot}
-                                style={{ width: '40%' }}
+                                style={{width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center', alignSelf: 'center' }}
+                                dropdownIconColor={colors.theme.title}
                                 onValueChange={(itemValue, itemLabel) =>
                                     toggleModal1(itemValue, itemLabel)
                                 }>
-                                {slots.map((item) => (
-                                   <Picker.Item key={item.value} label={item.slot} value={item.value} /> 
-                                ))}
+                                {slots.map(item => {
+                                    if (Platform.OS === 'ios') {
+                                        return <Picker.Item key={item.value} color={colors.theme.title} label={item.slot} value={item.value} /> ;
+                                    } else {
+                                        return <Picker.Item key={item.value} label={item.slot} value={item.value} /> ;
+                                    }
+                                })}
                             </Picker>
                         </View>
                     </Modal>
@@ -258,13 +263,18 @@ const AddAppointment = ({ navigation }) => {
                         <View style={styles.content}>
                             <Picker
                                 selectedValue={selectedSecondSlot}
-                                style={{ width: '40%' }}
+                                style={{width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center', alignSelf: 'center' }}
+                                dropdownIconColor={colors.theme.title}
                                 onValueChange={(itemValue, itemIndex) =>
                                     toggleModal2(itemValue)
                                 }>
-                                {slots.map((item) => (
-                                    <Picker.Item key={item.value} label={item.slot} value={item.value} />
-                                ))}
+                                {slots.map(item => {
+                                    if (Platform.OS === 'ios') {
+                                        return <Picker.Item key={item.value} color={colors.theme.title} label={item.slot} value={item.value} /> ;
+                                    } else {
+                                        return <Picker.Item key={item.value} label={item.slot} value={item.value} /> ;
+                                    }
+                                })}
                             </Picker>
                         </View>
                     </Modal>

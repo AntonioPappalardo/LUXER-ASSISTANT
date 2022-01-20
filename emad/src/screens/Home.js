@@ -19,7 +19,6 @@ import ExpoAR from '../ar/ExpoAR';
 
 const Stack = createStackNavigator();
 
-
 const Home = ({ navigation , route}) => {
   
   var utente=route.params.user
@@ -45,7 +44,9 @@ const Home = ({ navigation , route}) => {
       <Stack.Screen name="Store" component={Store} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="StoreList" component={StoreList} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="UserHome"component={UserHome} initialParams={{ "user": utente }} options={{cardStyleInterpolator: CardStyleEffect}}/>
-      <Stack.Screen name="ExpoAR" component={ExpoAR}/>
+      <Stack.Screen name="ExpoAR" component={ExpoAR} options={{cardStyleInterpolator: CardStyleEffect}}/>
+
+
     </Stack.Navigator>
   );
 };

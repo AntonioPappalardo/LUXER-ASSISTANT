@@ -17,7 +17,6 @@ import sha512 from 'js-sha512'
     let utente = [];
 
 export function connect(){
-
     axios.get('https://emad2021.azurewebsites.net/api/retrive_data?').then(response=> {
         appuntamento = response.data.appuntamento;
         attributi = response.data.attributi;
@@ -41,7 +40,6 @@ export function connect(){
         var d=new Date()
         user.data_registrazione= d.toISOString().substring(0,10)
         user.avatar="";
-        console.log(user)
         axios.get('https://emad2021.azurewebsites.net/api/InsertCostumer?' , {params:{"user":user}})
         cliente.push(user)
     } 

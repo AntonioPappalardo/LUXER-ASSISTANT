@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Picker } from '@react-native-picker/picker';
-import { Text, View, Dimensions, TouchableOpacity, ScrollView, Animated, StyleSheet } from "react-native";
+import { Text, View, Dimensions, TouchableOpacity, ScrollView, Animated, Platform } from "react-native";
 import Modal from 'react-native-modal'
 
 import SlidingUpPanel from "rn-sliding-up-panel";
@@ -12,7 +12,7 @@ import { useTheme } from "../theme/ThemeProvider";
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { getStockByUserProduct, getQtaByProduct, getCaratteristicheProduct, getAttributoColoreByProduct, getAttributoTagliaByProduct } from "../back/connect";
 import { addProduct } from "../back/cart";
-import { LanguageContext, useLanguage } from "../localization/Localization";
+import { useLanguage } from "../localization/Localization";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -242,7 +242,11 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                                                     }
                                                     mode="dialog">
                                                     {taglia.map(item => {
-                                                        return <Picker.Item key={item.id} label={item.valore} value={item.valore} />;
+                                                        if(Platform.OS === 'ios') {
+                                                            return <Picker.Item key={item.id} color={colors.theme.title} label={item.valore} value={item.valore} />;
+                                                        } else {
+                                                            return <Picker.Item key={item.id} label={item.valore} value={item.valore} />;
+                                                        }
                                                     })}
                                                 </Picker>
                                             </View>
@@ -251,7 +255,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
 
                                 }
                             </View>
-                            <InputButton params={{ marginTop: "5%", width: "100%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }} name={lang.visualizzaAR} onPress={() => { navigation.navigate('ExpoAR') }} />
+                            <InputButton params={{ marginTop: "5%", width: "100%", fontFamily: 'SFProDisplayMedium', fontSize: 14 }} name={lang.visualizzaAR} onPress={() => { navigation.navigate('ExpoAR')}} />
                         </View>
 
                         <View style={{ height: height * 0.325, marginTop: '5%' }}>

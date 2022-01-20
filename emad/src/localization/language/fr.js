@@ -61,7 +61,7 @@ const fr = {
   
     //Nouveau rendez-vous
     riservaNegozio:'Réserver tout le Magasin',
-    dalle:'Lui Donner',
+    dalle:'Depuis',
     alle:'Â',
   
     //Prendre Contact
@@ -96,5 +96,7 @@ const fr = {
     //Payez Maintenant
     paga:'Payez Maintenant',
     notificaPagamento:'Rapprochez l\'appareil compatible NFC',
+      //AR
+  viewer: 'Visionneuse 3D'
   }
   export default fr

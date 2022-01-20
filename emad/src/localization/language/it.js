@@ -95,5 +95,7 @@ const it = {
   //Paga Ora
   paga:'Paga Ora',
   notificaPagamento:'Avvicina il dispositivo abilitato NFC',
+    //AR
+    viewer: 'Visualizzatore 3D'
 }
 export default it

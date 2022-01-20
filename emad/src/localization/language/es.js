@@ -96,5 +96,7 @@ const es = {
   //Pagar ahora
   paga:'Pagar Ahora',
   notificaPagamento:'Acerque el dispositivo habilitado para NFC',
+    //AR
+    viewer: 'Visor 3D'
 }
 export default es
