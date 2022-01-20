@@ -85,7 +85,14 @@ const it = {
   
   //Lista Store
   indirizzo:'Indirizzo',
-  giorni:['Domenica','Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
+  //Calendario
+  locale: {
+    monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+    monthNamesShort: ['Gen', 'Feb', 'Marzo', 'Aprile', 'Maggio', 'Giu', 'Luglio', 'Agosto', 'Settembre', 'Ott', 'Nov', 'Dic'],
+    dayNames: ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
+    dayNamesShort: [ 'L', 'M', 'M', 'G', 'V', 'S','D'],
+    oggi: "Oggi",
+  },
   //Carrello
   carrello:'Carrello',
   articoliTot:'Articoli Totali',

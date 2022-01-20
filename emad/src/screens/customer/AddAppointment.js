@@ -13,16 +13,11 @@ import { useFonts } from 'expo-font';
 import { useLanguage } from "../../localization/Localization";
 import moment from 'moment';
 import 'moment/locale/it';
+import 'moment/locale/es';
+import 'moment/locale/fr';
 
 const width = Dimensions.get('window').width;
-moment.locale('it')
-LocaleConfig.locales['it'] = {
-    monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novebre', 'Dicembre'],
-    dayNames: ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'],
-    dayNamesShort: ['L', 'M', 'M', 'G', 'V', 'S', 'D'],
-    today: 'Oggi'
-};
-LocaleConfig.defaultLocale = 'it';
+
 
 const AddAppointment = ({ navigation }) => {
     const slots = [
@@ -56,6 +51,15 @@ const AddAppointment = ({ navigation }) => {
     const [lang, setLanguage] = useLanguage();
     const [isModal1Visible, setModal1Visible] = useState(false);
     const [isModal2Visible, setModal2Visible] = useState(false);
+
+    moment.locale(lang.codice)
+    LocaleConfig.locales['it'] = {
+        monthNames: lang.monthNames,
+        monthNamesShort: lang.monthNamesShort,
+        dayNames:lang.dayNames,
+        dayNamesShort: lang.dayNamesShort,
+        today: lang.today
+      };
 
     const styles = StyleSheet.create({
         view: {

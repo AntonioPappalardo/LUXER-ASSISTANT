@@ -9,17 +9,13 @@ import { useFonts } from 'expo-font';
 import { useLanguage } from "../../localization/Localization";
 import moment from 'moment';
 import 'moment/locale/it';
+import 'moment/locale/es';
+import 'moment/locale/fr';
+
 import { getAppuntamentoByUser, getClienteById, getNextAppuntamentoByCliente } from "../../back/connect";
 
 const width = Dimensions.get('window').width;
-moment.locale('it')
-LocaleConfig.locales['it'] = {
-    monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novebre', 'Dicembre'],
-    dayNames: ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'],
-    dayNamesShort: ['L', 'M', 'M', 'G', 'V', 'S', 'D'],
-    today: 'Oggi'
-};
-LocaleConfig.defaultLocale = 'it';
+
 
 var users = []
 
@@ -28,6 +24,11 @@ const AppointmentList = ({ navigation,route }) => {
     users= getAppuntamentoByUser(route.params.user).map(u=>new Date(u.data).toISOString().substring(0,10))
     const { key, colors, setScheme, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
+
+    moment.locale(lang.codice)
+    LocaleConfig.locales[lang.codice] = lang.locale;
+    
+    LocaleConfig.defaultLocale = lang.codice;
     const filterday=(day)=>{
         users=getAppuntamentoByUser(route.params.user)
 
