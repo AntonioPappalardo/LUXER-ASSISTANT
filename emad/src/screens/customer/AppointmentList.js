@@ -14,7 +14,7 @@ import 'moment/locale/fr';
 
 import { getAppuntamentoByUser, getClienteById, getNextAppuntamentoByCliente } from "../../back/connect";
 
-const width = Dimensions.get('window').width;
+const width = Dimensions.get('window').width; 
 
 
 var users = []
@@ -27,8 +27,8 @@ const AppointmentList = ({ navigation,route }) => {
 
     moment.locale(lang.codice)
     LocaleConfig.locales[lang.codice] = lang.locale;
-    
     LocaleConfig.defaultLocale = lang.codice;
+    
     const filterday=(day)=>{
         users=getAppuntamentoByUser(route.params.user)
 
