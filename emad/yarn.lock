@@ -4920,6 +4920,11 @@
   "resolved" "https://registry.npmjs.org/image-size/-/image-size-0.6.3.tgz"
   "version" "0.6.3"
 
+"immer@^6.0.3":
+  "integrity" "sha512-SyCYnAuiRf67Lvk0VkwFvwtDoEiCMjeamnHvRfnVDyc7re1/rQrNxuL+jJ7lA3WvdC4uznrvbmm+clJ9+XXatg=="
+  "resolved" "https://registry.npmjs.org/immer/-/immer-6.0.9.tgz"
+  "version" "6.0.9"
+
 "immutable@^4.0.0-rc.12":
   "integrity" "sha512-zIE9hX70qew5qTUjSS7wi1iwj/l7+m54KWU247nhM3v806UdGj1yDndXj+IOYxxtW9zyLI+xqFNZjTuDaLUqFw=="
   "resolved" "https://registry.npmjs.org/immutable/-/immutable-4.0.0.tgz"
@@ -5731,6 +5736,16 @@
   "integrity" "sha1-gteb/zCmfEAF/9XiUVMArZyk168="
   "resolved" "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz"
   "version" "4.0.8"
+
+"lodash.find@^4.6.0":
+  "integrity" "sha1-ywcE1Hq3F4n/oN6Ll92Sb7iLE7E="
+  "resolved" "https://registry.npmjs.org/lodash.find/-/lodash.find-4.6.0.tgz"
+  "version" "4.6.0"
+
+"lodash.findindex@^4.6.0":
+  "integrity" "sha1-oyRd7mH7m24GJLU1ElYku2nBEQY="
+  "resolved" "https://registry.npmjs.org/lodash.findindex/-/lodash.findindex-4.6.0.tgz"
+  "version" "4.6.0"
 
 "lodash.frompairs@^4.0.1":
   "integrity" "sha1-vE5SB/onV8E25XNhTpZkUGsrG9I="
@@ -7737,6 +7752,15 @@
   "version" "3.11.2"
   dependencies:
     "@expo/config-plugins" "^3.0.6"
+
+"react-native-number-please@^1.0.5":
+  "integrity" "sha512-XkbSv1o3zFyadnpU9KmcW18nvM/kPgr2cirRHFEZsvcEw9rjWTe57HFD/7NeNSXvTYOd7srtuh0Cs4f9hkmWUw=="
+  "resolved" "https://registry.npmjs.org/react-native-number-please/-/react-native-number-please-1.0.5.tgz"
+  "version" "1.0.5"
+  dependencies:
+    "immer" "^6.0.3"
+    "lodash.find" "^4.6.0"
+    "lodash.findindex" "^4.6.0"
 
 "react-native-pager-view@^5.4.6":
   "integrity" "sha512-yZiG65xlOeC8LOCNF0N8Cdc+MDQGWJnOpsmlHAndWXQhuVPjj4/KnS556BeTddcQ2EqJu/DjL7o8j0hpB+nkVg=="

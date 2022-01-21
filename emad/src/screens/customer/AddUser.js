@@ -10,33 +10,64 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import InputButton from "../../components/InputButton";
 import InputText from "../../components/InputText";
 import BackButton from "../../components/BackButton";
+import MenuItem from '../../components/MenuItem';
+import { Picker } from '@react-native-picker/picker';
 import { useLanguage } from "../../localization/Localization";
 import { AddCostumer } from "../../back/connect";
+import NumberPlease from "react-native-number-please";
+
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('screen').height;
 
 const AddUser = ({ navigation }) => {
 
   const { colors, isDark } = useTheme();
-  const [lang, setLanguage] = useLanguage();
+  const styles = StyleSheet.create({
+    form: {
+      alignSelf: "center",
+    },
+    content: {
+      backgroundColor: colors.theme.background,
+      padding: 22,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 4,
+      borderColor: 'rgba(0, 0, 0, 0.1)',
+    },
+  });
 
+  const genere = [
+    {'label': 'Maschio', 'value': 'Maschio'},
+    {'label': 'Femmina', 'value': 'Femmina'},
+    {'label': 'Altro', 'value': 'Altro'},
+  ];
+
+  const [lang, setLanguage] = useLanguage();
   const [isModalVisible, setModalVisible] = useState(false);
+  const [isModalVisibleGender, setModalVisibleGender] = useState(false);
+
   const [errorText, setErrorText] = useState('Default');
   const [isSuccess, setIsSuccess] = useState(false);
-  const [AlertText, setAlertText] = useState('Default');
   const [isChecked, setChecked] = useState(false);
+
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
+  const toggleModalGender = () => {
+    setModalVisible(!isModalVisible);
+  };
   const tabBarHeight = useBottomTabBarHeight() + 20;
-
+  const toggleGender = (itemValue) => {
+    setSesso(itemValue);
+    setModalVisible(false);
+}
   const [nome, setNome] = React.useState('');
   const [cognome, setCognome] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [tel, setTelefono] = React.useState('');
-  const [sesso, setSesso] = React.useState('');
+  const [sesso, setSesso] = React.useState('Prova');
   const [eta, setEta] = React.useState('');
   const [nazionalita, setNazionalita] = React.useState('');
 
@@ -70,21 +101,6 @@ const AddUser = ({ navigation }) => {
     }
     if (!tel.match(phoneformat)) {
       setErrorText(lang.campoErroreTelefono)
-      setModalVisible(true)
-      return;
-    }
-    if (!sesso) {
-      setErrorText(lang.campoErroreSesso)
-      setModalVisible(true)
-      return;
-    }
-    if (!eta) {
-      setErrorText(lang.campoErroreEta)
-      setModalVisible(true)
-      return;
-    }
-    if (!nazionalita) {
-      setErrorText(lang.campoErroreNazionalita)
       setModalVisible(true)
       return;
     }
@@ -173,10 +189,39 @@ const AddUser = ({ navigation }) => {
 
             <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 60, textAlign: "left" }}
               name="+39 111 222 33 44" icon="call-outline" rotation="0deg" value={tel} onChangeText={setTelefono} />
+            <MenuItem title={lang.sesso} rightText={sesso} onPress={() => setModalVisible(true)} />
+            <Modal
+              isVisible={isModalVisibleGender}
+              statusBarTranslucent={true}
+              animationType="slide"
+              hasBackdrop={true}
+              onBackdropPress={()=> setModalVisibleGender(false)}
+              backdropOpacity={10}
+              backdropColor={"rgba(0, 0, 0, 0.7)"}
+              useNativeDriverForBackdrop={true}
+              hideModalContentWhileAnimating={true}
+              style={styles.view}>
+              <View style={styles.content}>
+              <Picker
+                  selectedValue={sesso}
+                  style={{width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center', alignSelf: 'center' }}
+                  dropdownIconColor={colors.theme.title}
+                  onValueChange={(itemValue, itemIndex) =>
+                      toggleGender(itemValue)
+                  }
+                  mode="dialog">
+                  {genere.map(item => {
+                      if (Platform.OS === 'ios') {
+                          return <Picker.Item key={item.value} color={colors.theme.title} label={item.label} value={item.value} />;
+                      } else {
+                          return <Picker.Item key={item.value} label={item.label} value={item.value} />;
+                      }
+                  })}
 
-            <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
-              name={lang.sesso} icon="" rotation="0deg" value={sesso} onChangeText={setSesso} />
-
+              </Picker>
+              </View>
+              </Modal>
+            
             <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
               name={lang.eta} icon="" rotation="0deg" value={eta} onChangeText={setEta} />
 
@@ -190,11 +235,5 @@ const AddUser = ({ navigation }) => {
     )
   }
 };
-
-const styles = StyleSheet.create({
-  form: {
-    alignSelf: "center",
-  },
-});
 
 export default AddUser;
