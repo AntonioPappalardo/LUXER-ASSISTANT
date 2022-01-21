@@ -51,6 +51,46 @@ const en = {
   campoErroreNazionalita: 'The Nationality field is required!',
   operazioneConclusa:'Insertion Successful!',
 
+  //Picker Gender
+  maschio:'Male',
+  femmina:'Female',
+  altro:'Other',
+  
+  //Picker Nations
+  albania:'Albania',
+  algeria:'Algeria',
+  argentina:'Argentina',
+  australia:'Australia',
+  austria:'Austria',
+  azerbaigian:'Azerbaigian',
+  bahrain:'Bahrain',
+  belgio:'Belgium',
+  bulgaria:'Bulgaria',
+  brasile:'Brazil',
+  cina:'China',
+  coreaDelSud:'South Korea',
+  croazia:'Croatia',
+  danimarca:'Denmark',
+  uae:'UAE',
+  finlandia:'Finland',
+  francia:'France',
+  germania:'Germany',
+  giappone:'Japan',
+  grecia:'Greece',
+  hongKong:'Hong Kong',
+  irlanda:'Ireland',
+  italia:'Italy',
+  messico:'Mexico',
+  paesiBassi:'Netherlands',
+  portogallo:'Portugal',
+  principatoMonaco:'Principality of Monaco',
+  quatar:'Quatar',
+  regnoUnito:'United Kingdom',
+  russia:'Russia',
+  spagna:'Spain',
+  svizzera:'Switzerland',
+  usa:'USA',
+
   //Settings
   tema: 'Dark Mode',
   info: 'Info on Luxer Assistant',
@@ -117,7 +157,8 @@ const en = {
   //Pay Now
   paga: 'Pay Now',
   notificaPagamento: 'Bring the NFC-enabled device closer',
+
   //AR
-  viewer: 'Products Viewer'
+  viewer: 'View in AR'
 }
 export default en

@@ -50,7 +50,47 @@ const fr = {
   campoErroreEta: 'Le champ Âge est obligatoire!',
   campoErroreNazionalita: 'Le champ Nationalité est obligatoire!',
   operazioneConclusa:'Insertion réussie!',
-  
+
+  //Picker Genre
+  maschio:'Mâle',
+  femmina:'Femelle',
+  altro:'Autre',
+
+  //Picker Nations
+  albania:'Albanie',
+  algeria:'Algérie',
+  argentina:'Argentine',
+  australia:'Australie',
+  austria:'Autriche',
+  azerbaigian:'Azerbaïdjan',
+  bahrain:'Bahreïn',
+  belgio:'Belgique',
+  bulgaria:'Bulgarie',
+  brasile:'Brésil',
+  cina:'Chine',
+  coreaDelSud:'Corée du Sud',
+  croazia:'Croatie',
+  danimarca:'Danemark',
+  uae:'UAE',
+  finlandia:'Finlande',
+  francia:'France',
+  germania:'Allemagne',
+  giappone:'Japon',
+  grecia:'Grèce',
+  hongKong:'Hong Kong',
+  irlanda:'Irlande',
+  italia:'Italie',
+  messico:'Mexique',
+  paesiBassi:'Pays-Bas',
+  portogallo:'Portugal',
+  principatoMonaco:'Principauté de Monaco',
+  quatar:'Quatar',
+  regnoUnito:'Royaume-Uni',
+  russia:'Russie',
+  spagna:'Espagne',
+  svizzera:'Suisse',
+  usa:'États-Unis',
+
   //Réglages
   tema: 'Mode Nuit',
   info: 'Informations sur Luxer Assistant',
@@ -117,7 +157,8 @@ const fr = {
   //Payez Maintenant
   paga: 'Payez Maintenant',
   notificaPagamento: 'Rapprochez l\'appareil compatible NFC',
+
   //AR
-  viewer: 'Visionneuse de produit'
+  viewer: 'Afficher en RA'
 }
 export default fr

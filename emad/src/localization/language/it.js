@@ -51,6 +51,46 @@ const it = {
   campoErroreNazionalita: 'Il campo Nazionalità è obbligatorio!',
   operazioneConclusa:'Inserimento effettuato con successo!',
   
+  //Picker Genere
+  maschio:'Maschio',
+  femmina:'Femmina',
+  altro:'Altro',
+
+  //Picker Nazioni
+  albania:'Albania',
+  algeria:'Algeria',
+  argentina:'Argentina',
+  australia:'Australia',
+  austria:'Austria',
+  azerbaigian:'Azerbaigian',
+  bahrain:'Bahrain',
+  belgio:'Belgio',
+  bulgaria:'Bulgaria',
+  brasile:'Brasile',
+  cina:'Cina',
+  coreaDelSud:'Corea Del Sud',
+  croazia:'Croazia',
+  danimarca:'Danimarca',
+  uae:'UAE',
+  finlandia:'Finlandia',
+  francia:'Francia',
+  germania:'Germania',
+  giappone:'Giappone',
+  grecia:'Grecia',
+  hongKong:'Hong Kong',
+  irlanda:'Irlanda',
+  italia:'Italia',
+  messico:'Messico',
+  paesiBassi:'Paesi Bassi',
+  portogallo:'Portogallo',
+  principatoMonaco:'Principato di Monaco',
+  quatar:'Quatar',
+  regnoUnito:'Regno Unito',
+  russia:'Russia',
+  spagna:'Spagna',
+  svizzera:'Svizzera',
+  usa:'USA',
+
   //Impostazioni
   tema:'Modalità Notte',
   info:'Info su Luxer Assistant',
@@ -117,7 +157,8 @@ const it = {
   //Paga Ora
   paga:'Paga Ora',
   notificaPagamento:'Avvicina il dispositivo abilitato NFC',
-    //AR
-    viewer: 'Visualizzatore prodotti'
+  
+  //AR
+  viewer: 'Visualizza in AR'
 }
 export default it

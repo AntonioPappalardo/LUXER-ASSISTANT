@@ -41,12 +41,6 @@ const AddUser = ({ navigation }) => {
       },
   });
 
-  const genere = [
-    {'label': 'Maschio', 'value': 'Maschio'},
-    {'label': 'Femmina', 'value': 'Femmina'},
-    {'label': 'Altro', 'value': 'Altro'},
-  ];
-
   const [lang, setLanguage] = useLanguage();
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -56,6 +50,47 @@ const AddUser = ({ navigation }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isChecked, setChecked] = useState(false);
 
+  const genere = [
+    {'label': lang.maschio, 'value': lang.maschio},
+    {'label': lang.femmina, 'value': lang.femmina},
+    {'label': lang.altro, 'value': lang.altro},
+  ];
+
+  const nazione = [
+    {'label': `🇦🇱 ${lang.albania}`, 'value': lang.albania},
+    {'label': `🇩🇿 ${lang.algeria}`, 'value': lang.algeria},
+    {'label': `🇦🇷 ${lang.argentina}`, 'value': lang.argentina},
+    {'label': `🇦🇺 ${lang.australia}`, 'value': lang.australia},
+    {'label': `🇦🇹 ${lang.austria}`, 'value': lang.austria},
+    {'label': `🇦🇿 ${lang.azerbaigian}`, 'value': lang.azerbaigian},
+    {'label': `🇧🇭 ${lang.bahrain}`, 'value': lang.bahrain},
+    {'label': `🇧🇪 ${lang.belgio}`, 'value': lang.algeria},
+    {'label': `🇧🇬 ${lang.bulgaria}`, 'value': lang.bulgaria},
+    {'label': `🇧🇷 ${lang.brasile}`, 'value': lang.brasile},
+    {'label': `🇨🇳 ${lang.cina}`, 'value': lang.cina},
+    {'label': `🇰🇷 ${lang.coreaDelSud}`, 'value': lang.coreaDelSud},
+    {'label': `🇭🇷 ${lang.croazia}`, 'value': lang.croazia},
+    {'label': `🇩🇰 ${lang.danimarca}`, 'value': lang.danimarca},
+    {'label': `🇫🇮 ${lang.finlandia}`, 'value': lang.finlandia},
+    {'label': `🇫🇷 ${lang.francia}`, 'value': lang.francia},
+    {'label': `🇩🇪 ${lang.germania}`, 'value': lang.germania},
+    {'label': `🇯🇵 ${lang.giappone}`, 'value': lang.giappone},
+    {'label': `🇬🇷 ${lang.grecia}`, 'value': lang.grecia},
+    {'label': `🇭🇰 ${lang.hongKong}`, 'value': lang.hongKong},
+    {'label': `🇮🇪 ${lang.irlanda}`, 'value': lang.irlanda},
+    {'label': `🇮🇹 ${lang.italia}`, 'value': lang.italia},
+    {'label': `🇲🇽 ${lang.messico}`, 'value': lang.messico},
+    {'label': `🇳🇱 ${lang.paesiBassi}`, 'value': lang.paesiBassi},
+    {'label': `🇵🇹 ${lang.portogallo}`, 'value': lang.portogallo},
+    {'label': `🇲🇨 ${lang.principatoMonaco}`, 'value': lang.principatoMonaco},
+    {'label': `🇶🇦 ${lang.quatar}`, 'value': lang.quatar},
+    {'label': `🇬🇧 ${lang.regnoUnito}`, 'value': lang.regnoUnito},
+    {'label': `🇷🇺 ${lang.russia}`, 'value': lang.russia},
+    {'label': `🇪🇸 ${lang.spagna}`, 'value': lang.spagna},
+    {'label': `🇨🇭 ${lang.svizzera}`, 'value': lang.svizzera},
+    {'label': `🇦🇪 ${lang.uae}`, 'value': lang.uae},
+    {'label': `🇺🇸 ${lang.usa}`, 'value': lang.usa},
+  ];
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -73,7 +108,7 @@ const AddUser = ({ navigation }) => {
   const [cognome, setCognome] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [tel, setTelefono] = React.useState('');
-  const [sesso, setSesso] = React.useState('nessuno');
+  const [sesso, setSesso] = React.useState('Nessuno');
   const [eta, setEta] = React.useState('');
   const [nazionalita, setNazionalita] = React.useState('');
 
@@ -110,6 +145,11 @@ const AddUser = ({ navigation }) => {
       setModalVisible(true)
       return;
     }
+    if (!eta) {
+      setErrorText(lang.campoErroreEta)
+      setModalVisible(true)
+      return;
+    }
     else {
       var user = {}
       user.nome = nome;
@@ -119,7 +159,6 @@ const AddUser = ({ navigation }) => {
       user.genere = sesso;
       user.eta = eta;
       user.nazione = nazionalita;
-      console.log(user)
       AddCostumer(user);
       setIsSuccess(true);
       setErrorText(lang.operazioneConclusa)
@@ -128,7 +167,6 @@ const AddUser = ({ navigation }) => {
       setModalVisible(false);
       setIsSuccess(false);
       navigation.goBack();
-      
     }
   }
 
@@ -194,7 +232,7 @@ const AddUser = ({ navigation }) => {
               name="Email" icon="mail-outline" rotation="0deg" value={email} onChangeText={setEmail} />
 
             <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 60, textAlign: "left" }}
-              name="+39 111 222 33 44" icon="call-outline" rotation="0deg" value={tel} onChangeText={setTelefono} numeric={true}/>
+              name="+39 111 222 33 44" icon="call-outline" rotation="0deg" value={tel} onChangeText={setTelefono}/>
             <View style={{ padding: 5, width: '99%', borderBottomWidth: 1, borderColor: colors.floatingInput.border }}>
               <MenuItem title={lang.sesso} rightText={sesso} onPress={() => setModalVisibleGender(true)} />
             </View>
@@ -233,6 +271,7 @@ const AddUser = ({ navigation }) => {
             
             <InputText params={{ marginTop: 0, width: "75%", paddingLeft: 25, textAlign: "left" }}
               name={lang.eta} rotation="0deg" value={eta} onChangeText={setEta} numeric={true}/>
+
 
             <InputText params={{ marginTop: 1, width: "75%", paddingLeft: 25, textAlign: "left" }}
               name={lang.nazionalita} icon="" rotation="0deg" value={nazionalita} onChangeText={setNazionalita} />
