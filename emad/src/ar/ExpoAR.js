@@ -8,7 +8,6 @@ import {
   AmbientLight,
   PerspectiveCamera,
   PointLight,
-  GridHelper,
   Scene,
   SpotLight,
 } from "three";
@@ -17,6 +16,7 @@ import { Asset } from 'expo-asset';
 import OrbitControlsView from 'expo-three-orbit-controls';
 //OBJECT IMPORTER
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { TextureLoader } from "expo-three";
 //IMPORT GRAPHICS ELEMENTS
 import { useFonts } from 'expo-font';
 import { useTheme } from "../theme/ThemeProvider";
@@ -133,7 +133,9 @@ const ExpoAR = ({ navigation }) => {
     );
     await asset4.downloadAsync();
     setYellowBag(asset4);
-    
+
+    //scene.background = new THREE.Color( '#c2fdff' );
+
     const loader = new GLTFLoader();
     loader.load(
       asset1.uri || "",
@@ -148,7 +150,7 @@ const ExpoAR = ({ navigation }) => {
         console.error("An error happened", error);
       }
     );
-
+    
 
    
     function update() {

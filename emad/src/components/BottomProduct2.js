@@ -169,7 +169,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
     return (
         <SlidingUpPanel
             ref={elementRef}
-            draggableRange={{ top: height * 0.75, bottom: slidePadding + tabBarHeight }}
+            draggableRange={{ top: height * 0.75, bottom: (slidePadding + tabBarHeight -10)}}
             showBackdrop={true}>
             {dragHandler => (
                 <View style={[styles.container, { backgroundColor: colors.theme.background }]}>
@@ -177,7 +177,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                         <View style={{flexDirection: 'row', alignContent: 'center', alignSelf: 'center'}}>
                             <View style={{ flexDirection: 'column', width: '60%'}}>
                                 <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayBold', color: colors.theme.subtitle}}>
-                                    {prodotto.prezzo} 
+                                    {prodotto.prezzo +' €'} 
                                 </Text>
                                 <Text style={{ fontSize: 18, fontFamily: 'SFProDisplayBold', color: colors.theme.title, paddingTop: 5 }}>
                                     {prodotto['nome_' + lang.codice]}
