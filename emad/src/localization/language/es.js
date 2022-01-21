@@ -42,6 +42,14 @@ const es = {
   sesso: 'Sexo',
   eta: 'Edad',
   nazionalita: 'Nacionalidad',
+  campoErroreNome:'¡El campo de nombre es obligatorio!',
+  campoErroreCognome:'¡El campo del apellido es obligatorio!',
+  campoErroreEmail:'¡El campo de correo electrónico es incorrecto!',
+  campoErroreTelefono:'¡El campo del teléfono es incorrecto!',
+  campoErroreSesso:'¡El campo Sexo es obligatorio!',
+  campoErroreEta: '¡El campo Edad es obligatorio!',
+  campoErroreNazionalita: '¡El campo Nacionalidad es obligatorio!',
+  operazioneConclusa:'¡Inserción exitosa!',
 
   //Ajustes
   tema: 'Modo Nocturno',

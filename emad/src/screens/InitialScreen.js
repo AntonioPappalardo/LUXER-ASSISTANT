@@ -30,7 +30,7 @@ const InitialScreen = (props) => {
         
         <AuthContext.Provider value={authContext}>
            
-            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="SplashScreen">
+            <Stack.Navigator screenOptions={{ headerShown: false, gestureEnabled:false }} initialRouteName="SplashScreen">
                 <Stack.Screen name="SplashScreen" component={SplashScreen} options={{cardStyleInterpolator: CardStyleEffect}}/>
                 <Stack.Screen name="Login" component={Login} options={{cardStyleInterpolator: CardStyleEffect}}/>
                 <Stack.Screen name="TabBar" component={TabBarNavigation} options={{cardStyleInterpolator: CardStyleEffect}}/>

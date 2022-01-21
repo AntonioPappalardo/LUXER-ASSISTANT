@@ -42,6 +42,14 @@ const en = {
   sesso: 'Sex',
   eta: 'Age',
   nazionalita: 'Nationality',
+  campoErroreNome:'The Name field is required!',
+  campoErroreCognome:'The Surname field is required!',
+  campoErroreEmail:'The Email field is incorrect!',
+  campoErroreTelefono:'The Phone field is incorrect!',
+  campoErroreSesso:'The Gender field is required!',
+  campoErroreEta: 'The Age field is required!',
+  campoErroreNazionalita: 'The Nationality field is required!',
+  operazioneConclusa:'Insertion Successful!',
 
   //Settings
   tema: 'Dark Mode',

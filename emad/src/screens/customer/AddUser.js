@@ -1,20 +1,33 @@
-import React from "react";
-import { StyleSheet, View, Text, ScrollView} from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Text, ScrollView, Dimensions} from "react-native";
+import Modal from 'react-native-modal'
 import { AuthContext } from "../context";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { useTheme } from "../../theme/ThemeProvider";
+import Icon from 'react-native-vector-icons/Ionicons';
 import InputButton from "../../components/InputButton";
 import InputText from "../../components/InputText";
 import BackButton from "../../components/BackButton";
 import { useLanguage } from "../../localization/Localization";
 import { AddCostumer } from "../../back/connect";
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('screen').height;
 
 const AddUser = ({navigation}) => {
 
   const {colors, isDark} = useTheme();
   const [lang, setLanguage] = useLanguage();
+
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [errorText, setErrorText] = useState('Default');
+  const [AlertText, setAlertText] = useState('Default');
+  const [isChecked, setChecked] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   const tabBarHeight = useBottomTabBarHeight()+20;
 
@@ -34,11 +47,93 @@ const AddUser = ({navigation}) => {
     'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
   });
 
+  const handleSubmitPress = async() => {
+    var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    var phoneformat = /^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[456789]\d{9}|(\d[ -]?){10}\d$/;
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+
+    if (!nome) {
+      setErrorText(lang.campoErroreNome)
+      setModalVisible(true)
+      return;
+    }
+    if (!cognome) {
+      setErrorText(lang.campoErroreCognome)
+      setModalVisible(true)
+      return;
+    }
+    if (!email.match(mailformat)) {
+      setErrorText(lang.campoErroreEmail)
+      setModalVisible(true)
+      return;
+    }
+    if (!tel.match(phoneformat)) {
+      setErrorText(lang.campoErroreTelefono)
+      setModalVisible(true)
+      return;
+    }
+    if (!sesso) {
+      setErrorText(lang.campoErroreSesso)
+      setModalVisible(true)
+      return;
+    }
+    if (!eta) {
+      setErrorText(lang.campoErroreEta)
+      setModalVisible(true)
+      return;
+    }
+    if (!nazionalita) {
+      setErrorText(lang.campoErroreNazionalita)
+      setModalVisible(true)
+      return;
+    }
+    else{
+      var user={}
+      user.nome=nome;
+      user.cognome=cognome;
+      user.email=email; 
+      user.telefono=tel; 
+      user.genere=sesso;
+      user.eta=eta; 
+      user.nazione=nazionalita;
+      console.log(user)
+      AddCostumer(user);
+      setErrorText(lang.operazioneConclusa)
+      setModalVisible(true)
+      await delay(3000);
+      navigation.goBack();
+  }
+  }
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
       <View style={{backgroundColor: colors.theme.background }}>
+
+        <Modal
+          isVisible={isModalVisible}
+          statusBarTranslucent={true}
+          animationIn="jello"
+          animationOut="fadeOutDownBig"
+          hasBackdrop={true}
+          backdropOpacity={10}
+          backdropColor={"rgba(0, 0, 0, 0.3)"}
+          useNativeDriverForBackdrop={true}
+          hideModalContentWhileAnimating={true}
+          deviceHeight={height}
+        >
+          <View style={{ padding: 20 }}>
+            <View style={colors.topModal}>
+              <Icon name="close-circle-outline" size={75} color={'#FFFFFF'} />
+            </View>
+            <View style={colors.modalContent}>
+              <Text style={{ color: colors.theme.primary, textAlign: 'center' }}>{errorText}</Text>
+              <InputButton params={{ marginTop: '5%', width: "75%" }}
+                name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
+            </View>
+          </View>
+        </Modal>
         <View style={{flexDirection: 'row', marginBottom:20}}>
             <BackButton onPress={() => { navigation.goBack() }} />
             <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
@@ -69,17 +164,7 @@ const AddUser = ({navigation}) => {
             name={lang.nazionalita} icon="" rotation="0deg" value={nazionalita} onChangeText={setNazionalita} />
 
         </View>         
-         <InputButton params={{ marginTop: 26, width: "75%", marginBottom: tabBarHeight }} name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" onPress={() => {
-           var user={}
-           user.nome=nome;
-           user.cognome=cognome;
-           user.email=email; 
-           user.telefono=tel; 
-           user.genere=sesso;
-           user.eta=eta; 
-           user.nazione=nazionalita;
-           AddCostumer(user);
-           navigation.goBack(); }} />
+         <InputButton params={{ marginTop: 26, width: "75%", marginBottom: tabBarHeight }} name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" onPress={handleSubmitPress} />
       </ScrollView>
       </View>
     )

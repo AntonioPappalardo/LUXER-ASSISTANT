@@ -42,7 +42,15 @@ const fr = {
   sesso: 'Sexe',
   eta: 'Âge',
   nazionalita: 'Nationalité',
-
+  campoErroreNome:'Il est requis de compléter le champ correspondant au nom!',
+  campoErroreCognome:'Le champ Nom de famille est obligatoire!',
+  campoErroreEmail:'Le champ E-mail est incorrect!',
+  campoErroreTelefono:'Le champ Téléphone est incorrect!',
+  campoErroreSesso:'Le champ Sexe est obligatoire!',
+  campoErroreEta: 'Le champ Âge est obligatoire!',
+  campoErroreNazionalita: 'Le champ Nationalité est obligatoire!',
+  operazioneConclusa:'Insertion réussie!',
+  
   //Réglages
   tema: 'Mode Nuit',
   info: 'Informations sur Luxer Assistant',

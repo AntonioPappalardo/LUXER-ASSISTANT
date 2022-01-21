@@ -42,7 +42,15 @@ const it = {
   sesso:'Sesso',
   eta:'Età',
   nazionalita:'Nationalità',
-
+  campoErroreNome:'Il campo Nome è obbligatorio!',
+  campoErroreCognome:'Il campo Cognome è obbligatorio!',
+  campoErroreEmail:'Il campo Email è errato!',
+  campoErroreTelefono:'Il campo Telefono è errato!',
+  campoErroreSesso:'Il campo Sesso è obbligatorio!',
+  campoErroreEta: 'Il campo Età è obbligatorio!',
+  campoErroreNazionalita: 'Il campo Nazionalità è obbligatorio!',
+  operazioneConclusa:'Inserimento effettuato con successo!',
+  
   //Impostazioni
   tema:'Modalità Notte',
   info:'Info su Luxer Assistant',
