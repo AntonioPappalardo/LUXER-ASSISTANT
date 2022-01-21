@@ -15,11 +15,12 @@ import moment from 'moment';
 import 'moment/locale/it';
 import 'moment/locale/es';
 import 'moment/locale/fr';
+import { AddAppuntamento } from "../../back/connect";
 
 const width = Dimensions.get('window').width;
 
 
-const AddAppointment = ({ navigation }) => {
+const AddAppointment = ({ navigation,route }) => {
     const slots = [
         { "slot": "09:00", "value": "0" },
         { "slot": "09:30", "value": "1" },
@@ -84,8 +85,8 @@ const AddAppointment = ({ navigation }) => {
     });
 
     const [isChecked, setChecked] = useState(false);
-    const [selectedFirstSlot, setSelectedFirstSlot] = useState();
-    const [selectedSecondSlot, setSelectedSecondSlot] = useState();
+    const [selectedFirstSlot, setSelectedFirstSlot] = useState(0);
+    const [selectedSecondSlot, setSelectedSecondSlot] = useState(0);
     const [selectedFirstSlotLabel, setSelectedFirstSlotLabel] = useState({"slot": "09:00", "value": "0"});
     const [selectedSecondSlotLabel, setSelectedSecondSlotLabel] = useState({"slot": "09:00", "value": "1"});
     const [daySelected, setDaySelected] = useState(new Date);
@@ -277,7 +278,15 @@ const AddAppointment = ({ navigation }) => {
                             </Picker>
                         </View>
                     </Modal>
-                    <InputButton params={{ marginTop: 20, width: "75%" }} name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" />
+                    <InputButton params={{ marginTop: 20, width: "75%" }} name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" onPress={() =>{
+                        var appuntamento={}
+                        appuntamento.id_utente=route.params.utente;
+                        appuntamento.id_cliente=route.params.cliente.id;
+                        appuntamento.riservato=(isChecked)?1:0;
+                        appuntamento.slot_inizio=selectedFirstSlot;
+                        appuntamento.slot_fine=selectedSecondSlot;
+                        appuntamento.data=daySelected;
+                       AddAppuntamento(appuntamento)}} />
                 </ScrollView>
 
             </View>

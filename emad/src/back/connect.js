@@ -44,6 +44,13 @@ export function connect(){
         cliente.push(user)
     } 
 
+    export function AddAppuntamento(appointment){
+        appointment.id=appuntamento.length
+        console.log(appointment)
+        axios.get('https://emad2021.azurewebsites.net/api/CreateAppointment?' , {params:{"appuntamento":appointment}})
+        appuntamento.push(appointment)
+    }
+
     export function getAppuntamento(){
         return appuntamento;
     }

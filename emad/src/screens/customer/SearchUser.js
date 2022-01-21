@@ -51,7 +51,7 @@ const SearchUser = ({ navigation, route}) => {
                                     <Image source={{uri:item.avatar}} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
                                 </View>
                                 </View>
-                                <TouchableOpacity style={{flexDirection: 'row', width: '75%'}} activeOpacity={.75} onPress={() => { navigation.navigate('CustomerPage',{user:item.id}) }}>
+                                <TouchableOpacity style={{flexDirection: 'row', width: '75%'}} activeOpacity={.75} onPress={() => { navigation.navigate('CustomerPage',{cliente:item.id,user:utente}) }}>
                                     <View style={{ flexDirection: "column", justifyContent: "center" }}>
                                         <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{item.nome} {item.cognome}</Text>
                                         <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>{lang.codiceCliente}: {item.codice_cliente}</Text>

@@ -28,7 +28,8 @@ const lab =(actualMonth<6)? mesi.slice(actualMonth+6, 12).concat(mesi.slice(0, a
 const CustomerPage = ({ navigation, route }) => {
     const [lang, setLanguage] = useLanguage();
     let [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0, visible: false, value: 0 })
-    const users = getCliente();
+    const costumers = getCliente();
+    const utente =route.params.user
     const layout = useWindowDimensions();
     const FirstRoute = () => (
         <View style={{ justifyContent: 'center' }}>
@@ -270,10 +271,10 @@ const CustomerPage = ({ navigation, route }) => {
         fourth: FourthRoute,
     });
 
-    const [user, setUser] = React.useState(users.find(us => us.id === route.params.user));
-    const tot = acquisti.filter(a => a.cliente == user.id).map(a => a.saldo).reduce((a, b) => a + b, 0);
-    const average = tot / (acquisti.filter(a => a.cliente == user.id).length)
-    const last = (acquisti.filter(a => a.cliente == user.id).map(a => a.data).sort().reverse())[0]
+    const [cliente, setCliente] = React.useState(costumers.find(us => us.id === route.params.cliente));
+    const tot = acquisti.filter(a => a.cliente == cliente.id).map(a => a.saldo).reduce((a, b) => a + b, 0);
+    const average = tot / (acquisti.filter(a => a.cliente == cliente.id).length)
+    const last = (acquisti.filter(a => a.cliente == cliente.id).map(a => a.data).sort().reverse())[0]
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
@@ -293,12 +294,12 @@ const CustomerPage = ({ navigation, route }) => {
                 <View style={{ flexDirection: "column", width: "100%", alignItems: "center", marginTop: '10%', marginBottom: '5%' }}>
                     <View style={{ flexDirection: "row", width: "80%" }}>
                         <View style={{ justifyContent: "flex-start", height: 120, width: 120, shadowOffset: { width: 1, height: 2 },shadowOpacity: 0.25,shadowRadius: 5, elevation: 5, borderRadius: 5 }}>
-                            <Image source={{uri:user.avatar}} style={{ height: 120, width: 120, borderRadius: 5, borderWidth: 5, borderColor: "white"}} />
+                            <Image source={{uri:cliente.avatar}} style={{ height: 120, width: 120, borderRadius: 5, borderWidth: 5, borderColor: "white"}} />
                         </View>
                         <View style={{ flexDirection: "column", paddingLeft: 15, alignItems: "flex-start" }}>
-                            <Text style={{ color: colors.theme.title, fontSize: 24, fontFamily: "SFProDisplayBold" }}>{user.nome} {user.cognome}</Text>
+                            <Text style={{ color: colors.theme.title, fontSize: 24, fontFamily: "SFProDisplayBold" }}>{cliente.nome} {cliente.cognome}</Text>
 
-                            <Text style={{ color: colors.theme.subtitle, fontSize: 12, fontFamily: "SFProDisplayRegular", marginBottom: 2 }}>{lang.regCliente} {moment(new Date(user.data_registrazione)).format('DD/MM/YYYY')}</Text>
+                            <Text style={{ color: colors.theme.subtitle, fontSize: 12, fontFamily: "SFProDisplayRegular", marginBottom: 2 }}>{lang.regCliente} {moment(new Date(cliente.data_registrazione)).format('DD/MM/YYYY')}</Text>
 
                             <Text style={{ color: colors.theme.title, fontSize: 10, fontFamily: "SFProDisplayMedium" }}>{lang.tassoFedelta}</Text>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -328,7 +329,8 @@ const CustomerPage = ({ navigation, route }) => {
                 <ScrollView overScrollMode="never" style={{ marginBottom: tabBarHeight, width: '100%' }} contentContainerStyle={{ flexGrow: 1 }}>
 
                     <Divider width={"100%"} />
-                    <MenuItem title={lang.nuovoAppuntamento} onPress={() => navigation.navigate('AddAppointment')} />
+                    <MenuItem title={lang.nuovoAppuntamento} onPress={() => 
+                        navigation.navigate('AddAppointment',{cliente:cliente,utente:utente})} />
                     <MenuItem title={lang.contatta} onPress={() => navigation.navigate('Communication')} />
                     <View style={{ height: 300}}>
                         <TabView
