@@ -14,7 +14,8 @@ import MenuItem from '../../components/MenuItem';
 import { Picker } from '@react-native-picker/picker';
 import { useLanguage } from "../../localization/Localization";
 import { AddCostumer } from "../../back/connect";
-import NumberPlease from "react-native-number-please";
+import Divider from "../../components/Divider";
+//import NumberPlease from "react-native-number-please";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('screen').height;
@@ -26,14 +27,18 @@ const AddUser = ({ navigation }) => {
     form: {
       alignSelf: "center",
     },
-    content: {
-      backgroundColor: colors.theme.background,
-      padding: 22,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 4,
-      borderColor: 'rgba(0, 0, 0, 0.1)',
+    view: {
+      justifyContent: 'flex-end',
+      margin: 0,
     },
+    content: {
+        backgroundColor: colors.theme.background,
+        padding: 22,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 4,
+        borderColor: 'rgba(0, 0, 0, 0.1)',
+      },
   });
 
   const genere = [
@@ -44,6 +49,7 @@ const AddUser = ({ navigation }) => {
 
   const [lang, setLanguage] = useLanguage();
   const [isModalVisible, setModalVisible] = useState(false);
+
   const [isModalVisibleGender, setModalVisibleGender] = useState(false);
 
   const [errorText, setErrorText] = useState('Default');
@@ -61,13 +67,13 @@ const AddUser = ({ navigation }) => {
   const tabBarHeight = useBottomTabBarHeight() + 20;
   const toggleGender = (itemValue) => {
     setSesso(itemValue);
-    setModalVisible(false);
+    setModalVisibleGender(false);
 }
   const [nome, setNome] = React.useState('');
   const [cognome, setCognome] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [tel, setTelefono] = React.useState('');
-  const [sesso, setSesso] = React.useState('Prova');
+  const [sesso, setSesso] = React.useState('nessuno');
   const [eta, setEta] = React.useState('');
   const [nazionalita, setNazionalita] = React.useState('');
 
@@ -176,7 +182,7 @@ const AddUser = ({ navigation }) => {
             <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}>{lang.nuovoCliente}</Text>
           </View>
         </View>
-        <ScrollView overScrollMode="never" style={{ height: "100%" }}>
+        <ScrollView overScrollMode="never" style={{ height: "100%"}}>
           <View style={styles.form}>
             <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
               name={lang.nome} icon="" rotation="0deg" value={nome} onChangeText={setNome} />
@@ -188,8 +194,11 @@ const AddUser = ({ navigation }) => {
               name="Email" icon="mail-outline" rotation="0deg" value={email} onChangeText={setEmail} />
 
             <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 60, textAlign: "left" }}
-              name="+39 111 222 33 44" icon="call-outline" rotation="0deg" value={tel} onChangeText={setTelefono} />
-            <MenuItem title={lang.sesso} rightText={sesso} onPress={() => setModalVisible(true)} />
+              name="+39 111 222 33 44" icon="call-outline" rotation="0deg" value={tel} onChangeText={setTelefono} numeric={true}/>
+            <View style={{ padding: 5, width: '99%', borderBottomWidth: 1, borderColor: colors.floatingInput.border }}>
+              <MenuItem title={lang.sesso} rightText={sesso} onPress={() => setModalVisibleGender(true)} />
+            </View>
+      
             <Modal
               isVisible={isModalVisibleGender}
               statusBarTranslucent={true}
@@ -222,8 +231,8 @@ const AddUser = ({ navigation }) => {
               </View>
               </Modal>
             
-            <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
-              name={lang.eta} icon="" rotation="0deg" value={eta} onChangeText={setEta} />
+            <InputText params={{ marginTop: 0, width: "75%", paddingLeft: 25, textAlign: "left" }}
+              name={lang.eta} rotation="0deg" value={eta} onChangeText={setEta} numeric={true}/>
 
             <InputText params={{ marginTop: 1, width: "75%", paddingLeft: 25, textAlign: "left" }}
               name={lang.nazionalita} icon="" rotation="0deg" value={nazionalita} onChangeText={setNazionalita} />

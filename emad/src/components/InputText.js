@@ -58,6 +58,40 @@ function displayTextInput(props, colorTheme) {
             )
         } else if (props.icon) {
             if (props.left) {
+                if (props.numeric) {
+                    return (
+                        <FloatingLabelInput style={{ fontSize: props.params.fontSize, paddingLeft: props.params.paddingLeft }}
+                            label={props.name}
+                            placeholderTextColor={colorTheme.floatingInput.placeholder}
+                            value={props.value}
+                            onChangeText={props.onChangeText}
+                            keyboardType='numeric'
+                            leftComponent={<Icon name={Platform.OS === "ios" ? "ios-" + props.icon : "md-" + props.icon} size={20} style={{ marginTop: 5 }} color={colorTheme.floatingInput.icon} />}
+                            rightComponent={props.right}
+                            containerStyles={{
+                                height: 50,
+                                borderBottomWidth: 1,
+                                borderColor: colorTheme.floatingInput.border,
+                            }}
+                            customLabelStyles={{
+                                fontFamily: 'SFProDisplayMedium',
+                                colorBlurred: colorTheme.floatingInput.placeholder,
+                                colorFocused: colorTheme.floatingInput.placeholder,
+                                fontSizeFocused: 12,
+                            }}
+                            labelStyles={{
+                                paddingLeft: 5,
+                            }}
+                            inputStyles={{
+                                textAlign: props.params.textAlign,
+                                fontSize: 18,
+                                fontFamily: 'SFProDisplayMedium',
+                                paddingTop: 15,
+                                paddingLeft: 10,
+                                color: colorTheme.floatingInput.label,
+                            }} />
+                    )
+                }
                 return (
                     <FloatingLabelInput style={{ fontSize: props.params.fontSize, paddingLeft: props.params.paddingLeft }}
                         label={props.name}
@@ -90,6 +124,35 @@ function displayTextInput(props, colorTheme) {
                         }} />
                 )
             } else {
+                if (props.numeric) {
+                    return (
+                        <FloatingLabelInput style={{ fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft }}
+                            label={props.name}
+                            placeholderTextColor={colorTheme.floatingInput.placeholder}
+                            value={props.value}
+                            onChangeText={props.onChangeText}
+                            keyboardType='numeric'
+                            rightComponent={<Icon name={Platform.OS === "ios" ? "ios-" + props.icon : "md-" + props.icon} size={20} style={{ marginTop: 10 }} color={colorTheme.floatingInput.icon} />}
+                            containerStyles={{
+                                height: 58,
+                                borderBottomWidth: 1,
+                                borderColor: colorTheme.floatingInput.border,
+                            }}
+                            customLabelStyles={{
+                                fontFamily: 'SFProDisplayMedium',
+                                colorBlurred: colorTheme.floatingInput.placeholder,
+                                colorFocused: colorTheme.floatingInput.placeholder,
+                                fontSizeFocused: 12,
+                            }}
+                            inputStyles={{
+                                fontSize: 18,
+                                fontFamily: 'SFProDisplayMedium',
+                                paddingTop: 15,
+                                paddingLeft: 5,
+                                color: colorTheme.floatingInput.label,
+                            }} />
+                    )
+                }
                 return (
                     <FloatingLabelInput style={{ fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft }}
                         label={props.name}
@@ -117,6 +180,34 @@ function displayTextInput(props, colorTheme) {
                         }} />
                 )
             }
+        } else if (props.numeric) {
+            return(
+                <FloatingLabelInput style={{ fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft }}
+                label={props.name}
+                placeholderTextColor={colorTheme.floatingInput.placeholder}
+                value={props.value}
+                keyboardType='numeric'
+                onChangeText={props.onChangeText}
+                containerStyles={{
+                    height: 58,
+                    borderBottomWidth: 1,
+                    borderColor: colorTheme.floatingInput.border,
+                }}
+                customLabelStyles={{
+                    fontFamily: 'SFProDisplayMedium',
+                    colorBlurred: colorTheme.floatingInput.placeholder,
+                    colorFocused: colorTheme.floatingInput.placeholder,
+                    fontSizeFocused: 12,
+                }}
+                inputStyles={{
+                    fontSize: 18,
+                    fontFamily: 'SFProDisplayMedium',
+                    paddingTop: 15,
+                    paddingLeft: 5,
+                    color: colorTheme.floatingInput.label,
+                }}
+            />
+            )
         } else {
             return (
                 <FloatingLabelInput style={{ fontSize: props.params.fontSize, textAlign: props.params.textAlign, paddingLeft: props.params.paddingLeft }}
