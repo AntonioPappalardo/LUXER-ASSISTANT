@@ -11,7 +11,7 @@ const it = {
   chiama:'CHIAMA',
   pagaCassa:'PAGA IN CASSA',
   pagaOra:'PAGA ORA',
-  accedi:'Accedi',
+  accedi:'ACCEDI',
   loginLabel: 'Accedi\nal tuo account',
   rememberme: 'Resta connesso',
   password: 'Password',

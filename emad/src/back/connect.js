@@ -35,11 +35,11 @@ export function connect(){
     }) 
 }
     export function AddCostumer(user){
-        user.codice_cliente=cliente[cliente.length-1].codice_cliente +1;
+        user.codice_cliente=parseInt(cliente[cliente.length-1].codice_cliente)+1;
         user.id=cliente.length;
         var d=new Date()
         user.data_registrazione= d.toISOString().substring(0,10)
-        user.avatar="";
+        user.avatar="https://storageaccountemadbc1b.blob.core.windows.net/img/photo.jpg";
         axios.get('https://emad2021.azurewebsites.net/api/InsertCostumer?' , {params:{"user":user}})
         cliente.push(user)
     } 
