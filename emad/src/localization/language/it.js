@@ -11,7 +11,13 @@ const it = {
   chiama:'CHIAMA',
   pagaCassa:'PAGA IN CASSA',
   pagaOra:'PAGA ORA',
-
+  accedi:'Accedi',
+  loginLabel: 'Accedi\nal tuo account',
+  rememberme: 'Resta connesso',
+  password: 'Password',
+  emailError: 'Il campo Email è obbligatorio!',
+  passwordError: 'Il campo Password è obbligatorio!',
+  userError: 'L\'utente non è stato trovato!',
   //TabBar
   home: 'Home',
   clienti: 'Clienti',

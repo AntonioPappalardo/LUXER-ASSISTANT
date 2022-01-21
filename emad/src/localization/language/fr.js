@@ -11,7 +11,13 @@ const fr = {
   chiama: 'QUI AIME',
   pagaCassa: 'PAYER EN ESPRÈCES',
   pagaOra: 'PAYEZ MAINTENANT',
-
+  accedi:'CONNEXION',
+  loginLabel: 'Se connecter\nà votre compte',
+  rememberme: 'Rester connecté',
+  password: 'Mot de passe',
+  emailError : 'Le champ E-mail est obligatoire!',
+  passwordError : 'Le champ Mot de passe est obligatoire!',
+  userError : 'L’utilisateur n’a pas été trouvé!',
   //TabBar
   home: 'Domicile',
   clienti: 'Clients',

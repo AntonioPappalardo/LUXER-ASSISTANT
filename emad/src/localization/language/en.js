@@ -11,7 +11,13 @@ const en = {
   chiama: 'CALL',
   pagaCassa: 'PAY IN CASH',
   pagaOra: 'PAY NOW',
-
+  accedi:'LOGIN',
+  loginLabel: 'Sign in\nto your account',
+  rememberme: 'Keep me signed in',
+  password: 'Password',
+  emailError: 'The Email field is required!',
+  passwordError: 'The Password field is required!',
+  userError: 'The user was not found!',
   //TabBar
   home: 'Home',
   clienti: 'Clients',

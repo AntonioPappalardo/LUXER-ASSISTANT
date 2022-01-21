@@ -5,8 +5,11 @@ import Divider from "../../components/Divider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
+import { useLanguage } from "../../localization/Localization";
 
 const SplashScreen = ({ navigation }) => {
+    const [language, setLanguage] = useLanguage();
+
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
@@ -24,7 +27,7 @@ const SplashScreen = ({ navigation }) => {
                     
                     <Divider type="fixed" opacity={0.3} />
                     <InputButton
-                        params={{ marginTop: "5%", marginBottom: "20%", width: "75%", fontFamily: 'SFProDisplayMedium', color: '#17181A', }} fixed name="ACCEDI"
+                        params={{ marginTop: "5%", marginBottom: "20%", width: "75%", fontFamily: 'SFProDisplayMedium', color: '#17181A', }} fixed name={language.accedi}
                         onPress={() => navigation.replace('Login')} />
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayUltraLightItalic', width: "75%", color: 'white', textAlign: "center", alignSelf: "center", marginBottom: "1%" }}>
                         Powered by

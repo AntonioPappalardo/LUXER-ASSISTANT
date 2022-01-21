@@ -11,7 +11,13 @@ const es = {
   chiama: 'QUIEN AMA',
   pagaCassa: 'PAGO EN EFECTIVO',
   pagaOra: 'PAGAR AHORA',
-
+  accedi:'IDENTIFÍCATE',
+  loginLabel: 'Inicia\nsesión en tu cuenta',
+  rememberme: 'Recuérdame',
+  password: 'Contraseña',
+  emailError: '¡El campo Email es obligatorio!',
+  passwordError: '¡El campo Contraseña es obligatorio!',
+  userError: '¡El\'usuario no fue encontrado!',
   //TabBar
   home: 'Casa',
   clienti: 'Clientela',
