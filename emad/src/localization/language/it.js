@@ -18,6 +18,7 @@ const it = {
   emailError: 'Il campo Email è obbligatorio!',
   passwordError: 'Il campo Password è obbligatorio!',
   userError: 'L\'utente non è stato trovato!',
+  conferma: 'Ho capito',
   //TabBar
   home: 'Home',
   clienti: 'Clienti',

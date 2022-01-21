@@ -86,7 +86,7 @@ const Login = ({ navigation }) => {
             <View style={colors.modalContent}>
               <Text style={{ color: colors.theme.primary, textAlign: 'center' }}>{errorText}</Text>
               <InputButton params={{ marginTop: '5%', width: "75%" }}
-                name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
+                name={language.conferma} icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
             </View>
           </View>
         </Modal>

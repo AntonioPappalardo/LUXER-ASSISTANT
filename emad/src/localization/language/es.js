@@ -18,6 +18,7 @@ const es = {
   emailError: '¡El campo Email es obligatorio!',
   passwordError: '¡El campo Contraseña es obligatorio!',
   userError: '¡El\'usuario no fue encontrado!',
+  conferma: 'Entiendo',
   //TabBar
   home: 'Casa',
   clienti: 'Clientela',

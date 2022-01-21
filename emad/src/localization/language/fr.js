@@ -18,6 +18,7 @@ const fr = {
   emailError : 'Le champ E-mail est obligatoire!',
   passwordError : 'Le champ Mot de passe est obligatoire!',
   userError : 'L’utilisateur n’a pas été trouvé!',
+  conferma: 'J\'ai compris',
   //TabBar
   home: 'Domicile',
   clienti: 'Clients',

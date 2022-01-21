@@ -18,6 +18,7 @@ const en = {
   emailError: 'The Email field is required!',
   passwordError: 'The Password field is required!',
   userError: 'The user was not found!',
+  conferma: 'I understand',
   //TabBar
   home: 'Home',
   clienti: 'Clients',
