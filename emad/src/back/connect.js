@@ -94,7 +94,7 @@ export function connect(){
     */
     export function getUtenteByLogin(email,password){
         password = sha512(password);
-        var a=utente.find(user=>(user.email===email && user.password===password))
+        var a=utente.find(user=>(user.email.toLowerCase()===email.toLowerCase() && user.password===password))
         if (a!==undefined)return a.id
         return undefined
     }
