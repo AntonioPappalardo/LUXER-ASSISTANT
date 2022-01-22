@@ -28,10 +28,10 @@ const MenuItem = (props) => {
             return (
                 <TouchableOpacity activeOpacity={.75} onPress={props.onPress} style={{ width: "75%",height: 48, alignSelf: "center",justifyContent:'center' }}>
                     <View style={{ flexDirection: 'row',height:'100%', paddingTop: 12}}>
-                        <View style={{ height: '100%', width: '75%', justifyContent: 'space-between' }}>
+                        <View style={{ height: '100%',width:'30%', justifyContent: 'space-between' }}>
                             <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium" }}>{props.title}</Text>
                         </View>
-                        <View style={{ height: '100%', width: '25%', justifyContent: 'space-between', alignItems: 'flex-end', paddingRight: 5 }}>
+                        <View style={{ height: '100%',width:'70%', justifyContent: 'space-between', alignItems: 'flex-end', paddingRight: 5 }}>
                             <Text style={{ color: colors.theme.primary, fontFamily: "SFProDisplayMedium" }}>{props.rightText}</Text>
                         </View>
                     </View>
