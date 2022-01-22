@@ -5,6 +5,7 @@ const dark = {
     subtitle: "#D1D1D1",
     primary: "#D1D1D1",
     secondary: "#484646",
+    camera: "#484646",
   },
   button: {
     background: '#2F3541',

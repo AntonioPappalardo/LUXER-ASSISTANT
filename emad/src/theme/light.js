@@ -5,6 +5,7 @@ const light = {
     subtitle: "#B4B4B4",
     primary: "#17181A",
     secondary: "#D1D1D1",
+    camera: "#484646",
   },
   button: {
     background: '#17181A',
