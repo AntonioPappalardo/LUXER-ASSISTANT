@@ -177,6 +177,7 @@ const AddUser = ({ navigation }) => {
       setModalVisible(true)
       await delay(3000);
       setModalVisible(false);
+      await delay(500);
       setIsSuccess(false);
       navigation.goBack();
     }
