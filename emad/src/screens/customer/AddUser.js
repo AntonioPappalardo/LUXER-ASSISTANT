@@ -169,7 +169,7 @@ const AddUser = ({ navigation }) => {
       user.email = email;
       user.telefono = tel;
       user.genere = sesso;
-      user.eta = eta;
+      user.eta = parseInt(eta);
       user.nazione = nazionalita;
       AddCostumer(user);
       setIsSuccess(true);

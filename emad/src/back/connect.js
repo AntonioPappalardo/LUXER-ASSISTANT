@@ -35,8 +35,8 @@ export function connect(){
     }) 
 }
     export function AddCostumer(user){
-        user.codice_cliente=parseInt(cliente[cliente.length-1].codice_cliente)+1;
-        user.id=cliente.length;
+        user.codice_cliente=""+(parseInt(cliente[cliente.length-1].codice_cliente)+1);
+        user.id= cliente[cliente.length-1].id +1;
         var d=new Date()
         user.data_registrazione= d.toISOString().substring(0,10)
         user.avatar="https://storageaccountemadbc1b.blob.core.windows.net/img/photo.jpg";
