@@ -322,7 +322,7 @@ const ExpoAR = ({ navigation }) => {
             alignItems:'center'
           }}
           onPress={() => takePicture()}>
-            
+            <Icon name={"camera"} size={30} color={colors.theme.secondary} />
             </TouchableOpacity>
         </Camera>
       </ViewShot>
