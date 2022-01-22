@@ -254,7 +254,7 @@ const ExpoAR = ({ navigation }) => {
   } else {
     return (
       <ViewShot ref={ref}>
-        <Camera style={{ height: windowHeight, width: windowWidth }}>
+        <Camera style={{ height: windowHeight, width: windowWidth }} ratio="16:9">
           <View style={{ backgroundColor: colors.theme.background, flexDirection: 'row', paddingBottom: 20 }}>
             <BackButton onPress={() => { navigation.goBack() }} />
             <View style={{ flex: 1, justifyContent: "center", marginRight: '15%', alignItems: "center", paddingTop: '15%' }}>
