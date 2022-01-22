@@ -19,7 +19,7 @@ const en = {
   passwordError: 'The Password field is required!',
   userError: 'The user was not found!',
   conferma: 'I understand',
-  procedi: 'Register customer',
+  procedi: 'Register Customer',
   addAppuntamento: 'Add appointment',
 
   //TabBar
@@ -112,6 +112,13 @@ const en = {
   contattaci:'Contact Us\n',
   contattaciContent:'If you have any questions about this Privacy Policy, our practices or relationships with the Services, or if you have reason to believe that Luxer may not have adhered to this Privacy Policy, you can contact us by email or write to:\n\n',
 
+  //Info
+  infoInitContent:'Luxer Assistant is a cross-platform application with the aim of making the time of purchase unique and personalized. The target user is the personal shopper, who using our tool will have access to all the information that will allow him to build a customer-centered experience.\n',
+  infoEndContent:'The solution will guarantee access to the catalog allowing you to search and filter products. By selecting a customer, it will then be possible to add the selected items to the cart. Luxer Assistant is also an MPOS, in fact it allows the customer to pay easily according to the methods he prefers.\n\nThe shop assistant will therefore have at his service all the tools to direct customer purchases. 360 ° assistance and will be at the center of the experience.\n\nThe available features include AR support, in fact, in the absence of an on-site product, the assistant will have the opportunity to view it in augmented reality. The described functionality, accessible in a few taps, allows the customer to have a precise view of the desired item that he intends to purchase.\n\n',
+  
+  //Version
+  versione:'Version',
+  
   //Client Search
   inputName: 'Customer\'s Name or Code',
   codiceCliente: 'Customer code',

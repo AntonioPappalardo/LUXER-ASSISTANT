@@ -19,7 +19,7 @@ const fr = {
   passwordError : 'Le champ Mot de passe est obligatoire!',
   userError : 'L’utilisateur n’a pas été trouvé!',
   conferma: 'J\'ai compris',
-  procedi: 'Enregistrer client',
+  procedi: 'Enregistrer Client',
   addAppuntamento: 'Ajouter un rendez-vous',
 
   //TabBar
@@ -111,6 +111,13 @@ const fr = {
   reclamiContent:'Toutes les plaintes, demandes et demandes relatives à cette politique de confidentialité doivent être adressées au coordinateur de la confidentialité. Vous pouvez cesser d\'utiliser le Service en suivant les instructions énoncées dans les conditions d\'utilisation applicables ou en désinstallant et en supprimant le logiciel ou l\'application.\n\n',
   contattaci:'Nous Contacter\n',
   contattaciContent:'Si vous avez des questions concernant cette politique de confidentialité, nos pratiques ou nos relations avec les services, ou si vous avez des raisons de croire que Luxer n\'a peut-être pas adhéré à cette politique de confidentialité, vous pouvez nous contacter par e-mail ou écrire à :\n\n',
+
+  //Info
+  infoInitContent:'Luxer Assistant est une application multiplateforme dont l\'objectif est de rendre le moment de l\'achat unique et personnalisé.\nL\'utilisateur cible est le personal shopper, qui en utilisant notre outil aura accès à toutes les informations qui lui permettront de construire une expérience centrée sur le client.\n',
+  infoEndContent:'La solution garantira l\'accès au catalogue vous permettant de rechercher et de filtrer les produits. En sélectionnant un client, il sera alors possible d\'ajouter les articles sélectionnés au panier. Luxer Assistant est aussi un MPOS, en effet il permet au client de payer facilement selon les modes qu\'il préfère.\n\nLe vendeur aura donc à son service tous les outils pour orienter les achats des clients.Une assistance 360° et sera au centre de l\'expérience.\n\nLes fonctionnalités disponibles incluent le support AR, en effet, en l\'absence de produit sur site, l\'assistant aura la possibilité de le visualiser en réalité augmentée. La fonctionnalité décrite, accessible en quelques clics, permet au client d\'avoir une vue précise de l\'article qu\'il souhaite acheter.\n\n',
+  
+  //Version
+  versione:'Version',
 
   //Recherche de client
   inputName: 'Nom ou Code Client',

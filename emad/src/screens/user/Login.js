@@ -39,6 +39,8 @@ const Login = ({ navigation }) => {
   });
 
   const handleSubmitPress = () => {
+    var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
     if (!userEmail) {
       setErrorText(language.emailError)
       setModalVisible(true)
@@ -70,7 +72,7 @@ const Login = ({ navigation }) => {
         <Modal
           isVisible={isModalVisible}
           statusBarTranslucent={true}
-          animationIn="jello"
+          animationIn="bounceIn"
           animationOut="fadeOutDownBig"
           hasBackdrop={true}
           backdropOpacity={10}

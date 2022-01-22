@@ -19,8 +19,8 @@ const es = {
   passwordError: '¡El campo Contraseña es obligatorio!',
   userError: '¡El\'usuario no fue encontrado!',
   conferma: 'Entiendo',
-  procedi: 'Registrar cliente',
-  addAppuntamento: 'Añadir cita',
+  procedi: 'Registrar Cliente',
+  addAppuntamento: 'Añadir Cita',
 
   //TabBar
   home: 'Casa',
@@ -96,7 +96,7 @@ const es = {
 
   //Ajustes
   tema: 'Modo Nocturno',
-  info: 'informacion sobre Luxer Assistant',
+  info: 'Informacion sobre Luxer Assistant',
   note: 'Notas de Lanzamiento',
   lingua: 'Lengua',
 
@@ -111,6 +111,13 @@ const es = {
   reclamiContent:'Todas las quejas, solicitudes y solicitudes relacionadas con esta Política de privacidad deben dirigirse al Coordinador de privacidad. Puede dejar de usar el Servicio siguiendo las instrucciones establecidas en los términos de servicio aplicables o desinstalando y eliminando el software o la aplicación.\n\n',
   contattaci:'Contáctenos\n',
   contattaciContent:'Si tiene alguna pregunta sobre esta Política de privacidad, nuestras prácticas o relaciones con los Servicios, o si tiene motivos para creer que es posible que Luxer no se haya adherido a esta Política de privacidad, puede comunicarse con nosotros por correo electrónico o escribir a:\n\n',
+
+  //Info
+  infoInitContent:'Luxer Assistant es una aplicación multiplataforma con el objetivo de hacer que el momento de la compra sea único y personalizado. El usuario objetivo es el personal shopper, quien a través de nuestra herramienta tendrá acceso a toda la información que le permitirá construir una experiencia centrada en el cliente.\n',
+  infoEndContent:'La solución garantizará el acceso al catálogo permitiéndole buscar y filtrar productos. Al seleccionar un cliente, será posible agregar los artículos seleccionados al carrito. Luxer Assistant también es un MPOS, de hecho, permite que el cliente pague fácilmente según los métodos que prefiera.\n\nEl dependiente de la tienda tendrá a su servicio todas las herramientas para dirigir las compras del cliente.\n\nAsistencia 360 ° y estará en el centro de la experiencia Las funciones disponibles incluyen soporte AR, de hecho, en ausencia de un producto en el sitio, el asistente tendrá la oportunidad de verlo en realidad aumentada.La funcionalidad descrita, accesible en unos pocos toques, permite al cliente tener una visión precisa del artículo que desea comprar.\n\n',
+
+  //Versión
+  versione:'Versión',
 
   //Búsqueda de clientes
   inputName: 'Nombre o Código del cliente',

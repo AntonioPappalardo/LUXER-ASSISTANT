@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView, Dimensions } from "react-native";
+import { StyleSheet, View, Text, ScrollView, Image,Dimensions } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
@@ -16,6 +16,8 @@ import Divider from "../../components/Divider";
 const Info = ({ navigation }) => {
     const { colors, setScheme, isDark } = useTheme();
     const [language, setLanguage] = useLanguage();
+    const tabBarHeight = useBottomTabBarHeight();
+    const windowWidth = Dimensions.get('window').width;
 
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
@@ -34,7 +36,19 @@ const Info = ({ navigation }) => {
                         <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}>{language.info}</Text>
                     </View>
                 </View>
-                
+                <ScrollView overScrollMode="never" style={{ marginBottom: tabBarHeight, marginTop: "10%", marginLeft:25, marginRight:25}}>
+                <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 16, textAlign: 'justify', color: colors.theme.title }}>
+                    {language.infoInitContent }               
+                </Text>
+
+                <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/home.jpg'}} style={{ width: 400, height: 250, alignSelf: 'center', marginBottom:25 }} />
+
+
+                <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 16, textAlign: 'justify', color: colors.theme.title }}>
+                    {language.infoEndContent }               
+                </Text>
+
+                </ScrollView>
                 </View>
                 )
             }
