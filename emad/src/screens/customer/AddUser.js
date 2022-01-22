@@ -320,7 +320,7 @@ const AddUser = ({ navigation }) => {
               </Modal>
  
           </View>
-          <InputButton params={{ marginTop: 26, width: "75%", marginBottom: tabBarHeight }} name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" onPress={handleSubmitPress} />
+          <InputButton params={{ marginTop: 26, width: "75%", marginBottom: tabBarHeight }} name={lang.procedi} icon="arrow-forward-outline" rotation="-45deg" onPress={handleSubmitPress} />
         </ScrollView>
       </View>
     )

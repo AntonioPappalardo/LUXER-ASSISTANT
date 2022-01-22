@@ -115,7 +115,7 @@ export function connect(){
     export function getNextAppuntamentoByCliente(cliente,user){
         var a= appuntamento.find(appuntamento=> appuntamento.id_utente===user && appuntamento.id_cliente===cliente)
         if (a===undefined) return""
-        else return new Date(a.data).toISOString().substring(0,10)
+        else return a
     }
 
 

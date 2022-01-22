@@ -19,6 +19,9 @@ const es = {
   passwordError: '¡El campo Contraseña es obligatorio!',
   userError: '¡El\'usuario no fue encontrado!',
   conferma: 'Entiendo',
+  procedi: 'Registrar cliente',
+  addAppuntamento: 'Añadir cita',
+
   //TabBar
   home: 'Casa',
   clienti: 'Clientela',

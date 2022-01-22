@@ -19,6 +19,9 @@ const it = {
   passwordError: 'Il campo Password è obbligatorio!',
   userError: 'L\'utente non è stato trovato!',
   conferma: 'Ho capito',
+  procedi: 'Registra cliente',
+  addAppuntamento: 'Aggiungi appuntamento',
+
   //TabBar
   home: 'Home',
   clienti: 'Clienti',

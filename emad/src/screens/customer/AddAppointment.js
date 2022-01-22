@@ -278,7 +278,7 @@ const AddAppointment = ({ navigation,route }) => {
                             </Picker>
                         </View>
                     </Modal>
-                    <InputButton params={{ marginTop: 20, width: "75%" }} name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" onPress={() =>{
+                    <InputButton params={{ marginTop: 20, width: "75%" }} name={lang.addAppuntamento} icon="arrow-forward-outline" rotation="-45deg" onPress={() =>{
                         var appuntamento={}
                         appuntamento.id_utente=route.params.utente;
                         appuntamento.id_cliente=route.params.cliente.id;

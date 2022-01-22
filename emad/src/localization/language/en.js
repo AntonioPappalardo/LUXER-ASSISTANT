@@ -19,16 +19,19 @@ const en = {
   passwordError: 'The Password field is required!',
   userError: 'The user was not found!',
   conferma: 'I understand',
+  procedi: 'Register customer',
+  addAppuntamento: 'Add appointment',
+
   //TabBar
   home: 'Home',
-  clienti: 'Clients',
+  clienti: 'Customers',
   calendario: 'Calendar',
   cerca: 'Search',
 
   //Home
   hello: 'Welcome',
   dashboard: 'Your Dashboard',
-  nuovoCliente: 'New Client',
+  nuovoCliente: 'New Customer',
   schedaCliente: 'Customer Card',
   catalogo: 'Catalog',
   linea: 'Line',
@@ -36,7 +39,7 @@ const en = {
   impostazioni: 'Settings',
   logout: 'Logout',
 
-  //New Client
+  //New Customer
   nome: 'First Name',
   cognome: 'Last Name',
   sesso: 'Sex',
@@ -110,8 +113,8 @@ const en = {
   contattaciContent:'If you have any questions about this Privacy Policy, our practices or relationships with the Services, or if you have reason to believe that Luxer may not have adhered to this Privacy Policy, you can contact us by email or write to:\n\n',
 
   //Client Search
-  inputName: 'Client\'s Name or Code',
-  codiceCliente: 'Client code',
+  inputName: 'Customer\'s Name or Code',
+  codiceCliente: 'Customer code',
 
   //Customer Card
   regCliente: 'Customer since',

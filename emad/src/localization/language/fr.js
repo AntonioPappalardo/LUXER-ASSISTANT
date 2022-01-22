@@ -19,6 +19,9 @@ const fr = {
   passwordError : 'Le champ Mot de passe est obligatoire!',
   userError : 'L’utilisateur n’a pas été trouvé!',
   conferma: 'J\'ai compris',
+  procedi: 'Enregistrer client',
+  addAppuntamento: 'Ajouter un rendez-vous',
+
   //TabBar
   home: 'Domicile',
   clienti: 'Clients',
