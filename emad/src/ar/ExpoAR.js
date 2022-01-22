@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { decode, encode } from "base-64";
-import { ExpoWebGLRenderingContext, GLView } from "expo-gl";
-import { Renderer } from "expo-three";
-import Icon from 'react-native-vector-icons/Fontisto';
-import { Dimensions, TouchableOpacity, TouchableNativeFeedback } from "react-native";
+import { View, Text, Dimensions, TouchableOpacity } from "react-native";
+import * as MediaLibrary from 'expo-media-library';
+import { captureRef } from 'react-native-view-shot';
+import ViewShot from "react-native-view-shot";
 import {
   AmbientLight,
   PerspectiveCamera,
@@ -11,20 +10,27 @@ import {
   Scene,
   SpotLight,
 } from "three";
-import { Camera } from 'expo-camera';
-import { Asset } from 'expo-asset';
+import { decode, encode } from "base-64";
 import OrbitControlsView from 'expo-three-orbit-controls';
 //OBJECT IMPORTER
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { TextureLoader } from "expo-three";
 //IMPORT GRAPHICS ELEMENTS
+import { Camera } from 'expo-camera';
+import { Asset } from 'expo-asset';
 import { useFonts } from 'expo-font';
-import { useTheme } from "../theme/ThemeProvider";
-import { View, Text } from "react-native";
+import { GLView } from "expo-gl";
+import { Renderer } from "expo-three";
+import AppLoading from 'expo-app-loading';
+import Icon from 'react-native-vector-icons/Fontisto';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+
 import ARColorSwitcher from "../components/ARColorSwitcher";
 import BackButton from "../components/BackButton";
-import AppLoading from 'expo-app-loading';
+
 import { useLanguage } from "../localization/Localization";
+import { useTheme } from "../theme/ThemeProvider";
+
+
 
 if (!global.btoa) {
   global.btoa = encode;
@@ -33,6 +39,8 @@ if (!global.btoa) {
 if (!global.atob) {
   global.atob = decode;
 }
+
+const ref = React.createRef();
 
 let model = new THREE.Group();
 
@@ -44,7 +52,12 @@ const ExpoAR = ({ navigation }) => {
   const windowHeight = Dimensions.get('window').height;
   const [camera, setCamera] = React.useState();
   const [scene, setScene] = React.useState();
+  const [currentGl,setGl] = React.useState();
   const [hasPermission, setHasPermission] = useState(false);
+
+  const tabBarHeight = useBottomTabBarHeight();
+
+  
   let timeout;
 
   const [blackBag, setBlackBag] = React.useState();
@@ -61,7 +74,9 @@ const ExpoAR = ({ navigation }) => {
 
   useEffect(() => {
     (async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
+      const { statusCamera } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(true);
+      const { statusMedia } = await MediaLibrary.requestPermissionsAsync();
       setHasPermission(true);
     })();
 
@@ -70,16 +85,21 @@ const ExpoAR = ({ navigation }) => {
 
   const onContextCreate = async (gl) => {
     const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
+    setGl(gl);
     //CREATE RENDERERS
     const renderer = new Renderer({ gl, antialias: true, alpha: true });
     renderer.setSize(width, height);
+    renderer.setClearColor (0x000000, 0);
     //CREATE CAMERA
     const camera = new PerspectiveCamera(68, width / height, 0.01, 1000);
-    camera.position.set(0, 15, 75)
+    camera.position.set(0,0,50);
+    
+    // Create cube render target
     setCamera(camera);
     //CREATE SCENE
     const scene = new Scene();
     setScene(scene);
+    scene.add(camera);
     //ADD AMBIENTLIGHT
     const ambientLight = new AmbientLight(0x101010);
     scene.add(ambientLight);
@@ -134,7 +154,6 @@ const ExpoAR = ({ navigation }) => {
     await asset4.downloadAsync();
     setYellowBag(asset4);
 
-    //scene.background = new THREE.Color( '#c2fdff' );
 
     const loader = new GLTFLoader();
     loader.load(
@@ -142,6 +161,7 @@ const ExpoAR = ({ navigation }) => {
       (gltf) => {
         gltf.scene.scale.set(15, 15, 15);
         scene.add(gltf.scene);
+        
       },
       (xhr) => {
         console.log(`${(xhr.loaded / xhr.total) * 100}% loaded`);
@@ -167,7 +187,7 @@ const ExpoAR = ({ navigation }) => {
     render();
   }
 
-  
+
   function loadModel(color) {
     console.log(color)
     var newModel;
@@ -200,12 +220,23 @@ const ExpoAR = ({ navigation }) => {
     );
   }
 
+  async function takePicture() {
+    const result = await captureRef(ref.current, {
+      result: 'tmpfile',
+      height: windowHeight,
+      width: windowWidth,
+      quality: 1,
+      format: 'png',
+    });
+    
+    const asset1 = await MediaLibrary.createAssetAsync(result);
+  };
+
   function zoomIn() {
     var variance = zoom / 1.25
     setZoom(variance);
     camera.position.set(camera.position.x, camera.position.y, variance);
   }
-
   function zoomOut() {
     var variance = zoom * 1.25
     setZoom(variance);
@@ -222,62 +253,79 @@ const ExpoAR = ({ navigation }) => {
     return <AppLoading />;
   } else {
     return (
-      <Camera style={{ height: windowHeight, width: windowWidth }}>
-        <View style={{ backgroundColor: colors.theme.background, flexDirection: 'row', paddingBottom: 20 }}>
-          <BackButton onPress={() => { navigation.goBack() }} />
-          <View style={{ flex: 1, justifyContent: "center", marginRight: '15%', alignItems: "center", paddingTop: '15%' }}>
-            <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}> {lang.viewer}</Text>
+      <ViewShot ref={ref}>
+        <Camera style={{ height: windowHeight, width: windowWidth }}>
+          <View style={{ backgroundColor: colors.theme.background, flexDirection: 'row', paddingBottom: 20 }}>
+            <BackButton onPress={() => { navigation.goBack() }} />
+            <View style={{ flex: 1, justifyContent: "center", marginRight: '15%', alignItems: "center", paddingTop: '15%' }}>
+              <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}> {lang.viewer}</Text>
+            </View>
           </View>
-        </View>
-        <OrbitControlsView style={{ flex: 1 }} camera={camera}>
-          <GLView
-            style={{ flex: 1 }}
-            onContextCreate={onContextCreate}
-          />
-        </OrbitControlsView >
-        <View style={{
-          //backgroundColor: colors.theme.background,
-          width: 45,
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginBottom: '10%',
-          alignItems: 'flex-end',
-          justifyContent: 'center',
-          position: 'absolute',
-          left: 0,
-          top: '15%',
-          borderBottomRightRadius: 25,
-          flex: 1
-        }}>
-          <TouchableOpacity style={{ width: 35, height: 35, margin: 10, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }} onPress={() => zoomIn()}>
-            <Icon name={"zoom-plus"} size={30} color={colors.button.color} />
-          </TouchableOpacity>
-          <TouchableOpacity style={{ width: 35, height: 35, margin: 10, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }} onPress={() => zoomOut()} >
-            <Icon name={"zoom-minus"} size={30} color={colors.button.color} />
-          </TouchableOpacity>
-        </View>
+          <OrbitControlsView style={{ flex: 1 }} camera={camera}>
+            <GLView
+              style={{ flex: 1 }}
+              onContextCreate={onContextCreate}
+            />
+          </OrbitControlsView >
+          <View style={{
+            //backgroundColor: colors.theme.background,
+            width: 45,
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: '10%',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+            position: 'absolute',
+            left: 0,
+            top: '15%',
+            borderBottomRightRadius: 25,
+            flex: 1
+          }}>
+            <TouchableOpacity style={{ width: 35, height: 35, margin: 10, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }} onPress={() => zoomIn()}>
+              <Icon name={"zoom-plus"} size={30} color={colors.button.color} />
+            </TouchableOpacity>
+            <TouchableOpacity style={{ width: 35, height: 35, margin: 10, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }} onPress={() => zoomOut()} >
+              <Icon name={"zoom-minus"} size={30} color={colors.button.color} />
+            </TouchableOpacity>
+          </View>
 
-        <View style={{
-          width: 45,
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginBottom: '10%',
-          alignItems: 'flex-end',
-          justifyContent: 'center',
-          position: 'absolute',
-          right: 0,
-          top: '15%',
-          borderBottomLeftRadius: 15,
-          flex: 1
-        }}>
-          <ARColorSwitcher color={variants[0].hex} onPress={() => loadModel(variants[0].hex)} />
-          <ARColorSwitcher color={variants[1].hex} onPress={() => loadModel(variants[1].hex)} />
-          <ARColorSwitcher color={variants[2].hex} onPress={() => loadModel(variants[2].hex)} />
-          <ARColorSwitcher color={variants[3].hex} onPress={() => loadModel(variants[3].hex)} />
-        </View>
-      </Camera>
+          <View style={{
+            width: 45,
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: '10%',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+            position: 'absolute',
+            right: 0,
+            top: '15%',
+            borderBottomLeftRadius: 15,
+            flex: 1
+          }}>
+            <ARColorSwitcher color={variants[0].hex} onPress={() => loadModel(variants[0].hex)} />
+            <ARColorSwitcher color={variants[1].hex} onPress={() => loadModel(variants[1].hex)} />
+            <ARColorSwitcher color={variants[2].hex} onPress={() => loadModel(variants[2].hex)} />
+            <ARColorSwitcher color={variants[3].hex} onPress={() => loadModel(variants[3].hex)} />
+          </View>
+          <TouchableOpacity style={{
+            backgroundColor: 'white',
+            width: windowWidth/5,
+            height: windowWidth/5,
+            borderRadius: windowWidth/10,
+            position: 'absolute',
+            alignSelf: 'center',
+            bottom: '10%',
+            flex: 1,   
+            justifyContent: 'center',
+            alignItems:'center'
+          }}
+          onPress={() => takePicture()}>
+            
+            </TouchableOpacity>
+        </Camera>
+      </ViewShot>
     );
   }
 }
