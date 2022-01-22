@@ -1,5 +1,5 @@
-import React from "react";
-import { Image, View, Text, Dimensions } from "react-native";
+import React, {Component} from "react";
+import { Image, View, Text, Dimensions, Animated } from "react-native";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { useTheme } from "../../theme/ThemeProvider";
@@ -9,6 +9,43 @@ import { useLanguage } from "../../localization/Localization";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
+
+class ImageLoader extends Component{
+    state  = {
+        opacity: new Animated.Value(0),
+    }
+
+    onLoad = () => {
+        Animated.timing(this.state.opacity, {
+            toValue:1,
+            duration:1500,
+            useNativeDriver:true,
+        }).start();
+    }
+
+    render(){
+        return(
+            <Animated.Image onLoad={this.onLoad}
+            {...this.props}
+            style={[
+                {
+                    opacity:this.state.opacity,
+                    transform: [
+                        {
+                            scale: this.state.opacity.interpolate({
+                                inputRange:[0,1],
+                                outputRange:[0.85,1]
+                            })
+                        }
+                    ]
+                },
+                this.props.style,
+            ]}
+            />
+        )
+    }
+}
+
 
 const Payment = ({ navigation }) => {
 
@@ -33,9 +70,9 @@ const Payment = ({ navigation }) => {
                     </View>
                 </View>                
                     {isDark ? 
-                <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/card_light.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:100,maxWidth: 400}} resizeMode="contain"/>
+                <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/card_light.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:100,maxWidth: 400}} resizeMode="contain"/>
                     :
-                    <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/card_dark.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:0,maxWidth: 400}} resizeMode="contain"/>
+                    <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/card_dark.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:0,maxWidth: 400}} resizeMode="contain"/>
                 }
                 
                 <ShadowBox

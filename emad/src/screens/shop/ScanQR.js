@@ -38,18 +38,18 @@ const ScanQR = ({ navigation,route }) => {
     startVibration();
     stopVibration();
     setText(data);
-    console.log(`Type: ${type}\nData: ${data}`);
     var prodotto = getProdottoByReference(data)
     navigation.replace('ProductPage',{prodotto:prodotto.id,utente:route.params.utente})
   }
   const setScannedFalse = () => {
     setScanned(false);
   }
+
   //To start the vibration for the defined Duration
   const startVibration = () => {
     Vibration.vibrate(DURATION);
   };
-console.log(scanned)
+
   //To Stop the vibration
   const stopVibration = () => {
     Vibration.cancel();

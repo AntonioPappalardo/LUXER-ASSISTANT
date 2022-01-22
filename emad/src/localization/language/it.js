@@ -20,7 +20,7 @@ const it = {
   userError: 'L\'utente non è stato trovato!',
   conferma: 'Ho capito',
   procedi: 'Registra Cliente',
-  addAppuntamento: 'Aggiungi appuntamento',
+  addAppuntamento: 'Aggiungi Appuntamento',
 
   //TabBar
   home: 'Home',
@@ -140,7 +140,8 @@ const it = {
   riservaNegozio:'Riserva l\'intero negozio',
   dalle:'Dalle',
   alle:'Alle',
-
+  campoErroreOrari:'Inserisci due orari diversi!',
+  
   //Contatta
   messaggio:'Messaggio',
 
@@ -162,6 +163,7 @@ const it = {
   
   //Lista Store
   indirizzo:'Indirizzo',
+
   //Calendario
   locale: {
     monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
@@ -170,12 +172,14 @@ const it = {
     dayNamesShort: [ 'L', 'M', 'M', 'G', 'V', 'S','D'],
     oggi: "Oggi",
   },
+
   //Carrello
   carrello:'Carrello',
   articoliTot:'Articoli Totali',
   totale:'Totale',
   email:'Inserisci Email',
-
+  campoErroreTotale:'Il Carrello è vuoto!',
+  
   //Paga Ora
   paga:'Paga Ora',
   notificaPagamento:'Avvicina il dispositivo abilitato NFC',

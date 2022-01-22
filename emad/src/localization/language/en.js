@@ -17,10 +17,10 @@ const en = {
   password: 'Password',
   emailError: 'The Email field is required!',
   passwordError: 'The Password field is required!',
-  userError: 'The user was not found!',
+  userError: 'The User was not found!',
   conferma: 'I understand',
   procedi: 'Register Customer',
-  addAppuntamento: 'Add appointment',
+  addAppuntamento: 'Add Appointment',
 
   //TabBar
   home: 'Home',
@@ -140,6 +140,7 @@ const en = {
   riservaNegozio: 'Reserve the entire store',
   dalle: 'From',
   alle: 'To',
+  campoErroreOrari:'Enter two different times!',
 
   //Contatta
   messaggio: 'Message',
@@ -170,11 +171,13 @@ const en = {
     dayNamesShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
     today: "Today",
   },
+
   //Cart
   carrello: 'Cart',
   articoliTot: 'Total Items',
   totale: 'Total',
   email: 'Insert Email',
+  campoErroreTotale:'The Cart is empty!',
 
   //Pay Now
   paga: 'Pay Now',

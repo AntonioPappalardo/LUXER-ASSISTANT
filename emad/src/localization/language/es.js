@@ -140,6 +140,7 @@ const es = {
   riservaNegozio: 'Reserva toda la tienda',
   dalle: 'desde',
   alle: 'hasta',
+  campoErroreOrari:'¡Entra en dos tiempos diferentes!',
 
   //Contacto
   messaggio: 'Mensaje',
@@ -176,6 +177,7 @@ const es = {
   articoliTot: 'Articulos Totales',
   totale: 'Total',
   email: 'Ingrese correo Electrónico',
+  campoErroreTotale:'¡El Carrito está vacío!',
 
   //Pagar ahora
   paga: 'Pagar Ahora',

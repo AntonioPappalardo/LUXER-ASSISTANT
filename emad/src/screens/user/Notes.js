@@ -54,7 +54,7 @@ const Notes = ({ navigation }) => {
             </Text>
 
             <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 14, textAlign: 'center', color: colors.theme.subtitle }}>
-            © Copyright 2021-2022 Luxer Assistant 
+            © Copyright 2021-2022
             </Text>
 
             </ScrollView>

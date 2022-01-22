@@ -20,7 +20,7 @@ const fr = {
   userError : 'L’utilisateur n’a pas été trouvé!',
   conferma: 'J\'ai compris',
   procedi: 'Enregistrer Client',
-  addAppuntamento: 'Ajouter un rendez-vous',
+  addAppuntamento: 'Ajouter un Rendez-vous',
 
   //TabBar
   home: 'Domicile',
@@ -140,6 +140,7 @@ const fr = {
   riservaNegozio: 'Réserver tout le Magasin',
   dalle: 'Depuis',
   alle: 'Â',
+  campoErroreOrari:'Enter two different times!',
 
   //Prendre Contact
   messaggio: 'Message',
@@ -170,11 +171,13 @@ const fr = {
     dayNamesShort: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
     today: "Aujourd'hui",
   },
+
   //Panier
   carrello: 'Panier',
   articoliTot: 'Articles au Total',
   totale: 'Le Total',
   email: 'Entrer l\'E-mail',
+  campoErroreTotale:'Le Panier est vide!',
 
   //Payez Maintenant
   paga: 'Payez Maintenant',
