@@ -97,6 +97,18 @@ const fr = {
   note: 'Notes de Version',
   lingua: 'Langue',
 
+  //Privacy
+  privacy:'Politique de Confidentialité',
+  introduzione:'L\'application et son contenu s\'adressent exclusivement aux employés de la marque déposée. Si nous apprenons que nous avons collecté des informations personnelles sans leur consentement, nous supprimerons ces informations dans les plus brefs délais.\n\n',
+  funzioni:'Accès aux Fonctions\n',
+  funzioniContent:'L\'application accède aux fonctions suivantes de votre appareil : \n\n⦿ Appareil photo : vous accédez à la fonction Appareil photo pour imprimer les images capturées. * \n\n⦿ Wi-Fi : vous accédez à la fonction Wi-Fi de connexion de l\'appareil sur le réseau.* \n\n',
+  dati:'Accès aux Données\n',
+  datiContent:'L\'application accède aux données suivantes depuis votre appareil : \n\n⦿ Accès aux dossiers : accède aux dossiers spécifiés pour enregistrer les fichiers numérisés. * \n\n⦿ Fichiers image : \n\n- Vous pouvez accéder aux fichiers image spécifiés à partager avec le client. * \n\n- Envoyer des fichiers numérisés vers une autre application coopérative. * \n\n⦿ Fichier de document : vous pouvez accéder à des fichiers de document spécifiés pour les imprimer ou les partager.* \n\n *Selon la version de le système d\'exploitation ou les appareils, certaines fonctions peuvent ne pas être disponibles.L\'application accède à ces fichiers, mais Luxer ne stocke ni ne collecte aucun type de données étrangères à l\'utilisation naturelle de l\'application.\n\n',
+  reclami:'Plaintes et Demandes de divulgation\n',
+  reclamiContent:'Toutes les plaintes, demandes et demandes relatives à cette politique de confidentialité doivent être adressées au coordinateur de la confidentialité. Vous pouvez cesser d\'utiliser le Service en suivant les instructions énoncées dans les conditions d\'utilisation applicables ou en désinstallant et en supprimant le logiciel ou l\'application.\n\n',
+  contattaci:'Nous Contacter\n',
+  contattaciContent:'Si vous avez des questions concernant cette politique de confidentialité, nos pratiques ou nos relations avec les services, ou si vous avez des raisons de croire que Luxer n\'a peut-être pas adhéré à cette politique de confidentialité, vous pouvez nous contacter par e-mail ou écrire à :\n\n',
+
   //Recherche de client
   inputName: 'Nom ou Code Client',
   codiceCliente: 'Code client',

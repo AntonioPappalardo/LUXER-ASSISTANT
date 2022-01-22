@@ -1,0 +1,61 @@
+import React, { useState } from "react";
+import { StyleSheet, View, Text, ScrollView, Dimensions } from "react-native";
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
+import { useTheme } from "../../theme/ThemeProvider";
+import Icon from 'react-native-vector-icons/Ionicons';
+import InputButton from "../../components/InputButton";
+import InputText from "../../components/InputText";
+import BackButton from "../../components/BackButton";
+import { Picker } from '@react-native-picker/picker';
+import { useLanguage } from "../../localization/Localization";
+import { AddCostumer } from "../../back/connect";
+import Divider from "../../components/Divider";
+
+const Privacy = ({ navigation }) => {
+    const { colors, setScheme, isDark } = useTheme();
+    const [language, setLanguage] = useLanguage();
+    const tabBarHeight = useBottomTabBarHeight();
+
+    let [fontsLoaded] = useFonts({
+        'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+        'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+    });
+
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    } else {
+        return (
+            <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
+                <View style={{ flexDirection: 'row' }}>
+                    <BackButton onPress={() => { navigation.goBack() }} />
+                    <View style={{ flex: 1, justifyContent: "center", marginRight: '15%', alignItems: "center", paddingTop: '15%' }}>
+                        <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}>{language.privacy}</Text>
+                    </View>
+                </View>
+                <ScrollView overScrollMode="never" style={{ marginBottom: tabBarHeight, marginTop: "10%", marginLeft:25, marginRight:25}}>
+                <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 16, textAlign: 'justify', color: colors.theme.title }}>
+                {language.introduzione }               
+
+                <Text  style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title}}>{language.funzioni}</Text>
+                {language.funzioniContent}
+
+                <Text  style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title}}>{language.dati}</Text>
+                {language.datiContent}
+                <Text  style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title}}>{language.reclami}</Text>
+                {language.reclamiContent}
+                <Text  style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title }}>{language.contattaci}</Text>
+                {language.contattaciContent}                
+                luxerassistant@privacysupport.it
+                {"\n\n"}
+                </Text>
+
+                </ScrollView>
+                </View>
+                )
+            }
+};
+
+export default Privacy;

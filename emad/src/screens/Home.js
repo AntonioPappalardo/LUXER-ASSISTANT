@@ -15,6 +15,9 @@ import Settings from './user/Settings';
 import Store from './shop/Store';
 import StoreList from './shop/StoreList';
 import UserHome from './user/UserHome';
+import Info from './user/Info';
+import Notes from './user/Notes';
+import Privacy from './user/Privacy';
 import ExpoAR from '../ar/ExpoAR';
 
 const Stack = createStackNavigator();
@@ -44,6 +47,9 @@ const Home = ({ navigation , route}) => {
       <Stack.Screen name="Store" component={Store} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="StoreList" component={StoreList} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="UserHome"component={UserHome} initialParams={{ "user": utente }} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="Info"component={Info} initialParams={{ "user": utente }} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="Notes"component={Notes} initialParams={{ "user": utente }} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="Privacy"component={Privacy} initialParams={{ "user": utente }} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="ExpoAR" component={ExpoAR} options={{cardStyleInterpolator: CardStyleEffect}}/>
 
 

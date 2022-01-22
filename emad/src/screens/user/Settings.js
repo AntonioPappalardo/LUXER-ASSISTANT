@@ -29,10 +29,10 @@ const Impostazioni = ({ navigation }) => {
           },
       });
     const languages = [
-        {'label': 'Italiano', 'value': 'it-IT'},
-        {'label': 'English', 'value': 'en-US'},
-        {'label': 'Français', 'value': 'fr-FR'},
-        {'label': 'Español', 'value': 'es-ES'},
+        {'label': '🇮🇹 Italiano', 'value': 'it-IT'},
+        {'label': '🇬🇧 English', 'value': 'en-US'},
+        {'label': '🇫🇷 Français', 'value': 'fr-FR'},
+        {'label': '🇪🇸 Español', 'value': 'es-ES'},
     ]
     const [language, setLanguage] = useLanguage();
     const [selectedLanguage,setSelectedLanguage] = useState(language.code)
@@ -102,8 +102,9 @@ const Impostazioni = ({ navigation }) => {
                             </Picker>
                         </View>
                     </Modal>
-                    <MenuItem title={language.info} onPress={() => navigation.navigate('AddUser')} />
-                    <MenuItem title={language.note} onPress={() => navigation.navigate('Catalogo')} />
+                    <MenuItem title={language.info} onPress={() => navigation.navigate('Info')} />
+                    <MenuItem title={language.note} onPress={() => navigation.navigate('Notes')} />
+                    <MenuItem title={language.privacy} onPress={() => navigation.navigate('Privacy')} />
 
                 </ScrollView>
             </View>

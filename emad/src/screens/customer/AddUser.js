@@ -15,7 +15,6 @@ import { Picker } from '@react-native-picker/picker';
 import { useLanguage } from "../../localization/Localization";
 import { AddCostumer } from "../../back/connect";
 import Divider from "../../components/Divider";
-//import NumberPlease from "react-native-number-please";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('screen').height;
@@ -43,8 +42,8 @@ const AddUser = ({ navigation }) => {
 
   const [lang, setLanguage] = useLanguage();
   const [isModalVisible, setModalVisible] = useState(false);
-
   const [isModalVisibleGender, setModalVisibleGender] = useState(false);
+  const [isModalVisibleNation, setModalVisibleNation] = useState(false);
 
   const [errorText, setErrorText] = useState('Default');
   const [isSuccess, setIsSuccess] = useState(false);
@@ -64,7 +63,7 @@ const AddUser = ({ navigation }) => {
     {'label': `🇦🇹 ${lang.austria}`, 'value': lang.austria},
     {'label': `🇦🇿 ${lang.azerbaigian}`, 'value': lang.azerbaigian},
     {'label': `🇧🇭 ${lang.bahrain}`, 'value': lang.bahrain},
-    {'label': `🇧🇪 ${lang.belgio}`, 'value': lang.algeria},
+    {'label': `🇧🇪 ${lang.belgio}`, 'value': lang.belgio},
     {'label': `🇧🇬 ${lang.bulgaria}`, 'value': lang.bulgaria},
     {'label': `🇧🇷 ${lang.brasile}`, 'value': lang.brasile},
     {'label': `🇨🇳 ${lang.cina}`, 'value': lang.cina},
@@ -92,25 +91,29 @@ const AddUser = ({ navigation }) => {
     {'label': `🇺🇸 ${lang.usa}`, 'value': lang.usa},
   ];
 
+  const tabBarHeight = useBottomTabBarHeight() + 20;
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const toggleModalGender = () => {
-    setModalVisible(!isModalVisible);
-  };
-  const tabBarHeight = useBottomTabBarHeight() + 20;
   const toggleGender = (itemValue) => {
     setSesso(itemValue);
     setModalVisibleGender(false);
-}
+  };
+
+  const toggleNation = (itemValue) => {
+    setNazionalita(itemValue);
+    setModalVisibleNation(false);
+  };
+
   const [nome, setNome] = React.useState('');
   const [cognome, setCognome] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [tel, setTelefono] = React.useState('');
-  const [sesso, setSesso] = React.useState('Nessuno');
+  const [sesso, setSesso] = React.useState('-');
   const [eta, setEta] = React.useState('');
-  const [nazionalita, setNazionalita] = React.useState('');
+  const [nazionalita, setNazionalita] = React.useState('-');
 
   const { add } = React.useContext(AuthContext)
 
@@ -119,7 +122,6 @@ const AddUser = ({ navigation }) => {
     'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
     'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
   });
-
   const handleSubmitPress = async () => {
     var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     var phoneformat = /^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[456789]\d{9}|(\d[ -]?){10}\d$/;
@@ -147,6 +149,16 @@ const AddUser = ({ navigation }) => {
     }
     if (!eta) {
       setErrorText(lang.campoErroreEta)
+      setModalVisible(true)
+      return;
+    }
+    if (sesso == '-') {
+      setErrorText(lang.campoErroreSesso)
+      setModalVisible(true)
+      return;
+    }
+    if (nazionalita == '-') {
+      setErrorText(lang.campoErroreNazionalita)
       setModalVisible(true)
       return;
     }
@@ -179,7 +191,7 @@ const AddUser = ({ navigation }) => {
         <Modal
           isVisible={isModalVisible}
           statusBarTranslucent={true}
-          animationIn="jello"
+          animationIn="bounceIn"
           animationOut="fadeOutDownBig"
           hasBackdrop={true}
           backdropOpacity={10}
@@ -272,10 +284,41 @@ const AddUser = ({ navigation }) => {
             <InputText params={{ marginTop: 0, width: "75%", paddingLeft: 25, textAlign: "left" }}
               name={lang.eta} rotation="0deg" value={eta} onChangeText={setEta} numeric={true}/>
 
+            <View style={{ padding: 5, width: '99%', borderBottomWidth: 1, borderColor: colors.floatingInput.border }}>
+              <MenuItem title={lang.nazionalita} rightText={nazionalita} onPress={() => setModalVisibleNation(true)} />
+            </View>
+            <Modal
+              isVisible={isModalVisibleNation}
+              statusBarTranslucent={true}
+              animationType="slide"
+              hasBackdrop={true}
+              onBackdropPress={()=> setModalVisibleNation(false)}
+              backdropOpacity={10}
+              backdropColor={"rgba(0, 0, 0, 0.7)"}
+              useNativeDriverForBackdrop={true}
+              hideModalContentWhileAnimating={true}
+              style={styles.view}>
+              <View style={styles.content}>
+              <Picker
+                  selectedValue={nazionalita}
+                  style={{width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center', alignSelf: 'center' }}
+                  dropdownIconColor={colors.theme.title}
+                  onValueChange={(itemValue, itemIndex) =>
+                      toggleNation(itemValue)
+                  }
+                  mode="dialog">
+                  {nazione.map(item => {
+                      if (Platform.OS === 'ios') {
+                          return <Picker.Item key={item.value} color={colors.theme.title} label={item.label} value={item.value} />;
+                      } else {
+                          return <Picker.Item key={item.value} label={item.label} value={item.value} />;
+                      }
+                  })}
 
-            <InputText params={{ marginTop: 1, width: "75%", paddingLeft: 25, textAlign: "left" }}
-              name={lang.nazionalita} icon="" rotation="0deg" value={nazionalita} onChangeText={setNazionalita} />
-
+              </Picker>
+              </View>
+              </Modal>
+ 
           </View>
           <InputButton params={{ marginTop: 26, width: "75%", marginBottom: tabBarHeight }} name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" onPress={handleSubmitPress} />
         </ScrollView>
