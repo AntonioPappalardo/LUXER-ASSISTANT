@@ -45,6 +45,7 @@ const CartItem = (props) => {
                             <InputSpinner
                                 value={props.value}
                                 min={props.min}
+                                max={props.max}
                                 step={1}
                                 colorMax={colors.theme.secondary}
                                 colorMin={colors.theme.secondary}
