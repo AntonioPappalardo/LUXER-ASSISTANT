@@ -43,7 +43,7 @@ const UserHome = ({ navigation, route }) => {
           <ScrollView overScrollMode="never" style={{marginBottom: tabBarHeight}}>
           <Divider width={"100%"} opacity={1} marginBottom={12} />
           <MenuItem title={lang.nuovoCliente} onPress={() => navigation.navigate('AddUser')} />
-          <MenuItem title={lang.carrello} onPress={() => navigation.navigate('Cart')}/>
+          {/*<MenuItem title={lang.carrello} onPress={() => navigation.navigate('Cart')}/>*/}
           <MenuItem title={lang.catalogo} onPress={() => navigation.navigate('Catalog')} />
           <MenuItem title={lang.scan} onPress={() => navigation.navigate('ScanQR')} />
           <MenuItem title={lang.impostazioni} onPress={() => navigation.navigate('Settings')} />

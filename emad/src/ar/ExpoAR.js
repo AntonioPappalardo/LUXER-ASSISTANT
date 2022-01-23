@@ -8,6 +8,7 @@ import {
   PerspectiveCamera,
   PointLight,
   Scene,
+  GridHelper,
   SpotLight,
 } from "three";
 import { decode, encode } from "base-64";
@@ -170,8 +171,6 @@ const ExpoAR = ({ navigation }) => {
         console.error("An error happened", error);
       }
     );
-    
-
    
     function update() {
       if (model)

@@ -24,8 +24,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
     var caratteristiche = getCaratteristicheProduct(prodotto.id)
     function renderTabBar(props) {
         const inputRange = props.navigationState.routes.map((x, i) => i);
-
-
+        
         return (
             <View style={styles.tabBar}>
                 {props.navigationState.routes.map((route, i) => {
@@ -54,9 +53,6 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
     const FirstRoute = () => (
         <View style={{ width: '95%', alignSelf: 'center' }}>
             <View style={{ paddingTop: '5%' }}>
-                <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary }}>
-
-                </Text>
                 <View style={{ flexDirection: 'row', paddingTop: 5 }}>
                     <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
                         {lang.inNegozio}:
@@ -106,11 +102,14 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                 <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary }}>
                     {lang.schedaProdotto}
                 </Text>
-                <View style={{ flexDirection: 'column', paddingTop: 5 }}>
-                {caratteristiche.map((item)=>(
-                    <Text  key={item['valore_'+lang.codice]} itemstyle={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
-                        - {item['valore_'+lang.codice]}
-                    </Text>
+                <View style={{ width: '95%', flexDirection: 'column', paddingTop: 5, alignSelf: 'center' }}>
+                    {caratteristiche.map((item) => (
+                        <View style={{ flexDirection: 'row' }} key={item.id}>
+                            <View style={{ width: 5, height: 5, borderRadius: 2.5, backgroundColor: colors.theme.primary, marginTop: 9, marginRight: 5 }}></View>
+                            <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary, textAlign: 'left' }}>
+                                {item['valore_' + lang.codice]}
+                            </Text>
+                        </View>
                     ))}
                 </View>
             </View>
