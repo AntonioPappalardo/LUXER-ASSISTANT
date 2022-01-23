@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { TouchableOpacity, StyleSheet, Platform } from 'react-native'
 import { BottomTabBarHeightContext, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BlurView } from 'expo-blur';
@@ -9,9 +9,8 @@ import SearchUser from '../screens/customer/SearchUser';
 import Cart from '../screens/shop/Cart';
 import AppointmentList from '../screens/customer/AppointmentList';
 import { useTheme } from "../theme/ThemeProvider";
-import { getUtenteById } from '../back/connect';
 import { useLanguage } from "../localization/Localization";
-
+import { ShoppingCart } from "../back/cart";
 const Tab = createBottomTabNavigator()
 const TabBarIcon = props => {
 	return (
@@ -27,6 +26,7 @@ var BlurTabBar = null;
 var tabColor = 'light';
 
 const TabBarNavigation = (props) => {
+	const [cart,setCart] = useState(ShoppingCart());
 	const [lang, setLanguage] = useLanguage();
 	const { colors, isDark } = useTheme();
 	isDark ? tabColor = 'dark' : tabColor = 'light'
@@ -90,23 +90,44 @@ const TabBarNavigation = (props) => {
 
 						}}
 					/>
-					<Tab.Screen
-						name="Carrello"
-						component={Cart}
-						initialParams={{ "user": utente }}
-						options={{
-							tabBarIcon: ({ focused, color }) => (
-								<TabBarIcon
-									focused={focused}
-									tintColor={(focused) ? colors.tabbar.active : colors.tabbar.inactive}
-									name={Platform.OS === "ios" ? "ios-cart" : "md-cart"}
-									size={parseInt('26')}
-								/>
-							),
-							tabBarLabel: lang.carrello
-
-						}}
-					/>
+					{cart.countItems() == 0
+						?
+						<Tab.Screen
+							name="Carrello"
+							component={Cart}
+							initialParams={{ "user": utente }}
+							options={{
+								tabBarIcon: ({ focused, color }) => (
+									<TabBarIcon
+										focused={focused}
+										tintColor={(focused) ? colors.tabbar.active : colors.tabbar.inactive}
+										name={Platform.OS === "ios" ? "ios-cart" : "md-cart"}
+										size={parseInt('26')}
+									/>
+								),
+								tabBarLabel: lang.carrello
+							}}
+						/>
+						:
+						<Tab.Screen
+							name="Carrello"
+							component={Cart}
+							initialParams={{ "user": utente }}
+							options={{
+								tabBarBadge: cart.countItems(),
+								tabBarIcon: ({ focused, color }) => (
+									<TabBarIcon
+										focused={focused}
+										tintColor={(focused) ? colors.tabbar.active : colors.tabbar.inactive}
+										name={Platform.OS === "ios" ? "ios-cart" : "md-cart"}
+										size={parseInt('26')}
+									/>
+								),
+								tabBarLabel: lang.carrello
+							}}
+						/>
+					}
+					
 					<Tab.Screen
 						name="Clienti"
 						component={SearchUser}

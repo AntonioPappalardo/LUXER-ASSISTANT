@@ -6,9 +6,9 @@ import { AppearanceProvider } from 'react-native-appearance';
 import { ThemeProvider } from './src/theme/ThemeProvider';
 import { LanguageProvider } from './src/localization/Localization';
 import { connect } from "./src/back/connect"
-import { createCart } from './src/back/cart';
+//import { createCart } from './src/back/cart';
 connect()
-createCart()
+//createCart()
 export default function App() {
 
 	return (

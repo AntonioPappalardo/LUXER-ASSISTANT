@@ -16,7 +16,6 @@ const colorScheme = Appearance.getColorScheme();
 
 
 const UserHome = ({ navigation, route }) => {
-  createCart()
   var utente = getUtenteById(route.params.user)
   const {colors, isDark} = useTheme();
   const [lang, setLanguage] = useLanguage();

@@ -36,7 +36,7 @@ const Home = ({ navigation , route}) => {
       <Stack.Screen name="AddUser" component={AddUser}  options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Catalog" component={Catalog}  initialParams={{ "utente": utente }} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Category" component={Category}  options={{cardStyleInterpolator: CardStyleEffect}}/>
-      <Stack.Screen name="Cart" component={Cart} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      {/*<Stack.Screen name="Cart" component={Cart} options={{cardStyleInterpolator: CardStyleEffect}}/>*/}
       <Stack.Screen name="AddAppointment" component={AddAppointment} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="Communication" component={Communication} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="CustomerPage" component={CustomerPage} options={{cardStyleInterpolator: CardStyleEffect}}/>

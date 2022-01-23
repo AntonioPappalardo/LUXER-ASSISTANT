@@ -11,13 +11,14 @@ import InputButton from "./InputButton";
 import { useTheme } from "../theme/ThemeProvider";
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { getStockByUserProduct, getQtaByProduct, getCaratteristicheProduct, getAttributoColoreByProduct, getAttributoTagliaByProduct } from "../back/connect";
-import { addProduct } from "../back/cart";
+import { ShoppingCart} from "../back/cart";
 import { useLanguage } from "../localization/Localization";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 const BottomProduct2 = ({ navigation, prodotto, utente }) => {
+    let cart = ShoppingCart();
     const [isModalVisible, setModalVisible] = useState(false);
     var qta = getStockByUserProduct(prodotto.id, utente)
     var otherqta = getQtaByProduct(prodotto.id, utente)
@@ -165,7 +166,10 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
             marginTop: '5%'
         }
     }
+
     return (
+        
+
         <SlidingUpPanel
             ref={elementRef}
             draggableRange={{ top: height * 0.75, bottom: (slidePadding + tabBarHeight -10)}}
@@ -188,8 +192,9 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                             height: 45, width: 45, borderRadius: 22.5, backgroundColor: '#EA9F5A',
                             justifyContent: 'center', alignItems: 'center', alignContent: 'center', shadowOffset: { width: 1, height: 2 }, shadowOpacity: 0.25, shadowRadius: 5, elevation: 5,
                         }} onPress={() => {
-                            addProduct(prodotto)
-                            navigation.navigate('Cart', { prodotto: prodotto })
+                            cart.addProduct(prodotto)
+                            navigation.navigate('ProductPage',{prodotto:prodotto.id,utente:utente})
+                            //navigation.navigate('Cart', { prodotto: prodotto })
                         }
                         }>
                             <Icon name="cart-plus" size={24} color={'white'} style={{ marginRight: 2 }} />
@@ -207,7 +212,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                                         <ColorFilter key={key} color={item} />
                                     ))}
                                 </View>
-                                {selected == undefined && taglia.length > 0?
+                                {(selected == undefined && taglia.length > 0)?
                                     setSelect(taglia[0].valore)
                                     :
                                     null
