@@ -115,6 +115,7 @@ const TabBarNavigation = (props) => {
 							initialParams={{ "user": utente }}
 							options={{
 								tabBarBadge: cart.countItems(),
+								tabBarBadgeStyle: {backgroundColor: '#EA9F5A',color:'#FFFFFF'},
 								tabBarIcon: ({ focused, color }) => (
 									<TabBarIcon
 										focused={focused}

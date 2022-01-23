@@ -114,7 +114,7 @@ const Cart = ({ navigation, route }) => {
                 </Modal>
                 <View style={{ flexDirection: 'row', marginBottom: 20 }}>
                     {/*<BackButton onPress={() => { navigation.goBack() }} />*/}
-                    <View style={{ flex: 1, justifyContent: "center", marginRight: '15%', alignItems: "center", paddingTop: '15%' }}>
+                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", paddingTop: '15%' }}>
                         <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}>{lang.carrello}</Text>
                     </View>
                 </View>
