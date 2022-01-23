@@ -100,6 +100,9 @@ const light = {
     off:'#2d4150',
     on:'#e26a00'
   },
+  buttonCamera: {
+    backgroundColor: '#0000',
+  },
   payment: {
     backgroundColor: '#FFFFFF'
   }

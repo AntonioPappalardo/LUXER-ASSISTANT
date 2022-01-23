@@ -309,14 +309,14 @@ const ExpoAR = ({ navigation }) => {
             <ARColorSwitcher color={variants[3].hex} onPress={() => loadModel(variants[3].hex)} />
           </View>
           <TouchableOpacity style={{
-            backgroundColor: 'white',
-            width: windowWidth/5,
-            height: windowWidth/5,
+            backgroundColor: colors.theme.background,
+            width: windowWidth/7,
+            height: windowWidth/7,
             borderRadius: windowWidth/10,
             position: 'absolute',
             alignSelf: 'center',
-            bottom: '10%',
-            flex: 1,   
+            bottom: '15%',
+            flex: 1,
             justifyContent: 'center',
             alignItems:'center'
           }}

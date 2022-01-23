@@ -26,7 +26,7 @@ const CartItem = (props) => {
     } else {
         return (
             <View style={{ marginTop: '5%' }}>
-                <View style={{ flexDirection: 'row', width: '75%', alignSelf: 'center', marginBottom: '5%' }}>
+                <View style={{ flexDirection: 'row', width: '75%', alignSelf: 'center', marginBottom: '5%', marginRight:'5%' }}>
                     <Image source={props.image} style={{ width: (windowWidth * 0.35), height: windowHeight * 0.2, borderRadius: 5, marginBottom: 10 }} />
                     <View style={{padding: 10}}>
                         <Text  style={{ width: (windowWidth * 0.45), fontSize: 18, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary}}>

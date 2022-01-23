@@ -5,7 +5,7 @@ const dark = {
     subtitle: "#D1D1D1",
     primary: "#D1D1D1",
     secondary: "#484646",
-    camera: "#484646",
+    camera: "#FFFFFF",
   },
   button: {
     background: '#2F3541',
@@ -99,6 +99,9 @@ const dark = {
   iconTorch: {
     off:'#FFFFFF',
     on:'#e26a00'
+  },
+  buttonCamera: {
+    backgroundColor: '#FFFFFF',
   },
   payment: {
     backgroundColor: '#494a4e'
