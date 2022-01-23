@@ -17,6 +17,7 @@ class ImageLoader extends Component{
 
     onLoad = () => {
         Animated.timing(this.state.opacity, {
+            delay:3000,
             toValue:1,
             duration:1500,
             useNativeDriver:true,
@@ -46,7 +47,6 @@ class ImageLoader extends Component{
     }
 }
 
-
 const Payment = ({ navigation }) => {
 
     const { colors, isDark } = useTheme();
@@ -68,11 +68,11 @@ const Payment = ({ navigation }) => {
                     <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
                     <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>{lang.paga}</Text>
                     </View>
-                </View>                
+                </View>       
                     {isDark ? 
                 <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/card_light.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:100,maxWidth: 400}} resizeMode="contain"/>
                     :
-                    <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/card_dark.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:0,maxWidth: 400}} resizeMode="contain"/>
+                <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/card_dark.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:0,maxWidth: 400}} resizeMode="contain"/>
                 }
                 
                 <ShadowBox
