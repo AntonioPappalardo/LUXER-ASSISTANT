@@ -18,9 +18,10 @@ import { useLanguage } from "../../localization/Localization";
 const height = Dimensions.get('screen').height;
 
 const Cart = ({ navigation, route }) => {
-    const [cart, setCart] = useState(ShoppingCart());
+    const cart= ShoppingCart();
+    const items = cart.getCart();
+    
     const [refresh, setRefresh] = useState(Date(Date.now()).toString())
-    const [items, setItems] = useState(cart.getCart());
     const { colors, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
     const [isModalVisible, setModalVisible] = useState(false);

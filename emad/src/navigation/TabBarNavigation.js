@@ -26,7 +26,7 @@ var BlurTabBar = null;
 var tabColor = 'light';
 
 const TabBarNavigation = (props) => {
-	const [cart,setCart] = useState(ShoppingCart());
+	const cart = ShoppingCart();
 	const [lang, setLanguage] = useLanguage();
 	const { colors, isDark } = useTheme();
 	isDark ? tabColor = 'dark' : tabColor = 'light'
