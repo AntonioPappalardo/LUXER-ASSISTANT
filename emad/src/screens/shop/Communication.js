@@ -7,14 +7,16 @@ import BackButton from "../../components/BackButton";
 import InputButton from "../../components/InputButton";
 import MessageBox from '../../components/MessageBox';
 import { useLanguage } from "../../localization/Localization";
-
-const Communication = ({ navigation }) => {
+import { getClienteById } from "../../back/connect";
+const Communication = ({ navigation, route }) => {
 
   const {colors, isDark} = useTheme();
   const tabBarHeight = useBottomTabBarHeight();
   const [lang, setLanguage] = useLanguage();
   const [Message, onChangeText] = React.useState('');
-  
+  const telefono = route.params.cliente.telefono;
+  const email = route.params.cliente.email;
+
   return (
     <View style={{ backgroundColor: colors.theme.background, height: "100%" }}>
       <View style={{flexDirection: 'row', marginBottom:20}}>
@@ -23,16 +25,17 @@ const Communication = ({ navigation }) => {
           <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>{lang.contatta}</Text>
           </View>
       </View>
-      <ScrollView overScrollMode="never" style={{ marginTop: "5%", width: "75%", alignSelf: "center" }}>
+      <ScrollView overScrollMode="never" style={{ marginTop: "20%", width: "75%", alignSelf: "center" }}>
 
-        <MessageBox value={Message} onChangeText={onChangeText} theme={colors} icon="mail-open-outline"/>
+        <MessageBox value={Message} onChangeText={onChangeText} theme={colors} icon="reader-outline"/>
 
-        <View style={{ marginTop: 25, flexDirection: "row", width: 100, justifyContent: "center" }} alignSelf="center">
-          <MaterialCommunityIcons name="telegram" color="#2da5e1" size={35} onPress={() => { Linking.openURL(`telegram://send?${Message}=&phone=+39 1122334455`) }} style={{ marginRight: 7.5 }} />
-          <MaterialCommunityIcons name="whatsapp" color="#2ac54d" size={35} onPress={() => { Linking.openURL(`whatsapp://send?${Message}=&phone=+39 1122334455`) }} style={{ marginLeft: 7.5 }} />
+        <View style={{ marginTop: 50, flexDirection: "row", width: 100, justifyContent: "center" }} alignSelf="center">
+          <MaterialCommunityIcons name="message-text-outline" color="#a9a303" size={35} onPress={() => { Linking.openURL(`sms:${telefono}&body=${Message}`) }} style={{ marginLeft: 4.5, marginRight:20 }} />
+          <MaterialCommunityIcons name="email-outline" color="#2da5e1" size={35} onPress={() => { Linking.openURL(`mailto:${email}?subject=&body=${Message}`) }} style={{ marginRight: 12 }} />
+          <MaterialCommunityIcons name="whatsapp" color="#2ac54d" size={35} onPress={() => { Linking.openURL(`whatsapp://send?text=${Message}&phone=${telefono}`) }} style={{ marginLeft: 12 }} />
         </View>
-        <InputButton params={{ marginTop: 100, width: "100%" }} name={lang.invia} icon="arrow-forward-outline" rotation="-45deg"
-          onPress={() => { console.log("Invia Messaggio " + Message) }} />
+        <InputButton params={{ marginTop: '30%', width: "75%" }} name={lang.chiama} icon="arrow-forward-outline" rotation="-45deg" onPress={()=>{Linking.openURL( `tel:${telefono}`);}}/>
+
         <View style={{marginBottom: tabBarHeight+ 10}}></View>
       </ScrollView>
     </View>

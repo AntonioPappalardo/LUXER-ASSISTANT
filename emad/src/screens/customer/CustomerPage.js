@@ -331,7 +331,7 @@ const CustomerPage = ({ navigation, route }) => {
                     <Divider width={"100%"} />
                     <MenuItem title={lang.nuovoAppuntamento} onPress={() => 
                         navigation.navigate('AddAppointment',{cliente:cliente,utente:utente})} />
-                    <MenuItem title={lang.contatta} onPress={() => navigation.navigate('Communication')} />
+                    <MenuItem title={lang.contatta} onPress={() => navigation.navigate('Communication',{cliente:cliente,utente:utente})} />
                     <View style={{ height: 300}}>
                         <TabView
                             navigationState={{ index, routes }}

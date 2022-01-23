@@ -4,8 +4,8 @@ const es = {
   label: 'Español',
 
   //Botón
-  conferma: 'Confirmación',
-  invia: 'Enviar',
+  conferma: 'CONFIRMACIÒN',
+  invia: 'ENVIAR',
   visualizzaAR: 'VER EN AR',
   altriStore: 'VER EN OTRAS TIENDAS',
   chiama: 'QUIEN AMA',
@@ -18,9 +18,9 @@ const es = {
   emailError: '¡El campo Email es obligatorio!',
   passwordError: '¡El campo Contraseña es obligatorio!',
   userError: '¡El\'usuario no fue encontrado!',
-  conferma: 'Entiendo',
-  procedi: 'Registrar Cliente',
-  addAppuntamento: 'Añadir Cita',
+  conferma: 'ENTIENDO',
+  procedi: 'REGISTRAR CLIENTE',
+  addAppuntamento: 'AÑADIR CITA',
 
   //TabBar
   home: 'Casa',

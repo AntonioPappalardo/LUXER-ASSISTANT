@@ -4,8 +4,8 @@ const it = {
   label: 'Italiano',
 
   //Button
-  conferma:'Conferma',
-  invia:'Invia',
+  conferma:'CONFERMA',
+  invia:'INVIA',
   visualizzaAR:'VISUALIZZA IN AR',
   altriStore:'VEDI IN ALTRI STORE',
   chiama:'CHIAMA',
@@ -18,9 +18,9 @@ const it = {
   emailError: 'Il campo Email è obbligatorio!',
   passwordError: 'Il campo Password è obbligatorio!',
   userError: 'L\'utente non è stato trovato!',
-  conferma: 'Ho capito',
-  procedi: 'Registra Cliente',
-  addAppuntamento: 'Aggiungi Appuntamento',
+  conferma: 'HO CAPITO',
+  procedi: 'REGISTRA CLIENTE',
+  addAppuntamento: 'AGGIUNGI APPUNTAMENTO',
 
   //TabBar
   home: 'Home',
@@ -144,7 +144,7 @@ const it = {
   
   //Contatta
   messaggio:'Messaggio',
-
+  subject: 'Comunicazione Prodotto',
   //Categoria
   inputProdName:'Nome o Codice Prodotto',
   colori:'Colori',

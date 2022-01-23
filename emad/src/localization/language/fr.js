@@ -18,9 +18,9 @@ const fr = {
   emailError : 'Le champ E-mail est obligatoire!',
   passwordError : 'Le champ Mot de passe est obligatoire!',
   userError : 'L’utilisateur n’a pas été trouvé!',
-  conferma: 'J\'ai compris',
-  procedi: 'Enregistrer Client',
-  addAppuntamento: 'Ajouter un Rendez-vous',
+  conferma: 'J\'AI COMPRIS',
+  procedi: 'ENREGISTRER CLIENT',
+  addAppuntamento: 'AUJOUTER UN RENDEX-VOUS',
 
   //TabBar
   home: 'Domicile',

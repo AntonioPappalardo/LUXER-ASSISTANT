@@ -4,8 +4,8 @@ const en = {
   label: 'English',
 
   //Button
-  conferma: 'Confirm',
-  invia: 'Send',
+  conferma: 'CONFIRM',
+  invia: 'SEND',
   visualizzaAR: 'VIEW IN AR',
   altriStore: 'SEE IN OTHER STORES',
   chiama: 'CALL',
@@ -18,9 +18,9 @@ const en = {
   emailError: 'The Email field is required!',
   passwordError: 'The Password field is required!',
   userError: 'The User was not found!',
-  conferma: 'I understand',
-  procedi: 'Register Customer',
-  addAppuntamento: 'Add Appointment',
+  conferma: 'I UNDERSTAND',
+  procedi: 'REGISTER CUSTOMER',
+  addAppuntamento: 'ADD APPOINTMENT',
 
   //TabBar
   home: 'Home',

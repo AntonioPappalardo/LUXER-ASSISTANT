@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView, Dimensions } from "react-native";
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Linking } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
@@ -39,16 +39,22 @@ const Privacy = ({ navigation }) => {
                 <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 16, textAlign: 'justify', color: colors.theme.title }}>
                 {language.introduzione }               
 
-                <Text  style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title}}>{language.funzioni}</Text>
+                <Text style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title}}>{language.funzioni}</Text>
                 {language.funzioniContent}
 
-                <Text  style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title}}>{language.dati}</Text>
+                <Text style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title}}>{language.dati}</Text>
                 {language.datiContent}
-                <Text  style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title}}>{language.reclami}</Text>
+
+                <Text style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title}}>{language.reclami}</Text>
                 {language.reclamiContent}
-                <Text  style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title }}>{language.contattaci}</Text>
-                {language.contattaciContent}                
-                luxerassistant@privacysupport.it
+
+                <Text style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title }}>{language.contattaci}</Text>
+                {language.contattaciContent}   
+
+                <TouchableOpacity onPress={() => Linking.openURL('mailto:luxerassistant@privacysupport.it')}>
+                <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 18, alignSelf: 'auto', color: colors.theme.title }}>luxerassistant@privacysupport.it</Text>
+                </TouchableOpacity>    
+
                 {"\n\n"}
                 </Text>
 
