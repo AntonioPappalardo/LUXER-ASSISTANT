@@ -135,6 +135,7 @@ const fr = {
   ordini: 'Ordres',
   visite: 'Visites',
   preferiti: 'Favoris',
+  mesi:["Janv","Fevr","Mars","Avr","Mai","Juin","Juil","Aout","Sept","Oct","Nov","Dec"],
 
   //Nouveau rendez-vous
   riservaNegozio: 'Réserver tout le Magasin',

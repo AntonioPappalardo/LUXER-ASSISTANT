@@ -36,6 +36,7 @@
     "expo-file-system": "^13.0.3",
     "expo-gl": "~9.2.0",
     "expo-graphics": "^2.0.0",
+    "expo-image-picker": "^12.0.1",
     "expo-linear-gradient": "~10.0.3",
     "expo-localization": "^11.0.0",
     "expo-media-library": "^14.0.0",

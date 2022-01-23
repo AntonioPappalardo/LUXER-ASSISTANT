@@ -135,6 +135,7 @@ const es = {
   ordini: 'Pedidos',
   visite: 'Visitas',
   preferiti: 'Favoritos',
+  mesi:["En","Feb","Mar","Abr","Mayo","Jun","Jul","Ag","Sept","Oct","Nov","Dic"],
 
   //Nueva cita
   riservaNegozio: 'Reserva toda la tienda',

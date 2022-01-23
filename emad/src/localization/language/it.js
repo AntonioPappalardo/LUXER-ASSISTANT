@@ -135,7 +135,7 @@ const it = {
   ordini:'Ordini',
   visite:'Visite',
   preferiti:'Preferiti',
-
+  mesi:["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dec"],
   //Nuovo Appuntamento
   riservaNegozio:'Riserva l\'intero negozio',
   dalle:'Dalle',
