@@ -22,7 +22,7 @@ const CustomerPage = ({ navigation, route }) => {
     const [lang, setLanguage] = useLanguage();
     moment.locale(lang.codice)
 
-    const mesi=lang.mesi;
+    const mesi=lang.locale.monthNamesShort;
     const actualMonth= (new Date()).getMonth()
     console.log(actualMonth)
     /* Da 0 a 6 Funziona */

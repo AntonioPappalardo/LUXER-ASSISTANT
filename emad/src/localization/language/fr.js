@@ -135,7 +135,6 @@ const fr = {
   ordini: 'Ordres',
   visite: 'Visites',
   preferiti: 'Favoris',
-  mesi:["Janv","Fevr","Mars","Avr","Mai","Juin","Juil","Aout","Sept","Oct","Nov","Dec"],
 
   //Nouveau rendez-vous
   riservaNegozio: 'Réserver tout le Magasin',
@@ -168,7 +167,7 @@ const fr = {
   //Calendario
   locale: {
     monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-    monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+    monthNamesShort: ['Janv', 'Févr', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil', 'Août', 'Sept', 'Oct', 'Nov', 'Déc'],
     dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
     dayNamesShort: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
     today: "Aujourd'hui",

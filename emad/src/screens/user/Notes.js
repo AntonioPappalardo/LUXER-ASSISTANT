@@ -35,7 +35,7 @@ const Notes = ({ navigation }) => {
                     <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf: 'center', color: colors.theme.title }}>{language.note}</Text>
                 </View>
             </View>
-            <ScrollView overScrollMode="never" style={{ marginBottom: tabBarHeight, marginTop: "20%", marginLeft:25, marginRight:25}}>
+            <View overScrollMode="never" style={{ marginBottom: tabBarHeight, marginTop: "20%", marginLeft:25, marginRight:25}}>
             <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 16, textAlign: 'justify', color: colors.theme.subtitle }}>
                 {language.infoContent }               
             </Text>
@@ -57,7 +57,7 @@ const Notes = ({ navigation }) => {
             © Copyright 2021-2022
             </Text>
 
-            </ScrollView>
+            </View>
             </View>
                 )
             }
