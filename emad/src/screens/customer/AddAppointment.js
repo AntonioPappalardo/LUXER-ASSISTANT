@@ -16,12 +16,16 @@ import moment from 'moment';
 import 'moment/locale/it';
 import 'moment/locale/es';
 import 'moment/locale/fr';
-import { AddAppuntamento } from "../../back/connect";
+import { AddAppuntamento, getAppuntamentoByUser } from "../../back/connect";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('screen').height;
 
+
+var users= []
 const AddAppointment = ({ navigation,route }) => {
+    users = getAppuntamentoByUser(route.params.utente).map(u => new Date(u.data).toISOString().substring(0, 10))
+    
     const slots = [
         { "slot": "09:00", "value": "0" },
         { "slot": "09:30", "value": "1" },
@@ -88,16 +92,65 @@ const AddAppointment = ({ navigation,route }) => {
     const [isChecked, setChecked] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [errorText, setErrorText] = useState('Default');
+    const [daySelected, setDaySelected] = useState(new Date);
+    
     const [isModalVisible, setModalVisible] = useState(false);
 
-    const [selectedFirstSlot, setSelectedFirstSlot] = useState(0);
-    const [selectedSecondSlot, setSelectedSecondSlot] = useState(0);
-    const [selectedFirstSlotLabel, setSelectedFirstSlotLabel] = useState({"slot": "09:00", "value": "0"});
-    const [selectedSecondSlotLabel, setSelectedSecondSlotLabel] = useState({"slot": "09:00", "value": "1"});
-    const [daySelected, setDaySelected] = useState(new Date);
+    const [selectedFirstSlot, setSelectedFirstSlot] = useState();
+    const [selectedSecondSlot, setSelectedSecondSlot] = useState();
+    const [selectedFirstSlotLabel, setSelectedFirstSlotLabel] = useState(undefined);
+    const [selectedSecondSlotLabel, setSelectedSecondSlotLabel] = useState(undefined);
 
+    const [startSlots, setStartSlots] = useState(slots);
+    const [endSlots, setEndSlots] = useState(slots);
+
+    const [removedSlots,setRemovedSlots] = useState();
+    const filterday = (day) => {
+        setSelectedFirstSlot(undefined);
+        setSelectedSecondSlot(undefined);
+        setSelectedFirstSlotLabel(undefined);
+        setSelectedSecondSlotLabel(undefined);
+        var removedSlot = []
+        var newSlots = slots;
+        newSlots.splice(newSlots.length-1,1);
+        users = getAppuntamentoByUser(route.params.utente) 
+        users = (users.filter(d => moment(d.data).format('DD/MM/YYYY') == moment(day).format('DD/MM/YYYY')));
+        users.sort((a,b) => (a.slot_inizio > b.slot_inizio) ? 1 : ((b.slot_inizio > a.slot_inizio) ? -1 : 0))
+        users.forEach((user) => {
+            for(let i=user.slot_inizio; i<= user.slot_fine; i++) {
+                removedSlot.indexOf(i) === -1 ? removedSlot.push(i) : null;
+            }
+            setRemovedSlots(removedSlot);
+            for(let i=removedSlot[0]; i<= removedSlot[removedSlot.length-1]; i++) {
+                newSlots.splice(i,1);
+            }
+        });    
+        setStartSlots(newSlots);
+        setSelectedFirstSlot(true);
+    }
+    
     const toggleModal1 = (itemValue) => {
         setSelectedFirstSlot(itemValue);
+        var newSlots = [];
+        if(removedSlots  != undefined) {
+            var endIndx = removedSlots.findIndex(el => el > parseInt(itemValue));
+            if (endIndx == -1) {
+                for(let i=parseInt(itemValue)+1; i<= 24; i++) {
+                    newSlots.push(slots[i])
+                }
+            } else{
+                for(let i=parseInt(itemValue)+1; i<= removedSlots[endIndx]; i++) {
+                    newSlots.push(slots[i])
+                }
+            }
+           
+            setEndSlots(newSlots);
+        } else {
+            for(let i=parseInt(itemValue)+1; i< 25; i++) {
+                newSlots.push(slots[i]);
+            }
+            setEndSlots(newSlots);
+        }
         setSelectedFirstSlotLabel(slots.find(slots => slots.value == itemValue))
         setModal1Visible(false);
     }
@@ -107,6 +160,7 @@ const AddAppointment = ({ navigation,route }) => {
         setModal2Visible(false);
     }
     const onDayPress = day => {
+        filterday(day.dateString)
         setDaySelected(day.dateString);
     }
     const onMonthChange = day => {
@@ -282,17 +336,21 @@ const AddAppointment = ({ navigation,route }) => {
 
                     <View style={{ flexDirection: 'row', width: '100%', justifyContent:'center'}}>
                         
-                        <TouchableOpacity onPress={() => setModal1Visible(true)}>
+                        <TouchableOpacity onPress={selectedFirstSlot == undefined ? null : () => setModal1Visible(true)}>
                             <View style={{ flexDirection: 'row' }} >
                                 <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.dalle}:</Text>
-                                <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayMedium', color: colors.theme.title, paddingTop: 2, paddingLeft: 5 }}>{selectedFirstSlotLabel.slot}</Text>
+                                <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayMedium', color: colors.theme.title, paddingTop: 2, paddingLeft: 5 }}>
+                                {selectedFirstSlotLabel == undefined ? '--:--': selectedFirstSlotLabel.slot}
+                                    </Text>
                             </View>
                         </TouchableOpacity>
                         <View style={{width:'20%'}}/>
-                        <TouchableOpacity onPress={() => setModal2Visible(true)}>
+                        <TouchableOpacity onPress={selectedFirstSlot == undefined ? null : () => setModal2Visible(true)}>
                             <View style={{ flexDirection: 'row' }} >
                                 <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.alle}:</Text>
-                                <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayMedium', color: colors.theme.title, paddingTop: 2, paddingLeft: 5 }}>{selectedSecondSlotLabel.slot}</Text>
+                                <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayMedium', color: colors.theme.title, paddingTop: 2, paddingLeft: 5 }}>
+                                {selectedSecondSlotLabel == undefined ? '--:--': selectedSecondSlotLabel.slot}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -312,10 +370,16 @@ const AddAppointment = ({ navigation,route }) => {
                                 selectedValue={selectedFirstSlot}
                                 style={{width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center', alignSelf: 'center' }}
                                 dropdownIconColor={colors.theme.title}
+                                
                                 onValueChange={(itemValue, itemLabel) =>
                                     toggleModal1(itemValue, itemLabel)
                                 }>
-                                {slots.map(item => {
+                                     {Platform.OS === 'ios' ?
+                                        <Picker.Item key={-1} color={colors.theme.title} label={'--:--'} value={-1} /> 
+                                     :
+                                        <Picker.Item key={-1} label={'--:--'} value={-1} /> 
+                                    }
+                                {startSlots.map(item => {
                                     if (Platform.OS === 'ios') {
                                         return <Picker.Item key={item.value} color={colors.theme.title} label={item.slot} value={item.value} /> ;
                                     } else {
@@ -344,7 +408,13 @@ const AddAppointment = ({ navigation,route }) => {
                                 onValueChange={(itemValue, itemIndex) =>
                                     toggleModal2(itemValue)
                                 }>
-                                {slots.map(item => {
+                                    {Platform.OS === 'ios' ?
+                                        <Picker.Item key={-1} color={colors.theme.title} label={'--:--'} value={-1} /> 
+                                     :
+                                        <Picker.Item key={-1} label={'--:--'} value={-1} /> 
+                                    }
+                                    
+                                {endSlots.map(item => {
                                     if (Platform.OS === 'ios') {
                                         return <Picker.Item key={item.value} color={colors.theme.title} label={item.slot} value={item.value} /> ;
                                     } else {
