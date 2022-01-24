@@ -142,7 +142,7 @@ const en = {
   dalle: 'From',
   alle: 'To',
   campoErroreOrari:'Enter two different times!',
-
+  campoErroreOrariNonSelezionati:'You must select a starting and an ending slot!',
   //Contatta
   messaggio: 'Message',
 

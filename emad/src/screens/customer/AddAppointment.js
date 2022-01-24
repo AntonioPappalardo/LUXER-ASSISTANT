@@ -22,10 +22,10 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('screen').height;
 
 
-var users= []
-const AddAppointment = ({ navigation,route }) => {
+var users = []
+const AddAppointment = ({ navigation, route }) => {
     users = getAppuntamentoByUser(route.params.utente).map(u => new Date(u.data).toISOString().substring(0, 10))
-    
+
     const slots = [
         { "slot": "09:00", "value": "0" },
         { "slot": "09:30", "value": "1" },
@@ -78,7 +78,7 @@ const AddAppointment = ({ navigation,route }) => {
         checkboxContainer: {
             flexDirection: "row",
             marginBottom: 20,
-    
+
         },
         section: {
             flexDirection: 'row',
@@ -93,7 +93,7 @@ const AddAppointment = ({ navigation,route }) => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [errorText, setErrorText] = useState('Default');
     const [daySelected, setDaySelected] = useState(new Date);
-    
+
     const [isModalVisible, setModalVisible] = useState(false);
 
     const [selectedFirstSlot, setSelectedFirstSlot] = useState();
@@ -104,49 +104,58 @@ const AddAppointment = ({ navigation,route }) => {
     const [startSlots, setStartSlots] = useState(slots);
     const [endSlots, setEndSlots] = useState(slots);
 
-    const [removedSlots,setRemovedSlots] = useState();
+    const [removedSlots, setRemovedSlots] = useState();
     const filterday = (day) => {
         setSelectedFirstSlot(undefined);
         setSelectedSecondSlot(undefined);
         setSelectedFirstSlotLabel(undefined);
         setSelectedSecondSlotLabel(undefined);
         var removedSlot = []
-        var newSlots = slots;
-        newSlots.splice(newSlots.length-1,1);
-        users = getAppuntamentoByUser(route.params.utente) 
+        var newSlots = [];
+        newSlots.splice(newSlots.length - 1, 1);
+        users = getAppuntamentoByUser(route.params.utente)
         users = (users.filter(d => moment(d.data).format('DD/MM/YYYY') == moment(day).format('DD/MM/YYYY')));
-        users.sort((a,b) => (a.slot_inizio > b.slot_inizio) ? 1 : ((b.slot_inizio > a.slot_inizio) ? -1 : 0))
+        users.sort((a, b) => (a.slot_inizio > b.slot_inizio) ? 1 : ((b.slot_inizio > a.slot_inizio) ? -1 : 0))
         users.forEach((user) => {
-            for(let i=user.slot_inizio; i<= user.slot_fine; i++) {
+            for (let i = user.slot_inizio; i <= user.slot_fine; i++) {
                 removedSlot.indexOf(i) === -1 ? removedSlot.push(i) : null;
             }
             setRemovedSlots(removedSlot);
-            for(let i=removedSlot[0]; i<= removedSlot[removedSlot.length-1]; i++) {
-                newSlots.splice(i,1);
+        });
+        for(let j = 0; j< 24; j++) {
+            var deleteSlot  = false;
+            for (let i = 0; i <= removedSlot[removedSlot.length - 1]; i++) {
+                if(parseInt(slots[j].value) == parseInt(removedSlot[i])) { 
+                    deleteSlot= true;
+                    console.log(j);
+                }
             }
-        });    
+            if(!deleteSlot) {
+                newSlots.indexOf(slots[j]) === -1 ? newSlots.push(slots[j]) : null;
+            }
+        }
         setStartSlots(newSlots);
         setSelectedFirstSlot(true);
     }
-    
+
     const toggleModal1 = (itemValue) => {
         setSelectedFirstSlot(itemValue);
         var newSlots = [];
-        if(removedSlots  != undefined) {
+        if (removedSlots != undefined) {
             var endIndx = removedSlots.findIndex(el => el > parseInt(itemValue));
             if (endIndx == -1) {
-                for(let i=parseInt(itemValue)+1; i<= 24; i++) {
+                for (let i = parseInt(itemValue) + 1; i <= 24; i++) {
                     newSlots.push(slots[i])
                 }
-            } else{
-                for(let i=parseInt(itemValue)+1; i<= removedSlots[endIndx]; i++) {
+            } else {
+                for (let i = parseInt(itemValue) + 1; i <= removedSlots[endIndx]; i++) {
                     newSlots.push(slots[i])
                 }
             }
-           
+
             setEndSlots(newSlots);
         } else {
-            for(let i=parseInt(itemValue)+1; i< 25; i++) {
+            for (let i = parseInt(itemValue) + 1; i < 25; i++) {
                 newSlots.push(slots[i]);
             }
             setEndSlots(newSlots);
@@ -183,32 +192,34 @@ const AddAppointment = ({ navigation,route }) => {
     };
 
     const handleSubmitPress = async () => {
-    const delay = ms => new Promise(res => setTimeout(res, ms));
+        const delay = ms => new Promise(res => setTimeout(res, ms));
 
-        if (selectedFirstSlot===selectedSecondSlot) {
+        if (selectedFirstSlot === selectedSecondSlot) {
             setErrorText(lang.campoErroreOrari)
             setModalVisible(true)
             return;
 
-        } else{
-            var appuntamento={}
-            appuntamento.id_utente=route.params.utente;
-            appuntamento.id_cliente=route.params.cliente.id;
-            appuntamento.riservato=(isChecked)?1:0;
-            appuntamento.slot_inizio=selectedFirstSlot;
-            appuntamento.slot_fine=selectedSecondSlot;
-            appuntamento.data=daySelected;
-            AddAppuntamento(appuntamento);
-            setIsSuccess(true);
-            setErrorText(lang.operazioneConclusa)
-            setModalVisible(true)
-            await delay(3000);
-            setModalVisible(false);
-            await delay(500);
-            setIsSuccess(false);
         }
-
-    
+        if (selectedFirstSlot == undefined || selectedSecondSlot == undefined) {
+            setErrorText(lang.campoErroreOrariNonSelezionati)
+            setModalVisible(true)
+            return;
+        }
+        var appuntamento = {}
+        appuntamento.id_utente = route.params.utente;
+        appuntamento.id_cliente = route.params.cliente.id;
+        appuntamento.riservato = (isChecked) ? 1 : 0;
+        appuntamento.slot_inizio = selectedFirstSlot;
+        appuntamento.slot_fine = selectedSecondSlot;
+        appuntamento.data = daySelected;
+        AddAppuntamento(appuntamento);
+        setIsSuccess(true);
+        setErrorText(lang.operazioneConclusa)
+        setModalVisible(true)
+        await delay(3000);
+        setModalVisible(false);
+        await delay(500);
+        setIsSuccess(false);
     }
 
     function renderHeader(date) {
@@ -254,42 +265,42 @@ const AddAppointment = ({ navigation,route }) => {
         return (
             <View style={{ backgroundColor: colors.theme.background, flexGrow: 1 }}>
                 <Modal
-                isVisible={isModalVisible}
-                statusBarTranslucent={true}
-                animationIn="bounceIn"
-                animationOut="fadeOutDownBig"
-                hasBackdrop={true}
-                backdropOpacity={10}
-                backdropColor={"rgba(0, 0, 0, 0.3)"}
-                useNativeDriverForBackdrop={true}
-                hideModalContentWhileAnimating={true}
-                deviceHeight={height}
+                    isVisible={isModalVisible}
+                    statusBarTranslucent={true}
+                    animationIn="bounceIn"
+                    animationOut="fadeOutDownBig"
+                    hasBackdrop={true}
+                    backdropOpacity={10}
+                    backdropColor={"rgba(0, 0, 0, 0.3)"}
+                    useNativeDriverForBackdrop={true}
+                    hideModalContentWhileAnimating={true}
+                    deviceHeight={height}
                 >
-                <View style={{ padding: 20 }}>
-                    {isSuccess ?
-                    <>
-                        <View style={[colors.topModal, { backgroundColor: 'green' }]}>
-                        <Icon name="checkmark-circle-outline" size={75} color={'#FFFFFF'} />
-                        </View>
-                        <View style={colors.modalContent}>
-                        <Text style={{ color: colors.theme.primary, textAlign: 'center' }}>{errorText}</Text>
-                        <InputButton params={{ marginTop: '5%', width: "75%" }}
-                            name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
-                        </View>
-                    </>
-                    :
-                    <>
-                        <View style={colors.topModal}>
-                        <Icon name="close-circle-outline" size={75} color={'#FFFFFF'} />
-                        </View>
-                        <View style={colors.modalContent}>
-                        <Text style={{ color: colors.theme.primary, textAlign: 'center' }}>{errorText}</Text>
-                        <InputButton params={{ marginTop: '5%', width: "75%" }}
-                            name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
-                        </View>
-                    </>}
+                    <View style={{ padding: 20 }}>
+                        {isSuccess ?
+                            <>
+                                <View style={[colors.topModal, { backgroundColor: 'green' }]}>
+                                    <Icon name="checkmark-circle-outline" size={75} color={'#FFFFFF'} />
+                                </View>
+                                <View style={colors.modalContent}>
+                                    <Text style={{ color: colors.theme.primary, textAlign: 'center' }}>{errorText}</Text>
+                                    <InputButton params={{ marginTop: '5%', width: "75%" }}
+                                        name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
+                                </View>
+                            </>
+                            :
+                            <>
+                                <View style={colors.topModal}>
+                                    <Icon name="close-circle-outline" size={75} color={'#FFFFFF'} />
+                                </View>
+                                <View style={colors.modalContent}>
+                                    <Text style={{ color: colors.theme.primary, textAlign: 'center' }}>{errorText}</Text>
+                                    <InputButton params={{ marginTop: '5%', width: "75%" }}
+                                        name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
+                                </View>
+                            </>}
 
-                </View>
+                    </View>
                 </Modal>
                 <View style={{ flexDirection: 'row' }}>
                     <BackButton onPress={() => { navigation.goBack() }} />
@@ -321,7 +332,7 @@ const AddAppointment = ({ navigation,route }) => {
                 />
 
                 <Divider width="100%" />
-                <ScrollView overScrollMode="never" style={{ height: "100%", bottom:10 }}>
+                <ScrollView overScrollMode="never" style={{ height: "100%", bottom: 10 }}>
                     <View style={{ flex: 1, width: '75%', alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
                         <View style={styles.section}>
                             <Checkbox
@@ -334,22 +345,22 @@ const AddAppointment = ({ navigation,route }) => {
                         </View>
                     </View>
 
-                    <View style={{ flexDirection: 'row', width: '100%', justifyContent:'center'}}>
-                        
+                    <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'center' }}>
+
                         <TouchableOpacity onPress={selectedFirstSlot == undefined ? null : () => setModal1Visible(true)}>
                             <View style={{ flexDirection: 'row' }} >
                                 <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.dalle}:</Text>
                                 <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayMedium', color: colors.theme.title, paddingTop: 2, paddingLeft: 5 }}>
-                                {selectedFirstSlotLabel == undefined ? '--:--': selectedFirstSlotLabel.slot}
-                                    </Text>
+                                    {selectedFirstSlotLabel == undefined ? '--:--' : selectedFirstSlotLabel.slot}
+                                </Text>
                             </View>
                         </TouchableOpacity>
-                        <View style={{width:'20%'}}/>
+                        <View style={{ width: '20%' }} />
                         <TouchableOpacity onPress={selectedFirstSlot == undefined ? null : () => setModal2Visible(true)}>
                             <View style={{ flexDirection: 'row' }} >
                                 <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.alle}:</Text>
                                 <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayMedium', color: colors.theme.title, paddingTop: 2, paddingLeft: 5 }}>
-                                {selectedSecondSlotLabel == undefined ? '--:--': selectedSecondSlotLabel.slot}
+                                    {selectedSecondSlotLabel == undefined ? '--:--' : selectedSecondSlotLabel.slot}
                                 </Text>
                             </View>
                         </TouchableOpacity>
@@ -368,22 +379,22 @@ const AddAppointment = ({ navigation,route }) => {
                         <View style={styles.content}>
                             <Picker
                                 selectedValue={selectedFirstSlot}
-                                style={{width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center', alignSelf: 'center' }}
+                                style={{ width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center', alignSelf: 'center' }}
                                 dropdownIconColor={colors.theme.title}
-                                
+
                                 onValueChange={(itemValue, itemLabel) =>
                                     toggleModal1(itemValue, itemLabel)
                                 }>
-                                     {Platform.OS === 'ios' ?
-                                        <Picker.Item key={-1} color={colors.theme.title} label={'--:--'} value={-1} /> 
-                                     :
-                                        <Picker.Item key={-1} label={'--:--'} value={-1} /> 
-                                    }
+                                {Platform.OS === 'ios' ?
+                                    <Picker.Item key={-1} color={colors.theme.title} label={'--:--'} value={-1} />
+                                    :
+                                    <Picker.Item key={-1} label={'--:--'} value={-1} />
+                                }
                                 {startSlots.map(item => {
                                     if (Platform.OS === 'ios') {
-                                        return <Picker.Item key={item.value} color={colors.theme.title} label={item.slot} value={item.value} /> ;
+                                        return <Picker.Item key={item.value} color={colors.theme.title} label={item.slot} value={item.value} />;
                                     } else {
-                                        return <Picker.Item key={item.value} label={item.slot} value={item.value} /> ;
+                                        return <Picker.Item key={item.value} label={item.slot} value={item.value} />;
                                     }
                                 })}
                             </Picker>
@@ -403,22 +414,22 @@ const AddAppointment = ({ navigation,route }) => {
                         <View style={styles.content}>
                             <Picker
                                 selectedValue={selectedSecondSlot}
-                                style={{width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center', alignSelf: 'center' }}
+                                style={{ width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center', alignSelf: 'center' }}
                                 dropdownIconColor={colors.theme.title}
                                 onValueChange={(itemValue, itemIndex) =>
                                     toggleModal2(itemValue)
                                 }>
-                                    {Platform.OS === 'ios' ?
-                                        <Picker.Item key={-1} color={colors.theme.title} label={'--:--'} value={-1} /> 
-                                     :
-                                        <Picker.Item key={-1} label={'--:--'} value={-1} /> 
-                                    }
-                                    
+                                {Platform.OS === 'ios' ?
+                                    <Picker.Item key={-1} color={colors.theme.title} label={'--:--'} value={-1} />
+                                    :
+                                    <Picker.Item key={-1} label={'--:--'} value={-1} />
+                                }
+
                                 {endSlots.map(item => {
                                     if (Platform.OS === 'ios') {
-                                        return <Picker.Item key={item.value} color={colors.theme.title} label={item.slot} value={item.value} /> ;
+                                        return <Picker.Item key={item.value} color={colors.theme.title} label={item.slot} value={item.value} />;
                                     } else {
-                                        return <Picker.Item key={item.value} label={item.slot} value={item.value} /> ;
+                                        return <Picker.Item key={item.value} label={item.slot} value={item.value} />;
                                     }
                                 })}
                             </Picker>

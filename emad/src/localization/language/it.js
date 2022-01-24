@@ -141,7 +141,8 @@ const it = {
   dalle:'Dalle',
   alle:'Alle',
   campoErroreOrari:'Inserisci due orari diversi!',
-  
+  campoErroreOrariNonSelezionati:'Devi selezionare un orario di inizio ed uno di fine!',
+
   //Contatta
   messaggio:'Messaggio',
   subject: 'Comunicazione Prodotto',

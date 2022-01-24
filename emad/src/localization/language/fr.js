@@ -141,7 +141,8 @@ const fr = {
   riservaNegozio: 'Réserver tout le Magasin',
   dalle: 'Depuis',
   alle: 'Â',
-  campoErroreOrari:'Enter two different times!',
+  campoErroreOrari:'Vous devez sélectionner deux heures different!',
+  campoErroreOrariNonSelezionati:'Vous devez sélectionner un heure de début et un créneau de fin!',
 
   //Prendre Contact
   messaggio: 'Message',

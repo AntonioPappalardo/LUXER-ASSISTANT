@@ -16,6 +16,9 @@ const Communication = ({ navigation, route }) => {
   const [Message, onChangeText] = React.useState('');
   const telefono = route.params.cliente.telefono;
   const email = route.params.cliente.email;
+  function getSMSDivider() {
+    return Platform.OS === "ios" ? "&" : "?";
+  }
 
   return (
     <View style={{ backgroundColor: colors.theme.background, height: "100%" }}>
@@ -30,8 +33,8 @@ const Communication = ({ navigation, route }) => {
         <MessageBox value={Message} onChangeText={onChangeText} theme={colors} icon="reader-outline"/>
 
         <View style={{ marginTop: 50, flexDirection: "row", width: 100, justifyContent: "center" }} alignSelf="center">
-          <MaterialCommunityIcons name="message-text-outline" color="#a9a303" size={35} onPress={() => { Linking.openURL(`sms:${telefono}&body=${Message}`) }} style={{ marginLeft: 4.5, marginRight:20 }} />
-          <MaterialCommunityIcons name="email-outline" color="#2da5e1" size={35} onPress={() => { Linking.openURL(`mailto:${email}?subject=&body=${Message}`) }} style={{ marginRight: 12 }} />
+          <MaterialCommunityIcons name="message-text-outline" color="#a9a303" size={35} onPress={() => { Linking.openURL(`sms:${telefono}${getSMSDivider()}body=${body}`) }} style={{ marginLeft: 4.5, marginRight:20 }} />
+          <MaterialCommunityIcons name="email-outline" color="#2da5e1" size={35} onPress={() => { Linking.openURL(`mailto:${email}?subject='Luxer Assistant'&body=${Message}`) }} style={{ marginRight: 12 }} />
           <MaterialCommunityIcons name="whatsapp" color="#2ac54d" size={35} onPress={() => { Linking.openURL(`whatsapp://send?text=${Message}&phone=${telefono}`) }} style={{ marginLeft: 12 }} />
         </View>
         <InputButton params={{ marginTop: '30%', width: "75%" }} name={lang.chiama} icon="arrow-forward-outline" rotation="-45deg" onPress={()=>{Linking.openURL( `tel:${telefono}`);}}/>

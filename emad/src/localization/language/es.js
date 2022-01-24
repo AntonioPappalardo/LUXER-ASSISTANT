@@ -142,6 +142,7 @@ const es = {
   dalle: 'desde',
   alle: 'hasta',
   campoErroreOrari:'¡Entra en dos tiempos diferentes!',
+  campoErroreOrariNonSelezionati:'¡Debes seleccionar un tempos inicial y otro final!',
 
   //Contacto
   messaggio: 'Mensaje',

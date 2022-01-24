@@ -6,7 +6,7 @@ import AddAppointment from './customer/AddAppointment';
 import Catalog from './shop/Catalog';
 import Category from './shop/Category';
 import Cart from './shop/Cart';
-import Communication from './shop/Communication';
+import Communication from './customer/Communication';
 import CustomerPage from './customer/CustomerPage';
 import ProductPage from './shop/ProductPage';
 import ScanQR from './shop/ScanQR';
