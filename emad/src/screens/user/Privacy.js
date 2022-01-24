@@ -51,8 +51,8 @@ const Privacy = ({ navigation }) => {
                 <Text style={{ fontFamily: "SFProDisplayMedium",fontSize: 22, alignSelf: 'center', fontWeight: "bold", color: colors.theme.title }}>{language.contattaci}</Text>
                 {language.contattaciContent}   
 
-                <TouchableOpacity onPress={() => Linking.openURL('mailto:luxerassistant@privacysupport.it')}>
-                <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 18, alignSelf: 'auto', color: colors.theme.title }}>luxerassistant@privacysupport.it</Text>
+                <TouchableOpacity onPress={() => Linking.openURL(`mailto:luxerassistant@gmail.com?subject=${'Luxer Assistant Privacy Support'}`)}>
+                <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 18, alignSelf: 'auto', color: colors.theme.title }}>luxerassistant@gmail.com</Text>
                 </TouchableOpacity>    
 
                 {"\n\n"}

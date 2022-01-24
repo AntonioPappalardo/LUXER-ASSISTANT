@@ -1,7 +1,6 @@
 import React, { useState,useEffect  } from "react";
-import { Image, View, Text, ScrollView, useWindowDimensions, TouchableOpacity, StyleSheet, } from "react-native";
+import { Image, View, Text, ScrollView, useWindowDimensions } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import * as ImagePicker from 'expo-image-picker';
 import { useTheme } from "../../theme/ThemeProvider";
 import BackButton from "../../components/BackButton";
 import { useFonts } from 'expo-font';
@@ -35,17 +34,6 @@ const CustomerPage = ({ navigation, route }) => {
     const utente =route.params.user
     const layout = useWindowDimensions();
 
-    useEffect(() => {
-		(async () => {
-		if (Platform.OS !== 'web') {
-			const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-			if (status !== 'granted') {
-			alert('Sorry, Camera roll permissions are required to make this work!');
-			}
-		}
-		})();
-	}, []);
-    
     const FirstRoute = () => (
         <View style={{ justifyContent: 'center' }}>
             <LineChart
@@ -286,23 +274,6 @@ const CustomerPage = ({ navigation, route }) => {
         fourth: FourthRoute,
     });
 
-    const [image, setImage] = useState(null);
-	
-    const chooseImg = async() => {
-        let result = await  ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            aspect: [4, 3],
-            quality: 1,			
-            allowsEditing: true,
-            
-        });
-    
-        console.log(result);
-    
-        if (!result.cancelled) {
-           setImage(result.uri);
-        }
-    };
     const [cliente, setCliente] = React.useState(costumers.find(us => us.id === route.params.cliente));
     const tot = acquisti.filter(a => a.cliente == cliente.id).map(a => a.saldo).reduce((a, b) => a + b, 0);
     const average = tot / (acquisti.filter(a => a.cliente == cliente.id).length)
@@ -327,9 +298,6 @@ const CustomerPage = ({ navigation, route }) => {
                     <View style={{ flexDirection: "row", width: "80%" }}>
                         <View style={{ justifyContent: "flex-start", height: 120, width: 120, shadowOffset: { width: 1, height: 2 },shadowOpacity: 0.25,shadowRadius: 5, elevation: 5, borderRadius: 5 }}>
                             <Image source={{uri:cliente.avatar}} style={{ height: 120, width: 120, borderRadius: 5, borderWidth: 5, borderColor: "white"}} />
-                            <TouchableOpacity style={{height:30,width:30, backgroundColor:'#EA9F5A', index:1, bottom:25, left:100, borderRadius:25}} onPress={chooseImg}>
-                                <Ionicons name="add" size={30} color={colors.theme.title} style={{alignSelf:'center', marginLeft:1}} />
-                            </TouchableOpacity>
                         </View>
                         <View style={{ flexDirection: "column", paddingLeft: 15, alignItems: "flex-start" }}>
                             <Text style={{ color: colors.theme.title, fontSize: 24, fontFamily: "SFProDisplayBold" }}>{cliente.nome} {cliente.cognome}</Text>
