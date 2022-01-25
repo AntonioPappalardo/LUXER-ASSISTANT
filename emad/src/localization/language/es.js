@@ -54,6 +54,7 @@ const es = {
   campoErroreNazionalita: '¡El campo Nacionalidad es obligatorio!',
   operazioneConclusa:'¡Inserción exitosa!',
   emailEsistente:'El Email ya existe. ¡Intentar otra vez!',
+  codiceProdotto:'Producto no presente. ¡Intentar otra vez!',
 
   //Picker Género
   maschio:'Masculino',
@@ -160,7 +161,7 @@ const es = {
   descrizione: 'Descripción',
   schedaProdotto: 'Detalles de Producto',
   inNegozio: 'En la Tienda',
-  inAltri: 'En otras Tiendas',
+  inAltri: 'En Otras Tiendas',
   taglia: 'Talla',
 
 

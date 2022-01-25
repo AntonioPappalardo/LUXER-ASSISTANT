@@ -70,9 +70,9 @@ const Payment = ({ navigation }) => {
                     </View>
                 </View>       
                     {isDark ? 
-                <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/card_light.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:100,maxWidth: 400}} resizeMode="contain"/>
+                <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/american-express.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:100,maxWidth: 400}} resizeMode="contain"/>
                     :
-                <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/card_dark.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:0,maxWidth: 400}} resizeMode="contain"/>
+                <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/Natewest.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:0,maxWidth: 400}} resizeMode="contain"/>
                 }
                 
                 <ShadowBox

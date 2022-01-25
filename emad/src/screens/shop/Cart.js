@@ -68,8 +68,7 @@ const Cart = ({ navigation, route }) => {
     });
 
     const handleSubmitPress = () => {
-        console.log(inputRef.current);
-        /*var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         const delay = ms => new Promise(res => setTimeout(res, ms));
 
         if (cart.getTotale() == 0) {
@@ -83,7 +82,7 @@ const Cart = ({ navigation, route }) => {
             return;
         }
 
-        navigation.navigate('Payment');*/
+        navigation.navigate('Payment');
     }
    
     if (!fontsLoaded) {

@@ -54,7 +54,8 @@ const fr = {
   campoErroreNazionalita: 'Le champ Nationalité est obligatoire!',
   operazioneConclusa:'Insertion réussie!',
   emailEsistente:'Email già esistente. Riprova!',
-  
+  codiceProdotto:'Produit non présent. Essayer à nouveau!',
+
   //Picker Genre
   maschio:'Mâle',
   femmina:'Femelle',
@@ -160,7 +161,7 @@ const fr = {
   descrizione: 'Description',
   schedaProdotto: 'Détails du Produit',
   inNegozio: 'En Magasin',
-  inAltri: 'Dans d\'autres Magasins',
+  inAltri: 'Dans d\'Autres Magasins',
   taglia: 'Taille',
 
   //Liste des magasins

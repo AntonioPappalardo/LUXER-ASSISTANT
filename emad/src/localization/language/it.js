@@ -54,6 +54,7 @@ const it = {
   campoErroreNazionalita: 'Il campo Nazionalità è obbligatorio!',
   operazioneConclusa:'Inserimento effettuato con successo!',
   emailEsistente:'Email già esistente. Riprova!',
+  codiceProdotto:'Prodotto non presente. Riprova!',
   
   //Picker Genere
   maschio:'Maschio',
@@ -160,7 +161,7 @@ const it = {
   descrizione:'Descrizione',
   schedaProdotto:'Scheda Prodotto',
   inNegozio:'In Negozio',
-  inAltri:'In altri store',
+  inAltri:'In Altri Store',
   taglia:'Taglia',
   
   //Lista Store

@@ -38,7 +38,7 @@ const CartItem = (props) => {
                         </Text>
                         {props.size != undefined || props.color != undefined
                             ?
-                            <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
+                            <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary,marginTop:10 }}>
                                 {lang.specifiche}
                             </Text>
                             :
@@ -46,11 +46,11 @@ const CartItem = (props) => {
                         }
                         {props.size != undefined
                             ?
-                            <View style={{flexDirection: 'row'}}>
-                                <Text style={{fontSize: 14, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary }}>
+                            <View style={{flexDirection: 'row',marginTop:5}}>
+                                <Text style={{fontSize: 11, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary }}>
                                     {lang.taglia}
                                 </Text>
-                                <Text style={{paddingLeft: 10,fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
+                                <Text style={{paddingLeft: 7,fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
                                     {props.size}
                                 </Text>
                             </View>
@@ -60,15 +60,15 @@ const CartItem = (props) => {
                         {props.color != undefined
                             ?
                             <View style={{flexDirection: 'row'}}>
-                            <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary }}>
+                            <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary }}>
                                 {lang.colore}
                             </Text>
                             <View style={{
                                 marginTop: 2,
                                 marginRight: 7,
                                 marginLeft: 5,
-                                width: 18,
-                                height: 18,
+                                width: 11,
+                                height: 11,
                                 borderRadius: 9,
                                 backgroundColor: "#"+props.color,
                                 shadowColor: '#000000',
