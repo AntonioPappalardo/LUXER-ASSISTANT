@@ -44,6 +44,12 @@ export function connect(){
         cliente.push(user)
     } 
 
+    export function ValidateEmail(email){
+        var a=cliente.find(costumer=>(costumer.email.toLowerCase()===email.toLowerCase()))
+        if (a==undefined)return true 
+        return false
+    }
+
     export function AddAppuntamento(appointment){
         appointment.id=appuntamento.length
         console.log(appointment)

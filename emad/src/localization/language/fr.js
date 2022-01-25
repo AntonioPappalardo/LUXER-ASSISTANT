@@ -4,7 +4,7 @@ const fr = {
   label: 'Français',
 
   //Bouton
-  conferma: 'CONFIRMATION',
+  confermaOperazione:'CONFERMA',
   invia: 'SOUMETTRE',
   visualizzaAR: 'VIEW IN AR',
   altriStore: 'VOIR DANS D\'AUTRES MAGASINS',
@@ -53,7 +53,8 @@ const fr = {
   campoErroreEta: 'Le champ Âge est obligatoire!',
   campoErroreNazionalita: 'Le champ Nationalité est obligatoire!',
   operazioneConclusa:'Insertion réussie!',
-
+  emailEsistente:'Email già esistente. Riprova!',
+  
   //Picker Genre
   maschio:'Mâle',
   femmina:'Femelle',

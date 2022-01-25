@@ -13,7 +13,7 @@ import BackButton from "../../components/BackButton";
 import MenuItem from '../../components/MenuItem';
 import { Picker } from '@react-native-picker/picker';
 import { useLanguage } from "../../localization/Localization";
-import { AddCostumer } from "../../back/connect";
+import { AddCostumer,ValidateEmail } from "../../back/connect";
 import Divider from "../../components/Divider";
 
 const width = Dimensions.get('window').width;
@@ -50,12 +50,14 @@ const AddUser = ({ navigation }) => {
   const [isChecked, setChecked] = useState(false);
 
   const genere = [
+    {'label': `-`, 'value': '-'},
     {'label': lang.maschio, 'value': lang.maschio},
     {'label': lang.femmina, 'value': lang.femmina},
     {'label': lang.altro, 'value': lang.altro},
   ];
 
   const nazione = [
+    {'label': `-`, 'value': '-'},
     {'label': `🇦🇱 ${lang.albania}`, 'value': lang.albania},
     {'label': `🇩🇿 ${lang.algeria}`, 'value': lang.algeria},
     {'label': `🇦🇷 ${lang.argentina}`, 'value': lang.argentina},
@@ -142,6 +144,7 @@ const AddUser = ({ navigation }) => {
       setModalVisible(true)
       return;
     }
+
     if (!tel.match(phoneformat)) {
       setErrorText(lang.campoErroreTelefono)
       setModalVisible(true)
@@ -162,6 +165,12 @@ const AddUser = ({ navigation }) => {
       setModalVisible(true)
       return;
     }
+    let check=ValidateEmail(email)
+    if(check==false) {
+      setErrorText(lang.emailEsistente)
+      setModalVisible(true)
+      return;
+    }
     else {
       var user = {}
       user.nome = nome;
@@ -177,7 +186,6 @@ const AddUser = ({ navigation }) => {
       setModalVisible(true)
       await delay(3000);
       setModalVisible(false);
-      await delay(500);
       setIsSuccess(false);
       navigation.goBack();
     }
@@ -210,7 +218,7 @@ const AddUser = ({ navigation }) => {
                 <View style={colors.modalContent}>
                   <Text style={{ color: colors.theme.primary, textAlign: 'center' }}>{errorText}</Text>
                   <InputButton params={{ marginTop: '5%', width: "75%" }}
-                    name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
+                    name={lang.confermaOperazione} icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
                 </View>
               </>
               :
@@ -221,7 +229,7 @@ const AddUser = ({ navigation }) => {
                 <View style={colors.modalContent}>
                   <Text style={{ color: colors.theme.primary, textAlign: 'center' }}>{errorText}</Text>
                   <InputButton params={{ marginTop: '5%', width: "75%" }}
-                    name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
+                    name={lang.conferma} icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
                 </View>
               </>}
 
@@ -236,13 +244,13 @@ const AddUser = ({ navigation }) => {
         <ScrollView overScrollMode="never" style={{ height: "100%"}}>
           <View style={styles.form}>
             <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
-              name={lang.nome} icon="" rotation="0deg" value={nome} onChangeText={setNome} />
+              name={lang.nome} icon="" rotation="0deg" value={nome} textContentType={'oneTimeCode'} onChangeText={setNome} />
 
             <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
-              name={lang.cognome} icon="" rotation="0deg" value={cognome} onChangeText={setCognome} />
+              name={lang.cognome} icon="" rotation="0deg" value={cognome} textContentType={'oneTimeCode'} onChangeText={setCognome} />
 
             <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 25, textAlign: "left" }}
-              name="Email" icon="mail-outline" rotation="0deg" value={email} onChangeText={setEmail} />
+              name="Email" icon="mail-outline" rotation="0deg" value={email} textContentType={'oneTimeCode'} onChangeText={setEmail} />
 
             <InputText params={{ marginTop: 10, width: "75%", paddingLeft: 60, textAlign: "left" }}
               name="+39 111 222 33 44" icon="call-outline" rotation="0deg" value={tel} onChangeText={setTelefono}/>

@@ -4,7 +4,7 @@ const es = {
   label: 'Español',
 
   //Botón
-  conferma: 'CONFIRMACIÒN',
+  confermaOperazione: 'CONFIRMACIÒN',
   invia: 'ENVIAR',
   visualizzaAR: 'VER EN AR',
   altriStore: 'VER EN OTRAS TIENDAS',
@@ -53,6 +53,7 @@ const es = {
   campoErroreEta: '¡El campo Edad es obligatorio!',
   campoErroreNazionalita: '¡El campo Nacionalidad es obligatorio!',
   operazioneConclusa:'¡Inserción exitosa!',
+  emailEsistente:'El Email ya existe. ¡Intentar otra vez!',
 
   //Picker Género
   maschio:'Masculino',

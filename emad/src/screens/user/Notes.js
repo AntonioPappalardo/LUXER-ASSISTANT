@@ -1,17 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView, Image, Dimensions } from "react-native";
+import { View, Text, Image } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { useTheme } from "../../theme/ThemeProvider";
-import Icon from 'react-native-vector-icons/Ionicons';
-import InputButton from "../../components/InputButton";
-import InputText from "../../components/InputText";
 import BackButton from "../../components/BackButton";
-import { Picker } from '@react-native-picker/picker';
 import { useLanguage } from "../../localization/Localization";
-import { AddCostumer } from "../../back/connect";
-import Divider from "../../components/Divider";
 
 const Notes = ({ navigation }) => {
     const { colors, setScheme, isDark } = useTheme();

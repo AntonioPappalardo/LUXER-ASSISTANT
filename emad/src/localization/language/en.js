@@ -4,7 +4,7 @@ const en = {
   label: 'English',
 
   //Button
-  conferma: 'CONFIRM',
+  confermaOperazione: 'CONFIRM',
   invia: 'SEND',
   visualizzaAR: 'VIEW IN AR',
   altriStore: 'SEE IN OTHER STORES',
@@ -53,7 +53,8 @@ const en = {
   campoErroreEta: 'The Age field is required!',
   campoErroreNazionalita: 'The Nationality field is required!',
   operazioneConclusa:'Insertion Successful!',
-
+  emailEsistente:'Email already exists. Try again!',
+  
   //Picker Gender
   maschio:'Male',
   femmina:'Female',

@@ -97,6 +97,7 @@ const TabBarNavigation = (props) => {
 							component={Cart}
 							initialParams={{ "user": utente }}
 							options={{
+								tabBarBadgeStyle: {backgroundColor: '#EA9F5A',color:'#FFFFFF'},
 								tabBarIcon: ({ focused, color }) => (
 									<TabBarIcon
 										focused={focused}

@@ -4,7 +4,7 @@ const it = {
   label: 'Italiano',
 
   //Button
-  conferma:'CONFERMA',
+  confermaOperazione:'CONFERMA',
   invia:'INVIA',
   visualizzaAR:'VISUALIZZA IN AR',
   altriStore:'VEDI IN ALTRI STORE',
@@ -53,6 +53,7 @@ const it = {
   campoErroreEta: 'Il campo Età è obbligatorio!',
   campoErroreNazionalita: 'Il campo Nazionalità è obbligatorio!',
   operazioneConclusa:'Inserimento effettuato con successo!',
+  emailEsistente:'Email già esistente. Riprova!',
   
   //Picker Genere
   maschio:'Maschio',
