@@ -36,7 +36,7 @@ const Cart = ({ navigation, route }) => {
 
     const OnIncrementProduct = (id,selectedSize,selectedColor) => {
         // cart.increaseProduct(id);
-        cart.increaseProduct(id)
+        cart.increaseProduct(id,selectedSize,selectedColor)
         setRefresh(Date(Date.now()).toString())
         navigation.isFocused();
         

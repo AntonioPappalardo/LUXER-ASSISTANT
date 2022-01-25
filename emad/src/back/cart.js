@@ -44,7 +44,7 @@ export const ShoppingCart = (function () {
             }
             return this.cart;
         }
-        this.increaseProduct = function(idprodotto) {
+        this.increaseProduct = function(id,selectedSize,selectedColor) {
             //var exist = (this.cart.map(c => c.prodotto.id)).findIndex(prod => prod == idprodotto)
             var exist = this.cart.map(cart => cart).findIndex(prod => prod.prodotto.id == id && prod.selectedColor == selectedColor && prod.selectedSize == selectedSize);
 
