@@ -179,7 +179,8 @@ const en = {
   totale: 'Total',
   email: 'Insert Email',
   campoErroreTotale:'The Cart is empty!',
-
+  colore: 'Color',
+  specifiche: 'Features',
   //Pay Now
   paga: 'Pay Now',
   notificaPagamento: 'Bring the NFC-enabled device closer',

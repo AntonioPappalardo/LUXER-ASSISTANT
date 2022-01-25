@@ -20,7 +20,7 @@ const height = Dimensions.get('screen').height;
 const Cart = ({ navigation, route }) => {
     const cart= ShoppingCart();
     const items = cart.getCart();
-    
+    console.log(items);
     const [refresh, setRefresh] = useState(Date(Date.now()).toString())
     const { colors, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
@@ -81,13 +81,10 @@ const Cart = ({ navigation, route }) => {
 
         navigation.navigate('Payment');
     }
-
+   
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
-
-
-
         return (
             <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
                 <Modal
@@ -121,13 +118,14 @@ const Cart = ({ navigation, route }) => {
                 </View>
                 <ScrollView overScrollMode="never">
                     {items.map((prod) => (
-                        <CartItem key={prod.prodotto.id}
+                        <CartItem key={Math.random()}
                             OnIncrementProduct={OnIncrementProduct}
                             OnDecrementProduct={OnDecrementProduct}
                             value={prod.qta} id={prod.prodotto.id}
                             name={prod.prodotto['nome_' + lang.codice]}
                             reference={prod.prodotto.ean13}
-                            specifics={"Specifiche"}
+                            size={prod.selectedSize != undefined ? prod.selectedSize: undefined}
+                            color={prod.selectedColor != undefined ? prod.selectedColor: undefined}
                             price={prod.prodotto.prezzo}
                             image={{ uri: getImmagineByProdotto(prod.prodotto.id) }}
                             min={0}

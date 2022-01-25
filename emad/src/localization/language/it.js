@@ -180,7 +180,8 @@ const it = {
   totale:'Totale',
   email:'Inserisci Email',
   campoErroreTotale:'Il Carrello è vuoto!',
-  
+  colore: 'Colore',
+  specifiche: 'Specifiche',
   //Paga Ora
   paga:'Paga Ora',
   notificaPagamento:'Avvicina il dispositivo abilitato NFC',

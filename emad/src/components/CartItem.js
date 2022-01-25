@@ -5,14 +5,15 @@ import { useTheme } from "../theme/ThemeProvider";
 import Divider from "./Divider";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import {  removeProduct } from "../back/cart";
+import { useLanguage } from "../localization/Localization";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const CartItem = (props) => {
     const { colors, isDark } = useTheme();
-    
+    const [lang, setLanguage] = useLanguage();
+
     
     var nome=props.name.substr(0,20)+"\n"+props.name.substr(20);
     let [fontsLoaded] = useFonts({
@@ -35,9 +36,51 @@ const CartItem = (props) => {
                         <Text style={{fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.secondary}}>
                             Ref {props.reference}
                         </Text>
-                        <Text style={{fontSize: 16, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary}}>
-                            {props.specifics}
-                        </Text>
+                        {props.size != undefined || props.color != undefined
+                            ?
+                            <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
+                                {lang.specifiche}
+                            </Text>
+                            :
+                            null
+                        }
+                        {props.size != undefined
+                            ?
+                            <View style={{flexDirection: 'row'}}>
+                                <Text style={{fontSize: 14, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary }}>
+                                    {lang.taglia}
+                                </Text>
+                                <Text style={{paddingLeft: 10,fontSize: 14, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
+                                    {props.size}
+                                </Text>
+                            </View>
+                            :
+                            null
+                        }
+                        {props.color != undefined
+                            ?
+                            <View style={{flexDirection: 'row'}}>
+                            <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary }}>
+                                {lang.colore}
+                            </Text>
+                            <View style={{
+                                marginTop: 2,
+                                marginRight: 7,
+                                marginLeft: 5,
+                                width: 18,
+                                height: 18,
+                                borderRadius: 9,
+                                backgroundColor: "#"+props.color,
+                                shadowColor: '#000000',
+                                shadowOffset: { width: 1, height: 2 },
+                                shadowOpacity: 0.25,
+                                shadowRadius: 5, elevation: 5
+                            }}
+                            />
+                            </View>
+                            :
+                            null
+                        }
                         <View style={{ flexDirection: 'row', alignSelf: 'flex-end', marginTop:'25%' }}>
                             <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayRegular', color: colors.theme.primary }}>
                                 {props.price} €

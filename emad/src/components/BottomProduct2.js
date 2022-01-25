@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import { Picker } from '@react-native-picker/picker';
 import { Text, View, Dimensions, TouchableOpacity, ScrollView, Animated, Platform } from "react-native";
 import Modal from 'react-native-modal'
@@ -13,6 +13,7 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { getStockByUserProduct, getQtaByProduct, getCaratteristicheProduct, getAttributoColoreByProduct, getAttributoTagliaByProduct } from "../back/connect";
 import { ShoppingCart} from "../back/cart";
 import { useLanguage } from "../localization/Localization";
+import { color } from "react-native-reanimated";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -130,15 +131,23 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
     const slidePadding = height * 0.15;
 
     const productColors = getAttributoColoreByProduct(prodotto.id);
+    
     const taglia = getAttributoTagliaByProduct(prodotto.id)
     const { colors, isDark } = useTheme();
     const tabBarHeight = useBottomTabBarHeight();
     const elementRef = useRef();
     
-    const [selected, setSelect] = useState(undefined);
+    const [selectedSize, setSelectedSize] = useState(undefined);
+    const [selectedColor,setSelectedColor] = useState(undefined);
+
+    const [show, setSelected] = useState(productColors.map((item) => ({'color': item, active: false})));
     
+    const toggleColor = (color) => {
+        setSelected(productColors.map((item) => (item == color ? {'color': item, active: true} : {'color': item, active: false})));
+        setSelectedColor(color);
+    }
     const toggleModal = (itemValue) => {
-        setSelect(itemValue);
+        setSelectedSize(itemValue);
         setModalVisible(false);
     }
     
@@ -192,7 +201,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                             height: 45, width: 45, borderRadius: 22.5, backgroundColor: '#EA9F5A',
                             justifyContent: 'center', alignItems: 'center', alignContent: 'center', shadowOffset: { width: 1, height: 2 }, shadowOpacity: 0.25, shadowRadius: 5, elevation: 5,
                         }} onPress={() => {
-                            cart.addProduct(prodotto)
+                            cart.addProduct(prodotto,selectedSize,selectedColor)
                             navigation.navigate('ProductPage',{prodotto:prodotto.id,utente:utente})
                             //navigation.navigate('Cart', { prodotto: prodotto })
                         }
@@ -209,11 +218,43 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                             <View style={{ flexDirection: 'row', paddingTop: 5, justifyContent:'flex-start' }}>
                                 <View style={{ flexDirection: 'row', width: '50%', paddingLeft: 5 }}>
                                     {productColors.map((item, key) => (
-                                        <ColorFilter key={key} color={item} />
+                                        <TouchableOpacity activeOpacity={0.75} key={item} onPress={() => toggleColor(item)}>
+                                        {show[show.findIndex(el => el.color == item)].active ?
+                                            <View style={{
+                                                marginTop: 2,
+                                                marginRight: 7,
+                                                width: 21,
+                                                height: 21,
+                                                borderRadius: 10.5,
+                                                backgroundColor: "#"+item,
+                                                borderWidth: 3, borderColor: 'white',
+                                                shadowColor: '#000000',
+                                                shadowOffset: { width: 1, height: 2 },
+                                                shadowOpacity: 0.25,
+                                                shadowRadius: 5, elevation: 5
+                                            }}
+                                            />
+                                            :
+                                            <View style={{
+                                                marginTop: 2,
+                                                marginRight: 7,
+                                                width: 18,
+                                                height: 18,
+                                                borderRadius: 9,
+                                                backgroundColor: "#"+item,
+                                                shadowColor: '#000000',
+                                                shadowOffset: { width: 1, height: 2 },
+                                                shadowOpacity: 0.25,
+                                                shadowRadius: 5, elevation: 5
+                                            }}
+                                            />
+                                        }
+                            
+                                    </TouchableOpacity>
                                     ))}
                                 </View>
-                                {(selected == undefined && taglia.length > 0)?
-                                    setSelect(taglia[0].valore)
+                                {(selectedSize == undefined && taglia.length > 0)?
+                                    setSelectedSize(taglia[0].valore)
                                     :
                                     null
                                 }
@@ -223,7 +264,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                                     :
                                     <>
                                         <TouchableOpacity onPress={() => setModalVisible(true)}>
-                                            <Text style={{fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center' }}>{lang.taglia}: {selected}</Text>
+                                            <Text style={{fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center' }}>{lang.taglia}: {selectedSize}</Text>
                                         </TouchableOpacity>
                                         <Modal
                                             isVisible={isModalVisible}
@@ -238,7 +279,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                                             style={styles.view}>
                                             <View style={styles.content}>
                                                 <Picker
-                                                    selectedValue={selected}
+                                                    selectedValue={selectedSize}
                                                     style={{ width: '50%', fontFamily: 'SFProDisplayBold', color: colors.theme.title, textAlign: 'center' }}
                                                     dropdownIconColor={colors.theme.title}
                                                     onValueChange={(itemValue) =>

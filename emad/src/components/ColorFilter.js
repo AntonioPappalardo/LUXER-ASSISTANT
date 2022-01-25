@@ -5,8 +5,14 @@ import { View, TouchableOpacity } from "react-native";
 const ColorFilter = (props) => {
     const [show, setSelected] = React.useState(false)
     const toggleColor = () => {
-        setSelected(show => !show);
-        props.OnColorFilter(props.color)
+        if(props.OnColorFilter) {
+            setSelected(show => !show);
+            props.OnColorFilter(props.color)
+        } else {
+            setSelected(show => !show);
+            props.OnColorFilter;
+        }
+       
     }
     return (
         <TouchableOpacity activeOpacity={0.75} onPress={toggleColor}>

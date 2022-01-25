@@ -180,7 +180,8 @@ const es = {
   totale: 'Total',
   email: 'Ingrese correo Electrónico',
   campoErroreTotale:'¡El Carrito está vacío!',
-
+  colore: 'Color',
+  specifiche: 'Características',
   //Pagar ahora
   paga: 'Pagar Ahora',
   notificaPagamento: 'Acerque el dispositivo habilitado para NFC',

@@ -13,23 +13,24 @@ export const ShoppingCart = (function () {
 
         this.countItems = function () {
             return this.cart.length;
-        }
+        } 
 
-        this.addProduct = function (prodotto) {
+        this.addProduct = function (prodotto,selectedSize,selectedColor) {
             if (this.cart.length == 0) {
-                this.cart.push({ "prodotto": prodotto, "qta": 1 })
+                this.cart.push({ "prodotto": prodotto, "qta": 1,"selectedSize":selectedSize,"selectedColor":selectedColor })
             }
             else {
-                var exist = (this.cart.map(c => c.prodotto.id)).findIndex(prod => prod == prodotto.id)
-                if (exist == -1) {
-                    this.cart.push({ "prodotto": prodotto, "qta": 1 })
+                var exist = (this.cart.map(c => c)).findIndex(prod => prod.prodotto.id == prodotto.id && prod.prodotto.selectedColor == selectedColor && prod.prodotto.selectedSize == selectedSize)
+                
+                if (exist == -1) { 
+                    this.cart.push({ "prodotto": prodotto, "qta": 1,"selectedSize":selectedSize,"selectedColor":selectedColor })
                 }
                 else this.cart[exist].qta = this.cart[exist].qta + 1
             }
             return this.cart;
         }
 
-        this.decreaseProduct = function(idprodotto) {
+        this.decreaseProduct = function(idprodotto) { 
             var exist = (this.cart.map(c => c.prodotto.id)).findIndex(prod => prod == idprodotto)
             if (this.cart[exist].qta == 1) { 
                 this.cart.splice(exist, 1) 

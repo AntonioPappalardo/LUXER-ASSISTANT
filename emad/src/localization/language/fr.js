@@ -180,7 +180,8 @@ const fr = {
   totale: 'Le Total',
   email: 'Entrer l\'E-mail',
   campoErroreTotale:'Le Panier est vide!',
-
+  colore: 'Couleur',
+  specifiche: 'Caractéristiques',
   //Payez Maintenant
   paga: 'Payez Maintenant',
   notificaPagamento: 'Rapprochez l\'appareil compatible NFC',
