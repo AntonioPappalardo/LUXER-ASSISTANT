@@ -16,23 +16,25 @@ export const ShoppingCart = (function () {
         } 
 
         this.addProduct = function (prodotto,selectedSize,selectedColor) {
+            
             if (this.cart.length == 0) {
                 this.cart.push({ "prodotto": prodotto, "qta": 1,"selectedSize":selectedSize,"selectedColor":selectedColor })
             }
             else {
-                var exist = (this.cart.map(c => c)).findIndex(prod => prod.prodotto.id == prodotto.id && prod.prodotto.selectedColor == selectedColor && prod.prodotto.selectedSize == selectedSize)
-                
+                var exist = this.cart.map(cart => cart).findIndex(prod => prod.prodotto.id == prodotto.id && prod.selectedColor == selectedColor && prod.selectedSize == selectedSize);
                 if (exist == -1) { 
                     this.cart.push({ "prodotto": prodotto, "qta": 1,"selectedSize":selectedSize,"selectedColor":selectedColor })
                 }
                 else this.cart[exist].qta = this.cart[exist].qta + 1
             }
             return this.cart;
-        }
+        } 
 
-        this.decreaseProduct = function(idprodotto) { 
-            var exist = (this.cart.map(c => c.prodotto.id)).findIndex(prod => prod == idprodotto)
-            if (this.cart[exist].qta == 1) { 
+        this.decreaseProduct = function(id,selectedSize,selectedColor) { 
+            //var exist = (this.cart.map(c => c.prodotto.id)).findIndex(prod => prod == idprodotto)
+            var exist = this.cart.map(cart => cart).findIndex(prod => prod.prodotto.id == id && prod.selectedColor == selectedColor && prod.selectedSize == selectedSize);
+
+            if (this.cart[exist].qta == 1) {
                 this.cart.splice(exist, 1) 
                 return true;
             }
@@ -43,7 +45,9 @@ export const ShoppingCart = (function () {
             return this.cart;
         }
         this.increaseProduct = function(idprodotto) {
-            var exist = (this.cart.map(c => c.prodotto.id)).findIndex(prod => prod == idprodotto)
+            //var exist = (this.cart.map(c => c.prodotto.id)).findIndex(prod => prod == idprodotto)
+            var exist = this.cart.map(cart => cart).findIndex(prod => prod.prodotto.id == id && prod.selectedColor == selectedColor && prod.selectedSize == selectedSize);
+
             this.cart[exist].qta = this.cart[exist].qta + 1
             return this.cart;
         }
