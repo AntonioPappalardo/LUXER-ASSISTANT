@@ -20,40 +20,37 @@ const height = Dimensions.get('screen').height;
 const Cart = ({ navigation, route }) => {
     
     const cart= ShoppingCart();
-    const items = cart.getCart();
+   
 
     const [refresh, setRefresh] = useState(Date(Date.now()).toString())
     const { colors, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
+    const tabBarHeight = useBottomTabBarHeight();
     const [isModalVisible, setModalVisible] = useState(false);
     const [errorText, setErrorText] = useState('Default');
-    /*const [totale,setTotale]=useState(getTotale())
-    const [numOfArticle,setNum]=useState(getNumOfArticle())*/
-    const tabBarHeight = useBottomTabBarHeight();
+    const [items,setItems] = useState(cart.getCart());
+    const [totale, setTotale] = useState(cart.getTotale());
+    const [numOfArticle, setNumOfArticle] = useState(cart.getNumOfArticle());
+    const [userEmail, setUserEmail] = useState(undefined);
+    const OnIncrementProduct = (index) => {
+        let newCart = cart.increaseProduct(index)
+        setItems(newCart);
+        setTotale(cart.getTotale())
+        setNumOfArticle(cart.getNumOfArticle())
 
-    const [userEmail,setUserEmail] = useState();
-
-    const OnIncrementProduct = (id,selectedSize,selectedColor) => {
-        // cart.increaseProduct(id);
-        cart.increaseProduct(id,selectedSize,selectedColor)
-        setRefresh(Date(Date.now()).toString())
-        navigation.isFocused();
-        
-        /*
-        setCart(increaseProduct(id))
-        setTotale(getTotale());
-        setNum(getNumOfArticle());*/
     }
-    const OnDecrementProduct = (id,selectedSize,selectedColor) => {
-        if( cart.decreaseProduct(id,selectedSize,selectedColor) ) {
+    const OnDecrementProduct = (index) => {
+        let newCart = cart.decreaseProduct(index);
+        if(newCart) {
+            setTotale(cart.getTotale())
+            setNumOfArticle(cart.getNumOfArticle())
             setRefresh(Date(Date.now()).toString())
             navigation.navigate('TabBar', { screen: 'Cart' });
+        } else {
+            setItems(newCart);
+            setTotale(cart.getTotale())
+            setNumOfArticle(cart.getNumOfArticle())
         }
-        setRefresh(Date(Date.now()).toString())
-        navigation.isFocused();
-        /*setCart(decreaseProduct(id))
-        setTotale(getTotale());
-        setNum(getNumOfArticle());*/
     }
 
     const toggleModal = () => {
@@ -119,10 +116,10 @@ const Cart = ({ navigation, route }) => {
                     </View>
                 </View>
                 <ScrollView overScrollMode="never">
-                    {items.map((prod) => (
-                        <CartItem key={Math.random()}
-                            OnIncrementProduct={() => OnIncrementProduct(prod.prodotto.id, prod.selectedSize, prod.selectedColor )}
-                            OnDecrementProduct={() => OnDecrementProduct(prod.prodotto.id, prod.selectedSize, prod.selectedColor )}
+                    {items.map((prod,index) => (
+                        <CartItem key={index}
+                            OnIncrementProduct={() => OnIncrementProduct(index)}
+                            OnDecrementProduct={() => OnDecrementProduct(index)}
                             value={prod.qta} 
                             id={prod.prodotto.id}
                             name={prod.prodotto['nome_' + lang.codice]}
@@ -146,7 +143,7 @@ const Cart = ({ navigation, route }) => {
                             </View>
                             <View style={{ width: '50%' }}>
                                 <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.primary, textAlign: 'right' }}>
-                                    {cart.getNumOfArticle()}
+                                    {numOfArticle}
                                 </Text>
                             </View>
                         </View>
@@ -159,12 +156,12 @@ const Cart = ({ navigation, route }) => {
                             </View>
                             <View style={{ width: '50%' }}>
                                 <Text style={{ fontSize: 20, fontFamily: 'SFProDisplayMedium', fontWeight: "bold", color: colors.theme.primary, textAlign: 'right' }}>
-                                    € {cart.getTotale()}
+                                    € {totale}
                                 </Text>
                             </View>
                         </View>
                         <Divider width={"100%"} opacity={1} marginBottom={12} />
-                        {/*<InputText params={{ marginTop: 25, alignSelf: 'center', width: "100%" }} name={lang.email} icon="mail-outline" rotation="0deg" value={userEmail} onChangeText={setUserEmail} secure='false' />*/}
+                        <InputText params={{ marginTop: 25, alignSelf: 'center', width: "100%" }} name={lang.email} icon="mail-outline" rotation="0deg" value={userEmail} onChangeText={setUserEmail} secure='false' />
 
                     </View>
                     <InputButton params={{ marginTop: 26, width: "75%" }} name={lang.pagaCassa} icon="arrow-forward-outline" rotation="-45deg" />

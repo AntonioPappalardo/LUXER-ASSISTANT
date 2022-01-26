@@ -30,25 +30,21 @@ export const ShoppingCart = (function () {
             return this.cart;
         } 
 
-        this.decreaseProduct = function(id,selectedSize,selectedColor) { 
+        this.decreaseProduct = function(index) { 
             //var exist = (this.cart.map(c => c.prodotto.id)).findIndex(prod => prod == idprodotto)
-            var exist = this.cart.map(cart => cart).findIndex(prod => prod.prodotto.id == id && prod.selectedColor == selectedColor && prod.selectedSize == selectedSize);
-
-            if (this.cart[exist].qta == 1) {
-                this.cart.splice(exist, 1) 
+            //var exist = this.cart.map(cart => cart).findIndex(prod => prod.prodotto.id == id && prod.selectedColor == selectedColor && prod.selectedSize == selectedSize);
+            if (this.cart[index].qta == 1) {
+                this.cart.splice(index, 1);
                 return true;
-            }
-            else { 
-                this.cart[exist].qta = this.cart[exist].qta - 1 
-                return false;
+            } else { 
+                this.cart[index].qta = this.cart[index].qta - 1 
             }
             return this.cart;
         }
-        this.increaseProduct = function(id,selectedSize,selectedColor) {
+        this.increaseProduct = function(index) {
             //var exist = (this.cart.map(c => c.prodotto.id)).findIndex(prod => prod == idprodotto)
-            var exist = this.cart.map(cart => cart).findIndex(prod => prod.prodotto.id == id && prod.selectedColor == selectedColor && prod.selectedSize == selectedSize);
-
-            this.cart[exist].qta = this.cart[exist].qta + 1
+            //var exist = this.cart.map(cart => cart).findIndex(prod => prod.prodotto.id == id && prod.selectedColor == selectedColor && prod.selectedSize == selectedSize);
+            this.cart[index].qta = this.cart[index].qta + 1
             return this.cart;
         }
         this.getTotale = function() {
