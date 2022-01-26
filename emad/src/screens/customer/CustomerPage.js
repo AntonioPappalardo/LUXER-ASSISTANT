@@ -33,7 +33,9 @@ const CustomerPage = ({ navigation, route }) => {
     const costumers = getCliente();
     const utente =route.params.user
     const layout = useWindowDimensions();
-
+    function indxFid() {
+        
+    }
     const FirstRoute = () => (
         <View style={{ justifyContent: 'center' }}>
             <LineChart

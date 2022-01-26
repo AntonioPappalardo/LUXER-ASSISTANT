@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, ScrollView, Dimensions } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import { FloatingLabelInput } from 'react-native-floating-label-input';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { useTheme } from "../../theme/ThemeProvider";
@@ -19,6 +18,7 @@ import { useLanguage } from "../../localization/Localization";
 const height = Dimensions.get('screen').height;
 
 const Cart = ({ navigation, route }) => {
+    
     const cart= ShoppingCart();
     const items = cart.getCart();
 
@@ -31,8 +31,7 @@ const Cart = ({ navigation, route }) => {
     const [numOfArticle,setNum]=useState(getNumOfArticle())*/
     const tabBarHeight = useBottomTabBarHeight();
 
-
-    const [userEmail,setUserEmail] = useState('');
+    const [userEmail,setUserEmail] = useState();
 
     const OnIncrementProduct = (id,selectedSize,selectedColor) => {
         // cart.increaseProduct(id);
@@ -68,8 +67,7 @@ const Cart = ({ navigation, route }) => {
     });
 
     const handleSubmitPress = () => {
-        console.log(inputRef.current);
-        /*var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        //var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         const delay = ms => new Promise(res => setTimeout(res, ms));
 
         if (cart.getTotale() == 0) {
@@ -77,13 +75,13 @@ const Cart = ({ navigation, route }) => {
             setModalVisible(true)
             return;
         }
-        if (!userEmail.match(mailformat)) {
+        /*if (!userEmail.match(mailformat)) {
             setErrorText(lang.campoErroreEmail)
             setModalVisible(true)
             return;
-        }
+        }*/
 
-        navigation.navigate('Payment');*/
+        navigation.navigate('Payment');
     }
    
     if (!fontsLoaded) {
@@ -166,7 +164,8 @@ const Cart = ({ navigation, route }) => {
                             </View>
                         </View>
                         <Divider width={"100%"} opacity={1} marginBottom={12} />
-                        <InputText params={{ marginTop: 25, alignSelf: 'center', width: "100%" }} name={lang.email} icon="mail-outline" rotation="0deg" value={userEmail} onChangeText={setUserEmail} secure='false' />
+                        {/*<InputText params={{ marginTop: 25, alignSelf: 'center', width: "100%" }} name={lang.email} icon="mail-outline" rotation="0deg" value={userEmail} onChangeText={setUserEmail} secure='false' />*/}
+
                     </View>
                     <InputButton params={{ marginTop: 26, width: "75%" }} name={lang.pagaCassa} icon="arrow-forward-outline" rotation="-45deg" />
                     <InputButton params={{ marginTop: 26, width: "75%" }} name={lang.pagaOra} icon="arrow-forward-outline" rotation="-45deg" onPress={handleSubmitPress} />
@@ -180,4 +179,4 @@ const Cart = ({ navigation, route }) => {
 const styles = StyleSheet.create({
 });
 
-export default Cart;
+export default React.memo(Cart);

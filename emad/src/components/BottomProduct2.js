@@ -1,6 +1,6 @@
 import React, { useRef, useState, useCallback } from "react";
 import { Picker } from '@react-native-picker/picker';
-import { Text, View, Dimensions, TouchableOpacity, ScrollView, Animated, Platform } from "react-native";
+import { Text, View, Dimensions, TouchableOpacity, ScrollView, Animated, Platform ,Switch} from "react-native";
 import Modal from 'react-native-modal'
 
 import SlidingUpPanel from "rn-sliding-up-panel";
@@ -140,10 +140,18 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
     const [selectedSize, setSelectedSize] = useState(undefined);
     const [selectedColor,setSelectedColor] = useState(undefined);
 
-    const [show, setSelected] = useState(productColors.map((item) => ({'color': item, active: false})));
-    
-    const toggleColor = (color) => {
-        setSelected(productColors.map((item) => (item == color ? {'color': item, active: true} : {'color': item, active: false})));
+    /*const [show, setSelected] = useState(productColors.map((item) => ({'color': item, active: false})));
+    console.log(show);*/
+    var showColors = []
+    for(let i = 0; i< productColors.length; i++) {
+        showColors.push(false);
+    }
+    const [show, setSelected] = useState(showColors);
+
+    const toggleColor = (color,index) => {
+        //setSelected(productColors.map((item) => (item == color ? {'color': item, active: true} : {'color': item, active: false})));
+        showColors[index] = true;
+        setSelected(showColors)
         setSelectedColor(color);
     }
     const toggleModal = (itemValue) => {
@@ -217,9 +225,9 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                         <View style={{ width: '75%', alignSelf: 'center' }}>
                             <View style={{ flexDirection: 'row', paddingTop: 5, justifyContent:'flex-start' }}>
                                 <View style={{ flexDirection: 'row', width: '50%', paddingLeft: 5 }}>
-                                    {productColors.map((item, key) => (
-                                        <TouchableOpacity activeOpacity={0.75} key={item} onPress={() => toggleColor(item)}>
-                                        {show[show.findIndex(el => el.color == item)].active ?
+                                    {productColors.map((item, index) => (
+                                        <TouchableOpacity activeOpacity={0.75} key={item} onPress={() => toggleColor(item,index)}>
+                                        {show[index] ?
                                             <View style={{
                                                 marginTop: 2,
                                                 marginRight: 7,
