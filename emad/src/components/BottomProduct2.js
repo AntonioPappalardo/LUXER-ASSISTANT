@@ -101,7 +101,7 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
     const ThirdRoute = () => (
         <ScrollView style={{ width: '95%', alignSelf: 'center' }}>
             <View style={{ paddingTop: '5%' }}>
-                <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary }}>
+                <Text style={{ fontSize: 14, fontFamily: 'SFProDisplayBold', color: colors.theme.primary, marginLeft:10 }}>
                     {lang.schedaProdotto}
                 </Text>
                 <View style={{ width: '95%', flexDirection: 'column', paddingTop: 5, alignSelf: 'center' }}>

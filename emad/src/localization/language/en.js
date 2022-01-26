@@ -54,7 +54,8 @@ const en = {
   campoErroreNazionalita: 'The Nationality field is required!',
   operazioneConclusa:'Insertion Successful!',
   emailEsistente:'Email already exists. Try again!',
-  
+  codiceProdotto:'Product not present. Try again!',
+
   //Picker Gender
   maschio:'Male',
   femmina:'Female',
