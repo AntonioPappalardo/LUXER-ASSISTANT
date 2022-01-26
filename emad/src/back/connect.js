@@ -57,6 +57,26 @@ export function connect(){
         appuntamento.push(appointment)
     }
 
+    export function SendQRCodeCash(email){
+        const subject = "Pagamento in Cassa";
+        const object ='Salve, Scansiona il seguente QR code in cassa per concludere correttamente il pagamento.\n\nSaluti.'
+
+        var url = 'https://luxerfunction.azurewebsites.net/api/HttpTrigger1?code=WsG207XtWBZ48Afw7HpLDOiM0zVtAqPbF2WmgWbA9rXK1tPO9mj6Cg==';
+            var option = {
+                method: 'post',
+                url: url,
+                params: {
+                    email: email
+                },
+                data: {
+                    subject: subject,
+                    object: object,
+                }
+            }                
+            axios(option)
+
+    }
+
     export function getAppuntamento(){
         return appuntamento;
     }

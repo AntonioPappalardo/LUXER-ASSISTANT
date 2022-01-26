@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView, Dimensions } from "react-native";
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
@@ -12,7 +12,7 @@ import Divider from "../../components/Divider";
 import Modal from 'react-native-modal'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ShoppingCart } from "../../back/cart";
-import { getImmagineByProdotto } from "../../back/connect";
+import { getCliente, getImmagineByProdotto, SendQRCodeCash } from "../../back/connect";
 import { useLanguage } from "../../localization/Localization";
 
 const height = Dimensions.get('screen').height;
@@ -20,24 +20,36 @@ const height = Dimensions.get('screen').height;
 const Cart = ({ navigation, route }) => {
     
     const cart= ShoppingCart();
-   
+    const users = getCliente();
+    var utente= route.params.user
+    const [user, onSearch] = React.useState([]);
 
     const [refresh, setRefresh] = useState(Date(Date.now()).toString())
     const { colors, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
     const tabBarHeight = useBottomTabBarHeight();
+    const [search, onChangeText] = React.useState('');
     const [isModalVisible, setModalVisible] = useState(false);
     const [errorText, setErrorText] = useState('Default');
     const [items,setItems] = useState(cart.getCart());
     const [totale, setTotale] = useState(cart.getTotale());
     const [numOfArticle, setNumOfArticle] = useState(cart.getNumOfArticle());
     const [userEmail, setUserEmail] = useState(undefined);
+
+    const ook = (cerca) => {
+        onChangeText(cerca);
+        onSearch(users.filter(user => (user.nome.toLowerCase().includes(cerca.toLowerCase()) || user.codice_cliente.includes(cerca))))
+    }
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
+
     const OnIncrementProduct = (index) => {
         let newCart = cart.increaseProduct(index)
         setItems(newCart);
         setTotale(cart.getTotale())
         setNumOfArticle(cart.getNumOfArticle())
-
     }
     const OnDecrementProduct = (index) => {
         let newCart = cart.decreaseProduct(index);
@@ -53,34 +65,29 @@ const Cart = ({ navigation, route }) => {
         }
     }
 
-    const toggleModal = () => {
-        setModalVisible(!isModalVisible);
-    };
-
-    let [fontsLoaded] = useFonts({
-        'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
-        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
-        'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
-    });
-
     const handleSubmitPress = () => {
-        //var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        const delay = ms => new Promise(res => setTimeout(res, ms));
+        var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
         if (cart.getTotale() == 0) {
             setErrorText(lang.campoErroreTotale)
             setModalVisible(true)
             return;
         }
-        /*if (!userEmail.match(mailformat)) {
+        if (!userEmail.match(mailformat)) {
             setErrorText(lang.campoErroreEmail)
             setModalVisible(true)
             return;
-        }*/
-
+        }
         navigation.navigate('Payment');
     }
    
+    let [fontsLoaded] = useFonts({
+        'SFProDisplayRegular': require('../../../assets/fonts/SFProDisplayRegular.otf'),
+        'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
+        'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
+        'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
+    });
+
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
@@ -161,10 +168,31 @@ const Cart = ({ navigation, route }) => {
                             </View>
                         </View>
                         <Divider width={"100%"} opacity={1} marginBottom={12} />
-                        <InputText params={{ marginTop: 25, alignSelf: 'center', width: "100%" }} name={lang.email} icon="mail-outline" rotation="0deg" value={userEmail} onChangeText={setUserEmail} secure='false' />
-
+                        <View style={{ alignItems: "center", marginBottom: 15, marginTop: '12%' }}>
+                        <InputText params={{ width: "100%", paddingLeft: 75, textAlign: "left" }}
+                            name={lang.inputName} icon="search" rotation="0deg" value={search} onChangeText={cerca => ook(cerca)} secure='false' left='true' />
+                        </View>
                     </View>
-                    <InputButton params={{ marginTop: 26, width: "75%" }} name={lang.pagaCassa} icon="arrow-forward-outline" rotation="-45deg" />
+                    
+                <ScrollView overScrollMode="never" style={{marginTop:-35}}>
+                    {user.map((item) => (
+                        <View key={item.id} style={{height: 50, width: "75%",flexDirection: "row", alignSelf: "center",marginTop: 0, marginBottom: 5, backgroundColor:'#EA9F5A' }}>
+                                <View style={{width: '25%'}}>
+                                </View>
+                                <TouchableOpacity style={{flexDirection: 'row', width: '65%'}} activeOpacity={.75} onPress={() =>{}}>
+                                    <View style={{ flexDirection: "column", justifyContent: "center" }}>
+                                        <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{item.nome} {item.cognome}</Text>
+                                    </View>
+                                    <View style={{ justifyContent: 'center', alignContent: "center", alignItems: 'center', marginLeft: 'auto', top: 5, marginRight: 5, height: 40, width: 40}}>
+                                        <Icon name="chevron-forward" size={25} color={colors.theme.title} />
+                                    </View>
+                                </TouchableOpacity>
+                        </View>
+                    ))}
+                    <View style={{ marginBottom: tabBarHeight + 10 }}></View>
+
+                </ScrollView>
+                    <InputButton params={{ marginTop: 26, width: "75%" }} name={lang.pagaCassa} icon="arrow-forward-outline" rotation="-45deg" onPress={() => {SendQRCodeCash(/**Inserire email cliente */)}} />
                     <InputButton params={{ marginTop: 26, width: "75%" }} name={lang.pagaOra} icon="arrow-forward-outline" rotation="-45deg" onPress={handleSubmitPress} />
 
                     <View style={{ marginBottom: tabBarHeight + 100 }}></View>
