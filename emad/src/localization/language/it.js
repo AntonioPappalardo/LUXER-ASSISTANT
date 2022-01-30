@@ -17,7 +17,7 @@ const it = {
   password: 'Password',
   emailError: 'Il campo Email è obbligatorio!',
   passwordError: 'Il campo Password è obbligatorio!',
-  userError: 'L\'utente non è stato trovato!',
+  userError: 'L\'utente non è stato trovato. Riprova!',
   conferma: 'HO CAPITO',
   procedi: 'REGISTRA CLIENTE',
   addAppuntamento: 'AGGIUNGI APPUNTAMENTO',
@@ -109,7 +109,7 @@ const it = {
   funzioniContent:'L\'applicazione accede alle seguenti funzioni del tuo dispositivo:\n\n⦿ Fotocamera: si accede alla funzione Fotocamera per stampare le immagini acquisite.*\n\n⦿ Wi-Fi: si accede alla funzione Wi-Fi per la connessione del dispositivo in rete.*\n\n',
   dati:'Accesso ai Dati\n',
   datiContent:'L\'applicazione accede ai seguenti dati dal tuo dispositivo:\n\n⦿ Accesso alle cartelle: si accede alle cartelle specificate per salvare i file scansionati.*\n\n⦿ File immagine:\n\n- È possibile accedere ai file di immagine specificati per condividerli con il cliente.*\n\n- Consegna i file scansionati ad un\'altra applicazione cooperativa.*\n\n⦿ File documento: É possibile accedere ai file documento specificati per stamparli o condividerli.*\n\n*A seconda della versione del sistema operativo o dei dispositivi, alcune funzioni potrebbero non essere disponibili.L\'applicazione accede a questi file, ma Luxer non archivia né raccoglie alcun tipo di dato estraneo al naturale utilizzo dell\'applicazione.\n\n',
-  reclami:'Reclami e Richieste di divulgazione\n',
+  reclami:'Reclami e Divulgazione\n',
   reclamiContent:'È necessario indirizzare eventuali reclami, richieste e richieste relative alla presente Informativa sulla privacy al Coordinatore della privacy. È possibile interrompere l\'utilizzo del Servizio seguendo le istruzioni stabilite nei termini di servizio applicabili o disinstallando ed eliminando il software o l\'applicazione.\n\n',
   contattaci:'Contattaci\n',
   contattaciContent:'In caso di domande sulla presente Informativa sulla privacy, sulle nostre pratiche o sui rapporti con i Servizi, o se si ha motivo di ritenere che Luxer possa non aver aderito alla presente Informativa sulla privacy, è possibile contattarci via e-mail o scrivere a:\n\n',
@@ -163,7 +163,8 @@ const it = {
   inNegozio:'In Negozio',
   inAltri:'In Altri Store',
   taglia:'Taglia',
-  
+  iva: 'IVA inclusa',
+
   //Lista Store
   indirizzo:'Indirizzo',
 
@@ -184,6 +185,8 @@ const it = {
   campoErroreTotale:'Il Carrello è vuoto!',
   colore: 'Colore',
   specifiche: 'Specifiche',
+  customerError:'Inserisci Nome o Codice Cliente!',
+  
   //Paga Ora
   paga:'Paga Ora',
   notificaPagamento:'Avvicina il dispositivo abilitato NFC',

@@ -23,7 +23,7 @@ const SearchUser = ({ navigation, route}) => {
     const [user, onSearch] = React.useState([]);
     const ook = (cerca) => {
         onChangeText(cerca);
-        onSearch(users.filter(user => (user.nome.toLowerCase().includes(cerca.toLowerCase()) || user.codice_cliente.includes(cerca))))
+        onSearch(users.filter(user => (user.nome.toLowerCase().includes(cerca.toLowerCase()) || user.cognome.toLowerCase().includes(cerca.toLowerCase()) || user.codice_cliente.includes(cerca))))
 
     }
     let [fontsLoaded] = useFonts({
@@ -44,7 +44,7 @@ const SearchUser = ({ navigation, route}) => {
                 </View>
                 <Divider width="100%" />
                 <ScrollView overScrollMode="never">
-                    {user.map((item) => (
+                    {user.slice(0,6).map((item) => (
                         <View key={item.id} style={{height: 75, width: "90%",flexDirection: "row", alignSelf: "center",marginTop: 5, marginBottom: 5, }}>
                                 <View style={{width: '25%'}}>
                                 <View style={{ justifyContent: "center", marginLeft: 5, height: 70, width: 70, shadowOffset: { width: 1, height: 2 },shadowOpacity: 0.25,shadowRadius: 5, elevation: 5, marginRight: 10, borderRadius: 5 }}>

@@ -109,7 +109,7 @@ const en = {
   funzioniContent:'The application accesses the following functions of your device: \n\n⦿ Camera: you access the Camera function to print the captured images.* \n\n⦿ Wi-Fi: you access the Wi-Fi function for connection device on the network.* \n\n',
   dati:'Access to Data\n',
   datiContent:'The application accesses the following data from your device: \n\n⦿ Access to folders: accesses the folders specified to save the scanned files.* \n\n⦿ Image files: \n\n- You can access the specified image files to share with customer. * \n\n- Deliver scanned files to another cooperative application.* \n\n⦿ Document file: You can access specified document files to print or share. * \n\n * Depending on the version of the operating system or devices, some functions may not be available. The application accesses these files, but Luxer does not store or collect any type of data extraneous to the natural use of the application.\n\n',
-  reclami:'Complaints and Disclosure Requests\n',
+  reclami:'Complaints and Disclosure\n',
   reclamiContent:'Any complaints, requests and requests relating to this Privacy Policy should be addressed to the Privacy Coordinator. You may stop using the Service by following the instructions set forth in the applicable terms of service or by uninstalling and deleting the software or application.\n\n',
   contattaci:'Contact Us\n',
   contattaciContent:'If you have any questions about this Privacy Policy, our practices or relationships with the Services, or if you have reason to believe that Luxer may not have adhered to this Privacy Policy, you can contact us by email or write to:\n\n',
@@ -162,6 +162,7 @@ const en = {
   inNegozio: 'In Store',
   inAltri: 'In Other Stores',
   taglia: 'Size',
+  iva: 'VAT included',
 
   //Store List
   indirizzo: 'Address',
@@ -182,6 +183,8 @@ const en = {
   campoErroreTotale:'The Cart is empty!',
   colore: 'Color',
   specifiche: 'Features',
+  customerError:'Enter Name or Customer Code!',
+
   //Pay Now
   paga: 'Pay Now',
   notificaPagamento: 'Bring the NFC-enabled device closer',

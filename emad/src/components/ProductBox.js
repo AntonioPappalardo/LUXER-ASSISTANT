@@ -32,9 +32,9 @@ const ProductBox = (props) => {
             <View style={{height: 40,justifyContent: "center"}}>
           <Text numberOfLines={2} style={{ color: colors.productBox.name, fontFamily: "SFProDisplayMedium", fontSize: 14  }}>{props.name}</Text>
             </View>
-          <View style={{ flexDirection: 'row' }}>
-            <Text style={{ color: colors.productBox.price, fontFamily: "SFProDisplayThinItalic", fontWeight: '200',fontSize: 14, width: "50%"}}>{props.price + " €"}</Text>
-            <Text style={{ color: colors.productBox.reference, fontFamily: "SFProDisplayRegular", fontSize: 11, textAlign: 'right', width: "50%", paddingTop: 3.5 }}> {"Ref " + props.reference}</Text>
+          <View style={{ flexDirection: 'row', marginTop:-5 }}>
+            <Text style={{ color: colors.productBox.price, fontFamily: "SFProDisplayThinItalic", fontWeight: '200', marginTop:8, fontSize: 14, width: "50%"}}>{props.price + " €"}</Text>
+            <Text style={{ color: colors.productBox.reference, fontFamily: "SFProDisplayRegular", fontSize: 9, textAlign: 'right', width: "50%", paddingTop: 3.5 }}> {"Ref. " + props.reference}</Text>
             
           </View>
         </View>

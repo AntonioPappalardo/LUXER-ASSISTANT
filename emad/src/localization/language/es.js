@@ -109,7 +109,7 @@ const es = {
   funzioniContent:'La aplicación accede a las siguientes funciones de su dispositivo: \n\n⦿ Cámara: accede a la función Cámara para imprimir las imágenes capturadas.* \n\n⦿ Wi-Fi: accede a la función Wi-Fi para conectar el dispositivo en el red.*\n\n',
   dati:'Acceso a Datos\n',
   datiContent:'La aplicación accede a los siguientes datos de su dispositivo: \n\n⦿ Acceso a carpetas: accede a las carpetas especificadas para guardar los archivos escaneados.* \n\n⦿ Archivos de imagen: \n\n- Puede acceder a los archivos de imagen especificados para compartir con el cliente. * \n\n- Entregar archivos escaneados a otra aplicación cooperativa. * \n\n⦿ Archivo de documento: Puede acceder a archivos de documentos específicos para imprimir o compartir.* \n\n *Dependiendo de la versión de el sistema operativo o dispositivos, algunas funciones pueden no estar disponibles.La aplicación accede a estos archivos, pero Luxer no almacena ni recopila ningún tipo de datos ajenos al uso natural de la aplicación.\n\n',
-  reclami:'Quejas y Solicitudes de Divulgación\n',
+  reclami:'Quejas y Divulgación\n',
   reclamiContent:'Todas las quejas, solicitudes y solicitudes relacionadas con esta Política de privacidad deben dirigirse al Coordinador de privacidad. Puede dejar de usar el Servicio siguiendo las instrucciones establecidas en los términos de servicio aplicables o desinstalando y eliminando el software o la aplicación.\n\n',
   contattaci:'Contáctenos\n',
   contattaciContent:'Si tiene alguna pregunta sobre esta Política de privacidad, nuestras prácticas o relaciones con los Servicios, o si tiene motivos para creer que es posible que Luxer no se haya adherido a esta Política de privacidad, puede comunicarse con nosotros por correo electrónico o escribir a:\n\n',
@@ -163,6 +163,7 @@ const es = {
   inNegozio: 'En la Tienda',
   inAltri: 'En Otras Tiendas',
   taglia: 'Talla',
+  iva: 'VAT incluido',
 
 
   //Lista de la tienda
@@ -183,6 +184,8 @@ const es = {
   campoErroreTotale:'¡El Carrito está vacío!',
   colore: 'Color',
   specifiche: 'Características',
+  customerError:'Ingrese Nombre o Código de Cliente!',
+
   //Pagar ahora
   paga: 'Pagar Ahora',
   notificaPagamento: 'Acerque el dispositivo habilitado para NFC',

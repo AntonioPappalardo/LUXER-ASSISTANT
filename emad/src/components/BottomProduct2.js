@@ -196,11 +196,12 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                     <View style={styles.dragHandler} {...dragHandler}>
                         <View style={{flexDirection: 'row', alignContent: 'center', alignSelf: 'center'}}>
                             <View style={{ flexDirection: 'column', width: '60%'}}>
-                                <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayBold', color: colors.theme.subtitle}}>
-                                    {prodotto.prezzo +' €'} 
-                                </Text>
-                                <Text style={{ fontSize: 18, fontFamily: 'SFProDisplayBold', color: colors.theme.title, paddingTop: 5 }}>
+                                <Text style={{ fontSize: 18, fontFamily: 'SFProDisplayBold', color: colors.theme.title, paddingTop: 2, paddingRight:5 }}>
                                     {prodotto['nome_' + lang.codice]}
+                                </Text>
+                                <Text style={{ fontSize: 16, marginTop:9,fontFamily: 'SFProDisplayBold', color: colors.theme.subtitle}}>
+                                    {prodotto.prezzo +' €   '}
+                                    <Text style={{fontSize: 12,fontFamily: 'SFProDisplayBold', color: colors.theme.subtitle}}>{lang.iva}</Text> 
                                 </Text>
                             </View>
 
