@@ -191,6 +191,15 @@ const AddAppointment = ({ navigation, route }) => {
         setModalVisible(!isModalVisible);
     };
 
+    const toggleModalReturn = async() => {
+        const delay = ms => new Promise(res => setTimeout(res, ms));
+        await delay(300);
+        setModalVisible(false);
+        await delay(300);
+        setIsSuccess(false);
+        navigation.goBack();
+    }
+
     const handleSubmitPress = async () => {
         const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -216,10 +225,6 @@ const AddAppointment = ({ navigation, route }) => {
         setIsSuccess(true);
         setErrorText(lang.operazioneConclusa)
         setModalVisible(true)
-        await delay(3000);
-        setModalVisible(false);
-        await delay(500);
-        setIsSuccess(false);
     }
 
     function renderHeader(date) {
@@ -285,7 +290,7 @@ const AddAppointment = ({ navigation, route }) => {
                                 <View style={colors.modalContent}>
                                     <Text style={{ color: colors.theme.primary, textAlign: 'center' }}>{errorText}</Text>
                                     <InputButton params={{ marginTop: '5%', width: "75%" }}
-                                        name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
+                                        name="Conferma" icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModalReturn} />
                                 </View>
                             </>
                             :

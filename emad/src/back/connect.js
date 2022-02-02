@@ -16,24 +16,25 @@ import sha512 from 'js-sha512'
     let stock = [];
     let utente = [];
 
-export function connect(){
-    axios.get('https://emad2021.azurewebsites.net/api/retrive_data?').then(response=> {
-        appuntamento = response.data.appuntamento;
-        attributi = response.data.attributi;
-        caratteristiche = response.data.caratteristiche;
-        categoria = response.data.categoria;
-        cliente = response.data.cliente;
-        comunicazione = response.data.comunicazione;
-        dettagli_ordine = response.data.dettagli_ordine;
-        Immagine = response.data.Immagine;
-        magazzino = response.data.magazzino;
-        modello_tridimensionale = response.data.modello_tridimensionale;
-        ordine = response.data.ordine;
-        prodotto = response.data.prodotto;
-        stock = response.data.stock;
-        utente = response.data.utente;
-    }) 
-}
+    export function connect(){
+        axios.get('https://emad2021.azurewebsites.net/api/retrive_data?').then(response=> {
+            appuntamento = response.data.appuntamento;
+            attributi = response.data.attributi;
+            caratteristiche = response.data.caratteristiche;
+            categoria = response.data.categoria;
+            cliente = response.data.cliente;
+            comunicazione = response.data.comunicazione;
+            dettagli_ordine = response.data.dettagli_ordine;
+            Immagine = response.data.Immagine;
+            magazzino = response.data.magazzino;
+            modello_tridimensionale = response.data.modello_tridimensionale;
+            ordine = response.data.ordine;
+            prodotto = response.data.prodotto;
+            stock = response.data.stock;
+            utente = response.data.utente;
+        }) 
+    }
+
     export function AddCostumer(user){
         user.codice_cliente=""+(parseInt(cliente[cliente.length-1].codice_cliente)+1);
         user.id= cliente[cliente.length-1].id +1;
@@ -50,11 +51,38 @@ export function connect(){
         return false
     }
 
+    export function CheckCustomer(nominative){
+        console.log(nominative)
+        var a=cliente.find(costumer=>((costumer.nome.toLowerCase()+" "+costumer.cognome.toLowerCase())===nominative.toLowerCase()))
+        if (a!==undefined)return a.email
+        return undefined
+    }
+
     export function AddAppuntamento(appointment){
-        appointment.id=appuntamento.length
+        appointment.id=appuntamento[appuntamento.length-1].id +1;
         console.log(appointment)
         axios.get('https://emad2021.azurewebsites.net/api/CreateAppointment?' , {params:{"appuntamento":appointment}})
         appuntamento.push(appointment)
+    }
+
+    export function SendQRCodeCash(email,total, numProducts){
+        const subject = "Pay at the Cashier";
+        var url = 'https://luxerfunction.azurewebsites.net/api/HttpTrigger1?code=WsG207XtWBZ48Afw7HpLDOiM0zVtAqPbF2WmgWbA9rXK1tPO9mj6Cg==';
+
+        var option = {
+            method: 'post',
+            url: url,
+            params: {
+                email: email
+            },
+            data: {
+                subject: subject,
+                prezzoTot: total,
+                numProdotti: numProducts,
+            }
+        }                
+        axios(option)
+
     }
 
     export function getAppuntamento(){
@@ -99,8 +127,6 @@ export function connect(){
     export function getUtente(){
         return utente;
     }
-
-
     /*
     Funzione che recupera l'utente tramite email e password 
     Ritorna l'id dell'utente se viene trovato, undefined altrimenti
@@ -111,8 +137,6 @@ export function connect(){
         if (a!==undefined)return a.id
         return undefined
     }
-
-
     /*
     Funzione che recupera il prossimo appuntamento di un cliente tramite l'id del cliente e l'id dell'utente
     Ritorna stringa vuota se non vi è un appuntamento
@@ -124,7 +148,6 @@ export function connect(){
         else return a
     }
 
-
     /*
     Funzione che recupera l'utente tramite l'id
     */
@@ -132,6 +155,14 @@ export function connect(){
         return utente.find(user=>(user.id===id))
     }
 
+    /*
+    Funzione che recupera l'id del cliente tramite nome e cognome
+    */
+    export function getCustomerByName(nominativo){
+        var a = cliente.find(customer=>((customer.nome+ " " +customer.cognome)===nominativo));
+        return a.id;
+    }
+    
 
     /*
     Funzione che calcola il numero di prodotti per categoria
@@ -162,8 +193,6 @@ export function connect(){
     export function getSubCategory(id){
        return categoria.filter(categoria=>categoria.parent_category==id)
     }
-   
-   
     /*
     Funzione che recupera i prodotti tramite la categoria
     */
@@ -223,9 +252,9 @@ export function connect(){
        else return[]
    }
    export function getAttributoTagliaByProduct(prodotto){
-    var taglia= (attributi.filter(at=>at.id_prodotto==prodotto && at.nome=="taglia"))
-    if (taglia!=undefined) return taglia
-    else return[]
+       var taglia= (attributi.filter(at=>at.id_prodotto==prodotto && at.nome=="taglia"))
+       if (taglia!=undefined) return taglia
+       else return[]
    }
    export function getOtherStores(prodotto){
         var other= stock.filter(stock=> stock.id_prodotto==prodotto)
@@ -243,59 +272,59 @@ export function connect(){
    Funzione che restituisce i colori disponibili in negozio
    */
    export function getColorsDb(){
-    var a=attributi.filter(at=>at.nome=="colore").map(at=>at.valore)
-    return  [...new Set( a)]
-}
-export function getSizeDb(){
-    var a=attributi.filter(at=>at.nome=="taglia").map(at=>at.valore)
-    return  [...new Set( a)]
-}
-/*
-Funzione che restituisce i prodotti che hanno 
-*/
-export function getProductsByColors(colors){
- var products =[]
- var a=attributi.filter(at=>at.nome=="colore")
- colors.forEach(color=>{
-       products=products.concat(  a.filter(at=> at.valore==color).map(at=>at.id_prodotto))
-   })
-   return products
-}
+        var a=attributi.filter(at=>at.nome=="colore").map(at=>at.valore)
+        return  [...new Set( a)]
+    }
+    export function getSizeDb(){
+        var a=attributi.filter(at=>at.nome=="taglia").map(at=>at.valore)
+        return  [...new Set( a)]
+        }
+    /*
+    Funzione che restituisce i prodotti che hanno 
+    */
+    export function getProductsByColors(colors){
+        var products =[]
+        var a=attributi.filter(at=>at.nome=="colore")
+        colors.forEach(color=>{
+            products=products.concat(  a.filter(at=> at.valore==color).map(at=>at.id_prodotto))
+    })
+    return products
+    }
 
-export function getProductsBySize(size){
- var products =[]
- var a=attributi.filter(at=>at.nome=="taglia")
- size.forEach(siz=>{
-       products=products.concat(  a.filter(at=> at.valore==siz).map(at=>at.id_prodotto))
-   })
-   return products
-}
-export function getMaxPrezzo(categoria){
- var prodotti=prodotto.filter(prodotto=>prodotto.id_categoria===categoria);
- var subCategory=getSubCategory(categoria)
- if (prodotti== undefined)prodotti=[]
- subCategory.forEach( subcategoria=> 
-   {
-   prodotti=prodotti.concat(prodotto.filter(pro=>pro.id_categoria==subcategoria.id))
-   }
- )
- return Math.max(... prodotti.map(prod=>prod.prezzo))
-}
-export function getMinPrezzo(categoria){
- var prodotti=prodotto.filter(prodotto=>prodotto.id_categoria===categoria);
- var subCategory=getSubCategory(categoria)
- if (prodotti== undefined)prodotti=[]
- subCategory.forEach( subcategoria=> 
-   {
-   prodotti=prodotti.concat(prodotto.filter(pro=>pro.id_categoria==subcategoria.id))
-   }
- )
- return Math.min(... prodotti.map(prod=>prod.prezzo))
-}
+    export function getProductsBySize(size){
+        var products =[]
+        var a=attributi.filter(at=>at.nome=="taglia")
+        size.forEach(siz=>{
+            products=products.concat(  a.filter(at=> at.valore==siz).map(at=>at.id_prodotto))
+        })
+    return products
+    }
+    export function getMaxPrezzo(categoria){
+        var prodotti=prodotto.filter(prodotto=>prodotto.id_categoria===categoria);
+        var subCategory=getSubCategory(categoria)
+        if (prodotti== undefined)prodotti=[]
+            subCategory.forEach( subcategoria=> 
+            {
+                prodotti=prodotti.concat(prodotto.filter(pro=>pro.id_categoria==subcategoria.id))
+            }
+    )
+    return Math.max(... prodotti.map(prod=>prod.prezzo))
+    }
+    export function getMinPrezzo(categoria){
+        var prodotti=prodotto.filter(prodotto=>prodotto.id_categoria===categoria);
+        var subCategory=getSubCategory(categoria)
+        if (prodotti== undefined)prodotti=[]
+            subCategory.forEach( subcategoria=> 
+        {
+            prodotti=prodotti.concat(prodotto.filter(pro=>pro.id_categoria==subcategoria.id))
+        }
+    )
+    return Math.min(... prodotti.map(prod=>prod.prezzo))
+    }
 
-export function getAppuntamentoByUser(user){
-    return appuntamento.filter(a=> a.id_utente==user)
-}
-export function getClienteById(id){
-    return cliente.find(a=>a.id==id)
-}
+    export function getAppuntamentoByUser(user){
+        return appuntamento.filter(a=> a.id_utente==user)
+    }
+    export function getClienteById(id){
+        return cliente.find(a=>a.id==id)
+    }

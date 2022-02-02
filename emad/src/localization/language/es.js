@@ -29,7 +29,8 @@ const es = {
   cerca: 'Buscar',
 
   //Casa
-  hello: 'Bienvenido',
+  helloMaschio: 'Bienvenido',
+  helloFemmina: 'Bienvenida',
   dashboard: 'Tu Panel',
   nuovoCliente: 'Nuevo Cliente',
   schedaCliente: 'Tarjeta de Cliente',
@@ -189,7 +190,8 @@ const es = {
   //Pagar ahora
   paga: 'Pagar Ahora',
   notificaPagamento: 'Acerque el dispositivo habilitado para NFC',
-  
+  invioCodice:'Correo electrónico enviado con éxito!',
+
   //AR
   viewer: 'Ver en AR'
 }

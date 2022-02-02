@@ -99,6 +99,15 @@ const AddUser = ({ navigation }) => {
     setModalVisible(!isModalVisible);
   };
 
+  const toggleModalReturn = async() => {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    await delay(300);
+    setModalVisible(false);
+    await delay(300);
+    setIsSuccess(false);
+    navigation.goBack();
+  };
+
   const toggleGender = (itemValue) => {
     setSesso(itemValue);
     setModalVisibleGender(false);
@@ -184,10 +193,6 @@ const AddUser = ({ navigation }) => {
       setIsSuccess(true);
       setErrorText(lang.operazioneConclusa)
       setModalVisible(true)
-      await delay(3000);
-      setModalVisible(false);
-      setIsSuccess(false);
-      navigation.goBack();
     }
   }
 
@@ -218,7 +223,7 @@ const AddUser = ({ navigation }) => {
                 <View style={colors.modalContent}>
                   <Text style={{ color: colors.theme.primary, textAlign: 'center' }}>{errorText}</Text>
                   <InputButton params={{ marginTop: '5%', width: "75%" }}
-                    name={lang.confermaOperazione} icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModal} />
+                    name={lang.confermaOperazione} icon="arrow-forward-outline" rotation="-45deg" onPress={toggleModalReturn} />
                 </View>
               </>
               :

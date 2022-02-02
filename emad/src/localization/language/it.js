@@ -29,7 +29,8 @@ const it = {
   cerca: 'Cerca',
 
   //Home
-  hello: 'Bentornato',
+  helloMaschio: 'Bentornato',
+  helloFemmina: 'Bentornata',
   dashboard:'La tua Dashboard',
   nuovoCliente:'Nuovo Cliente',
   schedaCliente:'Scheda Cliente',
@@ -186,7 +187,8 @@ const it = {
   colore: 'Colore',
   specifiche: 'Specifiche',
   customerError:'Inserisci Nome o Codice Cliente!',
-  
+  invioCodice:'Email inviata con successo!',
+
   //Paga Ora
   paga:'Paga Ora',
   notificaPagamento:'Avvicina il dispositivo abilitato NFC',

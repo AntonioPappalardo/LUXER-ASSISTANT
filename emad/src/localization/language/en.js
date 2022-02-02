@@ -29,7 +29,8 @@ const en = {
   cerca: 'Search',
 
   //Home
-  hello: 'Welcome',
+  helloMaschio: 'Welcome',
+  helloFemmina: 'Welcome',
   dashboard: 'Your Dashboard',
   nuovoCliente: 'New Customer',
   schedaCliente: 'Customer Card',
@@ -188,6 +189,7 @@ const en = {
   //Pay Now
   paga: 'Pay Now',
   notificaPagamento: 'Bring the NFC-enabled device closer',
+  invioCodice:'Email successfully sent!',
 
   //AR
   viewer: 'View in AR'

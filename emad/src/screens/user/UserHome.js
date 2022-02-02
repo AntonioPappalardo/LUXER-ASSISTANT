@@ -37,7 +37,7 @@ const UserHome = ({ navigation, route }) => {
       <View style={{ backgroundColor: colors.theme.background, flex: 1 }}>
          <StatusBar style={isDark? 'light': 'dark'}/>
         <Image source={{uri:utente.avatar}} style={{ width: windowWidth/2, height: windowWidth/2, alignSelf: 'center', borderRadius: windowWidth/4, marginTop: "15%" }} />
-          <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 36, color: colors.theme.title, alignSelf: 'center', marginTop: "5%" }}>{lang.hello}, {utente.nome}!</Text>
+          <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 36, color: colors.theme.title, alignSelf: 'center', marginTop: "5%" }}>{utente.sesso ==='Maschio'? lang.helloMaschio: lang.helloFemmina}, {utente.nome}!</Text>
           <Text style={{ fontFamily: "SFProDisplayMedium", fontSize: 18, color: colors.theme.subtitle, alignSelf: 'center', marginBottom: "4%" }}>{lang.dashboard}</Text>
           <ScrollView overScrollMode="never" style={{marginBottom: tabBarHeight}}>
           <Divider width={"100%"} opacity={1} marginBottom={12} />

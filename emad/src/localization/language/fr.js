@@ -29,7 +29,8 @@ const fr = {
   cerca: 'Près',
 
   //Domicile
-  hello: 'Bienvenue',
+  helloMaschio: 'Bienvenue',
+  helloFemmina: 'Bienvenue',
   dashboard: 'Votre Tableau de Bord',
   nuovoCliente: 'Nouvelle Cliente',
   schedaCliente: 'Carte Client',
@@ -189,6 +190,7 @@ const fr = {
   //Payez Maintenant
   paga: 'Payez Maintenant',
   notificaPagamento: 'Rapprochez l\'appareil compatible NFC',
+  invioCodice:'E-mail envoyé avec succès!',
 
   //AR
   viewer: 'Afficher en RA'

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Image, View, Text, Dimensions, Animated } from "react-native";
+import { Image, View, Text, Dimensions, Animated, TouchableOpacity } from "react-native";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { useTheme } from "../../theme/ThemeProvider";
@@ -70,9 +70,13 @@ const Payment = ({ navigation }) => {
                     </View>
                 </View>       
                     {isDark ? 
-                <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/american-express.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:100,maxWidth: 400}} resizeMode="contain"/>
+                <TouchableOpacity activeOpacity={.85}>
+                    <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/american-express.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:100,maxWidth: 400}} resizeMode="contain"/>
+                </TouchableOpacity>
                     :
-                <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/Natewest.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:0,maxWidth: 400}} resizeMode="contain"/>
+                <TouchableOpacity activeOpacity={.85}>
+                    <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/Natewest.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:0,maxWidth: 400}} resizeMode="contain"/>
+                </TouchableOpacity>
                 }
                 
                 <ShadowBox
