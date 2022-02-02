@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, ScrollView, Dimensions } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
@@ -21,7 +21,6 @@ const Cart = ({ navigation, route }) => {
     
     const cart= ShoppingCart();
    
-
     const [refresh, setRefresh] = useState(Date(Date.now()).toString())
     const { colors, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
@@ -32,6 +31,12 @@ const Cart = ({ navigation, route }) => {
     const [totale, setTotale] = useState(cart.getTotale());
     const [numOfArticle, setNumOfArticle] = useState(cart.getNumOfArticle());
     const [userEmail, setUserEmail] = useState(undefined);
+
+    useEffect(() => {
+        setTotale(cart.getTotale())
+        setNumOfArticle(cart.getNumOfArticle())
+    });
+
     const OnIncrementProduct = (index) => {
         let newCart = cart.increaseProduct(index)
         setItems(newCart);
