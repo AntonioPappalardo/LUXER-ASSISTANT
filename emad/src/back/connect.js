@@ -328,3 +328,27 @@ import sha512 from 'js-sha512'
     export function getClienteById(id){
         return cliente.find(a=>a.id==id)
     }
+
+    export function getClienteByEmail(email){
+        return cliente.find(c=> c.email==email)
+    }
+    
+    export function createOrdini(cart,user){
+        var ordine={};
+        ordine.totale=cart.getTotale();
+        ordine.numero_articoli=cart.getNumOfArticle()
+        var d=new Date()
+        var data= d.toISOString().substring(0,10)
+        ordine.data=data
+        ordine.id_cliente=user
+       var dettagli_ordine=[]
+       cart.getCart().forEach(ele=>{
+           dettagli_ordine.push({id_prodotto:ele.prodotto.id,qta:ele.qta})
+       })
+       var unico={
+        "ordini":ordine,
+        "dettagli_ordine":dettagli_ordine
+       }
+        axios.get('https://emad2021.azurewebsites.net/api/CreateOrdini',{params:{"unico":unico}})
+     
+    }

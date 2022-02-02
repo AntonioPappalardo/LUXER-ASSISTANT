@@ -11,7 +11,7 @@ import Divider from "../../components/Divider";
 import Modal from 'react-native-modal'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ShoppingCart } from "../../back/cart";
-import { getCliente, getImmagineByProdotto, CheckCustomer, SendQRCodeCash, getCustomerByName } from "../../back/connect";
+import { getCliente, getImmagineByProdotto, CheckCustomer, SendQRCodeCash, getCustomerByName, createOrdini } from "../../back/connect";
 import { useLanguage } from "../../localization/Localization";
 
 const height = Dimensions.get('screen').height;
@@ -34,7 +34,7 @@ const Cart = ({ navigation, route }) => {
     const [items,setItems] = useState(cart.getCart());
     const [totale, setTotale] = useState(cart.getTotale());
     const [numOfArticle, setNumOfArticle] = useState(cart.getNumOfArticle());
-
+    const [toPayment,onPayment]=useState(0);
     const ook = (cerca) => {
         onChangeText(cerca);
         onSearch(users.filter(user => (user.nome.toLowerCase().includes(cerca.toLowerCase()) || user.cognome.toLowerCase().includes(cerca.toLowerCase()) || user.codice_cliente.includes(cerca))))
@@ -107,6 +107,7 @@ const Cart = ({ navigation, route }) => {
             setModalVisible(true)
             return;
         }
+        createOrdini(cart,toPayment)
         navigation.navigate('Payment');
 
     }
@@ -250,7 +251,7 @@ const Cart = ({ navigation, route }) => {
                     
                 <ScrollView overScrollMode="never" style={{marginTop:-35, display:`${display}`}}>
                     {user.slice(0,3).map((item) => (
-                        <TouchableOpacity  key={item.id} activeOpacity={.95}  onPress={()=>{onChangeText(item.nome +" "+item.cognome); setDisplay("none")}}>
+                        <TouchableOpacity  key={item.id} activeOpacity={.95}  onPress={()=>{onChangeText(item.nome +" "+item.cognome);onPayment(item.id); setDisplay("none")}}>
                             <View style={{height: 50, width: "75%",flexDirection: "row", alignSelf: "center",marginTop: 0, marginBottom: 5, backgroundColor:'#EA9F5A' }} activeOpacity={.75}>
                                 <View style={{width: '25%'}}>
                                 </View>
