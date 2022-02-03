@@ -29,7 +29,9 @@ const CustomerPage = ({ navigation, route }) => {
     const lab =(actualMonth<6)? mesi.slice(actualMonth+6, 12).concat(mesi.slice(0, actualMonth))
     :mesi.slice(actualMonth-6, 6).concat(mesi.slice(6, actualMonth));
     let [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0, visible: false, value: 0 })
-    
+    useEffect(()=>{
+        setCliente(costumers.find(us => us.id === route.params.cliente))
+    })
     const costumers = getCliente();
     const utente =route.params.user
     const layout = useWindowDimensions();
