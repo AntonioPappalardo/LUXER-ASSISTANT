@@ -1,5 +1,4 @@
-import React, {Component} from "react";
-import { useState} from "react";
+import React, {Component, useState, useRef} from "react";
 import { Image, View, Text, Dimensions, Animated, TouchableOpacity } from "react-native";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
@@ -22,7 +21,7 @@ class ImageLoader extends Component{
 
     onLoad = () => {
         Animated.timing(this.state.opacity, {
-            delay:3000,
+            delay:5000,
             toValue:1,
             duration:1500,
             useNativeDriver:true,
@@ -58,10 +57,9 @@ const Payment = ({ navigation, route }) => {
     const [lang, setLanguage] = useLanguage();
     const [isModalVisible, setModalVisible] = useState(false);
     const [errorText, setErrorText] = useState('Default');
-
+    const [opacity, setOpacity] = useState(1);
     const cartClient = route.params.carrello;
     const paymentCart = route.params.payment;
-
 
     const toggleModalReturn = async() => {
         const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -70,13 +68,14 @@ const Payment = ({ navigation, route }) => {
         navigation.goBack();
       };
 
-      const handleSubmitPress = async() => {
+    const handleSubmitPress = async() => {
         const delay = ms => new Promise(res => setTimeout(res, ms));
+        setOpacity(0);
         createOrdini(cartClient,paymentCart)
         setErrorText(lang.pagamentoConcluso)
         await delay(1000);
         setModalVisible(true);
-      }
+    };
 
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
@@ -117,16 +116,18 @@ const Payment = ({ navigation, route }) => {
                     <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
                     <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, alignSelf:'center', color: colors.theme.title}}>{lang.paga}</Text>
                     </View>
-                </View>       
+                </View>      
+                <View style={{opacity: opacity}}> 
+                <TouchableOpacity activeOpacity={.85} onPress={handleSubmitPress}>
+                <Animated.View>
                     {isDark ? 
-                <TouchableOpacity activeOpacity={.85} onPress={handleSubmitPress}>
                     <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/american-express.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:100,maxWidth: 400}} resizeMode="contain"/>
-                </TouchableOpacity>
                     :
-                <TouchableOpacity activeOpacity={.85} onPress={handleSubmitPress}>
                     <ImageLoader source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/Natewest.png'}} style={{marginTop: '25%', marginBottom:'10%', alignSelf:'center', height:300, width: width, minWidth:0,maxWidth: 400}} resizeMode="contain"/>
+                    }
+                </Animated.View>
                 </TouchableOpacity>
-                }
+                </View>
                 
                 <ShadowBox
                     inner
@@ -136,16 +137,15 @@ const Payment = ({ navigation, route }) => {
                         shadowOpacity: .6,
                         shadowColor: "#000",
                         shadowRadius: 5,
-        
                         backgroundColor: colors.payment.backgroundColor,
                         width: width+5,
                         height: 350,
                     }}>
                         <Text  style={{fontFamily: "SFProDisplayBold", fontSize: 15, color: colors.theme.title, marginTop: '10%', alignSelf: 'center'}}>{lang.notificaPagamento}</Text>
                     {isDark ?
-                        <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/nfc_light.png'}} style={{ marginTop: '5%', height:100,width: width, maxWidth: 100, alignSelf: 'center'}} resizeMode="contain" />
+                        <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/nfc_light.png'}} style={{ marginTop: '5%', height:100,width: width, maxWidth: 100, alignSelf: 'center'}} resizeMode="contain"/>
                         :
-                        <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/nfc_dark.png'}} style={{marginTop: '5%', height:100,width: width, maxWidth: 100, alignSelf: 'center'}} resizeMode="contain" />
+                        <Image source={{uri:'https://storageaccountemadbc1b.blob.core.windows.net/img/nfc_dark.png'}} style={{marginTop: '5%', height:100,width: width, maxWidth: 100, alignSelf: 'center'}} resizeMode="contain"/>
                     }
                 </ShadowBox>
 
