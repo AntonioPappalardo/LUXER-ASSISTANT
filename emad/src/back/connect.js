@@ -1,6 +1,32 @@
 import axios from 'axios'
 import sha512 from 'js-sha512'
-
+let slots = [
+    { "slot": "09:00", "value": "0" },
+    { "slot": "09:30", "value": "1" },
+    { "slot": "10:00", "value": "2" },
+    { "slot": "10:30", "value": "3" },
+    { "slot": "11:00", "value": "4" },
+    { "slot": "11:30", "value": "5" },
+    { "slot": "12:00", "value": "6" },
+    { "slot": "12:30", "value": "7" },
+    { "slot": "13:00", "value": "8" },
+    { "slot": "13:30", "value": "9" },
+    { "slot": "14:00", "value": "10" },
+    { "slot": "14:30", "value": "11" },
+    { "slot": "15:00", "value": "12" },
+    { "slot": "15:30", "value": "13" },
+    { "slot": "16:00", "value": "14" },
+    { "slot": "16:30", "value": "15" },
+    { "slot": "17:00", "value": "16" },
+    { "slot": "17:30", "value": "17" },
+    { "slot": "18:00", "value": "18" },
+    { "slot": "18:30", "value": "19" },
+    { "slot": "19:00", "value": "20" },
+    { "slot": "19:30", "value": "21" },
+    { "slot": "20:00", "value": "22" },
+    { "slot": "20:30", "value": "23" },
+    { "slot": "21:00", "value": "24" }
+]
     let appuntamento = [];
     let attributi = [];
     let caratteristiche = [];
@@ -34,7 +60,9 @@ import sha512 from 'js-sha512'
             utente = response.data.utente;
         }) 
     }
-
+    export function getSlots(){
+        return slots
+    }
     export function AddCostumer(user){
         user.codice_cliente=""+(parseInt(cliente[cliente.length-1].codice_cliente)+1);
         user.id= cliente[cliente.length-1].id +1;
@@ -145,7 +173,7 @@ import sha512 from 'js-sha512'
     export function getNextAppuntamentoByCliente(cliente,user){
         var a= appuntamento.find(appuntamento=> appuntamento.id_utente===user && appuntamento.id_cliente===cliente)
         if (a===undefined) return""
-        else return a
+        else return a.data.substring(0,10)+"  "+ slots.find(b=>b.value==a.slot_inizio).slot +"-"+slots.find(b=>b.value==a.slot_fine).slot
     }
 
     /*
@@ -350,5 +378,10 @@ import sha512 from 'js-sha512'
         "dettagli_ordine":dettagli_ordine
        }
         axios.get('https://emad2021.azurewebsites.net/api/CreateOrdini',{params:{"unico":unico}})
+
+        axios.get('https://emad2021.azurewebsites.net/api/retrive_data?').then(response=> {
+            dettagli_ordine = response.data.dettagli_ordine;
+            ordine = response.data.ordine;
+        }) 
      
     }

@@ -14,7 +14,7 @@ import 'moment/locale/it';
 import 'moment/locale/es';
 import 'moment/locale/fr';
 
-import { getAppuntamentoByUser, getClienteById, getNextAppuntamentoByCliente } from "../../back/connect";
+import { getAppuntamentoByUser, getClienteById, getNextAppuntamentoByCliente, getSlots } from "../../back/connect";
 
 const width = Dimensions.get('window').width;
 
@@ -38,33 +38,7 @@ const AppointmentList = ({ navigation, route }) => {
         users = (users.filter(d => moment(d.data).format('DD/MM/YYYY') == moment(day).format('DD/MM/YYYY')));
         users.sort((a,b) => (a.slot_inizio > b.slot_inizio) ? 1 : ((b.slot_inizio > a.slot_inizio) ? -1 : 0))
     }
-    const slots = [
-        { "slot": "09:00", "value": "0" },
-        { "slot": "09:30", "value": "1" },
-        { "slot": "10:00", "value": "2" },
-        { "slot": "10:30", "value": "3" },
-        { "slot": "11:00", "value": "4" },
-        { "slot": "11:30", "value": "5" },
-        { "slot": "12:00", "value": "6" },
-        { "slot": "12:30", "value": "7" },
-        { "slot": "13:00", "value": "8" },
-        { "slot": "13:30", "value": "9" },
-        { "slot": "14:00", "value": "10" },
-        { "slot": "14:30", "value": "11" },
-        { "slot": "15:00", "value": "12" },
-        { "slot": "15:30", "value": "13" },
-        { "slot": "16:00", "value": "14" },
-        { "slot": "16:30", "value": "15" },
-        { "slot": "17:00", "value": "16" },
-        { "slot": "17:30", "value": "17" },
-        { "slot": "18:00", "value": "18" },
-        { "slot": "18:30", "value": "19" },
-        { "slot": "19:00", "value": "20" },
-        { "slot": "19:30", "value": "21" },
-        { "slot": "20:00", "value": "22" },
-        { "slot": "20:30", "value": "23" },
-        { "slot": "21:00", "value": "24" }
-    ]
+    const slots = getSlots()
     const [daySelected, setDaySelected] = useState(new Date);
     filterday(daySelected)
     const onDayPress = day => {
