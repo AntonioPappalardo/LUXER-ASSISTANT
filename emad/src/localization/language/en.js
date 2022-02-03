@@ -181,7 +181,7 @@ const en = {
   articoliTot: 'Total Items',
   totale: 'Total',
   email: 'Insert Email',
-  campoErroreTotale:'The Cart is empty!',
+  campoErroreTotale:'The cart is empty!',
   colore: 'Color',
   specifiche: 'Features',
   customerError:'Enter Name or Customer Code!',
@@ -190,6 +190,7 @@ const en = {
   paga: 'Pay Now',
   notificaPagamento: 'Bring the NFC-enabled device closer',
   invioCodice:'Email successfully sent!',
+  pagamentoConcluso:'Payment made successfully!',
 
   //AR
   viewer: 'View in AR'

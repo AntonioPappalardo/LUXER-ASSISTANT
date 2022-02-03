@@ -182,7 +182,7 @@ const fr = {
   articoliTot: 'Articles au Total',
   totale: 'Le Total',
   email: 'Entrer l\'E-mail',
-  campoErroreTotale:'Le Panier est vide!',
+  campoErroreTotale:'Le panier est vide!',
   colore: 'Couleur',
   specifiche: 'Caractéristiques',
   customerError:'Entrez le nom ou le code client!',
@@ -191,6 +191,7 @@ const fr = {
   paga: 'Payez Maintenant',
   notificaPagamento: 'Rapprochez l\'appareil compatible NFC',
   invioCodice:'E-mail envoyé avec succès!',
+  pagamentoConcluso:'Paiement effectué avec succès !',
 
   //AR
   viewer: 'Afficher en RA'

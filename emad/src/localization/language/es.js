@@ -182,7 +182,7 @@ const es = {
   articoliTot: 'Articulos Totales',
   totale: 'Total',
   email: 'Ingrese correo Electrónico',
-  campoErroreTotale:'¡El Carrito está vacío!',
+  campoErroreTotale:'¡El carrito está vacío!',
   colore: 'Color',
   specifiche: 'Características',
   customerError:'Ingrese Nombre o Código de Cliente!',
@@ -191,6 +191,7 @@ const es = {
   paga: 'Pagar Ahora',
   notificaPagamento: 'Acerque el dispositivo habilitado para NFC',
   invioCodice:'Correo electrónico enviado con éxito!',
+  pagamentoConcluso:'¡Pago realizado con éxito!',
 
   //AR
   viewer: 'Ver en AR'

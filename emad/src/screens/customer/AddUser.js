@@ -133,10 +133,9 @@ const AddUser = ({ navigation }) => {
     'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
     'SFProDisplayUltraLightItalic': require('../../../assets/fonts/SFProDisplayUltraLightItalic.otf')
   });
-  const handleSubmitPress = async () => {
+  const handleSubmitPress = () => {
     var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     var phoneformat = /^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[456789]\d{9}|(\d[ -]?){10}\d$/;
-    const delay = ms => new Promise(res => setTimeout(res, ms));
 
     if (!nome) {
       setErrorText(lang.campoErroreNome)

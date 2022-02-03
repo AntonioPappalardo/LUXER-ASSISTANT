@@ -183,7 +183,7 @@ const it = {
   articoliTot:'Articoli Totali',
   totale:'Totale',
   email:'Inserisci Email',
-  campoErroreTotale:'Il Carrello è vuoto!',
+  campoErroreTotale:'Il carrello è vuoto!',
   colore: 'Colore',
   specifiche: 'Specifiche',
   customerError:'Inserisci Nome o Codice Cliente!',
@@ -192,7 +192,7 @@ const it = {
   //Paga Ora
   paga:'Paga Ora',
   notificaPagamento:'Avvicina il dispositivo abilitato NFC',
-  
+  pagamentoConcluso:'Pagamento effettuato con successo!',
   //AR
   viewer: 'Visualizza in AR'
 }
