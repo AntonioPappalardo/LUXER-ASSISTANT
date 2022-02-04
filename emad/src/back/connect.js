@@ -111,6 +111,37 @@ let slots = [
         }                
         axios(option)
 
+    };
+
+    export function SendBookingInfo(email,nome,data, inizio, fine, idUser){
+        // store, indirizzo, poster
+        var userShop = utente.find(user=>(user.id===idUser));
+        
+        var idStore = userShop.id_magazzino;
+        var store = magazzino.find(m =>(m.id===idStore));
+        var indirizzo = store.indirizzo + " " + store.provincia;
+
+        const subject = "Booking Appointment in Store";
+        var url = 'https://luxerfunction.azurewebsites.net/api/HttpTrigger3?code=qJNp5z8OHLCAVX/jiG/m6maj27T0hkriy2EsqszaHI2yclsfSqiUSA=='
+        var option = {
+            method: 'post',
+            url: url,
+            params: {
+                email: email
+            },
+            data: {
+                subject: subject,
+                nome: nome,
+                date: data,
+                inizioSlot: inizio,
+                fineSlot: fine,
+                nomeNegozio: store.nome,
+                indirizzo: indirizzo,
+                attachment: store.cover,
+            }
+        }                
+        axios(option)
+
     }
 
     export function getAppuntamento(){
@@ -189,6 +220,16 @@ let slots = [
     export function getCustomerByName(nominativo){
         var a = cliente.find(customer=>((customer.nome+ " " +customer.cognome)===nominativo));
         return a.id;
+    }
+
+    export function getCustomerById(id){
+        var a = cliente.find(customer=>(customer.id===id));
+        return a.email;
+    }
+    
+    export function getCustomerName(id){
+        var a = cliente.find(customer=>(customer.id===id));
+        return a.nome;
     }
     
 

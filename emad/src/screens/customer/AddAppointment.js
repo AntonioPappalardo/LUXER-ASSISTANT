@@ -16,7 +16,7 @@ import moment from 'moment';
 import 'moment/locale/it';
 import 'moment/locale/es';
 import 'moment/locale/fr';
-import { AddAppuntamento, getAppuntamentoByUser } from "../../back/connect";
+import { AddAppuntamento, getAppuntamentoByUser, SendBookingInfo, getCustomerById, getCustomerName } from "../../back/connect";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('screen').height;
@@ -221,11 +221,18 @@ const AddAppointment = ({ navigation, route }) => {
         appuntamento.slot_inizio = selectedFirstSlot;
         appuntamento.slot_fine = selectedSecondSlot;
         appuntamento.data = daySelected;
+
+        const email = getCustomerById(route.params.cliente.id);
+        const nome = getCustomerName(route.params.cliente.id);
+        const idUser = route.params.utente;
+
         AddAppuntamento(appuntamento);
+        SendBookingInfo(email, nome, daySelected,selectedFirstSlotLabel.slot, selectedSecondSlotLabel.slot,idUser)
         setIsSuccess(true);
         setErrorText(lang.operazioneConclusa)
         setModalVisible(true)
     }
+
 
     function renderHeader(date) {
         if (date) {
