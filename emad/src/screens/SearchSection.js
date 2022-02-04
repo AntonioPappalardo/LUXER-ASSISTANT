@@ -38,6 +38,9 @@ const SearchSection = ({ navigation , route}) => {
       <Stack.Screen name="ProductPage" component={ProductPage} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="ScanQR" component={ScanQR} initialParams={{ "utente": utente }} options={{cardStyleInterpolator: CardStyleEffect}}/>
       <Stack.Screen name="ExpoAR" component={ExpoAR} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="Store" component={Store} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      <Stack.Screen name="StoreList" component={StoreList} options={{cardStyleInterpolator: CardStyleEffect}}/>
+      
     </Stack.Navigator>
   );
 };
