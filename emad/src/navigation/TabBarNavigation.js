@@ -5,12 +5,14 @@ import { BlurView } from 'expo-blur';
 import Icon from 'react-native-vector-icons/Ionicons'
 import Home from '../screens/Home';
 import SearchProduct from '../screens/shop/SearchProduct';
-import SearchUser from '../screens/customer/SearchUser';
 import Cart from '../screens/shop/Cart';
 import AppointmentList from '../screens/customer/AppointmentList';
 import { useTheme } from "../theme/ThemeProvider";
 import { useLanguage } from "../localization/Localization";
 import { ShoppingCart } from "../back/cart";
+import CostumerSection from '../screens/CostumerSection';
+import CalendarSection from '../screens/CalendarSection';
+import SearchSection from '../screens/SearchSection';
 const Tab = createBottomTabNavigator()
 const TabBarIcon = props => {
 	return (
@@ -76,7 +78,7 @@ const TabBarNavigation = (props) => {
 					/>
 					<Tab.Screen
 						name="Cerca"
-						component={SearchProduct}
+						component={SearchSection}
 						initialParams={{ "user": utente }}
 						options={{
 							tabBarIcon: ({ focused, color }) => (
@@ -132,7 +134,7 @@ const TabBarNavigation = (props) => {
 					
 					<Tab.Screen
 						name="Clienti"
-						component={SearchUser}
+						component={CostumerSection}
 						initialParams={{ "user": utente }}
 						options={{
 							tabBarIcon: ({ focused, color }) => (
@@ -148,7 +150,7 @@ const TabBarNavigation = (props) => {
 					/>
 					<Tab.Screen
 						name="Calendario"
-						component={AppointmentList}
+						component={CalendarSection}
 						initialParams={{ "user": utente }}
 						options={{
 
