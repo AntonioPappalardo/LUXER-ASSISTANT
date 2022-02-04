@@ -10,6 +10,8 @@ import { ShadowBox } from 'react-native-neomorph-shadows';
 import { useLanguage } from "../../localization/Localization";
 import { createOrdini } from "../../back/connect";
 import Modal from 'react-native-modal'
+import { ShoppingCart } from "../../back/cart";
+
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -55,6 +57,7 @@ const Payment = ({ navigation, route }) => {
 
     const { colors, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
+    const [cart,setCart] = useState(ShoppingCart());
     const [isModalVisible, setModalVisible] = useState(false);
     const [errorText, setErrorText] = useState('Default');
     const [opacity, setOpacity] = useState(1);
@@ -64,6 +67,8 @@ const Payment = ({ navigation, route }) => {
     const toggleModalReturn = async() => {
         const delay = ms => new Promise(res => setTimeout(res, ms));
         await delay(500);
+        cart.emptyCart();
+        setCart(ShoppingCart());
         setModalVisible(false);
         navigation.goBack();
       };

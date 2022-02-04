@@ -30,6 +30,10 @@ export const ShoppingCart = (function () {
             return this.cart;
         } 
 
+        this.emptyCart = function(){
+            this.cart = [];
+        }
+
         this.decreaseProduct = function(index) { 
             //var exist = (this.cart.map(c => c.prodotto.id)).findIndex(prod => prod == idprodotto)
             //var exist = this.cart.map(cart => cart).findIndex(prod => prod.prodotto.id == id && prod.selectedColor == selectedColor && prod.selectedSize == selectedSize);
