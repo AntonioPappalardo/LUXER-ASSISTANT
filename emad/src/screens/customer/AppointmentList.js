@@ -27,6 +27,7 @@ const AppointmentList = ({ navigation, route }) => {
     const { key, colors, setScheme, isDark } = useTheme();
     const [lang, setLanguage] = useLanguage();
     const tabBarHeight = useBottomTabBarHeight();
+    var utente= route.params.user;
 
     moment.locale(lang.codice)
     LocaleConfig.locales[lang.codice] = lang.locale;
@@ -136,7 +137,7 @@ const AppointmentList = ({ navigation, route }) => {
                                     <Image source={{ uri: getClienteById(item.id_cliente).avatar }} style={{ height: 70, width: 70, borderRadius: 5, borderWidth: 3, borderColor: "white" }} />
                                 </View>
                             </View>
-                            <TouchableOpacity style={{ flexDirection: 'row', width: '75%' }} activeOpacity={.75} onPress={() => { navigation.navigate('CustomerPage', { cliente: item.id_cliente }) }}>
+                            <TouchableOpacity style={{ flexDirection: 'row', width: '75%' }} activeOpacity={.75} onPress={() => { navigation.navigate('CustomerPage', { cliente: item.id_cliente,user: utente }) }}>
                                 <View style={{ flexDirection: "column", justifyContent: "center" }}>
                                     <Text style={{ fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{getClienteById(item.id_cliente).nome} {getClienteById(item.id_cliente).cognome}</Text>
                                     <Text style={{ fontSize: 11, fontFamily: 'SFProDisplayRegular', color: colors.theme.subtitle }}>{lang.codiceCliente}: {getClienteById(item.id_cliente).codice_cliente}</Text>

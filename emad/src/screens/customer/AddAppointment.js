@@ -127,7 +127,7 @@ const AddAppointment = ({ navigation, route }) => {
             for (let i = 0; i <= removedSlot[removedSlot.length - 1]; i++) {
                 if(parseInt(slots[j].value) == parseInt(removedSlot[i])) { 
                     deleteSlot= true;
-                    console.log(j);
+                    //console.log(j);
                 }
             }
             if(!deleteSlot) {
