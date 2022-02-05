@@ -19,7 +19,8 @@ const ColorFilter = (props) => {
             {show ?
                 <View style={{
                     marginTop: 2,
-                    marginRight: 7,
+                    marginRight: 3,
+                    marginLeft: 3,
                     width: 21,
                     height: 21,
                     borderRadius: 10.5,
@@ -34,7 +35,8 @@ const ColorFilter = (props) => {
                 :
                 <View style={{
                     marginTop: 2,
-                    marginRight: 7,
+                    marginRight: 4,
+                    marginLeft: 4,
                     width: 18,
                     height: 18,
                     borderRadius: 9,

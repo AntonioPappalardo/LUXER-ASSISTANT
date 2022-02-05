@@ -56,8 +56,9 @@ class ImageLoader extends Component{
 const Payment = ({ navigation, route }) => {
 
     const { colors, isDark } = useTheme();
+    const [refresh, setRefresh] = useState(Date(Date.now()).toString())
     const [lang, setLanguage] = useLanguage();
-    const [cart,setCart] = useState(ShoppingCart());
+    const cart = ShoppingCart();
     const [isModalVisible, setModalVisible] = useState(false);
     const [errorText, setErrorText] = useState('Default');
     const [opacity, setOpacity] = useState(1);
@@ -68,9 +69,9 @@ const Payment = ({ navigation, route }) => {
         const delay = ms => new Promise(res => setTimeout(res, ms));
         await delay(500);
         cart.emptyCart();
-        setCart(ShoppingCart());
+        setRefresh(Date(Date.now()).toString());
         setModalVisible(false);
-        navigation.goBack();
+        navigation.navigate('UserHome');
       };
 
     const handleSubmitPress = async() => {

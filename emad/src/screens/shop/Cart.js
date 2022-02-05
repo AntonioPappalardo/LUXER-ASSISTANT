@@ -64,6 +64,7 @@ const Cart = ({ navigation, route }) => {
     };
 
     useEffect(() => {
+        setItems(cart.getCart())
         setTotale(cart.getTotale())
         setNumOfArticle(cart.getNumOfArticle())
     });

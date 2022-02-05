@@ -339,11 +339,38 @@ export function getMagazzinoById(id){
 /*
 Funzione che restituisce i colori disponibili in negozio
 */
-export function getColorsDb(){
+export function getColorsDb(categoria){
+    var products = prodotto.filter(prodotto=>prodotto.id_categoria===categoria);
+    var colors = attributi.filter(at=>at.nome=="colore");
+    var colorArray= [];
+    colors.forEach(attr => {
+        products.forEach(prod => {[]
+            if (prod.id == attr.id_prodotto){
+                colorArray.push(attr.valore);
+            }
+        })
+    });
+    
+    return  [...new Set( colorArray)];
+    
     var a=attributi.filter(at=>at.nome=="colore").map(at=>at.valore)
     return  [...new Set( a)]
 }
-export function getSizeDb(){
+export function getSizeDb(categoria){
+    var products = prodotto.filter(prodotto=>prodotto.id_categoria===categoria);
+    var sizes = attributi.filter(at=>at.nome=="taglia");
+   
+    var sizeArray= [];
+  
+    sizes.forEach(attr => {
+        products.forEach(prod => {
+            if (prod.id == attr.id_prodotto ){
+                sizeArray.push(attr.valore);
+            }
+        })
+    });
+    return  [...new Set( sizeArray)];
+    
     var a=attributi.filter(at=>at.nome=="taglia").map(at=>at.valore)
     return  [...new Set( a)]
     }

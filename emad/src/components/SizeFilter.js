@@ -27,8 +27,10 @@ const SizeFilter = (props) => {
             <TouchableOpacity activeOpacity={0.75} onPress={toggleColor}>
                 {show ?
                     <View style={{
-                        marginRight: 7,
-                        width: 20,
+                        marginRight: 1,
+                        marginLeft: 2,
+                        paddingLeft: 4,
+                        paddingRight: 4,
                         height: 20,
                         borderRadius: 5,
                         backgroundColor: colors.sizeFilter.background,
@@ -46,8 +48,10 @@ const SizeFilter = (props) => {
                     </View>
                     :
                     <View style={{
-                        marginRight: 7,
-                        width: 20,
+                        marginRight: 1,
+                        marginLeft: 2,
+                        paddingLeft: 4,
+                        paddingRight: 4,
                         height: 20,
                         borderRadius: 5,
                         justifyContent: 'center',

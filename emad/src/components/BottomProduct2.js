@@ -1,19 +1,16 @@
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Picker } from '@react-native-picker/picker';
 import { Text, View, Dimensions, TouchableOpacity, ScrollView, Animated, Platform ,Switch} from "react-native";
 import Modal from 'react-native-modal'
-
 import SlidingUpPanel from "rn-sliding-up-panel";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import ColorFilter from "./ColorFilter";
 import InputButton from "./InputButton";
 import { useTheme } from "../theme/ThemeProvider";
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { getStockByUserProduct, getQtaByProduct, getCaratteristicheProduct, getAttributoColoreByProduct, getAttributoTagliaByProduct } from "../back/connect";
 import { ShoppingCart} from "../back/cart";
 import { useLanguage } from "../localization/Localization";
-import { color } from "react-native-reanimated";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -24,30 +21,6 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
     var qta = getStockByUserProduct(prodotto.id, utente)
     var otherqta = getQtaByProduct(prodotto.id, utente)
     var caratteristiche = getCaratteristicheProduct(prodotto.id)
-    function renderTabBar(props) {
-        const inputRange = props.navigationState.routes.map((x, i) => i);
-        
-        return (
-            <View style={styles.tabBar}>
-                {props.navigationState.routes.map((route, i) => {
-                    const opacity = props.position.interpolate({
-                        inputRange,
-                        outputRange: inputRange.map((inputIndex) =>
-                            inputIndex === i ? 1 : 0.5
-                        ),
-                    });
-
-                    return (
-                        <TouchableOpacity
-                            style={styles.tabItem}
-                            onPress={() => this.setState({ index: i })}>
-                            <Animated.Text style={{ opacity }}>{route.title}</Animated.Text>
-                        </TouchableOpacity>
-                    );
-                })}
-            </View>
-        );
-    };
 
     const [index, setIndex] = useState(0);
     const [lang, setLanguage] = useLanguage();
@@ -138,19 +111,29 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
     const elementRef = useRef();
     
     const [selectedSize, setSelectedSize] = useState(undefined);
-    const [selectedColor,setSelectedColor] = useState(undefined);
+    const [selectedColor,setSelectedColor] = useState(productColors[0]);
 
     /*const [show, setSelected] = useState(productColors.map((item) => ({'color': item, active: false})));
     console.log(show);*/
     var showColors = []
     for(let i = 0; i< productColors.length; i++) {
-        showColors.push(false);
+        if(i==0 ){
+            showColors.push(true);
+        } else {
+            showColors.push(false);
+        }
     }
     const [show, setSelected] = useState(showColors);
 
     const toggleColor = (color,index) => {
-        //setSelected(productColors.map((item) => (item == color ? {'color': item, active: true} : {'color': item, active: false})));
-        showColors[index] = true;
+        for (let i = 0; i < showColors.length; i++) {
+            if (i == index) {
+                showColors[i] = true;
+            } else {
+                showColors[i] = false;
+            }
+        }
+
         setSelected(showColors)
         setSelectedColor(color);
     }
