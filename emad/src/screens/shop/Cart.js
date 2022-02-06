@@ -20,6 +20,7 @@ const Cart = ({ navigation, route }) => {
     
     const cart= ShoppingCart();
     const users = getCliente();
+    const utente= route.params.user;
     const [user, onSearch] = React.useState([]);
     const [refresh, setRefresh] = useState(Date(Date.now()).toString())
     const { colors, isDark } = useTheme();
@@ -59,8 +60,6 @@ const Cart = ({ navigation, route }) => {
         await delay(300);
         setIsSuccess(false);
         onChangeText('');
-        //setTotale();      //Settare il prezzo totale e il numero di articoli a 0
-        //setNumOfArticle()
     };
 
     useEffect(() => {
@@ -108,7 +107,8 @@ const Cart = ({ navigation, route }) => {
             setModalVisible(true)
             return;
         }
-        navigation.navigate('Payment',{ carrello: cart, payment: toPayment});
+        onChangeText('');
+        navigation.navigate('Payment',{ user: utente, carrello: cart, payment: toPayment, nome:search});
 
     }
 

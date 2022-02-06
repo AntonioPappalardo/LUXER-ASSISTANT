@@ -1,4 +1,4 @@
-import React, {Component, useState, useRef} from "react";
+import React, {Component, useState} from "react";
 import { Image, View, Text, Dimensions, Animated, TouchableOpacity } from "react-native";
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
@@ -65,6 +65,8 @@ const Payment = ({ navigation, route }) => {
     const cartClient = route.params.carrello;
     const paymentCart = route.params.payment;
 
+    const utente= route.params.user;
+    const nominativo = route.params.nome;
     const toggleModalReturn = async() => {
         const delay = ms => new Promise(res => setTimeout(res, ms));
         await delay(500);
@@ -77,7 +79,7 @@ const Payment = ({ navigation, route }) => {
     const handleSubmitPress = async() => {
         const delay = ms => new Promise(res => setTimeout(res, ms));
         setOpacity(0);
-        createOrdini(cartClient,paymentCart)
+        createOrdini(cartClient, paymentCart,utente, nominativo)
         setErrorText(lang.pagamentoConcluso)
         await delay(1000);
         setModalVisible(true);

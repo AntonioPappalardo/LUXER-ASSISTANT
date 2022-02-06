@@ -83,7 +83,6 @@ export function ValidateEmail(email){
 }
 
 export function CheckCustomer(nominative){
-    console.log(nominative)
     var a=cliente.find(costumer=>((costumer.nome.toLowerCase()+" "+costumer.cognome.toLowerCase())===nominative.toLowerCase()))
     if (a!==undefined)return a.email
     return undefined
@@ -428,27 +427,78 @@ export function getClienteByEmail(email){
     return cliente.find(c=> c.email==email)
 }
 
-export function createOrdini(cart,user){
+export function createOrdini(cart,customer,idUser,nominativo){
+
+    //Store Info
+    var userShop = utente.find(user=>(user.id===idUser));
+    var idStore = userShop.id_magazzino;
+    var store = magazzino.find(m =>(m.id===idStore));
+    var nomeStore = store.nome;
+    var indirizzo = store.indirizzo;
+    var citta = store.citta;
+    var provincia = store.provincia;
+    var nazione = store.paese;
+
     var ordine={};
     ordine.totale=cart.getTotale();
     ordine.numero_articoli=cart.getNumOfArticle()
     var d=new Date()
     var data= d.toISOString().substring(0,10)
     ordine.data=data
-    ordine.id_cliente=user
+    ordine.id_cliente=customer
+
     var dettagli_ordine=[]
     cart.getCart().forEach(ele=>{
         dettagli_ordine.push({id_prodotto:ele.prodotto.id,qta:ele.qta})
     })
+
+    var ordineInvoice = [];
+    cart.getCart().forEach(ele=>{
+        var id = ele.prodotto.id;
+        var product = prodotto.find(prod=>(prod.id===id));
+        var nome = product.nome_en;
+        var prezzo = product.prezzo;
+        ordineInvoice.push({item:ele.prodotto.id,description:nome,quantity:ele.qta,amount:prezzo})
+    });
+
     var unico={
     "ordini":ordine,
     "dettagli_ordine":dettagli_ordine
     }
+
     axios.get('https://emad2021.azurewebsites.net/api/CreateOrdini',{params:{"unico":unico}})
 
     axios.get('https://emad2021.azurewebsites.net/api/retrive_data?').then(response=> {
         dettagli_ordine = response.data.dettagli_ordine;
         ordine = response.data.ordine;
     }) 
-    
+
+    const id_invoice = parseInt(ordine.id_cliente + Math.random().toString().substring(2, 6));
+ 
+    const email = getCustomerById(ordine.id_cliente);
+    const subject = "Your Invoice";
+    var url = 'https://luxerfunction.azurewebsites.net/api/HttpTrigger2?code=KGVEG7/8JM4WkrtimThHXiJUzsh/dJW9jTHwx0LrItq8gQ7qaapsQw=='
+    var option = {
+        method: 'post',
+        url: url,
+        params: {
+            email: email
+        },
+        data: {
+            subject: subject,
+            nome: nominativo,
+            prezzoTot: ordine.totale,
+            idOrdine: id_invoice,
+            store: nomeStore,
+            indirizzo: indirizzo,
+            citta: citta,
+            provincia: provincia,
+            nazione: nazione,
+            prodotti:ordineInvoice,
+            numeroFattura: id_invoice,
+
+        }
+    }                
+    axios(option)
+
 }
