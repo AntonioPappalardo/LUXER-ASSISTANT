@@ -123,7 +123,7 @@ const it = {
   versione:'Versione',
   
   //Ricerca Cliente
-  inputName: 'Nome Cliente o Codice',
+  inputName: 'Nome o Cliente Codice',
   codiceCliente:'Codice cliente',
 
   //Scheda Cliente

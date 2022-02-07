@@ -81,7 +81,7 @@ const Payment = ({ navigation, route }) => {
         setOpacity(0);
         createOrdini(cartClient, paymentCart,utente, nominativo)
         setErrorText(lang.pagamentoConcluso)
-        await delay(1000);
+        await delay(2000);
         setModalVisible(true);
     };
 
