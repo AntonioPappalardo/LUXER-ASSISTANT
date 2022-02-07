@@ -59,7 +59,11 @@ const Cart = ({ navigation, route }) => {
         setModalVisible(false);
         await delay(300);
         setIsSuccess(false);
+        cart.emptyCart();
         onChangeText('');
+        setRefresh(Date(Date.now()).toString());
+        navigation.navigate('UserHome');
+
     };
 
     useEffect(() => {

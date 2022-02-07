@@ -35,7 +35,6 @@ const AppointmentList = ({ navigation, route }) => {
 
     const filterday = (day) => {
         users = getAppuntamentoByUser(route.params.user) 
-        console.log()
         users = (users.filter(d => moment(d.data).format('DD/MM/YYYY') == moment(day).format('DD/MM/YYYY')));
         users.sort((a,b) => (a.slot_inizio > b.slot_inizio) ? 1 : ((b.slot_inizio > a.slot_inizio) ? -1 : 0))
     }

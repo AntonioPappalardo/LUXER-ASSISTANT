@@ -437,7 +437,7 @@ export function createOrdini(cart,customer,idUser,nominativo){
     var indirizzo = store.indirizzo;
     var citta = store.citta;
     var provincia = store.provincia;
-    var nazione = store.paese;
+    var nazione = store.zip+', '+store.paese;
 
     var ordine={};
     ordine.totale=cart.getTotale();
@@ -495,7 +495,6 @@ export function createOrdini(cart,customer,idUser,nominativo){
             provincia: provincia,
             nazione: nazione,
             prodotti:ordineInvoice,
-            numeroFattura: id_invoice,
 
         }
     }                

@@ -24,7 +24,6 @@ const CustomerPage = ({ navigation, route }) => {
 
     const mesi=lang.locale.monthNamesShort;
     const actualMonth= (new Date()).getMonth()
-    console.log(actualMonth)
     /* Da 0 a 6 Funziona */
     const lab =(actualMonth<6)? mesi.slice(actualMonth+6, 12).concat(mesi.slice(0, actualMonth))
     :mesi.slice(actualMonth-6, 6).concat(mesi.slice(6, actualMonth));
