@@ -1,10 +1,23 @@
 # Luxer Assistant
-Progetto realizzato nell'ambito del corso universitario Enterprise Mobile Application Development.
+Progetto realizzato nell'ambito del corso universitario Enterprise Mobile Application Development 2021-2022.
+
+![Luxer Assistant ](Presentazione-Finale/finale.png)
+
+## Guida per l'installazione
+
+Procedere come segue:
+- Clonare il repository in locale
+- Installare installare tutte le dipendenze da terminale tramite il seguente comando:
+```sh
+npm install
+```
+- Eseguire l'app tramite comando:
+ ```sh
+npm start
+```
 
 ## Descrizione
 Luxer Assistant è un'applicazione cross-platform pensata per offrire funzionalità a supporto dello shop assistant, al fine di rendere unica l'esperienza di acquisto dei propri clienti e al contempo favorirne la fidelizzazione. Rivolta principalmente ai grandi marchi di moda, Luxer Assistant è stata ideata per agevolare lo shop assistant in svariati attività, come la visualizzazione dello storico degli acquisti, fornendo info utili per poter fare cross-selling. Si potrà quindi suggerire prodotti in base ai gusti del cliente. La frequenza e l’entità degli acquisti stabiliscono un livello di loyalty che sarà indispensabile per riservare parzialmente o interamente lo shop desiderato.
-
-![Descrizione ](Presentazione-Finale/finale.png)
 
 ## Obiettivi
 
