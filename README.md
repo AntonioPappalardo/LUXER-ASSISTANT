@@ -7,7 +7,7 @@ Progetto realizzato nell'ambito del corso universitario Enterprise Mobile Applic
 
 Procedere come segue:
 - Clonare il repository in locale
-- Installare installare tutte le dipendenze da terminale tramite il seguente comando:
+- Installare tutte le dipendenze da terminale tramite il seguente comando:
 ```sh
 npm install
 ```
