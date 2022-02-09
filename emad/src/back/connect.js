@@ -1,3 +1,5 @@
+import {FUNCTION_QR, FUNCTION_BOOKING, FUNCTION_ORDER, FUNCTION_RETRIVE_DATA, FUNCTION_INSERT_COSTUMER, FUNCTION_CREATE_APPOINTMENT, FUNCTION_CREATE_ORDER} from '@env'
+
 import axios from 'axios'
 import sha512 from 'js-sha512'
 
@@ -44,7 +46,7 @@ let slots = [
 ];
 
 export function connect(){
-    axios.get('https://emad2021.azurewebsites.net/api/retrive_data?').then(response=> {
+    axios.get(`${FUNCTION_RETRIVE_DATA}`).then(response=> {
         appuntamento = response.data.appuntamento;
         attributi = response.data.attributi;
         caratteristiche = response.data.caratteristiche;
@@ -72,7 +74,7 @@ export function AddCostumer(user){
     var d=new Date()
     user.data_registrazione= d.toISOString().substring(0,10)
     user.avatar="https://storageaccountemadbc1b.blob.core.windows.net/img/photo.jpg";
-    axios.get('https://emad2021.azurewebsites.net/api/InsertCostumer?' , {params:{"user":user}})
+    axios.get(`${FUNCTION_INSERT_COSTUMER}` , {params:{"user":user}})
     cliente.push(user)
 } 
 
@@ -91,14 +93,14 @@ export function CheckCustomer(nominative){
 export function AddAppuntamento(appointment){
     appointment.id=appuntamento[appuntamento.length-1].id +1;
     console.log(appointment)
-    axios.get('https://emad2021.azurewebsites.net/api/CreateAppointment?' , {params:{"appuntamento":appointment}})
+    axios.get(`${FUNCTION_CREATE_APPOINTMENT}` , {params:{"appuntamento":appointment}})
     appuntamento.push(appointment)
 }
 
-export function SendQRCodeCash(email,total, numProducts){
+export function SendQRCodeCash(email, total, nome, numProducts){
     const subject = "Pay at the Cashier";
-    var url = 'https://luxerfunction.azurewebsites.net/api/HttpTrigger1?code=WsG207XtWBZ48Afw7HpLDOiM0zVtAqPbF2WmgWbA9rXK1tPO9mj6Cg==';
-
+    var url = `${FUNCTION_QR}`;
+    
     var option = {
         method: 'post',
         url: url,
@@ -106,6 +108,7 @@ export function SendQRCodeCash(email,total, numProducts){
             email: email
         },
         data: {
+            nome: nome,
             subject: subject,
             prezzoTot: total,
             numProdotti: numProducts,
@@ -122,7 +125,7 @@ export function SendBookingInfo(email,nome,data, inizio, fine, idUser){
     var indirizzo = store.indirizzo + " " + store.provincia;
 
     const subject = "Booking Appointment in Store";
-    var url = 'https://luxerfunction.azurewebsites.net/api/HttpTrigger3?code=qJNp5z8OHLCAVX/jiG/m6maj27T0hkriy2EsqszaHI2yclsfSqiUSA=='
+    var url = `${FUNCTION_BOOKING}`;
     var option = {
         method: 'post',
         url: url,
@@ -354,10 +357,16 @@ export function getColorsDb(categoria){
         products = []
         subCategory.forEach(subcategoria => {
             products = products.concat(products.filter(pro => pro.id_categoria == subcategoria.id))
+<<<<<<< Updated upstream
         }
         )
     }
 
+=======
+        })
+    }
+    
+>>>>>>> Stashed changes
     var colors = attributi.filter(at=>at.nome=="colore");
     var colorArray= [];
     colors.forEach(attr => {
@@ -380,11 +389,18 @@ export function getSizeDb(categoria){
         products = []
         subCategory.forEach(subcategoria => {
             products = products.concat(products.filter(pro => pro.id_categoria == subcategoria.id))
+<<<<<<< Updated upstream
         }
         )
     }
 
     var sizes = attributi.filter(at=>at.nome=="taglia");
+=======
+        })
+    }
+
+    var sizes = attributi.filter(at=>at.nome=="taglia");   
+>>>>>>> Stashed changes
     var sizeArray= [];
   
     sizes.forEach(attr => {
@@ -494,9 +510,9 @@ export function createOrdini(cart,customer,idUser,nominativo){
     ordine.push(new_ordine);
     dettagli_ordine.push(new_dettagli_ordine);
 
-    axios.get('https://emad2021.azurewebsites.net/api/CreateOrdini',{params:{"unico":unico}})
+    axios.get(`${FUNCTION_CREATE_ORDER}`,{params:{"unico":unico}})
 
-    axios.get('https://emad2021.azurewebsites.net/api/retrive_data?').then(response=> {
+    axios.get(`${FUNCTION_RETRIVE_DATA}`).then(response=> {
         dettagli_ordine = response.data.dettagli_ordine;
         ordine = response.data.ordine;
     }) 
@@ -505,7 +521,8 @@ export function createOrdini(cart,customer,idUser,nominativo){
  
     const email = getCustomerById(new_ordine.id_cliente);
     const subject = "Your Invoice";
-    var url = 'https://luxerfunction.azurewebsites.net/api/HttpTrigger2?code=KGVEG7/8JM4WkrtimThHXiJUzsh/dJW9jTHwx0LrItq8gQ7qaapsQw=='
+    var url = `${FUNCTION_ORDER}`;
+
     var option = {
         method: 'post',
         url: url,

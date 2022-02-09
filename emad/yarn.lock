@@ -1570,6 +1570,7 @@
     "dequal" "^1.0.0"
 
 "@mindinventory/react-native-tab-bar-interaction@github:mindinventory/react-native-tab-bar-interaction":
+  "integrity" "sha512-ygXXnTBNnTcx161weIGHhntIrbHxKEAdNvZiIQ8c6Nm53Q6i0eKmaMOBL0n28dmKk+kLHJe+omeMQiVQpCX73Q=="
   "resolved" "git+ssh://git@github.com/mindinventory/react-native-tab-bar-interaction.git#08c976f7c40eadfec6834c769a49ccb069b0cf1d"
   "version" "2.1.4"
   dependencies:
@@ -3702,6 +3703,11 @@
   dependencies:
     "dom-serializer" "0"
     "domelementtype" "1"
+
+"dotenv@^10.0.0":
+  "integrity" "sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q=="
+  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-10.0.0.tgz"
+  "version" "10.0.0"
 
 "dup@^1.0.0":
   "integrity" "sha1-UfxaxoX4GWRp3wuQXpNLIK9bQCk="
@@ -7656,6 +7662,13 @@
   "integrity" "sha512-92676ZWHZHsPM/EW1ulgb2MuVfjYfMWRTWMbLcrCsipkcMaZ9Traz5mpsnCS7KZpsOksnvUinzDIjsct2XGc6Q=="
   "resolved" "https://registry.npmjs.org/react-native-device-info/-/react-native-device-info-8.4.8.tgz"
   "version" "8.4.8"
+
+"react-native-dotenv@^3.3.1":
+  "integrity" "sha512-gAKXout1XCwCqJ3QPGoQAF2eRzOHgOnwg3x19z+ssow8bDIksJeKBqvoHDyGziVilAIP1J0bEC9Jf+VF8nFang=="
+  "resolved" "https://registry.npmjs.org/react-native-dotenv/-/react-native-dotenv-3.3.1.tgz"
+  "version" "3.3.1"
+  dependencies:
+    "dotenv" "^10.0.0"
 
 "react-native-elements@^3.4.2":
   "integrity" "sha512-m0eAWOn7JuR1wNTNY0WHuaqst4LI/gFE4N5Bbyfsc4DiryWsMST7aAg5w/Gos4IexWIzhLKCIkPxthND1m/8Xg=="

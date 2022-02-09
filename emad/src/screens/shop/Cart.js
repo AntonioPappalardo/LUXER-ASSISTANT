@@ -136,7 +136,7 @@ const Cart = ({ navigation, route }) => {
             return;
         }
 
-        SendQRCodeCash(email,totale,numOfArticle)
+        SendQRCodeCash(email,totale,search,numOfArticle);
         setIsSuccess(true);
         setErrorText(lang.invioCodice)
         setModalVisible(true)
