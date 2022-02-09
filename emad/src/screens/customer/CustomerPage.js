@@ -11,12 +11,12 @@ import { BarChart, LineChart } from 'react-native-chart-kit';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Svg, Text as TextSVG, Rect } from 'react-native-svg';
-import { getCliente } from "../../back/connect";
+import { getCliente, getTotaleOrdini,getLastOrdini } from "../../back/connect";
 import { useLanguage } from "../../localization/Localization";
 import moment from 'moment';
 import 'moment/locale/it';
 
-const acquisti = []
+
 
 const CustomerPage = ({ navigation, route }) => {
     const [lang, setLanguage] = useLanguage();
@@ -31,9 +31,15 @@ const CustomerPage = ({ navigation, route }) => {
     useEffect(()=>{
         setCliente(costumers.find(us => us.id === route.params.cliente))
     })
+    const acquisti = getTotaleOrdini(route.params.cliente);
+    var time = new Date;
+    time.setHours(0,0,0,0)
+    const lastAcquisti = getLastOrdini(route.params.cliente, time);
     const costumers = getCliente();
     const utente =route.params.user
     const layout = useWindowDimensions();
+
+    
     function indxFid() {
         
     }
@@ -278,9 +284,47 @@ const CustomerPage = ({ navigation, route }) => {
     });
 
     const [cliente, setCliente] = React.useState(costumers.find(us => us.id === route.params.cliente));
-    const tot = acquisti.filter(a => a.cliente == cliente.id).map(a => a.saldo).reduce((a, b) => a + b, 0);
-    const average = tot / (acquisti.filter(a => a.cliente == cliente.id).length)
-    const last = (acquisti.filter(a => a.cliente == cliente.id).map(a => a.data).sort().reverse())[0]
+    var tot = 0;
+    var average = 0;
+    var last = '--/--/----';
+    var taxFidelity = 0;
+    function getDistribution(avg) {
+        const threshold = 5000;
+        if(avg == 0) {
+            return 0
+        }
+        if (avg < threshold) {
+            return avg/threshold;
+        }
+        if(avg>=threshold) {
+            return 2;
+        }    
+    }
+    if(acquisti.length != 0) {
+        tot = acquisti.map(at => at.totale).reduce((a, b) => a + b, 0);
+        average = Math.round(tot / acquisti.length);
+        last = moment(acquisti[acquisti.length-1].data).format('DD/MM/YYYY');
+        var max = Math.max.apply(null, acquisti.map(at => at.totale))
+        var min = Math.min.apply(null, acquisti.map(at => at.totale))
+        var totLast = lastAcquisti.map(at => at.totale).reduce((a, b) => a + b, 0);
+        var avgLast = Math.round(totLast / lastAcquisti.length);
+        var maxLast = Math.max.apply(null, lastAcquisti.map(at => at.totale))
+        var minLast = Math.min.apply(null, lastAcquisti.map(at => at.totale))
+        var visite = 0;
+        var lastVisite = 0;
+        var orderFrequency = 0;
+        var lastOrderFrequency = 0;
+        if(visite != 0) {
+            orderFrequency = acquisti.length/visite;
+        }
+        if(lastVisite != 0) {
+            lastOrderFrequency = lastAcquisti.length/visite;
+        }
+        taxFidelity = (2*((average-min)/(max-min)) + 2*((avgLast-minLast)/(maxLast-minLast)) + orderFrequency + lastOrderFrequency)/12 + getDistribution(average);
+    } 
+    if(taxFidelity > 1){
+        taxFidelity = 1;
+    }
     let [fontsLoaded] = useFonts({
         'SFProDisplayMedium': require('../../../assets/fonts/SFProDisplayMedium.otf'),
         'SFProDisplayBold': require('../../../assets/fonts/SFProDisplayBold.otf'),
@@ -310,24 +354,24 @@ const CustomerPage = ({ navigation, route }) => {
                             <Text style={{ color: colors.theme.title, fontSize: 10, fontFamily: "SFProDisplayMedium" }}>{lang.tassoFedelta}</Text>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <View style={{ width: '50%', height: 6, backgroundColor: '#D4D4D4', borderRadius: 3 }}>
-                                    <View style={{ position: 'absolute', width: '35%', height: 6, backgroundColor: '#EA9F5A', borderRadius: 3 }}></View>
+                                    <View style={{ position: 'absolute', width: taxFidelity*100+'%', height: 6, backgroundColor: '#EA9F5A', borderRadius: 3 }}></View>
                                 </View>
-                                <Text style={{ marginLeft: 5, color: colors.theme.primary, fontSize: 10, fontFamily: "SFProDisplayMedium", marginBottom: 2 }}>35%</Text>
+                                <Text style={{ marginLeft: 5, color: colors.theme.primary, fontSize: 10, fontFamily: "SFProDisplayMedium", marginBottom: 2 }}>{Math.round(taxFidelity*100)}%</Text>
                             </View>
                         </View>
                     </View>
                     <View style={{ flexDirection: "row", width: "80%", justifyContent: "space-between", marginTop: 20 }}>
                         <View>
-                            <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular" }}>{lang.totaleAcquisti}</Text>
-                            <Text style={{ fontSize: 16, color: colors.theme.title, fontFamily: "SFProDisplayRegular" }}>{tot} €</Text>
+                            <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular",alignSelf: 'center'  }}>{lang.totaleAcquisti}</Text>
+                            <Text style={{ fontSize: 16, color: colors.theme.title, fontFamily: "SFProDisplayRegular", alignSelf: 'center' }}>{tot} €</Text>
                         </View>
                         <View>
-                            <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular" }}>{lang.mediaAcquisti}</Text>
-                            <Text style={{ fontSize: 16, color: colors.theme.title, fontFamily: "SFProDisplayRegular" }}>{average} €</Text>
+                            <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular",alignSelf: 'center'  }}>{lang.mediaAcquisti}</Text>
+                            <Text style={{ fontSize: 16, color: colors.theme.title, fontFamily: "SFProDisplayRegular",alignSelf: 'center'  }}>{average} €</Text>
                         </View>
                         <View>
-                            <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular" }}>{lang.ultimoAcquisto}</Text>
-                            <Text style={{ fontSize: 16, color: colors.theme.title, fontFamily: "SFProDisplayRegular" }}>{last}</Text>
+                            <Text style={{ fontSize: 12, color: colors.theme.subtitle, fontFamily: "SFProDisplayRegular",alignSelf: 'center'  }}>{lang.ultimoAcquisto}</Text>
+                            <Text style={{ fontSize: 16, color: colors.theme.title, fontFamily: "SFProDisplayRegular",alignSelf: 'center'  }}>{last}</Text>
                         </View>
                     </View>
                 </View>
@@ -336,7 +380,7 @@ const CustomerPage = ({ navigation, route }) => {
 
                     <Divider width={"100%"} />
                     <MenuItem title={lang.nuovoAppuntamento} onPress={() => 
-                        navigation.navigate('AddAppointment',{cliente:cliente,utente:utente})} />
+                        navigation.navigate('AddAppointment',{cliente:cliente,utente:utente,index:taxFidelity})} />
                     <MenuItem title={lang.contatta} onPress={() => navigation.navigate('Communication',{cliente:cliente,utente:utente})} />
                     <View style={{ height: 300}}>
                         <TabView

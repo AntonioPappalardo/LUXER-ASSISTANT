@@ -176,6 +176,15 @@ export function getModello_tridimensionale(){
 export function getOrdine(){
     return ordine;
 }
+export function getTotaleOrdini(idCliente){
+    var totale = ordine.filter(ordine=>ordine.id_cliente===idCliente);
+    return totale;
+}
+export function getLastOrdini(idCliente, date){
+    date = date.setDate(date.getDate() - 180);
+    var totale = ordine.filter(ordine=>ordine.id_cliente===idCliente  && new Date(ordine.data) >= date);
+    return totale;
+}
 export function getProdotto(){
     return prodotto;
 }

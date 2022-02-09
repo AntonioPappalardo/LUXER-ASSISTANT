@@ -41,6 +41,7 @@ const Category = ({ navigation, route }) => {
 
     const { colors, isDark } = useTheme();
     const tabBarHeight = useBottomTabBarHeight() + 10;
+    
     const OnFiltering = () => {
         var filteredcolor = []
         var filteredsize = []

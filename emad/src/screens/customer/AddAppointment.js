@@ -345,17 +345,23 @@ const AddAppointment = ({ navigation, route }) => {
 
                 <Divider width="100%" />
                 <ScrollView overScrollMode="never" style={{ height: "100%", bottom: 10 }}>
-                    <View style={{ flex: 1, width: '75%', alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={styles.section}>
-                            <Checkbox
-                                style={{ margin: 0, borderRadius: 5 }}
-                                value={isChecked}
-                                onValueChange={setChecked}
-                                color={isChecked ? '#e78630' : undefined}
-                            />
-                            <Text style={{ margin: 25, fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.riservaNegozio}</Text>
+                    {route.params.index >= 0.75
+                        ?
+                        <View style={{ flex: 1, width: '75%', alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={styles.section}>
+                                <Checkbox
+                                    style={{ margin: 0, borderRadius: 5 }}
+                                    value={isChecked}
+                                    onValueChange={setChecked}
+                                    color={isChecked ? '#e78630' : undefined}
+                                />
+                                <Text style={{ margin: 25, fontSize: 16, fontFamily: 'SFProDisplayMedium', color: colors.theme.title }}>{lang.riservaNegozio}</Text>
+                            </View>
                         </View>
-                    </View>
+                        :
+                        <View style={{ flex: 1, width: '75%', height:25, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}/>
+                    }
+                   
 
                     <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'center' }}>
 
