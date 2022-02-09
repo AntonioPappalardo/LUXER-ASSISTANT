@@ -349,6 +349,15 @@ Funzione che restituisce i colori disponibili in negozio
 */
 export function getColorsDb(categoria){
     var products = prodotto.filter(prodotto=>prodotto.id_categoria===categoria);
+    var subCategory=getSubCategory(categoria)
+    if (products.length == 0) {
+        products = []
+        subCategory.forEach(subcategoria => {
+            products = products.concat(products.filter(pro => pro.id_categoria == subcategoria.id))
+        }
+        )
+    }
+
     var colors = attributi.filter(at=>at.nome=="colore");
     var colorArray= [];
     colors.forEach(attr => {
@@ -366,8 +375,16 @@ export function getColorsDb(categoria){
 }
 export function getSizeDb(categoria){
     var products = prodotto.filter(prodotto=>prodotto.id_categoria===categoria);
+    var subCategory=getSubCategory(categoria)
+    if (products.length == 0) {
+        products = []
+        subCategory.forEach(subcategoria => {
+            products = products.concat(products.filter(pro => pro.id_categoria == subcategoria.id))
+        }
+        )
+    }
+
     var sizes = attributi.filter(at=>at.nome=="taglia");
-   
     var sizeArray= [];
   
     sizes.forEach(attr => {
