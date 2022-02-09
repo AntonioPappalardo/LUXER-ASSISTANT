@@ -357,16 +357,10 @@ export function getColorsDb(categoria){
         products = []
         subCategory.forEach(subcategoria => {
             products = products.concat(products.filter(pro => pro.id_categoria == subcategoria.id))
-<<<<<<< Updated upstream
         }
         )
     }
 
-=======
-        })
-    }
-    
->>>>>>> Stashed changes
     var colors = attributi.filter(at=>at.nome=="colore");
     var colorArray= [];
     colors.forEach(attr => {
@@ -389,18 +383,11 @@ export function getSizeDb(categoria){
         products = []
         subCategory.forEach(subcategoria => {
             products = products.concat(products.filter(pro => pro.id_categoria == subcategoria.id))
-<<<<<<< Updated upstream
         }
         )
     }
 
     var sizes = attributi.filter(at=>at.nome=="taglia");
-=======
-        })
-    }
-
-    var sizes = attributi.filter(at=>at.nome=="taglia");   
->>>>>>> Stashed changes
     var sizeArray= [];
   
     sizes.forEach(attr => {
