@@ -356,7 +356,7 @@ export function getColorsDb(categoria){
     if (products.length == 0) {
         products = []
         subCategory.forEach(subcategoria => {
-            products = products.concat(products.filter(pro => pro.id_categoria == subcategoria.id))
+            products = products.concat(prodotto.filter(pro => pro.id_categoria == subcategoria.id))
         }
         )
     }
@@ -382,7 +382,7 @@ export function getSizeDb(categoria){
     if (products.length == 0) {
         products = []
         subCategory.forEach(subcategoria => {
-            products = products.concat(products.filter(pro => pro.id_categoria == subcategoria.id))
+            products = products.concat(prodotto.filter(pro => pro.id_categoria == subcategoria.id))
         }
         )
     }
