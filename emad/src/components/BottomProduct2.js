@@ -166,13 +166,15 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
             marginTop: '5%'
         }
     }
-
+    function numberWithPointers(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      }
     return (
         
 
         <SlidingUpPanel
             ref={elementRef}
-            draggableRange={{ top: height * 0.75, bottom: (slidePadding + tabBarHeight -10)}}
+            draggableRange={{ top: height * 0.75, bottom: (slidePadding + tabBarHeight)}}
             showBackdrop={true}>
             {dragHandler => (
                 <View style={[styles.container, { backgroundColor: colors.theme.background }]}>
@@ -182,8 +184,8 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
                                 <Text style={{ fontSize: 18, fontFamily: 'SFProDisplayBold', color: colors.theme.title, paddingTop: 2, paddingRight:5 }}>
                                     {prodotto['nome_' + lang.codice]}
                                 </Text>
-                                <Text style={{ fontSize: 16, marginTop:9,fontFamily: 'SFProDisplayBold', color: colors.theme.subtitle}}>
-                                    {prodotto.prezzo +' €   '}
+                                <Text style={{ fontSize: 16, marginTop:8,fontFamily: 'SFProDisplayBold', color: colors.theme.subtitle}}>
+                                {'€ ' + numberWithPointers(prodotto.prezzo) +'   '}
                                     <Text style={{fontSize: 12,fontFamily: 'SFProDisplayBold', color: colors.theme.subtitle}}>{lang.iva}</Text> 
                                 </Text>
                             </View>

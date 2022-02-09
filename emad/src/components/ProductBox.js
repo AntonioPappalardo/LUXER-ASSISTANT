@@ -10,7 +10,9 @@ const windowHeight = Dimensions.get('window').height;
 const ProductBox = (props) => {
 
   const {colors, isDark} = useTheme();
-
+  function numberWithPointers(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
   let [fontsLoaded] = useFonts({
     'SFProDisplayMedium': require('../../assets/fonts/SFProDisplayMedium.otf'),
     'SFProDisplayBold': require('../../assets/fonts/SFProDisplayBold.otf'),
@@ -33,7 +35,7 @@ const ProductBox = (props) => {
           <Text numberOfLines={2} style={{ color: colors.productBox.name, fontFamily: "SFProDisplayMedium", fontSize: 14  }}>{props.name}</Text>
             </View>
           <View style={{ flexDirection: 'row', marginTop:-5 }}>
-            <Text style={{ color: colors.productBox.price, fontFamily: "SFProDisplayThinItalic", fontWeight: '200', marginTop:8, fontSize: 14, width: "50%"}}>{props.price + " €"}</Text>
+            <Text style={{ color: colors.productBox.price, fontFamily: "SFProDisplayThinItalic", fontWeight: '200', marginTop:8, fontSize: 14, width: "50%"}}>{"€ "+ numberWithPointers(props.price) }</Text>
             <Text style={{ color: colors.productBox.reference, fontFamily: "SFProDisplayRegular", fontSize: 9, textAlign: 'right', width: "50%", paddingTop: 3.5 }}> {"Ref. " + props.reference}</Text>
             
           </View>
