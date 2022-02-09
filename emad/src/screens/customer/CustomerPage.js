@@ -306,10 +306,12 @@ const CustomerPage = ({ navigation, route }) => {
         last = moment(acquisti[acquisti.length-1].data).format('DD/MM/YYYY');
         var max = Math.max.apply(null, acquisti.map(at => at.totale))
         var min = Math.min.apply(null, acquisti.map(at => at.totale))
+        var diff = max-min;
         var totLast = lastAcquisti.map(at => at.totale).reduce((a, b) => a + b, 0);
         var avgLast = Math.round(totLast / lastAcquisti.length);
         var maxLast = Math.max.apply(null, lastAcquisti.map(at => at.totale))
         var minLast = Math.min.apply(null, lastAcquisti.map(at => at.totale))
+        var diff2 = maxLast-minLast;
         var visite = 0;
         var lastVisite = 0;
         var orderFrequency = 0;
@@ -320,7 +322,14 @@ const CustomerPage = ({ navigation, route }) => {
         if(lastVisite != 0) {
             lastOrderFrequency = lastAcquisti.length/visite;
         }
-        taxFidelity = (2*((average-min)/(max-min)) + 2*((avgLast-minLast)/(maxLast-minLast)) + orderFrequency + lastOrderFrequency)/12 + getDistribution(average);
+        if(diff == 0) {
+            diff = average;
+        }
+        if(diff2 == 0) {
+            diff2 = avgLast;
+        }
+        
+        taxFidelity = (2*((average-min)/(diff)) + 2*((avgLast-minLast)/(diff2)) + orderFrequency + lastOrderFrequency)/12 + getDistribution(average);
     } 
     if(taxFidelity > 1){
         taxFidelity = 1;

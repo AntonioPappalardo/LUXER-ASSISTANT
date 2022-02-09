@@ -448,17 +448,17 @@ export function createOrdini(cart,customer,idUser,nominativo){
     var provincia = store.provincia;
     var nazione = store.zip+', '+store.paese;
 
-    var ordine={};
-    ordine.totale=cart.getTotale();
-    ordine.numero_articoli=cart.getNumOfArticle()
+    var new_ordine={};
+    new_ordine.totale=cart.getTotale();
+    new_ordine.numero_articoli=cart.getNumOfArticle()
     var d=new Date()
     var data= d.toISOString().substring(0,10)
-    ordine.data=data
-    ordine.id_cliente=customer
+    new_ordine.data=data
+    new_ordine.id_cliente=customer
 
-    var dettagli_ordine=[]
+    var new_dettagli_ordine=[]
     cart.getCart().forEach(ele=>{
-        dettagli_ordine.push({id_prodotto:ele.prodotto.id,qta:ele.qta})
+        new_dettagli_ordine.push({id_prodotto:ele.prodotto.id,qta:ele.qta})
     })
 
     var ordineInvoice = [];
@@ -471,9 +471,11 @@ export function createOrdini(cart,customer,idUser,nominativo){
     });
 
     var unico={
-    "ordini":ordine,
-    "dettagli_ordine":dettagli_ordine
+    "ordini":new_ordine,
+    "dettagli_ordine":new_dettagli_ordine
     }
+    ordine.push(new_ordine);
+    dettagli_ordine.push(new_dettagli_ordine);
 
     axios.get('https://emad2021.azurewebsites.net/api/CreateOrdini',{params:{"unico":unico}})
 
@@ -482,9 +484,9 @@ export function createOrdini(cart,customer,idUser,nominativo){
         ordine = response.data.ordine;
     }) 
 
-    const id_invoice = parseInt(ordine.id_cliente + Math.random().toString().substring(2, 6));
+    const id_invoice = parseInt(new_ordine.id_cliente + Math.random().toString().substring(2, 6));
  
-    const email = getCustomerById(ordine.id_cliente);
+    const email = getCustomerById(new_ordine.id_cliente);
     const subject = "Your Invoice";
     var url = 'https://luxerfunction.azurewebsites.net/api/HttpTrigger2?code=KGVEG7/8JM4WkrtimThHXiJUzsh/dJW9jTHwx0LrItq8gQ7qaapsQw=='
     var option = {
@@ -496,7 +498,7 @@ export function createOrdini(cart,customer,idUser,nominativo){
         data: {
             subject: subject,
             nome: nominativo,
-            prezzoTot: ordine.totale,
+            prezzoTot: new_ordine.totale,
             idOrdine: id_invoice,
             store: nomeStore,
             indirizzo: indirizzo,
