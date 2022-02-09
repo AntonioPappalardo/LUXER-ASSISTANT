@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { Picker } from '@react-native-picker/picker';
-import { Text, View, Dimensions, TouchableOpacity, ScrollView, Animated, Platform ,Switch} from "react-native";
+import { Text, View, Dimensions, TouchableOpacity, ScrollView, Animated, Platform } from "react-native";
 import Modal from 'react-native-modal'
 import SlidingUpPanel from "rn-sliding-up-panel";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
@@ -101,8 +101,12 @@ const BottomProduct2 = ({ navigation, prodotto, utente }) => {
         third: ThirdRoute,
     });
     const animatedValue1 = new Animated.Value(1);
-    const slidePadding = height * 0.15;
-
+    if(Platform.OS === 'ios') {
+        var slidePadding = height * 0.15 -5;
+    } else {
+        var slidePadding = height * 0.15;
+    }
+ 
     const productColors = getAttributoColoreByProduct(prodotto.id);
     
     const taglia = getAttributoTagliaByProduct(prodotto.id)
