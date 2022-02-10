@@ -240,7 +240,8 @@ export function getCustomerById(id){
 
 export function getCustomerName(id){
     var a = cliente.find(customer=>(customer.id===id));
-    return a.nome;
+    var nominativo = a.nome + " " + a.cognome;
+    return nominativo;
 }
 
 /*
