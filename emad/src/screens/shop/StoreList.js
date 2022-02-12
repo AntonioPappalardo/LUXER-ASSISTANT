@@ -31,7 +31,7 @@ const StoreList = ({ navigation,route }) => {
                 <View style={{flexDirection: 'row'}}>
                     <BackButton onPress={() => { navigation.goBack() }} />
                     <View style={{flex:1,justifyContent: "center",marginRight:'15%',alignItems: "center", paddingTop: '15%'}}>
-                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 22, color: colors.theme.title, alignSelf:'center'}}>Store Network Availability</Text>
+                    <Text style={{fontFamily: "SFProDisplayMedium", fontSize: 20, color: colors.theme.title, alignSelf:'center'}}>Store Network Availability</Text>
                     </View>
                 </View>
                 <ScrollView overScrollMode="never" style={{marginTop: 25}}>

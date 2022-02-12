@@ -109,6 +109,8 @@ const CustomerPage = ({ navigation, route }) => {
                         }
                     ]
                 }}
+                
+            fromZero={true}
                 yAxisSuffix={" €"}
                 width={350}
                 height={220}
@@ -155,6 +157,8 @@ const CustomerPage = ({ navigation, route }) => {
                 ]
             }}
             width={layout.width * 0.9}
+            
+            fromZero={true}
             height={220}
             chartConfig={{
                 backgroundColor: "#e26a00",
@@ -198,6 +202,7 @@ const CustomerPage = ({ navigation, route }) => {
                 ]
             }}
 
+            fromZero={true}
             width={350}
             height={220}
             chartConfig={{
@@ -226,8 +231,9 @@ const CustomerPage = ({ navigation, route }) => {
 
     const FourthRoute = () => (
         <BarChart
+        
             data={{
-                labels: ["Cat1", "Cat2", "Cat3", "Cat4","Cat5"],
+                labels: ["Borse", "Accessori", "Scarpe", "Abbigliamento","Altro"],
                 datasets: [
                     {
                         data: [
@@ -235,13 +241,17 @@ const CustomerPage = ({ navigation, route }) => {
                             38,
                             12,
                             31,
-                            4,
+                            6,
                         ]
                     }
                 ]
             }}
+            verticalLabelRotation={-90}
+            
             width={350}
             height={220}
+            fromZero={true}
+            
             yAxisSuffix="%"
             chartConfig={{
                 backgroundColor: "#e26a00",
@@ -260,6 +270,8 @@ const CustomerPage = ({ navigation, route }) => {
                 marginLeft: -25
             }}
         />
+        
+        
     );
 
 
@@ -356,7 +368,7 @@ const CustomerPage = ({ navigation, route }) => {
                             <Image source={{uri:cliente.avatar}} style={{ height: 120, width: 120, borderRadius: 5, borderWidth: 5, borderColor: "white"}} />
                         </View>
                         <View style={{ flexDirection: "column", paddingLeft: 15, alignItems: "flex-start" }}>
-                            <Text style={{ color: colors.theme.title, fontSize: 24, fontFamily: "SFProDisplayBold" }}>{cliente.nome} {cliente.cognome}</Text>
+                            <Text style={{ color: colors.theme.title, fontSize: 20, fontFamily: "SFProDisplayBold" }}>{cliente.nome} {cliente.cognome}</Text>
 
                             <Text style={{ color: colors.theme.subtitle, fontSize: 12, fontFamily: "SFProDisplayRegular", marginBottom: 2 }}>{lang.regCliente} {moment(new Date(cliente.data_registrazione)).format('DD/MM/YYYY')}</Text>
 
@@ -391,7 +403,7 @@ const CustomerPage = ({ navigation, route }) => {
                     <MenuItem title={lang.nuovoAppuntamento} onPress={() => 
                         navigation.navigate('AddAppointment',{cliente:cliente,utente:utente,index:taxFidelity})} />
                     <MenuItem title={lang.contatta} onPress={() => navigation.navigate('Communication',{cliente:cliente,utente:utente})} />
-                    <View style={{ height: 300}}>
+                    <View style={{ height: 280}}>
                         <TabView
                             navigationState={{ index, routes }}
                             renderScene={renderScene}
