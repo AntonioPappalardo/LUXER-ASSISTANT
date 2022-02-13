@@ -19,9 +19,25 @@ import 'moment/locale/it';
 
 
 const CustomerPage = ({ navigation, route }) => {
+    var data1 = [
+        [1660, 2222,2123,400,2123,1111],
+        [1130,16100,1300,1450,14400,2400]
+    ]
+    var data2 = [
+        [1,3,2,0,3,2],
+        [1,8,2,1,6,2]
+    ]
+    var data3 = [
+        [5,12,1,3,4,1],
+        [1,11,6,2,7,4]
+    ]
+    var data4 = [
+        [19,34,26,12,9],
+        [30,9,38,18,5]
+    ]
     const [lang, setLanguage] = useLanguage();
-    moment.locale(lang.codice)
 
+    moment.locale(lang.codice)
     const mesi=lang.locale.monthNamesShort;
     const actualMonth= (new Date()).getMonth()
     /* Da 0 a 6 Funziona */
@@ -39,10 +55,6 @@ const CustomerPage = ({ navigation, route }) => {
     const utente =route.params.user
     const layout = useWindowDimensions();
 
-    
-    function indxFid() {
-        
-    }
     const FirstRoute = () => (
         <View style={{ justifyContent: 'center' }}>
             <LineChart
@@ -51,7 +63,7 @@ const CustomerPage = ({ navigation, route }) => {
                         <Svg >
                             <Rect x={tooltipPos.x - 16.5}
                                 y={tooltipPos.y + 8.5}
-                                width="53"
+                                width="63"
                                 height="33"
                                 fill={colors.theme.title}
                                 rx="6.5"
@@ -59,7 +71,7 @@ const CustomerPage = ({ navigation, route }) => {
                             />
                             <Rect x={tooltipPos.x - 15}
                                 y={tooltipPos.y + 10}
-                                width="50"
+                                width="60"
                                 height="30"
                                 fill={colors.theme.background}
                                 rx="5"
@@ -67,13 +79,13 @@ const CustomerPage = ({ navigation, route }) => {
                             />
 
                             <TextSVG
-                                x={tooltipPos.x + 10}
+                                x={tooltipPos.x + 15}
                                 y={tooltipPos.y + 30}
                                 fill={colors.theme.title}
                                 fontSize="16"
                                 fontWeight="bold"
                                 textAnchor="middle">
-                                {tooltipPos.value}
+                                {tooltipPos.value + '€'}
                             </TextSVG>
                         </Svg>
                     </View> : null
@@ -98,14 +110,7 @@ const CustomerPage = ({ navigation, route }) => {
                     labels: lab,
                     datasets: [
                         {
-                            data: [
-                                1660,
-                                2222,
-                                2123,
-                                400,
-                                2123,
-                                1111
-                            ]
+                            data: route.params.cliente == 1 ? data1[1] : data1[0]
                         }
                     ]
                 }}
@@ -145,14 +150,7 @@ const CustomerPage = ({ navigation, route }) => {
                 labels: lab,
                 datasets: [
                     {
-                        data: [
-                            1,
-                            3,
-                            2,
-                            0,
-                            3,
-                            2
-                        ]
+                        data: route.params.cliente == 1 ? data2[1] : data2[0]
                     }
                 ]
             }}
@@ -190,14 +188,7 @@ const CustomerPage = ({ navigation, route }) => {
                 labels: lab,
                 datasets: [
                     {
-                        data: [
-                            5,
-                            12,
-                            1,
-                            3,
-                            4,
-                            1,
-                        ]
+                        data: route.params.cliente == 1 ? data3[1] : data3[0]
                     }
                 ]
             }}
@@ -236,13 +227,7 @@ const CustomerPage = ({ navigation, route }) => {
                 labels: ["Borse", "Accessori", "Scarpe", "Abbigliamento","Altro"],
                 datasets: [
                     {
-                        data: [
-                            14,
-                            38,
-                            12,
-                            31,
-                            6,
-                        ]
+                        data:  route.params.cliente == 1 ? data4[1] : data4[0]
                     }
                 ]
             }}
