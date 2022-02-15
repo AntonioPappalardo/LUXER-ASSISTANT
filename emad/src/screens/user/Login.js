@@ -41,6 +41,11 @@ const Login = ({ navigation }) => {
   const handleSubmitPress = () => {
     var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
+    if (!userEmail.match(mailformat)){
+      setErrorText(language.campoErroreEmail);
+      setModalVisible(true)
+      return;
+    }
     if (!userEmail) {
       setErrorText(language.emailError)
       setModalVisible(true)
