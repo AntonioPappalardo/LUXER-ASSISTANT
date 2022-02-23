@@ -1,7 +1,8 @@
 # Luxer Assistant
 Progetto realizzato nell'ambito del corso universitario Enterprise Mobile Application Development 2021-2022.
 
-![Luxer Assistant ](Presentazione-Finale/video.mp4)
+https://user-images.githubusercontent.com/43400908/155295366-f9088dea-1488-482f-9c5e-8f5ba9047a3a.mp4
+
 
 ## Guida all'installazione
 
