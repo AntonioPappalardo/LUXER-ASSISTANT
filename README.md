@@ -36,3 +36,10 @@ L’applicazione presenta vari aspetti, tra cui:
 - Offrire un’interfaccia semplice, intuitiva e accattivante;
 - Offrire la possibilità di prenotare appuntamenti per il propri clienti, gestendo in maniera semplice quelli che sono gli orari disponibili per la prenotazione di un reparto o del negozio;
 
+## Struttura Progetto
+Di seguito vengono illustrate le cartelle del repository:
+- **Database**: contiene il modello EER sviluppato;
+- **Documentazione**: contiene la documentazione RAD richiesta per lo sviluppo dell'applicazione;
+- **Presentazione-Intermedia**: contiene la presentazione intermedia, necessaria per esporre l'idea di progetto;
+- **Presentazione-Finale**: contiene la locandina, lo spot promozionale e la presentazione finale;
+- **emad**: contenente l'applicazione realizzata;
